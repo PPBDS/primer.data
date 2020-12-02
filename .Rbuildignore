@@ -1,3 +1,5 @@
 ^primer\.data\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+data-raw
+TODO.txt
