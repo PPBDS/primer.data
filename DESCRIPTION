@@ -1,17 +1,48 @@
 Package: primer.data
-Title: What the Package Does (One Line, Title Case)
+Title: Data for Preceptor's Primer for Bayesian Data Science
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+  c(
+    person(given = "David",
+           family = "Kane",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "dave.kane@gmail.com",
+           comment = c(ORCID = "0000-0002-6660-3934")),
+    person(given = "Becca",
+           family = "Gill",
+           role = c("aut"),
+           email = "beccabgill116@gmail.com",
+           comment = c(ORCID = "0000-0003-4084-4868"))
+           )
+Description: Data and tutorials for Gov 50: Data, a course at Harvard University.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Depends: R (>= 3.5.0)
+Imports:
+    tidyverse (>= 1.3.0),
+    lubridate,
+    stringr,
+    shiny (>= 1.4.0.2),
+    gapminder,
+    fueleconomy,
+    babynames,
+    dslabs,
+    skimr (>= 2.1.1),
+    viridis (>= 0.5.1),
+    ggthemes (>= 4.2.0),
+    fivethirtyeight,
+    nycflights13,
+    gt (>= 0.2.1),
+    learnr (>= 0.10.1),
+    infer,
+    base64enc,
+    nnet,
+    tidymodels,
+    modeldata,
+    rstanarm,
+    rmarkdown
 Suggests: 
     testthat
