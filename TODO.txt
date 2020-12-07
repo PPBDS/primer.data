@@ -1,16 +1,13 @@
-List of TODO items for this package.
 
-Talk about Open Policing. Maybe San Antonia?
 
-No more variable name changes. Need to steady state for the creation of tutorials. OK to add more variables.
+* Several of the data sets, especially CCES and NES, should have many more variables in them. Pick a dozen or more which are interesting/popular and add them.
 
 * Clean up governors. Maybe change alive_pre to age (in years)? Then change alive_post to what? Maybe years_ahead or years_to_live or years_left?
 
 * Clean up `sps`. Which variables do we need? What do they show? What should they be called?
 
-* Let's take a careful tour of the data we have and make sure it is all good and sensible (sort of). Take ownership! No blaming your predecessors! As part of this, learn about making test cases from [R Packages](https://r-pkgs.org/tests.html) and add at least one test case for each data set. (Be smart in making these. It is OK to have a test case which tests the number of rows in trains because trains will always have 115 rows. It would be bad (or maybe not?) to have a test case like that for cces since the number of rows for will change once we add next year's data to it.) The definition of a "careful tour" is that you have looked at make_* for a data set, regenerated it, and added at least two test cases about it. You should certainly use any current stopifnot() as test cases and then remove them from the make_* files.
+* Learn about making test cases from [R Packages](https://r-pkgs.org/tests.html) and add at least one test case for each data set. (Be smart in making these. It is OK to have a test case which tests the number of rows in trains because trains will always have 115 rows. It would be bad (or maybe not?) to have a test case like that for cces since the number of rows for will change once we add next year's data to it.) The definition of a "careful tour" is that you have looked at make_* for a data set, regenerated it, and added at least two test cases about it. You should certainly use any current stopifnot() as test cases and then remove them from the make_* files.
 
-* Investigate "Note: found 217 marked UTF-8 strings"
 
 * World Values
 
@@ -23,11 +20,9 @@ https://crimebythenumbers.com/
 
 Update CCES?
 
-Find some big data.
-
 ## Previous
 
-Is there an issue about having library(NHANES) and such in our make_* scripts causing warnings when students just want to library(PPBDS.data)? Maybe this would go away if we changed these make_* files from scripts to functions? We certainly do not want to require anyone who installs this package to have these libraries. That is too much, especially since we will have lots of students installing this package so they can do the tutorial.
+Is there an issue about having library(NHANES) and such in our make_* scripts causing warnings when students just want to library(primer.data)? Maybe this would go away if we changed these make_* files from scripts to functions? We certainly do not want to require anyone who installs this package to have these libraries. That is too much, especially since we will have lots of students installing this package so they can do the tutorial. Maybe having all of these as Suggests solves this problem in exactly the way that it should be solved.
 
 Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages.
 
@@ -35,16 +30,12 @@ Provide instruction in the lower part of this document about the release cycle. 
 
 
 
-* article section
+* article section. Have a directory in which copies of the key articles are distributed. Add inst/papers with all the relevant papers. Then from the help pages to these locations?
 
 
 ## Other
 
-* Don't mess with datasets until the tutorials are over.
-
 * Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep.
-
-* Add inst/papers with all the relevant papers. Then from the help pages to these locations?
 
 * Should we re-create all the data sets each time we run R CMD package check? This would not take too much time and would ensure that everything is ship-shape.
 
@@ -67,7 +58,7 @@ Provide instruction in the lower part of this document about the release cycle. 
 
 * Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
 
-* Need something from Matt Blackwell's work on slavery. Ultimate use may just be in making an example for the maps appendix, which should be longer.
+* Need something from MB's work on slavery. Ultimate use may just be in making an example for the maps appendix, which should be longer.
 
 * Called `congress`. Something about the results of US congressional elections over several election cycles. 538? Really want this to include some measure of campaign spending so we can discuss a (potential) causal effect. Didn't they have a model which they used for the 2018 election? If they estimated a model, they must have some data.
 
@@ -82,13 +73,9 @@ Provide instruction in the lower part of this document about the release cycle. 
 * Called `deaths`. Maybe that demography data we used on the last day of 1005 this semester? Or is that too big?
 
 
-## Overview
-
-We are creating an R package, PPBDS.data, which will contain a collection of interesting tibbles, with a focus on political science and designed for classroom use. Their main use will be for Gov 50 and for the Preceptor's Primer. Each tibble will have a small number of variables, about as many as will fit across the screen when the tibble is printed. (Tibbles need to be simple since we don't want to overwhelm readers. The focus should be on the code and the models, not on the data.) See below for instructions on installing git-lfs. We might have one very "wide" tibble, just to have an example to work with when we want to try a model with lots of variables.
-
 ### Instructions
 
-* Write scripts which create our data sets and adds them to our PPBDS.data package. Write associated help files. Skim [*R Packages*](https://r-pkgs.org/), but read closely the [data section](https://r-pkgs.org/data.html). Examine [covdata package](https://kjhealy.github.io/covdata/). Use **usethis** and **pkgdown** packages.
+* Write scripts which create our data sets and adds them to our primer.data package. Write associated help files. Skim [*R Packages*](https://r-pkgs.org/), but read closely the [data section](https://r-pkgs.org/data.html). Examine [covdata package](https://kjhealy.github.io/covdata/). Use **usethis** and **pkgdown** packages.
 
 * Follow the conventions with the trains data: make_trains.R (in data-raw/), trains.rda (in data/), trains.R (in R/). Note that the name of the tibble -- "trains" -- appears in the file name of each of the three key things you are creating.
 
@@ -121,20 +108,5 @@ This section provides an overview of how to name package versions (see also http
 * No other digit, but a legitimate question is also: When do we change from 0.a.b to 1.0.0? The first digit should be set from 0 to 1 when our package is "feature complete". This could be the case if our package contains all necessary datasets a student needs in GOV 50. It could also mean that the package is in a state to be realeased on CRAN (or both). In the end, it's up to us to answer this question. Furthermore, note that as long as the first digit is still 0, non-backward compatible changes will be recorded by incrementing the second digit (and not the first, as described above).
 
 Once we have made some changes and agreed on a proper name for the new version, we need to change the old name. First, we have to open the DESCRIPTION file and manually enter the correct version. Save the changes and run build_site() in the console. The new name of the version should now show on top of the homepage. Next, update the changelog which is generated by the NEWS.md file. Simply open the file and orientate yourself on the existing content to add a new entry. If everything looks right, save the changes and use build_site() again to see the result. While there is no rule on this, most packages mention the fourth digit only in the DESCRIPTION file and not in NEWS.md (I follow this convention as well). Whenever new changes are made, simply repeat the described process.
-
-
-### git-lfs
-
-Previously, we used git-lfs. See below for instructions. But, this led to Githib charging us too much money! So, we no longer need it, since we removed the anes_timeseries_cdf.dta from the repo.
-
-Note that you need to have git-lfs installed to work with our repo because we use some big data sets. See [here](https://git-lfs.github.com/) for instructions. Note that the current Mac OS (Catalina) will give you a bit of a problem. To solve it, I did:
-
-brew install git-lfs
-xattr -d com.apple.quarantine /usr/local/bin/git-lfs
-
-The first command is just a standard way of installing things on the Mac. The second step was necessary because Apple has tighted the safety checks on downloaded programs. At some point, only the first step will be necessary. But, for now, you need to do the second to confirm to Apple that git-lfs is safe.
-
-Once you have done this, all your standard git commands will work as usual. Note that data-raw/ in in .Rbuildignore, so that directory is not included in the distributed package. That is cool since we don't want the package to force people to download hundreds of megs of raw data.
-
 
 
