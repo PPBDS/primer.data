@@ -1,10 +1,26 @@
+* remove.packages(PPBDS.data)
+
+* usethis 2.0
+
+* use pkgdown,  add back homepage (document how we did this!)
+
+* Github actions and workflow (do this with usethis helper functions)
+    automatic (?) homepage
+    automatic R CMD check with pull requests
+
+* Update cces with 2020 data
+
+* Several of the data sets, especially CCES and NES, should have many more variables in them. Pick a dozen or more which are interesting/popular and add them. (Are there some numeric variables.)
+
+* Clean up `sps`. Which variables do we need? What do they show? What should they be called?
 
 
-* Several of the data sets, especially CCES and NES, should have many more variables in them. Pick a dozen or more which are interesting/popular and add them.
+
+
 
 * Clean up governors. Maybe change alive_pre to age (in years)? Then change alive_post to what? Maybe years_ahead or years_to_live or years_left?
 
-* Clean up `sps`. Which variables do we need? What do they show? What should they be called?
+
 
 * Learn about making test cases from [R Packages](https://r-pkgs.org/tests.html) and add at least one test case for each data set. (Be smart in making these. It is OK to have a test case which tests the number of rows in trains because trains will always have 115 rows. It would be bad (or maybe not?) to have a test case like that for cces since the number of rows for will change once we add next year's data to it.) The definition of a "careful tour" is that you have looked at make_* for a data set, regenerated it, and added at least two test cases about it. You should certainly use any current stopifnot() as test cases and then remove them from the make_* files.
 

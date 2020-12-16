@@ -14,7 +14,7 @@ Authors@R:
            email = "beccabgill116@gmail.com",
            comment = c(ORCID = "0000-0003-4084-4868"))
            )
-Description: Data and tutorials for Gov 1005: Big Data, a course at Harvard University.
+Description: Data for Gov 1005: Big Data, a course at Harvard University.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
