@@ -3,7 +3,7 @@
 \docType{data}
 \name{governors}
 \alias{governors}
-\title{Election results and longevity of politicians}
+\title{Election results and candidate longevity}
 \format{
 A tibble with 1,092 observations and 11 variables:
 \describe{
@@ -11,16 +11,16 @@ A tibble with 1,092 observations and 11 variables:
 \item{year}{integer variable indicating the year in which an election took place}
 \item{first_name}{character variable indicating the first name of a candidate}
 \item{last_name}{character variable indicating the last name of a candidate}
-\item{party}{character variable indicating a member's party}
-\item{sex}{character variable indicating a member's sex}
+\item{party}{character variable indicating a candidate's party}
+\item{sex}{character variable indicating a candidate's sex}
 \item{died}{date variable indicating the candidate's date of death}
 \item{status}{character variable indicating whether a candidate was the challenger or incumbent}
 \item{win_margin}{double variable indicating the percentage margin by which the election was won
 (positive values) or lost (negative values)}
-\item{alive_post}{integer variable indicating the number of days a candidate lived after
-the election took place}
-\item{alive_pre}{integer variable indicating the number of days a candidate lived before
-the election took place}
+\item{population}{number of people living in the state at the time of the election}
+\item{death_age}{years a candidate lived}
+\item{election_age}{years a candidate lived before the election took place}
+\item{lived_after}{years a candidate lived after the election took place}
 }
 }
 \source{
@@ -30,35 +30,30 @@ the election took place}
 governors
 }
 \description{
-This is a dataset corresponding to the paper "Longevity Returns to Political
+This data is from the paper "Longevity Returns to Political
 Office" by \href{https://doi.org/10.1017/psrm.2019.63}{Barfort, Klemmensen &
-Larsen (2019)}. The purpose of this study was to find out whether and how
-winning an election influences the lifespan of politicians. To answer this
-question, the authors collected data on all U.S. gubernatorial elections from
-1945 to 2012. In addition to the names and votes of the running candidates, the
-data includes information on their pre- and post-election life spans. See also the
-'Details' section below.
+Larsen (2019)}. The purpose of this study was to explore how winning an
+election influences the lifespan of a candidate. The authors collected data
+on all U.S. gubernatorial elections from 1945 to 2012.
 }
 \details{
-To facilitate subsequent analysis, the raw data collected by the authors was
-edited in three ways. First, for a given election, only the two candidates who
-received the highest number of votes were included. Second, candidates with unknown
+First, for a given election, only the two candidates who received the
+highest number of votes were included. Second, candidates with unknown
 dates of death were excluded, resulting in fewer observations for elections in
-recent years. Third, in a few instances, only the year of birth or death could
-be determined; in these cases, the date was taken to be July 1 of that year.
-
- 
+recent years, since most recent candidates are still alive. Third, in a few
+instances, only the year of birth or death could be determined; in these cases,
+the date was taken to be July 1 of that year.
 
 Table: Data summary\tabular{ll}{
     \tab  \cr
    Name \tab governors \cr
    Number of rows \tab 1092 \cr
-   Number of columns \tab 11 \cr
+   Number of columns \tab 14 \cr
    _______________________ \tab  \cr
    Column type frequency: \tab  \cr
-   character \tab 6 \cr
+   character \tab 7 \cr
    Date \tab 1 \cr
-   numeric \tab 4 \cr
+   numeric \tab 6 \cr
    ________________________ \tab  \cr
    Group variables \tab None \cr
 }
@@ -72,6 +67,7 @@ Table: Data summary\tabular{ll}{
    party \tab 0 \tab 1 \tab 8 \tab 11 \tab 0 \tab 3 \tab 0 \cr
    sex \tab 0 \tab 1 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
    status \tab 0 \tab 1 \tab 9 \tab 10 \tab 0 \tab 2 \tab 0 \cr
+   region \tab 0 \tab 1 \tab 4 \tab 9 \tab 0 \tab 4 \tab 0 \cr
 }
 
 
@@ -83,10 +79,12 @@ Table: Data summary\tabular{ll}{
 
 \strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
    skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   year \tab 0 \tab 1 \tab 1964.85 \tab 13.38 \tab 1945.00 \tab 1954.00 \tab 1962.00 \tab 1974.00 \tab 2011 \tab ▇▆▃▂▁ \cr
-   win_margin \tab 0 \tab 1 \tab 3.22 \tab 26.07 \tab -82.43 \tab -9.87 \tab 0.97 \tab 12.18 \tab 100 \tab ▁▃▇▁▁ \cr
-   alive_post \tab 0 \tab 1 \tab 10309.56 \tab 4885.95 \tab 46.00 \tab 6418.75 \tab 10811.00 \tab 14123.75 \tab 22067 \tab ▃▆▇▆▂ \cr
-   alive_pre \tab 0 \tab 1 \tab 18892.42 \tab 3181.47 \tab 11450.00 \tab 16561.00 \tab 18757.50 \tab 20995.75 \tab 30633 \tab ▂▇▆▂▁ \cr
+   year \tab 0 \tab 1 \tab 1964.85 \tab 13.38 \tab 1945.00 \tab 1954.00 \tab 1.962e+03 \tab 1.974e+03 \tab 2011.00 \tab ▇▆▃▂▁ \cr
+   win_margin \tab 0 \tab 1 \tab 3.22 \tab 26.07 \tab -82.43 \tab -9.87 \tab 9.700e-01 \tab 1.218e+01 \tab 100.00 \tab ▁▃▇▁▁ \cr
+   population \tab 0 \tab 1 \tab 3783555.08 \tab 4231731.71 \tab 145000.00 \tab 900000.00 \tab 2.427e+06 \tab 4.536e+06 \tab 27102238.00 \tab ▇▁▁▁▁ \cr
+   election_age \tab 0 \tab 1 \tab 51.72 \tab 8.71 \tab 31.35 \tab 45.34 \tab 5.136e+01 \tab 5.748e+01 \tab 83.87 \tab ▂▇▆▂▁ \cr
+   death_age \tab 0 \tab 1 \tab 79.95 \tab 11.16 \tab 41.63 \tab 73.38 \tab 8.190e+01 \tab 8.815e+01 \tab 101.72 \tab ▁▂▅▇▃ \cr
+   lived_after \tab 0 \tab 1 \tab 28.23 \tab 13.38 \tab 0.13 \tab 17.57 \tab 2.960e+01 \tab 3.867e+01 \tab 60.42 \tab ▃▆▇▆▂ \cr
 }
 }
 \author{
