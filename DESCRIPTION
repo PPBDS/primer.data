@@ -1,6 +1,6 @@
 Package: primer.data
 Title: Data for Preceptor's Primer for Bayesian Big Data Science
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Authors@R: 
   c(
     person(given = "David",
