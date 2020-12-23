@@ -2,7 +2,7 @@
 
 * usethis 2.0
 
-* use pkgdown,  add back homepage (document how we did this!)
+* use pkgdown, add back homepage (document how we did this!)
 
 * Github actions and workflow (do this with usethis helper functions)
     automatic (?) homepage
