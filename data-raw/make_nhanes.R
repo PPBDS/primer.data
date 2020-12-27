@@ -14,6 +14,10 @@ library(tidyverse)
 # than we could possibly include. The ones below are some of the more well known
 # measures that are relatively easy to interpret.
 
+# Make use of this next time?
+
+# https://cran.r-project.org/web/packages/nhanesA/vignettes/Introducing_nhanesA.html
+
 x <- NHANES %>%
 
         select(SurveyYr, Gender, Age,
@@ -23,8 +27,8 @@ x <- NHANES %>%
                nPregnancies, SleepHrsNight) %>%
 
 
-  # Recoding 'SurveyYr' by converting it to a new variable name 'survey'.
-  # This variable only includes the first year, the second year is dropped. For
+  # Recoding 'SurveyYr' by converting it to a new variable name 'survey'. This
+  # variable only includes the first year, the second year is dropped. For
   # example, "2011_12" will just be represented as "2011". This may not be
   # totally correct, but it eases further analyses while creating only minor
   # distortions (it's unlikely that people's health status changes a lot within
@@ -39,39 +43,39 @@ x <- NHANES %>%
   mutate(survey = as.integer(survey)) %>%
 
 
-  # Recoding some levels of 'Education' and converting it to
-  # an ordered factor.
+  # Recoding some levels of 'Education' and converting it to a factor. Why are
+  # 25% of the observations NA?
 
-  mutate(Education = as.ordered(case_when(
+  mutate(Education = as.factor(case_when(
     Education == "8th Grade" ~ "Middle School",
     Education == "9 - 11th Grade" ~ "Middle School",
     Education == "High School" ~ "High School",
     Education == "Some College" ~ "Some College",
-    Education == "College Grade" ~ "College"))) %>%
+    Education == "College Grad" ~ "College"))) %>%
+
+  mutate(Education = fct_relevel(Education,
+                                 "Middle School",
+                                 after = 0)) %>%
 
 
-  # Recoding some values of 'HHIncome' and converting it to an
-  # ordered factor. Having ranges instead of single values looks
-  # ugly, but this is still the best solution.
-  # There are two other options to deal with this variable, but
-  # both of them come with a problem. The first option to the
-  # below approach would be to recode the ranges as numbers, with
-  # the first group being "1" and the second group being "2", etc.
-  # However, this could imply a linear relationship between numbers
-  # and and ranges of each group, which would be wrong (e.g. the
-  # first group covers a range of 5k, the last group a range of 25k).
-  # The second option would be to use 'HHIncomeMid' variable in the
-  # dataset, which uses the median/mean of each group's range instead
-  # of the range itself. However, unless peoples' incomes in each
-  # group follow a normal or equal distribution that is centered
-  # around the mean/median of the respective range, this would lead
-  # to distortions. For example, it makes little sense to assume that
-  # the average income of all people in the group "75000-99999" is
-  # equal to this ranges' median of 87500. Instead, we would expect
-  # much fewer observations at the upper range, leading to a value that
-  # may not even be close to 87500.
+  # Recoding some values of 'HHIncome' and converting it to an factor. Having
+  # ranges instead of single values looks ugly, but this is still the best
+  # solution. There are two other options to deal with this variable, but both
+  # of them come with a problem. The first option to the below approach would be
+  # to recode the ranges as numbers, with the first group being "1" and the
+  # second group being "2", etc. However, this could imply a linear relationship
+  # between numbers and and ranges of each group, which would be wrong (e.g. the
+  # first group covers a range of 5k, the last group a range of 25k). The second
+  # option would be to use 'HHIncomeMid' variable in the dataset, which uses the
+  # median/mean of each group's range instead of the range itself. However,
+  # unless peoples' incomes in each group follow a normal or equal distribution
+  # that is centered around the mean/median of the respective range, this would
+  # lead to distortions. For example, it makes little sense to assume that the
+  # average income of all people in the group "75000-99999" is equal to this
+  # ranges' median of 87500. Instead, we would expect much fewer observations at
+  # the upper range, leading to a value that may not even be close to 87500.
 
-  mutate(HHIncome = as.ordered(case_when(
+  mutate(HHIncome = as.factor(case_when(
     HHIncome == "more 99999" ~ "over 99999",
     HHIncome == "75000-99999" ~ "75000-99999",
     HHIncome == "65000-74999" ~ "65000-74999",
@@ -103,9 +107,9 @@ x <- NHANES %>%
     HealthGen == "Excellent" ~ 5))) %>%
 
 
-  # Converting 'Depressed' to an ordered factor.
+  # Converting 'Depressed' to a factor.
 
-  mutate(Depressed = as.ordered(Depressed)) %>%
+  mutate(Depressed = as.factor(Depressed)) %>%
 
 
   # Converting 'Diabetes' to an integer variable.

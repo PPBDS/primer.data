@@ -27,15 +27,15 @@
 #'                      conducted across two years, so the earlier year is used.}
 #'   \item{age}{character variable for age in years}
 #'   \item{race}{character variable with values "White", "Black", "Hispanic", "Mexican", and "Other"}
-#'   \item{education}{ordered factor variable with levels "Middle school" < "High school" < "Some college" < "College"}
-#'   \item{hh_income}{ordered factor variable for household income groups with levels "0-4999" < [...] < "over 99999"}
+#'   \item{education}{factor variable with levels "Middle school" < "High school" < "Some college" < "College"}
+#'   \item{hh_income}{factor variable for household income groups with levels "0-4999" < [...] < "over 99999"}
 #'   \item{weight}{double variable for weight in kilograms}
 #'   \item{height}{double variable for height in centimeters}
 #'   \item{bmi}{double variable for body mass index}
 #'   \item{pulse}{integer variable for pulse in beats per minute or bpm}
 #'   \item{diabetes}{integer variable with values 0/1 indicating whether patient suffers from diabetes}
 #'   \item{general_health}{integer variable for general health ranked from 1-5. 1 maps to "poor", 2 is "fair", 3 is "good", 4 is "very good", and 5 is "excellent".}
-#'   \item{depressed}{character variable answering question how often patient feels depressed.
+#'   \item{depressed}{factor variable answering question how often patient feels depressed.
 #'                    Includes values "Several", "None", "Most"}
 #'   \item{pregnancies}{integer variable for number of pregnanices.
 #'                      NA if the individual, regardless of gender, hasn't experienced a pregnancy}
