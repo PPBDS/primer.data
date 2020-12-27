@@ -99,7 +99,7 @@ x <- read_rds("data-raw/cumulative_2006_2018.rds") %>%
     marstat == 5 ~ "Single / Never Married",
     marstat == 6 ~ "Domestic Partnership")) %>%
 
-  # Making education an ordered factor.
+  # Making education a factor.
 
   # I am a little confused about how ideology ends up as a factor. Should clean
   # this up.

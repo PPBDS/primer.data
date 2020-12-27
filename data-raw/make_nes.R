@@ -66,7 +66,7 @@ x <- raw_data %>%
   # like 1 for the lowest percentile group, 2 for the second
   # lowest etc. This makes people think that the differences
   # between each percentile group are the same, which is not
-  # the case. Ordered factor makes more sense here.
+  # the case. A factor variable makes more sense here.
 
   mutate(VCF0114 = as.character(as_factor(VCF0114)))  %>%
 
@@ -181,7 +181,7 @@ x <- raw_data %>%
     TRUE ~ NA_character_))) %>%
 
 
-  # Converting education variable to ordered factor.
+  # Converting education variable to a factor.
 
   mutate(education = factor(education,
                        levels = c("Elementary", "Some Highschool",
