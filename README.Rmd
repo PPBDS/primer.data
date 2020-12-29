@@ -1,0 +1,110 @@
+---
+output: github_document
+---
+
+<!-- README is generated from README.Rmd, edit ONLY this file if needed. But, after you edit it, you NEED TO KNIT IT BY HAND in order to create the new README.md, which is the thing which is actually used. -->
+
+```{r, include=FALSE}
+
+knitr::opts_chunk$set(
+  collapse = T,
+  comment = "#>",
+  fig.path = "man/README-",
+  out.width = "100%"
+)
+
+# still working on sidebar information, the solutions are evasive at present. 
+
+```
+
+
+# Data for *Preceptor's Primer for <br/> Bayesian Big Data Science* <img src="man/figures/ulysses_hex_black.png" align = "right"  width="160">
+
+## About this package
+
+`PPBDS.data` provides the data used in *[Preceptor's Primer for Big Bayesian Data Science](https://davidkane9.github.io/PPBDS/)*, the textbook used in [Gov 50: Data](https://www.davidkane.info/files/gov_50_fall_2020.html) at Harvard University. 
+
+<!-- unsure if badges are available for use yet here -->
+
+## Installation
+
+As this package is not released on CRAN, you must install it directly from GitHub.
+
+```r
+remotes::install_github("ppbds/primer.data")
+```
+
+## Loading Preceptor's Data
+
+After installing the package, it loads as any package should.
+
+```{r loading, message=F}
+library(tidyverse) 
+library(primer.data)
+
+qscores
+```
+
+## Using the data
+
+Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using `PPBDS.data::qscores`. 
+
+```{r quick.plot, eval=FALSE}
+
+library(ggplot2)
+
+qscores %>% 
+  filter(department == "GOV") %>% 
+  ggplot(aes(hours, rating, color = term)) +
+    geom_point(aes(size = enrollment), alpha = 0.4) +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +
+    facet_wrap(~term) +
+    labs(
+      title = "Student Course Evaluations at Harvard",
+      subtitle = "Department of Government",
+      caption = "Data provided by Aurash Vatan '23",
+      x = "Weekly workload, hours",
+      y = "Rating, 1 (worst) to 5 (best)",
+      size = "Enrollment") +
+    theme_linedraw() +
+    theme(
+        text = element_text(family = "Palatino"),
+        axis.text.x = element_text(size = 10),
+        axis.text.y = element_text(size = 10)) +
+    scale_color_discrete(guide = "none")
+```
+
+<!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? -->
+
+<img src= "man/figures/README-plot-1.png" align="center" height="500">
+
+
+## Citing PPBDS.data
+
+```{r citation, warning=FALSE}
+citation("primer.data")
+```
+
+
+```{r build.site, include=FALSE, message=FALSE}
+# DK: Add some comments to explain what is going on here. What does build_home()
+# do and why is build_site() commented out?
+
+# pkgdown::build_site()
+
+pkgdown::build_home()
+```
+
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg)](https://github.com/PPBDS/primer.data/actions)
+<!-- badges: end -->
+
+
+
+
+
+
+
+
+

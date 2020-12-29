@@ -11,7 +11,7 @@
 library(tidyverse)
 library(usethis)
 
-x <- read_rds("data-raw/cumulative_2006_2018.rds") %>%
+x <- read_rds("data-raw/cumulative_2006_2019.rds") %>%
   select(year, state, gender,
 
     # I kept age instead of birth year because it records the age when they took

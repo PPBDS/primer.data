@@ -8,10 +8,10 @@ Authors@R:
            role = c("aut", "cre"),
            email = "dave.kane@gmail.com",
            comment = c(ORCID = "0000-0002-6660-3934")),
-    person(given = "Becca",
-           family = "Gill",
+    person(given = "Thomas",
+           family = "Weiss",
            role = c("aut"),
-           email = "beccabgill116@gmail.com",
+           email = "tcweiss@protonmail.com",
            comment = c(ORCID = "0000-0003-4084-4868"))
            )
 Description: Data for Gov 1005: Big Data, a course at Harvard University.
@@ -30,3 +30,4 @@ Suggests:
     RSQLite,
     usethis,
     testthat
+BugReports: https://github.com/ppbds/primer.data/issues

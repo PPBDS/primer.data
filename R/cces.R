@@ -5,8 +5,8 @@
 #' Data for the approval ratings of voters to various government positions
 #' combined with the demographic background of the voter. See
 #' \href{https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/II2DB6}{Kuriwaki
-#' (2018)} for background and details. The raw code that was used to produce
-#' the data is accesible at Kuriwaki's \href{https://github.com/kuriwaki/cces_cumulative}{Github.}
+#' (2020)} for background and details. The raw code that was used to produce
+#' the data is accessible at Kuriwaki's \href{https://github.com/kuriwaki/cces_cumulative}{Github.}
 #'
 #' @details
 #'
@@ -16,7 +16,7 @@
 #' skimr::skim(cces)
 #' ```
 #'
-#' @format A tibble with 452,755 observations and 16 variables:
+#' @format A tibble with 470,755 observations and 12 variables:
 #' \describe{
 #'   \item{year}{integer variable for year of survey}
 #'   \item{state}{character variable for state of residence for observation}
