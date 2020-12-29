@@ -5,3 +5,4 @@
 ^LICENSE\.md$
 data-raw
 TODO.txt
+^\.github$

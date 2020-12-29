@@ -96,11 +96,9 @@ pkgdown::build_home()
 ```
 
 
-
-
-
-
-
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg)](https://github.com/PPBDS/primer.data/actions)
+<!-- badges: end -->
 
 
 
