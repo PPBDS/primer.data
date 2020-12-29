@@ -4,11 +4,11 @@
 
 * use pkgdown, add back homepage (document how we did this!) -- [Done]
 
-* Github actions and workflow (do this with usethis helper functions)
+* Github actions and workflow (do this with usethis helper functions) -- [Done]
     automatic (?) homepage
     automatic R CMD check with pull requests
 
-* Update cces with 2020 data
+* Update cces with 2020 data -- [Done]
 
 * Several of the data sets, especially CCES and NES, should have many more variables in them. Pick a dozen or more which are interesting/popular and add them. (Are there some numeric variables.)
 
