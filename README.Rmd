@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 ## About this package
 
-`PPBDS.data` provides the data used in *[Preceptor's Primer for Big Bayesian Data Science](https://davidkane9.github.io/PPBDS/)*, the textbook used in [Gov 50: Data](https://www.davidkane.info/files/gov_50_fall_2020.html) at Harvard University. 
+`primer.data` provides the data used in *[Preceptor's Primer for Big Bayesian Data Science](https://ppbds.github.io/primer)*, the textbook used in [Gov 50: Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at Harvard University. 
 
 <!-- unsure if badges are available for use yet here -->
 
@@ -79,7 +79,7 @@ qscores %>%
 <img src= "man/figures/README-plot-1.png" align="center" height="500">
 
 
-## Citing PPBDS.data
+## Citing primer.data
 
 ```{r citation, warning=FALSE}
 citation("primer.data")

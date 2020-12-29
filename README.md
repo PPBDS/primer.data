@@ -5,10 +5,10 @@
 
 ## About this package
 
-`PPBDS.data` provides the data and the tutorials used in *[Preceptor’s
-Primer for Bayesian Data Science](https://davidkane9.github.io/PPBDS/)*,
+`primer.data` provides the data and the tutorials used in *[Preceptor’s
+Primer for Bayesian Big Data Science](https://ppbds.github.io/primer/)*,
 the textbook used in [Gov 50:
-Data](https://www.davidkane.info/files/gov_50_fall_2020.html) at Harvard
+Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at Harvard
 University.
 
 <!-- unsure if badges are available for use yet here -->
@@ -53,7 +53,7 @@ Once the library is loaded and you have confirmed that it can be
 accessed in your local environment, the data sets can be called as
 objects and used like any other data you would otherwise read in and
 assign to an object manually. See the following example of a plot using
-`PPBDS.data::qscores`.
+`primer.data::qscores`.
 
 ``` r
 
@@ -84,7 +84,7 @@ qscores %>%
 
 <img src= "man/figures/README-plot-1.png" align="center" height="500">
 
-## Citing PPBDS.data
+## Citing primer.data
 
 ``` r
 citation("primer.data")

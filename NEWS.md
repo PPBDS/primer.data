@@ -1,4 +1,4 @@
-## PPBDS.data 0.1.0
+## primer.data 0.1.0
 
 ---
 

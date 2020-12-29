@@ -5,7 +5,7 @@
 # for data is very different from creating tests for functions.
 
 # context("Datasets")
-# library(PPBDS.data)
+# library(primer.data)
 
 # cces
 # test_that("str_length is number of characters", {
