@@ -18,11 +18,11 @@ knitr::opts_chunk$set(
 ```
 
 
-# Data for *Preceptor's Primer for <br/> Bayesian Data Science* <img src="man/figures/ulysses_hex_black.png" align = "right"  width="160">
+# Data for *Preceptor's Primer for <br/> Bayesian Big Data Science* <img src="man/figures/ulysses_hex_black.png" align = "right"  width="160">
 
 ## About this package
 
-`PPBDS.data` provides the data and the tutorials used in *[Preceptor's Primer for Bayesian Data Science](https://davidkane9.github.io/PPBDS/)*, the textbook used in [Gov 50: Data](https://www.davidkane.info/files/gov_50_fall_2020.html) at Harvard University. 
+`PPBDS.data` provides the data and the tutorials used in *[Preceptor's Primer for Big Bayesian Data Science](https://davidkane9.github.io/PPBDS/)*, the textbook used in [Gov 50: Data](https://www.davidkane.info/files/gov_50_fall_2020.html) at Harvard University. 
 
 <!-- unsure if badges are available for use yet here -->
 
