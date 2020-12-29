@@ -10,17 +10,13 @@
 
 * Update cces with 2020 data
 
-* Several of the data sets, especially CCES and NES, should have many more variables in them. Pick a dozen or more which are interesting/popular and add them. (Are there some numeric variables.)
+* Several of the data sets, especially CCES and NES, should have many more variables in them. Pick a dozen or more which are interesting/popular and add them. (Are there some numeric variables like age we could add?)
 
 * Clean up `sps`. Which variables do we need? What do they show? What should they be called?
 
 
 
-
-
-* Clean up governors. Maybe change alive_pre to age (in years)? Then change alive_post to what? Maybe years_ahead or years_to_live or years_left?
-
-* Are there more variables associated with the shaming data? There is so much data that we could build a much richer model.
+* Are there more variables associated with the shaming data? There is so many observations that we could build a much richer model if we had more variables.
 
 * article section. Have a directory in which copies of the key articles are distributed. Add inst/papers with all the relevant papers. Then link from the help pages to these locations?
 
