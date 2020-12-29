@@ -1,5 +1,26 @@
+# We need to organize and explain all the terms here. We start with the default ones.
+
 .Rproj.user
 .Rhistory
 .RData
+.Ruserdata
 
-*Rproj
+# Annoying system-created files which should never be checked in. What does ** do?
+# I want it to cover a .DS_Store in the highest level, and in any lower level.
+
+*.Rproj
+**.DS_Store
+**rsconnect
+
+# Then we have a bunch, many of which we don't need. Right?
+
+*/*_files/
+*/*html
+*/*log
+*/*tex
+*/storage
+
+# Then some stragglers.
+
+data-raw/anes_timeseries_cdf.dta
+
