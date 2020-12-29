@@ -2,4 +2,8 @@
 .Rhistory
 .RData
 
+<<<<<<< HEAD
 .DS_Store
+=======
+*Rproj
+>>>>>>> 1f59edc2a3b87170a7b2271a62ff24ce4daf75c2

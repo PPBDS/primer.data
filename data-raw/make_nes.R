@@ -1,8 +1,6 @@
-
 library(tidyverse)
 library(haven)
 library(usethis)
-
 
 # This dataset is from the American National Election Survey (ANES), a project
 # that aims to provide insights into voter behavior. ANES has been running since
@@ -10,25 +8,33 @@ library(usethis)
 # UMich and Stanford. The survey combines questions about voters' political
 # attitudes with extensive biographical information, and has been expanded by a
 # variety of issues over time. Details about ANES and the raw data can be found
-# at https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/.
+# at:
 
-# Reading in the data. The raw data file is too big to include in the repo,
-# so it was added to .gitignore. Before being able to make changes to the 'nes'
-# dataset, you must download the dataset using the above link and move it to
-# /data-raw.
+# https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/.
 
-data <- read_dta("data-raw/anes_timeseries_cdf.dta")
+# The raw zip is in the repo. Derived files are too big to commit. So, we just
+# unzip, read and then delete. Should take a closer look at the code book. Would
+# reading in the stata version be better?
+
+# You would think that someone had already done this, but I can't find anything
+# but this:
+
+# https://github.com/jamesmartherus/anesr
+
+unzip("data-raw/anes_timeseries_cdf_dta.zip")
+
+raw_data <- read_dta("anes_timeseries_cdf.dta")
+
+stopifnot(all(file.remove(c("anes_timeseries_cdf_stata13.dta",
+                            "anes_timeseries_cdf.dta",
+                            "anes_timeseries_cdf_codebook.zip"))))
 
 
-# Filters only for presidential years to the end of the data.
-
-pres_years <- seq(1948, max(data$VCF0004), by = 4)
-
-x <- data %>%
+x <- raw_data %>%
 
   # Only retains presidential election years.
 
-  filter(VCF0004 %in% pres_years) %>%
+  filter(VCF0004 %in% seq(1948, max(raw_data$VCF0004), by = 4)) %>%
 
 
   # Picking relevant variables: gender, income, year,
@@ -60,14 +66,14 @@ x <- data %>%
   # like 1 for the lowest percentile group, 2 for the second
   # lowest etc. This makes people think that the differences
   # between each percentile group are the same, which is not
-  # the case. Ordered factor makes more sense here.
+  # the case. A factor variable makes more sense here.
 
   mutate(VCF0114 = as.character(as_factor(VCF0114)))  %>%
 
   separate(VCF0114, into = c(NA, "income"),
            sep = "[.]") %>%
 
-  mutate(income = as.ordered(case_when(
+  mutate(income = as.factor(case_when(
     income == " 96 to 100 percentile" ~ "96 - 100",
     income == " 68 to 95 percentile" ~ "68 - 95",
     income == " 34 to 67 percentile" ~ "34 - 67",
@@ -107,6 +113,8 @@ x <- data %>%
     # I had to account for the 'non-hispanic' clause in the other labels, hence the
     # extra code in this case.
 
+    # DK: That `== F` looks wrong . . .
+
     ((str_extract(VCF0105a, pattern = "Hispanic") == "Hispanic") &
        str_detect(VCF0105a, pattern = "non-") == F) ~ "Hispanic",
 
@@ -119,9 +127,9 @@ x <- data %>%
     # to avoid having two different terms for the same group of people in
     # different time periods, I decided to code this as "Other" as well.
 
-    str_extract(VCF0105a, pattern = "Non-white") == "Non-white" ~ "Other",
-
-    TRUE ~ NA_character_))) %>%
+    str_extract(VCF0105a,
+                pattern = "Non-white") == "Non-white" ~ "Other",
+                                                 TRUE ~ NA_character_))) %>%
 
 
   # Dropping the leftover numeric race variable.
@@ -129,25 +137,30 @@ x <- data %>%
   select(-VCF0105a) %>%
 
 
-  # Cleaning party / ideology variable. I chose a scale
-  # that centers around 0 rather than one that goes from
-  # 1 to 7, as this makes it easier to spot someone's
-  # ideology by briefly looking at the data.
+  # Cleaning ideology variable. This code is a mess! Must be an easier way. We
+  # used to turn this into a number, from -3 to 3. But that should be done by
+  # whomever uses the data, so we will just keep this as a factor, but with
+  # levels in the correct order.
 
   mutate(VCF0301 = as_factor(VCF0301)) %>%
+  mutate(VCF0301 = as.character(VCF0301)) %>%
 
-  separate(VCF0301, into = c(NA, "ideology"),
-           sep = "[.]") %>%
+  mutate(ideology = str_sub(VCF0301,
+                            start = 4,
+                            end = -1)) %>%
 
-  mutate(ideology = as.integer(case_when(
-    ideology == " Strong Democrat" ~ -3,
-    ideology == " Weak Democrat" ~ -2,
-    ideology == " Independent - Democrat" ~ -1,
-    ideology == " Independent - Independent" ~ 0,
-    ideology == " Independent - Republican" ~ 1,
-    ideology == " Weak Republican" ~ 2,
-    ideology == " Strong Republican" ~ 3))) %>%
+  # Whoah! Is there a weird bug in parse_factor? If you use parse_factor instead
+  # of factor in the next line, the NA values get converted into another level,
+  # which I am pretty sure should not be the default behavior.
 
+  mutate(ideology = factor(ideology,
+                           levels = c("Strong Democrat",
+                                      "Weak Democrat",
+                                      "Independent - Democrat",
+                                      "Independent - Independent",
+                                      "Independent - Republican",
+                                      "Weak Republican",
+                                      "Strong Republican"))) %>%
 
   # Cleaning education variable.
 
@@ -168,13 +181,13 @@ x <- data %>%
     TRUE ~ NA_character_))) %>%
 
 
-  # Converting education variable to ordered factor.
+  # Converting education variable to a factor.
 
   mutate(education = factor(education,
                        levels = c("Elementary", "Some Highschool",
                                   "Highschool", "Highschool +",
-                                  "Some College", "College", "Adv. Degree"),
-                       ordered = T)) %>%
+                                  "Some College", "College",
+                                  "Adv. Degree"))) %>%
 
 
   # Dropping the leftover numeric education variable.
@@ -216,6 +229,8 @@ fips_key <- read.csv("data-raw/fips_key.csv") %>%
 
   select(fips, state_abbr)
 
+# Ought to make this one pipe to make it easier to recreate.
+
 
 # Creating a new dataframe by joining NES and key dataframes by
 # fips codes.
@@ -228,7 +243,8 @@ z <- x %>%
   select(-fips, -state_abbr) %>%
 
 
-# Cleaning voted variable.
+# Cleaning voted variable. This is about voting in the election that occured
+# this year. I *think* that ANES is always (?) conducted after election day.
 
   mutate(voted = as_factor(VCF0702)) %>%
 
@@ -246,7 +262,7 @@ z <- x %>%
 # Cleaning age group variable.
 
   mutate(age = as_factor(VCF0102)) %>%
-  mutate(age = as.ordered(case_when(
+  mutate(age = as.factor(case_when(
     str_detect(age, "1. ") == T ~ "17 - 24",
     str_detect(age, "2. ") == T ~ "25 - 34",
     str_detect(age, "3. ") == T ~ "35 - 44",

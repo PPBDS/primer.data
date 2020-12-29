@@ -24,13 +24,12 @@
 #'   \item{year}{integer variable for year of study}
 #'   \item{state}{character variable for the 2-letter abbreviation of the state of the interview of a respondent}
 #'   \item{gender}{character variable with values "Male", "Female", and "Other"}
-#'   \item{income}{ordered factor variable for respondents' income percentile group. Has 5 levels:
+#'   \item{income}{factor variable for respondents' income percentile group. Has 5 levels:
 #'                 0-16th percentile, 17-33rd, 34-67th, 68-95th, 96-100th}
-#'   \item{age}{ordered factor variable of respondents' age ranges, 75+ is accurate except for year 1954}
-#'   \item{education}{ordered factor variable with a 7 tier delineation of educational achievement}
+#'   \item{age}{factor variable of respondents' age ranges, 75+ is accurate except for year 1954}
+#'   \item{education}{factor variable with a 7 levels measuring educational achievement}
 #'   \item{race}{character variable for respondants' race / ethnicity identification}
-#'   \item{ideology}{integer variable for party identification from -3 to 3. Lower values correspond to
-#'                  Democrats, higher values correspond to Republicans}
+#'   \item{ideology}{factor variable for party identification with 7 levels}
 #'   \item{pres_appr}{character variable of respondents' self-reported approval of the sitting president. Question
 #'                    was not asked before 1972}
 #'   \item{voted}{character variable indicating whether the respondent voted in the national elections}

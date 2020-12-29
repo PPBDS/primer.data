@@ -12,15 +12,15 @@ A tibble with 10,000 observations and 15 variables:
 conducted across two years, so the earlier year is used.}
 \item{age}{character variable for age in years}
 \item{race}{character variable with values "White", "Black", "Hispanic", "Mexican", and "Other"}
-\item{education}{ordered factor variable with levels "Middle school" < "High school" < "Some college" < "College"}
-\item{hh_income}{ordered factor variable for household income groups with levels "0-4999" < \link{...} < "over 99999"}
+\item{education}{factor variable with levels "Middle school" < "High school" < "Some college" < "College"}
+\item{hh_income}{factor variable for household income groups with levels "0-4999" < \link{...} < "over 99999"}
 \item{weight}{double variable for weight in kilograms}
 \item{height}{double variable for height in centimeters}
 \item{bmi}{double variable for body mass index}
 \item{pulse}{integer variable for pulse in beats per minute or bpm}
 \item{diabetes}{integer variable with values 0/1 indicating whether patient suffers from diabetes}
 \item{general_health}{integer variable for general health ranked from 1-5. 1 maps to "poor", 2 is "fair", 3 is "good", 4 is "very good", and 5 is "excellent".}
-\item{depressed}{character variable answering question how often patient feels depressed.
+\item{depressed}{factor variable answering question how often patient feels depressed.
 Includes values "Several", "None", "Most"}
 \item{pregnancies}{integer variable for number of pregnanices.
 NA if the individual, regardless of gender, hasn't experienced a pregnancy}
@@ -73,9 +73,9 @@ Table: Data summary\tabular{ll}{
 
 \strong{Variable type: factor}\tabular{lrrlrl}{
    skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   education \tab 4877 \tab 0.51 \tab TRUE \tab 3 \tab Som: 2267, Hig: 1517, Mid: 1339 \cr
-   hh_income \tab 811 \tab 0.92 \tab TRUE \tab 12 \tab ove: 2220, 750: 1084, 250: 958, 350: 863 \cr
-   depressed \tab 3327 \tab 0.67 \tab TRUE \tab 3 \tab Non: 5246, Sev: 1009, Mos: 418 \cr
+   education \tab 2779 \tab 0.72 \tab FALSE \tab 4 \tab Som: 2267, Col: 2098, Hig: 1517, Mid: 1339 \cr
+   hh_income \tab 811 \tab 0.92 \tab FALSE \tab 12 \tab ove: 2220, 750: 1084, 250: 958, 350: 863 \cr
+   depressed \tab 3327 \tab 0.67 \tab FALSE \tab 3 \tab Non: 5246, Sev: 1009, Mos: 418 \cr
 }
 
 

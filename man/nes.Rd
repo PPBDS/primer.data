@@ -10,13 +10,12 @@ A tibble with 38,558 observations and 10 variables:
 \item{year}{integer variable for year of study}
 \item{state}{character variable for the 2-letter abbreviation of the state of the interview of a respondent}
 \item{gender}{character variable with values "Male", "Female", and "Other"}
-\item{income}{ordered factor variable for respondents' income percentile group. Has 5 levels:
+\item{income}{factor variable for respondents' income percentile group. Has 5 levels:
 0-16th percentile, 17-33rd, 34-67th, 68-95th, 96-100th}
-\item{age}{ordered factor variable of respondents' age ranges, 75+ is accurate except for year 1954}
-\item{education}{ordered factor variable with a 7 tier delineation of educational achievement}
+\item{age}{factor variable of respondents' age ranges, 75+ is accurate except for year 1954}
+\item{education}{factor variable with a 7 levels measuring educational achievement}
 \item{race}{character variable for respondants' race / ethnicity identification}
-\item{ideology}{integer variable for party identification from -3 to 3. Lower values correspond to
-Democrats, higher values correspond to Republicans}
+\item{ideology}{factor variable for party identification with 7 levels}
 \item{pres_appr}{character variable of respondents' self-reported approval of the sitting president. Question
 was not asked before 1972}
 \item{voted}{character variable indicating whether the respondent voted in the national elections}
@@ -51,8 +50,8 @@ Table: Data summary\tabular{ll}{
    _______________________ \tab  \cr
    Column type frequency: \tab  \cr
    character \tab 5 \cr
-   factor \tab 4 \cr
-   numeric \tab 2 \cr
+   factor \tab 5 \cr
+   numeric \tab 1 \cr
    ________________________ \tab  \cr
    Group variables \tab None \cr
 }
@@ -70,17 +69,17 @@ Table: Data summary\tabular{ll}{
 
 \strong{Variable type: factor}\tabular{lrrlrl}{
    skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   income \tab 2517 \tab 0.93 \tab TRUE \tab 5 \tab 34 : 11740, 68 : 9974, 0 -: 6300, 17 : 6213 \cr
-   age \tab 450 \tab 0.99 \tab TRUE \tab 7 \tab 25 : 7669, 35 : 7342, 45 : 6545, 55 : 6021 \cr
-   education \tab 397 \tab 0.99 \tab TRUE \tab 7 \tab Hig: 9269, Som: 8540, Col: 5540, Som: 4688 \cr
+   income \tab 2517 \tab 0.93 \tab FALSE \tab 5 \tab 34 : 11740, 68 : 9974, 0 -: 6300, 17 : 6213 \cr
+   age \tab 450 \tab 0.99 \tab FALSE \tab 7 \tab 25 : 7669, 35 : 7342, 45 : 6545, 55 : 6021 \cr
+   education \tab 397 \tab 0.99 \tab FALSE \tab 7 \tab Hig: 9269, Som: 8540, Col: 5540, Som: 4688 \cr
+   ideology \tab 619 \tab 0.98 \tab FALSE \tab 7 \tab Str: 7784, Wea: 7330, Wea: 4894, Str: 4807 \cr
    region \tab 0 \tab 1.00 \tab FALSE \tab 4 \tab Sou: 13680, Mid: 10072, Wes: 7428, Nor: 7378 \cr
 }
 
 
 \strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
    skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   year \tab 0 \tab 1.00 \tab 1989.40 \tab 20.50 \tab 1952 \tab 1972 \tab 1992 \tab 2012 \tab 2016 \tab ▃▃▃▃▇ \cr
-   ideology \tab 619 \tab 0.98 \tab -0.38 \tab 2.09 \tab -3 \tab -2 \tab -1 \tab 2 \tab 3 \tab ▇▂▂▂▅ \cr
+   year \tab 0 \tab 1 \tab 1989.4 \tab 20.5 \tab 1952 \tab 1972 \tab 1992 \tab 2012 \tab 2016 \tab ▃▃▃▃▇ \cr
 }
 }
 \author{

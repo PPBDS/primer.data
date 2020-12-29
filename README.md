@@ -1,2 +1,2 @@
 # primer.data
-Data for The Primer and Its Tutorials
+Data for The Primer and Its Amazing Tutorials
