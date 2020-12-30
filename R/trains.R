@@ -4,11 +4,10 @@
 #' @description
 #' Data for attitudes toward immigration-related policies, both before and after
 #' an experiment which randomly exposed a treated group to Spanish-speakers on a
-#' Boston commuter train platform. See
-#' \href{https://scholar.harvard.edu/files/renos/files/enostrains.pdf}{Enos
-#' (2016)} for background and details. Individuals with a treatment value of
-#' "Treated" were exposed to two Spanish-speakers on their regular commute.
-#' "Control" individuals were not.
+#' Boston commuter train platform. See Enos (2014)
+#' for background and details (\href{https://github.com/PPBDS/primer.data/blob/master/inst/papers/trains.pdf}{pdf}).
+#' Individuals with a treatment value of "Treated" were exposed to two
+#' Spanish-speakers on their regular commute. "Control" individuals were not.
 #'
 #' @details
 #'

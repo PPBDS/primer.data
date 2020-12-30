@@ -4,9 +4,11 @@
 #' @description
 #' This data is from the paper "Longevity Returns to Political
 #' Office" by \href{https://doi.org/10.1017/psrm.2019.63}{Barfort, Klemmensen &
-#' Larsen (2019)}. The purpose of this study was to explore how winning an
-#' election influences the lifespan of a candidate. The authors collected data
-#' on all U.S. gubernatorial elections from 1945 to 2012.
+#' Larsen (2019)}. The purpose of the study (\href{https://github.com/PPBDS/primer.data/blob/master/inst/papers/governors.pdf}{pdf})
+#' was to explore how winning an
+#' election influences the lifespan of a candidate. The data set includes all
+#' the candidates
+#' in U.S. gubernatorial elections from 1945 to 2012 who were deceased as of 2012.
 #'
 #' @details
 #' First, for a given election, only the two candidates who received the
@@ -15,10 +17,6 @@
 #' recent years, since most recent candidates are still alive. Third, in a few
 #' instances, only the year of birth or death could be determined; in these cases,
 #' the date was taken to be July 1 of that year.
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(governors)
-#' ```
 #'
 #' @format A tibble with 1,092 observations and 11 variables:
 #' \describe{
