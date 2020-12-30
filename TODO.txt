@@ -7,13 +7,9 @@
 - No need to transform variables.
 - Find some numeric variables if you can.
 - Use factors if the item has a natural ordering, and make sure the levels of the factor reflect that ordering.
-- Leave as character if not natural ordering/
+- Leave as character if no natural ordering.
 
 * Clean up `sps`. Which variables do we need? What do they show? What should they be called?
-
-* DK: article section. Have a directory in which copies of the key articles are distributed. Add inst/papers with all the relevant papers. Link from the help pages to pdf files locations on github.
-
-
 
 
 
