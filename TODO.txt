@@ -11,7 +11,7 @@
 
 * Clean up `sps`. Which variables do we need? What do they show? What should they be called?
 
-
+* DK: Add sps paper. Provide links for three papers to help pages.
 
 * Are there more variables associated with the shaming data? There is so many observations that we could build a much richer model if we had more variables.
 
