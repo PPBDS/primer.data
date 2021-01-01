@@ -9,42 +9,39 @@
 - Use factors if the item has a natural ordering, and make sure the levels of the factor reflect that ordering.
 - Leave as character if no natural ordering.
 
-* Clean up `sps`. Which variables do we need? What do they show? What should they be called?
+Especially interested in "All CCES surveys ask respondents whether they sup-port or oppose affirmative action policies, which are described as “programs [that] givepreference to racial minorities and to women in employment and college admissions inorder to correct for discrimination” (2008 CCES)."
 
-* DK: Add sps paper. Provide links for three papers to help pages.
+Also:
+
+"The first question, askedin the 2010 and 2011 CCES surveys, asks respondents on a five-point scale whether theyagree with the following statement: “The Irish, Italian, Jews and many other minoritiesovercame prejudice and worked their way up. Blacks should do the same.” The secondquestion, asked in 2010, asks respondents, also on a five-point scale, whether they agreethat “Generations of slavery and discrimination have created conditions that make itdifficult for Blacks to work their way out of the lower class.”
+
+DK: I realize that, mostly, we have data which is always in the CCES, but these questions are important enough that I don't mind including them for just a few years. (And some of these may have continued on.)
+
+* Pick a half dozen or more variables from ANES for nes which are interesting/popular and add them.Start with:
+
+"White-black thermometer difference.In many years, the ANES contains “feelingthermometer” questions, which ask respondents to evaluate their feelings about politi-cians and groups (including racial or ethnic groups) on a scale from 0 to 100."
+
 
 * Are there more variables associated with the shaming data? There is so many observations that we could build a much richer model if we had more variables.
-
 
 
 * Learn about making test cases from [R Packages](https://r-pkgs.org/tests.html) and add at least one test case for each data set. (Be smart in making these. It is OK to have a test case which tests the number of rows in trains because trains will always have 115 rows. It would be bad (or maybe not?) to have a test case like that for cces since the number of rows for will change once we add next year's data to it.) The definition of a "careful tour" is that you have looked at make_* for a data set, regenerated it, and added at least two test cases about it. You should certainly use any current stopifnot() as test cases and then remove them from the make_* files.
 
 
-* World Values
+* https://crimebythenumbers.com/
 
-http://www.worldvaluessurvey.org/wvs.jsp
+
+* World Values: http://www.worldvaluessurvey.org/wvs.jsp
 
 * See https://msberends.github.io/AMR for some ideas to improve website.
 
 
-https://crimebythenumbers.com/
 
 
-
-## Previous
-
-Is there an issue about having library(NHANES) and such in our make_* scripts causing warnings when students just want to library(primer.data)? Maybe this would go away if we changed these make_* files from scripts to functions? We certainly do not want to require anyone who installs this package to have these libraries. That is too much, especially since we will have lots of students installing this package so they can do the tutorial. Maybe having all of these as Suggests solves this problem in exactly the way that it should be solved.
-
-Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages.
+* Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages.
 
 * Called `nominate`. DW NOMINATE from VoteView project: https://www.voteview.com/data.
 
-
-
-
-
-
-## Other
 
 * Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep.
 
@@ -62,8 +59,6 @@ Provide instruction in the lower part of this document about the release cycle. 
 
   - Instead, we could have an "Article" which provided a list of all the tibbles along with the one paragraph description. Then, the front page could just have a basic blurb and one nice graphic.
 
-  - Would it be useful to have another Article? Perhaps a guide to which data sets go well with which portions of the textbook?
-
 
 ### Data Sets
 
@@ -75,24 +70,16 @@ Provide instruction in the lower part of this document about the release cycle. 
 
 * Called `police`. [Open police data](https://openpolicing.stanford.edu/data/). Something with millions of rows and, ideally, geographic coordinates. We won't include this data in our repo. Instead, the make_police.R script will download and process it. Ideally, we can get the final police.rda to be less than 100 meg so that we don't need to turn on git-lfs again.
 
-* Maybe [GSS](http://gss.norc.org/). Isn't there already an R package? https://kjhealy.github.io/gssr/. Could issue a PR for changing the installation instructions to use remotes:: instead of devtools.
-
-* FEC data. This is complex and important enough that it might become a stand-alone package. See [DIME](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/O5PX0B&version=2.2).
-
-* Shiro: I also have a clean large dataset of satellite lights in Africa from this period using this paper: https://www.aeaweb.org/articles?id=10.1257/aer.20161385
-
-* Called `deaths`. Maybe that demography data we used on the last day of 1005 this semester? Or is that too big?
-
 
 ### Instructions
 
 * Write scripts which create our data sets and adds them to our primer.data package. Write associated help files. Skim [*R Packages*](https://r-pkgs.org/), but read closely the [data section](https://r-pkgs.org/data.html). Examine [covdata package](https://kjhealy.github.io/covdata/). Use **usethis** and **pkgdown** packages.
 
-* Follow the conventions with the trains data: make_trains.R (in data-raw/), trains.rda (in data/), trains.R (in R/). Note that the name of the tibble -- "trains" -- appears in the file name of each of the three key things you are creating.
+* Follow the conventions with the trains data: make_trains.R (in data-raw/), trains.rda (in data/), trains.R (in R/). Note that the name of the tibble -- "trains" -- appears in the file name of each of the three key things you are creating. We also call the article which is associated with the data, and placed in inst/papers, "trains.pdf".
 
 * Main workflow is that raw data is placed in the data-raw/ directory. It is read and cleaned in the make_name-of-tibble.R script, the last step of which is to create the name-of-tibble.rda file, using `usethis::use_data(name-of-tibble, overwrite = TRUE)`. The make_name-of-tibble.R has lots and lots of documentation, including the details of where the original data came from, and instructions on how to download it, if necessary. (At some point, we might turn this into a function, as Healy does, but not right now.) name-of-tibble.R provides the information for R to create the help file. It includes at least two paragraphs of background on the data source itself, ideally to include a key academic paper.
 
-* Think hard about variable type. Don't make something a factor unless you have a reason to. If something has a natural order, then perhaps it should be an ordered factor. Document your reasoning in your make_name-of-tibble.R script. Examine the choices made in make_trains.R.
+* Think hard about variable type. No ordered factors. If something has no natural ordering, make it character. If it does have an ordering, make it a factor and give the levels the ordering you want.  Document your reasoning in your make_name-of-tibble.R script. Examine the choices made in make_trains.R.
 
 
 ### pkgdown
