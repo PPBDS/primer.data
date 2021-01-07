@@ -7,15 +7,23 @@
 \format{
 A tibble with 115 observations and 8 variables:
 \describe{
-\item{gender}{character variable with values "Male" and "Female"}
-\item{liberal}{logical variable with TRUE meaning liberal}
-\item{party}{character variable with values "Democrat" and "Republican"}
-\item{age}{integer variable for age in years}
-\item{income}{numeric variable for family income in dollars}
 \item{treatment}{factor variable with two levels: "Treated" and "Control"}
 \item{att_start}{Starting attitude toward immigration issues. Uses a 3 to 15 scale,
 with higher numbers meaning more conservative}
 \item{att_end}{Ending attitude toward immigration issues. Uses a 3 to 15 scale,
+with higher numbers meaning more conservative}
+\item{gender}{character variable with values "Male" and "Female"}
+\item{race}{character variable with values "Asian", "Black", "Hispanic", and "White"}
+\item{liberal}{logical variable with TRUE meaning liberal}
+\item{party}{character variable with values "Democrat" and "Republican"}
+\item{age}{integer variable for age in years}
+\item{income}{numeric variable for family income in dollars}
+\item{line}{character variable for commuter train line, with values "Framingham" and "Franklin"}
+\item{station}{character variable for train station}
+\item{hisp_perc}{numeric variable for percentage of Hispanic residents in person's zip code}
+\item{ideology_start}{Measure of political ideology, before the experiment, on a 1 to 5 scale,
+with higher numbers meaning more conservative}
+\item{ideology_end}{Measure of political ideology, after the experiment, on a 1 to 5 scale,
 with higher numbers meaning more conservative}
 }
 }
@@ -38,13 +46,13 @@ Table: Data summary\tabular{ll}{
     \tab  \cr
    Name \tab trains \cr
    Number of rows \tab 115 \cr
-   Number of columns \tab 8 \cr
+   Number of columns \tab 14 \cr
    _______________________ \tab  \cr
    Column type frequency: \tab  \cr
-   character \tab 2 \cr
+   character \tab 5 \cr
    factor \tab 1 \cr
    logical \tab 1 \cr
-   numeric \tab 4 \cr
+   numeric \tab 7 \cr
    ________________________ \tab  \cr
    Group variables \tab None \cr
 }
@@ -53,7 +61,10 @@ Table: Data summary\tabular{ll}{
 \strong{Variable type: character}\tabular{lrrrrrrr}{
    skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
    gender \tab 0 \tab 1 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
+   race \tab 0 \tab 1 \tab 5 \tab 8 \tab 0 \tab 4 \tab 0 \cr
    party \tab 0 \tab 1 \tab 8 \tab 10 \tab 0 \tab 2 \tab 0 \cr
+   line \tab 0 \tab 1 \tab 8 \tab 10 \tab 0 \tab 2 \tab 0 \cr
+   station \tab 0 \tab 1 \tab 6 \tab 18 \tab 0 \tab 9 \tab 0 \cr
 }
 
 
@@ -71,10 +82,13 @@ Table: Data summary\tabular{ll}{
 
 \strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
    skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   age \tab 0 \tab 1 \tab 42.37 \tab 12.20 \tab 20 \tab 33 \tab 43 \tab 52 \tab 68 \tab ▆▇▇▇▃ \cr
-   income \tab 0 \tab 1 \tab 141813.04 \tab 74476.64 \tab 23500 \tab 87500 \tab 135000 \tab 135000 \tab 300000 \tab ▅▇▇▁▆ \cr
-   att_start \tab 0 \tab 1 \tab 9.19 \tab 3.10 \tab 3 \tab 7 \tab 9 \tab 11 \tab 15 \tab ▃▃▇▅▃ \cr
-   att_end \tab 0 \tab 1 \tab 9.14 \tab 2.87 \tab 3 \tab 7 \tab 9 \tab 11 \tab 15 \tab ▂▃▇▃▃ \cr
+   att_start \tab 0 \tab 1.00 \tab 9.19 \tab 3.10 \tab 3.00 \tab 7.00 \tab 9.00e+00 \tab 1.10e+01 \tab 1.5e+01 \tab ▃▃▇▅▃ \cr
+   att_end \tab 0 \tab 1.00 \tab 9.14 \tab 2.87 \tab 3.00 \tab 7.00 \tab 9.00e+00 \tab 1.10e+01 \tab 1.5e+01 \tab ▂▃▇▃▃ \cr
+   age \tab 0 \tab 1.00 \tab 42.37 \tab 12.20 \tab 20.00 \tab 33.00 \tab 4.30e+01 \tab 5.20e+01 \tab 6.8e+01 \tab ▆▇▇▇▃ \cr
+   income \tab 0 \tab 1.00 \tab 141813.04 \tab 74476.64 \tab 23500.00 \tab 87500.00 \tab 1.35e+05 \tab 1.35e+05 \tab 3.0e+05 \tab ▅▇▇▁▆ \cr
+   hisp_perc \tab 1 \tab 0.99 \tab 0.04 \tab 0.03 \tab 0.01 \tab 0.02 \tab 3.00e-02 \tab 4.00e-02 \tab 2.6e-01 \tab ▇▁▁▁▁ \cr
+   ideology_start \tab 0 \tab 1.00 \tab 2.76 \tab 1.12 \tab 1.00 \tab 2.00 \tab 3.00e+00 \tab 4.00e+00 \tab 5.0e+00 \tab ▃▇▇▅▂ \cr
+   ideology_end \tab 0 \tab 1.00 \tab 2.73 \tab 1.11 \tab 1.00 \tab 2.00 \tab 3.00e+00 \tab 3.50e+00 \tab 5.0e+00 \tab ▃▇▆▅▂ \cr
 }
 }
 \author{

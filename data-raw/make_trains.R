@@ -1,6 +1,8 @@
 # Script which cleans up the raw data from Enos (2016). This is mostly taken
 # from Exam 2 in Fall 2019. I should consider adding a bunch more detail from my
-# own train repo.
+# own trains repo, the code for which is much more detailed. I can't find a code
+# book so there may be mistakes here. Key is that variables with ".y" come from
+# second survey.
 
 library(tidyverse)
 library(usethis)
@@ -21,12 +23,41 @@ x <- read_csv("data-raw/pnas_data.csv",
                     time.treatment = col_character()
                   )) %>%
 
-  # We really only need a handful of these variables.
+  # Percent Hispanic in the district is not the most important variable, but we
+  # need more continuous covariates to play with. I am suspicious about the raw
+  # numbers because they seemed to include an absurd number of significant
+  # digits. So, I rounded.
 
-  select(numberim.x, Remain.x, Englishlan.x,
-         numberim.y, Remain.y, Englishlan.y,
-         treatment, liberal, republican, age,
-         male, income.new) %>%
+  mutate(hisp_perc = round(zip.pct.hispanic, 4)) %>%
+
+  # Looks like the raw race data is race_1 (14), race_2 (4), race_3 (2), race_4
+  # (102) and race_5 (10). I am not sure if what I have done here is correct!
+  # Note that variables like Hispanics.x are confusing! My reasoning: White is
+  # the default. hispanic.new is a created variable, so it can be trusted.
+  # race_1 is Asian. race_2 is Black. (Note that the numbers involved make sense
+  # for Boston commuters from the suburbs --- many more Asian than Black.)
+
+  mutate(race = "White") %>%
+  mutate(race = ifelse(hispanic.new == 1, "Hispanic", race)) %>%
+  mutate(race = ifelse(race_1 %in% c(1), "Asian", race)) %>%
+  mutate(race = ifelse(race_2 %in% c(1), "Black", race)) %>%
+
+  # Ideology looks like an interesting variable, not least because it has 5
+  # values with a fair spread among them. Could recode this by the character
+  # values (if I knew them), but I think it is nice to have a numeric. I wonder
+  # if the experiment changes people's ideologies as well? Forking paths! Also,
+  # good example to add ideology_end into the regresssion and explain why that
+  # is bad.
+
+  mutate(ideology_start = as.integer(ideology.x)) %>%
+  mutate(ideology_end = as.integer(ideology.y)) %>%
+
+  # Want to look at the two train lines separately, as well as the train
+  # stations.
+
+  separate(col = treated_unit,
+           into = c("line", "station", "platform"),
+           sep = "_") %>%
 
   # Create an overall measure of attitude change. Positive means becoming more
   # conservative. Should we normalize this number? Should we allow for an NA in
@@ -51,7 +82,10 @@ x <- read_csv("data-raw/pnas_data.csv",
 
   drop_na(att_start, att_end) %>%
 
-  rename(income = income.new) %>%
+  # income.new is the variable used in the paper. Not sure why it is better than
+  # the (origina) income variable.
+
+  mutate(income = income.new) %>%
 
   # It is important to understand that sometimes we are happy to work with
   # treatment as a numeric variable with vales of zero and one. But, other
@@ -72,6 +106,7 @@ x <- read_csv("data-raw/pnas_data.csv",
   # their missing values? Great question! We should use the data we have for
   # liberals and for Republicans separately to make a guess.
 
+  mutate(age = as.integer(age)) %>%
   mutate(gender = ifelse(male, "Male", "Female")) %>%
   mutate(party = ifelse(republican, "Republican", "Democrat")) %>%
   mutate(liberal = ifelse(liberal, TRUE, FALSE)) %>%
@@ -85,8 +120,10 @@ x <- read_csv("data-raw/pnas_data.csv",
 
   # Might think about adding another variable or two sometime . . .
 
-  select(gender, liberal, party, age, income, att_start,
-         treatment, att_end)
+  select(treatment, att_start, att_end,
+         gender, race, liberal, party, age, income,
+         line, station, hisp_perc,
+         ideology_start, ideology_end)
 
 # Code for saving object
 
