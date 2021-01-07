@@ -13,7 +13,7 @@ Also:
 
 "The first question, askedin the 2010 and 2011 CCES surveys, asks respondents on a five-point scale whether theyagree with the following statement: “The Irish, Italian, Jews and many other minoritiesovercame prejudice and worked their way up. Blacks should do the same.” The secondquestion, asked in 2010, asks respondents, also on a five-point scale, whether they agreethat “Generations of slavery and discrimination have created conditions that make itdifficult for Blacks to work their way out of the lower class.”
 
-DK: I realize that, mostly, we have data which is always in the CCES, but these questions are important enough that I don't mind including them for just a few years. (And some of these may have continued on.)
+DK: I realize that, mostly, we have data which is always in the CCES, but these questions are important enough that I don't mind including them for just a few years. (And some of these may have continued on after they were first included.)
 
 * Pick a half dozen or more variables from ANES for nes which are interesting/popular and add them. Start with:
 
@@ -21,7 +21,6 @@ DK: I realize that, mostly, we have data which is always in the CCES, but these 
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
-* DK: Add some more variables to `trains`. First, there are two different train lines. Second, we want one of the categorial variables to have more than two values. How can we find/create that. I think that either party or liberal was excessively simplified. Add another train variable. Specifically, something about the train lines. I think that there are two of them. If not already there, add all the code from that old problem set for parsing the train data.
 
 * Are there more variables associated with the shaming data? There is so many observations that we could build a much richer model if we had more variables.
 
