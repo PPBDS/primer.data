@@ -23,6 +23,10 @@ DK: I realize that, mostly, we have data which is always in the CCES, but these 
 
 To discuss:
 
+* README.Rmd includes a bunch of unclear comments (from me).
+
+* Warning when building it by hand: Writing [WARNING] Deprecated: markdown_github. Use gfm instead.[WARNING] Deprecated: markdown_github. Use gfm instead.nstead.G] Deprecated: markdown_github. Use gfm i'LICENSE.html'
+
 * See https://msberends.github.io/AMR for some ideas to improve website.
 
 * World Values: http://www.worldvaluessurvey.org/wvs.jsp

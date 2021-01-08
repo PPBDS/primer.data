@@ -42,11 +42,10 @@
 <meta property="og:title" content="Experimental effects on attitudes toward immigration — trains" />
 <meta property="og:description" content="Data for attitudes toward immigration-related policies, both before and after
 an experiment which randomly exposed a treated group to Spanish-speakers on a
-Boston commuter train platform. See
-Enos
-(2016) for background and details. Individuals with a treatment value of
-&quot;Treated&quot; were exposed to two Spanish-speakers on their regular commute.
-&quot;Control&quot; individuals were not." />
+Boston commuter train platform. See Enos (2014)
+for background and details (pdf).
+Individuals with a treatment value of &quot;Treated&quot; were exposed to two
+Spanish-speakers on their regular commute. &quot;Control&quot; individuals were not." />
 
 
 
@@ -78,7 +77,7 @@ Enos
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">primer.data</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9001</span>
       </span>
     </div>
 
@@ -125,11 +124,10 @@ Enos
     <div class="ref-description">
     <p>Data for attitudes toward immigration-related policies, both before and after
 an experiment which randomly exposed a treated group to Spanish-speakers on a
-Boston commuter train platform. See
-<a href='https://scholar.harvard.edu/files/renos/files/enostrains.pdf'>Enos
-(2016)</a> for background and details. Individuals with a treatment value of
-"Treated" were exposed to two Spanish-speakers on their regular commute.
-"Control" individuals were not.</p>
+Boston commuter train platform. See Enos (2014)
+for background and details (<a href='https://github.com/PPBDS/primer.data/blob/master/inst/papers/trains.pdf'>pdf</a>).
+Individuals with a treatment value of "Treated" were exposed to two
+Spanish-speakers on their regular commute. "Control" individuals were not.</p>
     </div>
 
     <pre class="usage"><span class='va'>trains</span></pre>
@@ -137,16 +135,24 @@ Boston commuter train platform. See
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 115 observations and 8 variables:</p><dl>
-<dt>gender</dt><dd><p>character variable with values "Male" and "Female"</p></dd>
-<dt>liberal</dt><dd><p>logical variable with TRUE meaning liberal</p></dd>
-<dt>party</dt><dd><p>character variable with values "Democrat" and "Republican"</p></dd>
-<dt>age</dt><dd><p>integer variable for age in years</p></dd>
-<dt>income</dt><dd><p>numeric variable for family income in dollars</p></dd>
+    <p>A tibble with 115 observations and 14 variables:</p><dl>
 <dt>treatment</dt><dd><p>factor variable with two levels: "Treated" and "Control"</p></dd>
 <dt>att_start</dt><dd><p>Starting attitude toward immigration issues. Uses a 3 to 15 scale,
 with higher numbers meaning more conservative</p></dd>
 <dt>att_end</dt><dd><p>Ending attitude toward immigration issues. Uses a 3 to 15 scale,
+with higher numbers meaning more conservative</p></dd>
+<dt>gender</dt><dd><p>character variable with values "Male" and "Female"</p></dd>
+<dt>race</dt><dd><p>character variable with values "Asian", "Black", "Hispanic", and "White"</p></dd>
+<dt>liberal</dt><dd><p>logical variable with TRUE meaning liberal</p></dd>
+<dt>party</dt><dd><p>character variable with values "Democrat" and "Republican"</p></dd>
+<dt>age</dt><dd><p>integer variable for age in years</p></dd>
+<dt>income</dt><dd><p>numeric variable for family income in dollars</p></dd>
+<dt>line</dt><dd><p>character variable for commuter train line, with values "Framingham" and "Franklin"</p></dd>
+<dt>station</dt><dd><p>character variable for train station</p></dd>
+<dt>hisp_perc</dt><dd><p>numeric variable for percentage of Hispanic residents in person's zip code</p></dd>
+<dt>ideology_start</dt><dd><p>Measure of political ideology, before the experiment, on a 1 to 5 scale,
+with higher numbers meaning more conservative</p></dd>
+<dt>ideology_end</dt><dd><p>Measure of political ideology, after the experiment, on a 1 to 5 scale,
 with higher numbers meaning more conservative</p></dd>
 
 </dl>
@@ -160,13 +166,13 @@ with higher numbers meaning more conservative</p></dd>
 <tr><td></td><td></td></tr>
 <tr><td>Name</td><td>trains</td></tr>
 <tr><td>Number of rows</td><td>115</td></tr>
-<tr><td>Number of columns</td><td>8</td></tr>
+<tr><td>Number of columns</td><td>14</td></tr>
 <tr><td>_______________________</td><td></td></tr>
 <tr><td>Column type frequency:</td><td></td></tr>
-<tr><td>character</td><td>2</td></tr>
+<tr><td>character</td><td>5</td></tr>
 <tr><td>factor</td><td>1</td></tr>
 <tr><td>logical</td><td>1</td></tr>
-<tr><td>numeric</td><td>4</td></tr>
+<tr><td>numeric</td><td>7</td></tr>
 <tr><td>________________________</td><td></td></tr>
 <tr><td>Group variables</td><td>None</td></tr>
 </table>
@@ -176,7 +182,10 @@ with higher numbers meaning more conservative</p></dd>
 <p><strong>Variable type: character</strong></p><table class='table'>
 <tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>min</td><td>max</td><td>empty</td><td>n_unique</td><td>whitespace</td></tr>
 <tr><td>gender</td><td>0</td><td>1</td><td>4</td><td>6</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>race</td><td>0</td><td>1</td><td>5</td><td>8</td><td>0</td><td>4</td><td>0</td></tr>
 <tr><td>party</td><td>0</td><td>1</td><td>8</td><td>10</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>line</td><td>0</td><td>1</td><td>8</td><td>10</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>station</td><td>0</td><td>1</td><td>6</td><td>18</td><td>0</td><td>9</td><td>0</td></tr>
 </table>
 
 
@@ -197,10 +206,13 @@ with higher numbers meaning more conservative</p></dd>
 
 <p><strong>Variable type: numeric</strong></p><table class='table'>
 <tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>mean</td><td>sd</td><td>p0</td><td>p25</td><td>p50</td><td>p75</td><td>p100</td><td>hist</td></tr>
-<tr><td>age</td><td>0</td><td>1</td><td>42.37</td><td>12.20</td><td>20</td><td>33</td><td>43</td><td>52</td><td>68</td><td>▆▇▇▇▃</td></tr>
-<tr><td>income</td><td>0</td><td>1</td><td>141813.04</td><td>74476.64</td><td>23500</td><td>87500</td><td>135000</td><td>135000</td><td>300000</td><td>▅▇▇▁▆</td></tr>
-<tr><td>att_start</td><td>0</td><td>1</td><td>9.19</td><td>3.10</td><td>3</td><td>7</td><td>9</td><td>11</td><td>15</td><td>▃▃▇▅▃</td></tr>
-<tr><td>att_end</td><td>0</td><td>1</td><td>9.14</td><td>2.87</td><td>3</td><td>7</td><td>9</td><td>11</td><td>15</td><td>▂▃▇▃▃</td></tr>
+<tr><td>att_start</td><td>0</td><td>1.00</td><td>9.19</td><td>3.10</td><td>3.00</td><td>7.00</td><td>9.00e+00</td><td>1.10e+01</td><td>1.5e+01</td><td>▃▃▇▅▃</td></tr>
+<tr><td>att_end</td><td>0</td><td>1.00</td><td>9.14</td><td>2.87</td><td>3.00</td><td>7.00</td><td>9.00e+00</td><td>1.10e+01</td><td>1.5e+01</td><td>▂▃▇▃▃</td></tr>
+<tr><td>age</td><td>0</td><td>1.00</td><td>42.37</td><td>12.20</td><td>20.00</td><td>33.00</td><td>4.30e+01</td><td>5.20e+01</td><td>6.8e+01</td><td>▆▇▇▇▃</td></tr>
+<tr><td>income</td><td>0</td><td>1.00</td><td>141813.04</td><td>74476.64</td><td>23500.00</td><td>87500.00</td><td>1.35e+05</td><td>1.35e+05</td><td>3.0e+05</td><td>▅▇▇▁▆</td></tr>
+<tr><td>hisp_perc</td><td>1</td><td>0.99</td><td>0.04</td><td>0.03</td><td>0.01</td><td>0.02</td><td>3.00e-02</td><td>4.00e-02</td><td>2.6e-01</td><td>▇▁▁▁▁</td></tr>
+<tr><td>ideology_start</td><td>0</td><td>1.00</td><td>2.76</td><td>1.12</td><td>1.00</td><td>2.00</td><td>3.00e+00</td><td>4.00e+00</td><td>5.0e+00</td><td>▃▇▇▅▂</td></tr>
+<tr><td>ideology_end</td><td>0</td><td>1.00</td><td>2.73</td><td>1.11</td><td>1.00</td><td>2.00</td><td>3.00e+00</td><td>3.50e+00</td><td>5.0e+00</td><td>▃▇▆▅▂</td></tr>
 </table>
 
 

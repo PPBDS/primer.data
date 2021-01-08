@@ -1,28 +1,26 @@
 
 <!-- README is generated from README.Rmd, edit ONLY this file if needed. But, after you edit it, you NEED TO KNIT IT BY HAND in order to create the new README.md, which is the thing which is actually used. -->
 
-# Data for *Preceptor’s Primer for <br/> Bayesian Data Science* <img src="man/figures/ulysses_hex_black.png" align = "right"  width="160">
+# Data for *Preceptor’s Primer for <br/> Bayesian Big Data Science* <img src="man/figures/ulysses_hex_black.png" align = "right"  width="160">
 
 ## About this package
 
-`primer.data` provides the data and the tutorials used in *[Preceptor’s
-Primer for Bayesian Big Data Science](https://ppbds.github.io/primer/)*,
-the textbook used in [Gov 50:
-Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at Harvard
-University.
+`primer.data` provides the data used in *[Preceptor’s Primer for Big
+Bayesian Data Science](https://ppbds.github.io/primer)*, the textbook
+used in [Gov 1005: Big
+Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at
+Harvard University, and for the [associated
+tutorials](https://ppbds.github.io/primer.tutorials).
 
 <!-- unsure if badges are available for use yet here -->
 
 ## Installation
 
-As this package is not released on CRAN, you must install it directly
-from GitHub.
-
 ``` r
 remotes::install_github("ppbds/primer.data")
 ```
 
-## Loading Preceptor’s Data
+## Loading
 
 After installing the package, it loads as any package should.
 
@@ -53,10 +51,9 @@ Once the library is loaded and you have confirmed that it can be
 accessed in your local environment, the data sets can be called as
 objects and used like any other data you would otherwise read in and
 assign to an object manually. See the following example of a plot using
-`primer.data::qscores`.
+`primary.data::qscores`.
 
 ``` r
-
 library(ggplot2)
 
 qscores %>% 
@@ -80,7 +77,7 @@ qscores %>%
     scale_color_discrete(guide = "none")
 ```
 
-<!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? -->
+<!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? Why can't we just have this code run and save/show the image? Hate the eval=FALSE above. -->
 
 <img src= "man/figures/README-plot-1.png" align="center" height="500">
 
@@ -103,3 +100,8 @@ citation("primer.data")
 #>     url = {https://github.com/PPBDS/primer.data},
 #>   }
 ```
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg)](https://github.com/PPBDS/primer.data/actions)
+<!-- badges: end -->

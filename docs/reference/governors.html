@@ -42,9 +42,11 @@
 <meta property="og:title" content="Election results and candidate longevity — governors" />
 <meta property="og:description" content="This data is from the paper &quot;Longevity Returns to Political
 Office&quot; by Barfort, Klemmensen &amp;amp;
-Larsen (2019). The purpose of this study was to explore how winning an
-election influences the lifespan of a candidate. The authors collected data
-on all U.S. gubernatorial elections from 1945 to 2012." />
+Larsen (2019). The purpose of the study (pdf)
+was to explore how winning an
+election influences the lifespan of a candidate. The data set includes all
+the candidates
+in U.S. gubernatorial elections from 1945 to 2012 who were deceased as of 2012." />
 
 
 
@@ -76,7 +78,7 @@ on all U.S. gubernatorial elections from 1945 to 2012." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">primer.data</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9001</span>
       </span>
     </div>
 
@@ -123,9 +125,11 @@ on all U.S. gubernatorial elections from 1945 to 2012." />
     <div class="ref-description">
     <p>This data is from the paper "Longevity Returns to Political
 Office" by <a href='https://doi.org/10.1017/psrm.2019.63'>Barfort, Klemmensen &amp;
-Larsen (2019)</a>. The purpose of this study was to explore how winning an
-election influences the lifespan of a candidate. The authors collected data
-on all U.S. gubernatorial elections from 1945 to 2012.</p>
+Larsen (2019)</a>. The purpose of the study (<a href='https://github.com/PPBDS/primer.data/blob/master/inst/papers/governors.pdf'>pdf</a>)
+was to explore how winning an
+election influences the lifespan of a candidate. The data set includes all
+the candidates
+in U.S. gubernatorial elections from 1945 to 2012 who were deceased as of 2012.</p>
     </div>
 
     <pre class="usage"><span class='va'>governors</span></pre>
@@ -162,53 +166,6 @@ dates of death were excluded, resulting in fewer observations for elections in
 recent years, since most recent candidates are still alive. Third, in a few
 instances, only the year of birth or death could be determined; in these cases,
 the date was taken to be July 1 of that year.</p>
-<p>Table: Data summary</p><table class='table'>
-<tr><td></td><td></td></tr>
-<tr><td>Name</td><td>governors</td></tr>
-<tr><td>Number of rows</td><td>1092</td></tr>
-<tr><td>Number of columns</td><td>14</td></tr>
-<tr><td>_______________________</td><td></td></tr>
-<tr><td>Column type frequency:</td><td></td></tr>
-<tr><td>character</td><td>7</td></tr>
-<tr><td>Date</td><td>1</td></tr>
-<tr><td>numeric</td><td>6</td></tr>
-<tr><td>________________________</td><td></td></tr>
-<tr><td>Group variables</td><td>None</td></tr>
-</table>
-
-
-
-<p><strong>Variable type: character</strong></p><table class='table'>
-<tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>min</td><td>max</td><td>empty</td><td>n_unique</td><td>whitespace</td></tr>
-<tr><td>state</td><td>0</td><td>1</td><td>4</td><td>14</td><td>0</td><td>50</td><td>0</td></tr>
-<tr><td>first_name</td><td>0</td><td>1</td><td>2</td><td>11</td><td>0</td><td>299</td><td>0</td></tr>
-<tr><td>last_name</td><td>0</td><td>1</td><td>3</td><td>11</td><td>0</td><td>615</td><td>0</td></tr>
-<tr><td>party</td><td>0</td><td>1</td><td>8</td><td>11</td><td>0</td><td>3</td><td>0</td></tr>
-<tr><td>sex</td><td>0</td><td>1</td><td>4</td><td>6</td><td>0</td><td>2</td><td>0</td></tr>
-<tr><td>status</td><td>0</td><td>1</td><td>9</td><td>10</td><td>0</td><td>2</td><td>0</td></tr>
-<tr><td>region</td><td>0</td><td>1</td><td>4</td><td>9</td><td>0</td><td>4</td><td>0</td></tr>
-</table>
-
-
-
-<p><strong>Variable type: Date</strong></p><table class='table'>
-<tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>min</td><td>max</td><td>median</td><td>n_unique</td></tr>
-<tr><td>died</td><td>0</td><td>1</td><td>1946-12-21</td><td>2019-08-18</td><td>1996-07-20</td><td>683</td></tr>
-</table>
-
-
-
-<p><strong>Variable type: numeric</strong></p><table class='table'>
-<tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>mean</td><td>sd</td><td>p0</td><td>p25</td><td>p50</td><td>p75</td><td>p100</td><td>hist</td></tr>
-<tr><td>year</td><td>0</td><td>1</td><td>1964.85</td><td>13.38</td><td>1945.00</td><td>1954.00</td><td>1.962e+03</td><td>1.974e+03</td><td>2011.00</td><td>▇▆▃▂▁</td></tr>
-<tr><td>win_margin</td><td>0</td><td>1</td><td>3.22</td><td>26.07</td><td>-82.43</td><td>-9.87</td><td>9.700e-01</td><td>1.218e+01</td><td>100.00</td><td>▁▃▇▁▁</td></tr>
-<tr><td>population</td><td>0</td><td>1</td><td>3783555.08</td><td>4231731.71</td><td>145000.00</td><td>900000.00</td><td>2.427e+06</td><td>4.536e+06</td><td>27102238.00</td><td>▇▁▁▁▁</td></tr>
-<tr><td>election_age</td><td>0</td><td>1</td><td>51.72</td><td>8.71</td><td>31.35</td><td>45.34</td><td>5.136e+01</td><td>5.748e+01</td><td>83.87</td><td>▂▇▆▂▁</td></tr>
-<tr><td>death_age</td><td>0</td><td>1</td><td>79.95</td><td>11.16</td><td>41.63</td><td>73.38</td><td>8.190e+01</td><td>8.815e+01</td><td>101.72</td><td>▁▂▅▇▃</td></tr>
-<tr><td>lived_after</td><td>0</td><td>1</td><td>28.23</td><td>13.38</td><td>0.13</td><td>17.57</td><td>2.960e+01</td><td>3.867e+01</td><td>60.42</td><td>▃▆▇▆▂</td></tr>
-</table>
-
-
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Kane</p>
