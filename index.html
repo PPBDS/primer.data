@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">primer.data</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9001</span>
       </span>
     </div>
 
@@ -63,26 +63,25 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="data-for-preceptors-primer-for---bayesian-data-science-" class="section level1">
+<div id="data-for-preceptors-primer-for---bayesian-big-data-science-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#data-for-preceptors-primer-for---bayesian-data-science-" class="anchor"></a>Data for <em>Preceptor’s Primer for <br> Bayesian Data Science</em> <img src="reference/figures/ulysses_hex_black.png" align="right" width="160">
+<a href="#data-for-preceptors-primer-for---bayesian-big-data-science-" class="anchor"></a>Data for <em>Preceptor’s Primer for <br> Bayesian Big Data Science</em> <img src="reference/figures/ulysses_hex_black.png" align="right" width="160">
 </h1></div>
 <div id="about-this-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#about-this-package" class="anchor"></a>About this package</h2>
-<p><code>primer.data</code> provides the data and the tutorials used in <em><a href="https://ppbds.github.io/primer/">Preceptor’s Primer for Bayesian Big Data Science</a></em>, the textbook used in <a href="https://www.davidkane.info/files/gov_1005_spring_2021.html">Gov 50: Data</a> at Harvard University.</p>
+<p><code>primer.data</code> provides the data used in <em><a href="https://ppbds.github.io/primer">Preceptor’s Primer for Big Bayesian Data Science</a></em>, the textbook used in <a href="https://www.davidkane.info/files/gov_1005_spring_2021.html">Gov 1005: Big Data</a> at Harvard University, and for the <a href="https://ppbds.github.io/primer.tutorials">associated tutorials</a>.</p>
 <!-- unsure if badges are available for use yet here -->
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>As this package is not released on CRAN, you must install it directly from GitHub.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ppbds/primer.data"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="loading-preceptors-data" class="section level2">
+<div id="loading" class="section level2">
 <h2 class="hasAnchor">
-<a href="#loading-preceptors-data" class="anchor"></a>Loading Preceptor’s Data</h2>
+<a href="#loading" class="anchor"></a>Loading</h2>
 <p>After installing the package, it loads as any package should.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> 
@@ -107,10 +106,9 @@
 <div id="using-the-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-the-data" class="anchor"></a>Using the data</h2>
-<p>Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using <code><a href="reference/qscores.html">primer.data::qscores</a></code>.</p>
+<p>Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using <code>primary.data::qscores</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="va">qscores</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">department</span> <span class="op">==</span> <span class="st">"GOV"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -131,7 +129,7 @@
         axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,
         axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_hue.html">scale_color_discrete</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
-<!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? -->
+<!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? Why can't we just have this code run and save/show the image? Hate the eval=FALSE above. -->
 <p><img src="reference/figures/README-plot-1.png" align="center" height="500"></p>
 </div>
 <div id="citing-primerdata" class="section level2">
@@ -153,6 +151,8 @@
 <span class="co">#&gt;     year = {2020},</span>
 <span class="co">#&gt;     url = {https://github.com/PPBDS/primer.data},</span>
 <span class="co">#&gt;   }</span></code></pre></div>
+<!-- badges: start -->
+<p><a href="https://github.com/PPBDS/primer.data/actions"><img src="https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
 </div>
 </div>
   </div>
