@@ -80,7 +80,7 @@ treatment groups." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">primer.data</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9000</span>
       </span>
     </div>
 
@@ -135,20 +135,32 @@ treatment groups.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 344,084 observations and 10 variables:</p><dl>
-<dt>sex</dt><dd><p>character variable with values "male" and "female"</p></dd>
-<dt>birth_year</dt><dd><p>integer variable indicating the respondent birth year</p></dd>
+    <p>A tibble with 344,084 observations and 15 variables:</p><dl>
+<dt>cluster</dt><dd><p>character variable with cluster designation, which ranges from 1 to 10,000. See
+the documentation for extensive discussion about the clustering procedure</p></dd>
+<dt>primary_06</dt><dd><p>0/1 integer variable indicating whether the respondent voted in the 2006 primary election</p></dd>
+<dt>treatment</dt><dd><p>factor variable indicating which of the 5 treatments were employed in 2006, but
+before the primary election that year: 'Control', 'Civic Duty', 'Hawthorne',
+'Self', or 'Neighbors'</p></dd>
+<dt>sex</dt><dd><p>character variable with values "Male" and "Female"</p></dd>
+<dt>age</dt><dd><p>integer variable indicating the respondent's age in 2006</p></dd>
+<dt>primary_00</dt><dd><p>character variable indicating whether the respondent voted in the 2000 primary election</p></dd>
+<dt>general_00</dt><dd><p>character variable indicating whether the respondent voted in the 2000 general election</p></dd>
 <dt>primary_02</dt><dd><p>character variable indicating whether the respondent voted in the 2002 primary election</p></dd>
 <dt>general_02</dt><dd><p>character variable indicating whether the respondent voted in the 2002 general election</p></dd>
 <dt>primary_04</dt><dd><p>character variable indicating whether the respondent voted in the 2004 primary election</p></dd>
 <dt>general_04</dt><dd><p>character variable indicating whether the respondent voted in the 2004 general election</p></dd>
-<dt>treatment</dt><dd><p>factor variable indicating which of the 5 treatments were employed in 2006, but
-before the primary election that year: 'Control', 'Civic Duty', 'Hawthorne',
-'Self', or 'Neighbors'</p></dd>
-<dt>primary_06</dt><dd><p>0/1 integer variable indicating whether the respondent voted in the 2006 primary election</p></dd>
-<dt>hh_size</dt><dd><p>integer variable indicating the respondent household size</p></dd>
-<dt>no_of_names</dt><dd><p>integer variable indicating the number of names listed on the letter if the
-respondent was in the "Neighbours" group</p></dd>
+<dt>hh_size</dt><dd><p>integer variable indicating the respondent's household size</p></dd>
+<dt>hh_primary_04</dt><dd><p>numeric variable indicating the percent of household members who
+voted in the 2004 primary election. This and hh_general_04 seem
+suspicious</p></dd>
+<dt>hh_general_04</dt><dd><p>numeric variable indicating the percent of household members who
+voted in the 2004 general election. Most be greater than zero since, in order to
+be included in the sample, a respondent must have voted in that election</p></dd>
+<dt>neighbors</dt><dd><p>integer variable indicating the number of neighbors. This is, presumably, most relevant if the
+respondent was in the "Neighbors" group. neighbors is, in that case, the number of names
+listed on the mailing. Large majority of values is 21, which is the maximum
+number of names which could be printed on the mailing</p></dd>
 
 </dl>
 
@@ -165,21 +177,21 @@ treatment group, named “Civic Duty”, received a letter that only reminded th
 received the same message with an additional notice that they are being studied by
 researchers. The letter sent to the third group, named "Self", included the content
 in the Hawthorne letter, but added a notice that every household member would be
-notified of each others' voting behaviour after the election (this information is
+notified of each others' voting behavior after the election (this information is
 public). The last group, "Neighbors", finally listed not only the household's voting
 records but also the voting records of those nearby. As in the "Self" group, everyone
-on the list would be notified of their voting behaviour after the primary.</p>
+on the list would be notified of their voting behavior after the primary.</p>
 <p></p>
 <p>Table: Data summary</p><table class='table'>
 <tr><td></td><td></td></tr>
 <tr><td>Name</td><td>shaming</td></tr>
 <tr><td>Number of rows</td><td>344084</td></tr>
-<tr><td>Number of columns</td><td>10</td></tr>
+<tr><td>Number of columns</td><td>15</td></tr>
 <tr><td>_______________________</td><td></td></tr>
 <tr><td>Column type frequency:</td><td></td></tr>
-<tr><td>character</td><td>5</td></tr>
+<tr><td>character</td><td>8</td></tr>
 <tr><td>factor</td><td>1</td></tr>
-<tr><td>numeric</td><td>4</td></tr>
+<tr><td>numeric</td><td>6</td></tr>
 <tr><td>________________________</td><td></td></tr>
 <tr><td>Group variables</td><td>None</td></tr>
 </table>
@@ -188,7 +200,10 @@ on the list would be notified of their voting behaviour after the primary.</p>
 
 <p><strong>Variable type: character</strong></p><table class='table'>
 <tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>min</td><td>max</td><td>empty</td><td>n_unique</td><td>whitespace</td></tr>
+<tr><td>cluster</td><td>0</td><td>1</td><td>1</td><td>5</td><td>0</td><td>10000</td><td>0</td></tr>
 <tr><td>sex</td><td>0</td><td>1</td><td>4</td><td>6</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>primary_00</td><td>0</td><td>1</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>general_00</td><td>0</td><td>1</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
 <tr><td>primary_02</td><td>0</td><td>1</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
 <tr><td>general_02</td><td>0</td><td>1</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
 <tr><td>primary_04</td><td>0</td><td>1</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
@@ -206,10 +221,12 @@ on the list would be notified of their voting behaviour after the primary.</p>
 
 <p><strong>Variable type: numeric</strong></p><table class='table'>
 <tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>mean</td><td>sd</td><td>p0</td><td>p25</td><td>p50</td><td>p75</td><td>p100</td><td>hist</td></tr>
-<tr><td>birth_year</td><td>0</td><td>1.00</td><td>1956.21</td><td>14.45</td><td>1900</td><td>1947</td><td>1956</td><td>1965</td><td>1986</td><td>▁▁▅▇▃</td></tr>
-<tr><td>primary_06</td><td>0</td><td>1.00</td><td>0.32</td><td>0.46</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>▇▁▁▁▃</td></tr>
-<tr><td>hh_size</td><td>0</td><td>1.00</td><td>2.18</td><td>0.79</td><td>1</td><td>2</td><td>2</td><td>2</td><td>8</td><td>▇▂▁▁▁</td></tr>
-<tr><td>no_of_names</td><td>305883</td><td>0.11</td><td>20.93</td><td>0.52</td><td>10</td><td>21</td><td>21</td><td>21</td><td>21</td><td>▁▁▁▁▇</td></tr>
+<tr><td>primary_06</td><td>0</td><td>1</td><td>0.32</td><td>0.46</td><td>0.00</td><td>0.00</td><td>0.00</td><td>1.00</td><td>1</td><td>▇▁▁▁▃</td></tr>
+<tr><td>age</td><td>0</td><td>1</td><td>49.79</td><td>14.45</td><td>20.00</td><td>41.00</td><td>50.00</td><td>59.00</td><td>106</td><td>▃▇▅▁▁</td></tr>
+<tr><td>hh_size</td><td>0</td><td>1</td><td>2.18</td><td>0.79</td><td>1.00</td><td>2.00</td><td>2.00</td><td>2.00</td><td>8</td><td>▇▂▁▁▁</td></tr>
+<tr><td>hh_primary_04</td><td>0</td><td>1</td><td>0.31</td><td>0.18</td><td>0.00</td><td>0.19</td><td>0.29</td><td>0.43</td><td>1</td><td>▇▇▅▁▁</td></tr>
+<tr><td>hh_general_04</td><td>0</td><td>1</td><td>0.92</td><td>0.07</td><td>0.38</td><td>0.90</td><td>0.95</td><td>1.00</td><td>1</td><td>▁▁▁▂▇</td></tr>
+<tr><td>neighbors</td><td>0</td><td>1</td><td>20.93</td><td>0.51</td><td>1.00</td><td>21.00</td><td>21.00</td><td>21.00</td><td>21</td><td>▁▁▁▁▇</td></tr>
 </table>
 
 
