@@ -21,10 +21,10 @@
 #' received the same message with an additional notice that they are being studied by
 #' researchers. The letter sent to the third group, named "Self", included the content
 #' in the Hawthorne letter, but added a notice that every household member would be
-#' notified of each others' voting behaviour after the election (this information is
+#' notified of each others' voting behavior after the election (this information is
 #' public). The last group, "Neighbors", finally listed not only the household's voting
 #' records but also the voting records of those nearby. As in the "Self" group, everyone
-#' on the list would be notified of their voting behaviour after the primary.
+#' on the list would be notified of their voting behavior after the primary.
 #'
 #' &nbsp;
 #'
@@ -32,21 +32,33 @@
 #' skimr::skim(shaming)
 #' ```
 #'
-#' @format A tibble with 344,084 observations and 10 variables:
+#' @format A tibble with 344,084 observations and 15 variables:
 #' \describe{
-#'   \item{sex}{character variable with values "male" and "female"}
-#'   \item{birth_year}{integer variable indicating the respondent birth year}
+#'   \item{cluster}{character variable with cluster designation, which ranges from 1 to 10,000. See
+#'                   the documentation for extensive discussion about the clustering procedure}
+#'   \item{primary_06}{0/1 integer variable indicating whether the respondent voted in the 2006 primary election}
+#'   \item{treatment}{factor variable indicating which of the 5 treatments were employed in 2006, but
+#'                     before the primary election that year: 'Control', 'Civic Duty', 'Hawthorne',
+#'                     'Self', or 'Neighbors'}
+#'   \item{sex}{character variable with values "Male" and "Female"}
+#'   \item{age}{integer variable indicating the respondent's age in 2006}
+#'   \item{primary_00}{character variable indicating whether the respondent voted in the 2000 primary election}
+#'   \item{general_00}{character variable indicating whether the respondent voted in the 2000 general election}
 #'   \item{primary_02}{character variable indicating whether the respondent voted in the 2002 primary election}
 #'   \item{general_02}{character variable indicating whether the respondent voted in the 2002 general election}
 #'   \item{primary_04}{character variable indicating whether the respondent voted in the 2004 primary election}
 #'   \item{general_04}{character variable indicating whether the respondent voted in the 2004 general election}
-#'   \item{treatment}{factor variable indicating which of the 5 treatments were employed in 2006, but
-#'                     before the primary election that year: 'Control', 'Civic Duty', 'Hawthorne',
-#'                     'Self', or 'Neighbors'}
-#'   \item{primary_06}{0/1 integer variable indicating whether the respondent voted in the 2006 primary election}
-#'   \item{hh_size}{integer variable indicating the respondent household size}
-#'   \item{no_of_names}{integer variable indicating the number of names listed on the letter if the
-#'                      respondent was in the "Neighbours" group}
+#'   \item{hh_size}{integer variable indicating the respondent's household size}
+#'   \item{hh_primary_04}{numeric variable indicating the percent of household members who
+#'                        voted in the 2004 primary election. This and hh_general_04 seem
+#'                        suspicious}
+#'   \item{hh_general_04}{numeric variable indicating the percent of household members who
+#'                        voted in the 2004 general election. Most be greater than zero since, in order to
+#'                        be included in the sample, a respondent must have voted in that election}
+#'   \item{neighbors}{integer variable indicating the number of neighbors. This is, presumably, most relevant if the
+#'                      respondent was in the "Neighbors" group. neighbors is, in that case, the number of names
+#'                      listed on the mailing. Large majority of values is 21, which is the maximum
+#'                      number of names which could be printed on the mailing}
 #' }
 #'
 #' @author

@@ -1,19 +1,32 @@
 library(tidyverse)
 
-# This dataset is from Gerber, Green & Larimer (2008), and was originally
-# published as part of a study in the American Political Science Review.
-# The raw data and details of the study can be accessed at
-# https://isps.yale.edu/research/data/d001.
+# Citation:
 
-# Reading in the data. I excluded variables that represent internal IDs the
-# researchers assigned to households ("hh_id") and clusters of randomization
-# ("cluster"), as well as variables that show the mean voter turnout per
-# household in the 2004 elections ("p2004_mean" and "g2004_mean"). None of
-# these are particularly relevant for analyzing and interpreting the data.
-# Furthermore, I also excluded two variables that show the voting histories
-# of the 2000 elections ("p2000" and "g2000"). They provide little insight in
-# addition to the remaining histories from 2002 and 2004, and we do not want
-# to overwhelm people.
+# Gerber, Alan S., Donald P. Green, and Christopher W. Larimer, 2008,
+# Replication Materials for “Social Pressure and Voter Turnout: Evidence from a
+# Large-Scale Field Experiment.”
+# http://hdl.handle.net/10079/c7507a0d-097a-4689-873a-7424564dfc82. ISPS Data
+# Archive.
+
+# See https://isps.yale.edu/research/data/d001 for lots of great details.
+# Example:
+
+# "Prior to random assignment we also removed households with the following
+# characteristics: all members of the household had over a 60% probability of
+# voting by absentee ballot if they voted or all household members had a greater
+# than a 60% probability of choosing the Democratic primary rather than the
+# Republican primary. Absentees were removed because it was thought that many
+# would have decided to vote or not prior to receipt of the experimental
+# mailings, which were sent to arrive just a few days before the election. Those
+# considered overwhelmingly likely to favor the Democratic primary were excluded
+# because it was thought that, given the lack of contested primaries, these
+# citizens would tend to ignore pre election mailings. We removed everyone who
+# lived in a route where fewer than 25 households remained, because the
+# production process depended on using carrier-route-presort standard mail.
+# Finally, we removed all those who had abstained in the 2004 general election
+# on the grounds that those not voting in this very high turnout election were
+# likely to be “deadwood”—those who had moved, died, or registered under more
+# than one name."
 
 x <- read_csv("data-raw/social_original.csv",
               col_types = cols(sex = col_character(),
@@ -34,19 +47,37 @@ x <- read_csv("data-raw/social_original.csv",
   # (dead, moved away, registered under several names) and would therefore have
   # falsified the results.
 
-  rename(birth_year = yob,
+  rename(primary_00 = p2000,
          primary_02 = p2002,
          primary_04 = p2004,
+         general_00 = g2000,
          general_02 = g2002,
          general_04 = g2004,
-         no_of_names = numberofnames) %>%
+         neighbors = numberofnames) %>%
 
+  # We dropped hh_id since it seems (correctly?) to not have any information.
+  # But might it not be related to geographic area, like cluster?
+
+  select(-hh_id) %>%
+
+  # age seems like a much more handy variable than birth year . . .
+
+  mutate(age = as.integer(2006 - yob)) %>%
+
+  # Make factor level order more convenient
+
+  mutate(treatment = fct_relevel(treatment,
+                                 c("Control",
+                                   "Civic Duty", "Hawthorne",
+                                   "Self", "Neighbors"))) %>%
 
   # Recoding character variables.
 
   mutate(sex = str_to_title(sex),
+         primary_00 = str_to_title(primary_00),
          primary_02 = str_to_title(primary_02),
          primary_04 = str_to_title(primary_04),
+         general_00 = str_to_title(general_00),
          general_02 = str_to_title(general_02),
          general_04 = str_to_title(general_04)) %>%
 
@@ -55,22 +86,26 @@ x <- read_csv("data-raw/social_original.csv",
 
   mutate(primary_06 = ifelse(voted == "Yes", 1L, 0L)) %>%
 
+  # Note sure if these variables are useful, but want to keep them around. They
+  # seem very suspicious to me. How can there be 98,212 with a value of 0.952381
+  # for hh_general_04? And then 935 for 0.95? Should investigate this further.
 
-  # Recoding no_of_names to be NA for every treatment group
-  # except neighbors. The number has no meaning for all other
-  # groups, and removing them avoids confusion.
+  mutate(hh_primary_04 = p2004_mean) %>%
+  mutate(hh_general_04 = g2004_mean) %>%
 
-  mutate(no_of_names = ifelse(treatment != "Neighbors",
-                               NA_integer_, no_of_names)) %>%
+  # Should cluster be an integer or a character?
 
+  mutate(cluster = as.character(cluster)) %>%
 
   # Ordering variables.
 
-  select(sex, birth_year,
+  select(cluster, primary_06, treatment,
+         sex, age,
+         primary_00, general_00,
          primary_02, general_02,
          primary_04, general_04,
-         treatment, primary_06,
-         hh_size, no_of_names)
+         hh_size, hh_primary_04, hh_general_04,
+         neighbors)
 
 
 # Save.
