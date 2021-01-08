@@ -5,7 +5,7 @@
 \alias{trains}
 \title{Experimental effects on attitudes toward immigration}
 \format{
-A tibble with 115 observations and 8 variables:
+A tibble with 115 observations and 14 variables:
 \describe{
 \item{treatment}{factor variable with two levels: "Treated" and "Control"}
 \item{att_start}{Starting attitude toward immigration issues. Uses a 3 to 15 scale,
