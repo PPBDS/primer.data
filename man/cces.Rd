@@ -5,18 +5,22 @@
 \alias{cces}
 \title{Data from the Cooperative Congressional Election Study}
 \format{
-A tibble with 470,755 observations and 12 variables:
+A tibble with 470,755 observations and 18 variables:
 \describe{
 \item{year}{integer variable for year of survey}
 \item{state}{character variable for state of residence for observation}
-\item{gender}{charcater variable of "Female" and "Male"}
+\item{gender}{character variable of "Female" and "Male"}
 \item{age}{integer variable for age in years}
-\item{education}{factor variable for level of education - takes values of "No HS",
-"High School Graduate", "Some College", "2-Year", "4-Year", and "Post-Grad"}
 \item{race}{character variable for racial identity}
 \item{marstat}{character variable for marriage status}
+\item{religion}{character variable for religious belief}
+\item{faminc}{factor variable for yearly family income - takes values of "Less than 10k"
+"10k - 20k", "20k - 30k", "30k - 40k", "40k - 50k", "50k - 60k", "60k - 70k", "70k - 80k",
+"80k - 100k", "100k - 120k", "120k - 150k", and "150k+"}
 \item{ideology}{factor variable for self-reported ideology - takes values of "Very Liberal",
 "Liberal", "Moderate", "Conservative", "Very Conservative", and "Not Sure"}
+\item{education}{factor variable for level of education - takes values of "No HS",
+"High School Graduate", "Some College", "2-Year", "4-Year", and "Post-Grad"}
 \item{news}{character variable for level news/current events interest}
 \item{econ}{character variable for retrospective report on the past year's economy}
 \item{approval_ch}{character variable of approval of president - takes values of
@@ -24,6 +28,15 @@ A tibble with 470,755 observations and 12 variables:
 "Never Heard / Not Sure", "Neither Approve Nor Disapprove"}
 \item{approval}{numeric variable of approval for the current president on a 1-5 scale
 with higher numbers indicating greater approval}
+\item{military}{character variable indicating whether the respondent or someone in their
+immediate family is serving or has ever served in the U.S. military}
+\item{voted}{character variable for validated turnout in general elections - takes values of "Voted",
+"No Record of Voting", and "No Voter File" }
+\item{resentment}{factor variable of approval for the the statement that Blacks should work their
+way up without special favors like many other minorities - take values of "Strongly agree", "Somewhat agree",
+"Neither agree nor disagree", "Somewhat disagree", "Strongly disagree"}
+\item{aff_action}{factor variable of approval for race-related affirmative action - takes values of
+"Strongly support", "Somewhat support", "Somewhat oppose", and "Strongly oppose"}
 }
 }
 \source{
@@ -44,11 +57,11 @@ Table: Data summary\tabular{ll}{
     \tab  \cr
    Name \tab cces \cr
    Number of rows \tab 470755 \cr
-   Number of columns \tab 12 \cr
+   Number of columns \tab 18 \cr
    _______________________ \tab  \cr
    Column type frequency: \tab  \cr
-   character \tab 7 \cr
-   factor \tab 2 \cr
+   character \tab 8 \cr
+   factor \tab 7 \cr
    numeric \tab 3 \cr
    ________________________ \tab  \cr
    Group variables \tab None \cr
@@ -61,16 +74,22 @@ Table: Data summary\tabular{ll}{
    gender \tab 0 \tab 1.00 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
    race \tab 0 \tab 1.00 \tab 5 \tab 15 \tab 0 \tab 8 \tab 0 \cr
    marstat \tab 1555 \tab 1.00 \tab 7 \tab 22 \tab 0 \tab 6 \tab 0 \cr
+   religion \tab 37416 \tab 0.92 \tab 5 \tab 25 \tab 0 \tab 12 \tab 0 \cr
    news \tab 37007 \tab 0.92 \tab 10 \tab 17 \tab 0 \tab 5 \tab 0 \cr
-   econ \tab 888 \tab 1.00 \tab 8 \tab 31 \tab 0 \tab 6 \tab 0 \cr
-   approval_ch \tab 798 \tab 1.00 \tab 16 \tab 32 \tab 0 \tab 6 \tab 0 \cr
+   military \tab 10094 \tab 0.98 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
+   voted \tab 110799 \tab 0.76 \tab 5 \tab 19 \tab 0 \tab 3 \tab 0 \cr
 }
 
 
 \strong{Variable type: factor}\tabular{lrrlrl}{
    skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   ideology \tab 1774 \tab 1 \tab FALSE \tab 6 \tab Mod: 146842, Con: 108598, Lib: 82662, Ver: 54765 \cr
-   education \tab 67 \tab 1 \tab FALSE \tab 6 \tab Hig: 130123, Som: 116433, 4-Y: 106727, Pos: 56623 \cr
+   faminc \tab 52606 \tab 0.89 \tab FALSE \tab 12 \tab 30k: 48521, 20k: 47793, 40k: 43368, 50k: 42308 \cr
+   ideology \tab 1774 \tab 1.00 \tab FALSE \tab 6 \tab Mod: 146842, Con: 108598, Lib: 82662, Ver: 54765 \cr
+   education \tab 67 \tab 1.00 \tab FALSE \tab 6 \tab Hig: 130123, Som: 116433, 4-Y: 106727, Pos: 56623 \cr
+   econ \tab 888 \tab 1.00 \tab FALSE \tab 6 \tab Sta: 126496, Got: 117032, Got: 104958, Got: 78787 \cr
+   approval_ch \tab 798 \tab 1.00 \tab FALSE \tab 6 \tab Str: 203121, App: 107126, Str: 97838, Dis: 48372 \cr
+   resentment \tab 387757 \tab 0.18 \tab FALSE \tab 5 \tab Str: 37904, Som: 16691, Nei: 13109, Som: 8879 \cr
+   aff_action \tab 377123 \tab 0.20 \tab FALSE \tab 4 \tab Str: 38216, Som: 23243, Som: 21643, Str: 10530 \cr
 }
 
 
