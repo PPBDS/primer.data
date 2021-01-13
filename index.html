@@ -65,13 +65,14 @@
   <div class="contents col-md-9">
 <div id="data-for-preceptors-primer-for---bayesian-big-data-science-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#data-for-preceptors-primer-for---bayesian-big-data-science-" class="anchor"></a>Data for <em>Preceptor’s Primer for <br> Bayesian Big Data Science</em> <img src="reference/figures/ulysses_hex_black.png" align="right" width="160">
+<a href="#data-for-preceptors-primer-for---bayesian-big-data-science-" class="anchor"></a>Data for <em>Preceptor’s Primer for <br> Bayesian Big Data Science</em> <img src="reference/figures/ulysses_hex_data.png" align="right" width="160">
 </h1></div>
+<!-- badges: start -->
+
 <div id="about-this-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#about-this-package" class="anchor"></a>About this package</h2>
 <p><code>primer.data</code> provides the data used in <em><a href="https://ppbds.github.io/primer">Preceptor’s Primer for Big Bayesian Data Science</a></em>, the textbook used in <a href="https://www.davidkane.info/files/gov_1005_spring_2021.html">Gov 1005: Big Data</a> at Harvard University, and for the <a href="https://ppbds.github.io/primer.tutorials">associated tutorials</a>.</p>
-<!-- unsure if badges are available for use yet here -->
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -108,7 +109,8 @@
 <a href="#using-the-data" class="anchor"></a>Using the data</h2>
 <p>Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using <code>primary.data::qscores</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="va">qscores</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">department</span> <span class="op">==</span> <span class="st">"GOV"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -151,8 +153,6 @@
 <span class="co">#&gt;     year = {2020},</span>
 <span class="co">#&gt;     url = {https://github.com/PPBDS/primer.data},</span>
 <span class="co">#&gt;   }</span></code></pre></div>
-<!-- badges: start -->
-<p><a href="https://github.com/PPBDS/primer.data/actions"><img src="https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
 </div>
 </div>
   </div>
@@ -190,7 +190,13 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/PPBDS/primer.data/actions"><img src="https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
