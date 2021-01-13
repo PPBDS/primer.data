@@ -129,17 +129,21 @@ the data is accessible at Kuriwaki's <a href='https://github.com/kuriwaki/cces_c
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 470,755 observations and 12 variables:</p><dl>
+    <p>A tibble with 470,755 observations and 18 variables:</p><dl>
 <dt>year</dt><dd><p>integer variable for year of survey</p></dd>
 <dt>state</dt><dd><p>character variable for state of residence for observation</p></dd>
-<dt>gender</dt><dd><p>charcater variable of "Female" and "Male"</p></dd>
+<dt>gender</dt><dd><p>character variable of "Female" and "Male"</p></dd>
 <dt>age</dt><dd><p>integer variable for age in years</p></dd>
-<dt>education</dt><dd><p>factor variable for level of education - takes values of "No HS",
-"High School Graduate", "Some College", "2-Year", "4-Year", and "Post-Grad"</p></dd>
 <dt>race</dt><dd><p>character variable for racial identity</p></dd>
 <dt>marstat</dt><dd><p>character variable for marriage status</p></dd>
+<dt>religion</dt><dd><p>character variable for religious belief</p></dd>
+<dt>faminc</dt><dd><p>factor variable for yearly family income - takes values of "Less than 10k"
+"10k - 20k", "20k - 30k", "30k - 40k", "40k - 50k", "50k - 60k", "60k - 70k", "70k - 80k",
+"80k - 100k", "100k - 120k", "120k - 150k", and "150k+"</p></dd>
 <dt>ideology</dt><dd><p>factor variable for self-reported ideology - takes values of "Very Liberal",
 "Liberal", "Moderate", "Conservative", "Very Conservative", and "Not Sure"</p></dd>
+<dt>education</dt><dd><p>factor variable for level of education - takes values of "No HS",
+"High School Graduate", "Some College", "2-Year", "4-Year", and "Post-Grad"</p></dd>
 <dt>news</dt><dd><p>character variable for level news/current events interest</p></dd>
 <dt>econ</dt><dd><p>character variable for retrospective report on the past year's economy</p></dd>
 <dt>approval_ch</dt><dd><p>character variable of approval of president - takes values of
@@ -147,6 +151,15 @@ the data is accessible at Kuriwaki's <a href='https://github.com/kuriwaki/cces_c
 "Never Heard / Not Sure", "Neither Approve Nor Disapprove"</p></dd>
 <dt>approval</dt><dd><p>numeric variable of approval for the current president on a 1-5 scale
 with higher numbers indicating greater approval</p></dd>
+<dt>military</dt><dd><p>character variable indicating whether the respondent or someone in their
+immediate family is serving or has ever served in the U.S. military</p></dd>
+<dt>voted</dt><dd><p>character variable for validated turnout in general elections - takes values of "Voted",
+"No Record of Voting", and "No Voter File"</p></dd>
+<dt>resentment</dt><dd><p>factor variable of approval for the the statement that Blacks should work their
+way up without special favors like many other minorities - take values of "Strongly agree", "Somewhat agree",
+"Neither agree nor disagree", "Somewhat disagree", "Strongly disagree"</p></dd>
+<dt>aff_action</dt><dd><p>factor variable of approval for race-related affirmative action - takes values of
+"Strongly support", "Somewhat support", "Somewhat oppose", and "Strongly oppose"</p></dd>
 
 </dl>
 
@@ -159,11 +172,11 @@ with higher numbers indicating greater approval</p></dd>
 <tr><td></td><td></td></tr>
 <tr><td>Name</td><td>cces</td></tr>
 <tr><td>Number of rows</td><td>470755</td></tr>
-<tr><td>Number of columns</td><td>12</td></tr>
+<tr><td>Number of columns</td><td>18</td></tr>
 <tr><td>_______________________</td><td></td></tr>
 <tr><td>Column type frequency:</td><td></td></tr>
-<tr><td>character</td><td>7</td></tr>
-<tr><td>factor</td><td>2</td></tr>
+<tr><td>character</td><td>8</td></tr>
+<tr><td>factor</td><td>7</td></tr>
 <tr><td>numeric</td><td>3</td></tr>
 <tr><td>________________________</td><td></td></tr>
 <tr><td>Group variables</td><td>None</td></tr>
@@ -177,17 +190,23 @@ with higher numbers indicating greater approval</p></dd>
 <tr><td>gender</td><td>0</td><td>1.00</td><td>4</td><td>6</td><td>0</td><td>2</td><td>0</td></tr>
 <tr><td>race</td><td>0</td><td>1.00</td><td>5</td><td>15</td><td>0</td><td>8</td><td>0</td></tr>
 <tr><td>marstat</td><td>1555</td><td>1.00</td><td>7</td><td>22</td><td>0</td><td>6</td><td>0</td></tr>
+<tr><td>religion</td><td>37416</td><td>0.92</td><td>5</td><td>25</td><td>0</td><td>12</td><td>0</td></tr>
 <tr><td>news</td><td>37007</td><td>0.92</td><td>10</td><td>17</td><td>0</td><td>5</td><td>0</td></tr>
-<tr><td>econ</td><td>888</td><td>1.00</td><td>8</td><td>31</td><td>0</td><td>6</td><td>0</td></tr>
-<tr><td>approval_ch</td><td>798</td><td>1.00</td><td>16</td><td>32</td><td>0</td><td>6</td><td>0</td></tr>
+<tr><td>military</td><td>10094</td><td>0.98</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>voted</td><td>110799</td><td>0.76</td><td>5</td><td>19</td><td>0</td><td>3</td><td>0</td></tr>
 </table>
 
 
 
 <p><strong>Variable type: factor</strong></p><table class='table'>
 <tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>ordered</td><td>n_unique</td><td>top_counts</td></tr>
-<tr><td>ideology</td><td>1774</td><td>1</td><td>FALSE</td><td>6</td><td>Mod: 146842, Con: 108598, Lib: 82662, Ver: 54765</td></tr>
-<tr><td>education</td><td>67</td><td>1</td><td>FALSE</td><td>6</td><td>Hig: 130123, Som: 116433, 4-Y: 106727, Pos: 56623</td></tr>
+<tr><td>faminc</td><td>52606</td><td>0.89</td><td>FALSE</td><td>12</td><td>30k: 48521, 20k: 47793, 40k: 43368, 50k: 42308</td></tr>
+<tr><td>ideology</td><td>1774</td><td>1.00</td><td>FALSE</td><td>6</td><td>Mod: 146842, Con: 108598, Lib: 82662, Ver: 54765</td></tr>
+<tr><td>education</td><td>67</td><td>1.00</td><td>FALSE</td><td>6</td><td>Hig: 130123, Som: 116433, 4-Y: 106727, Pos: 56623</td></tr>
+<tr><td>econ</td><td>888</td><td>1.00</td><td>FALSE</td><td>6</td><td>Sta: 126496, Got: 117032, Got: 104958, Got: 78787</td></tr>
+<tr><td>approval_ch</td><td>798</td><td>1.00</td><td>FALSE</td><td>6</td><td>Str: 203121, App: 107126, Str: 97838, Dis: 48372</td></tr>
+<tr><td>resentment</td><td>387757</td><td>0.18</td><td>FALSE</td><td>5</td><td>Str: 37904, Som: 16691, Nei: 13109, Som: 8879</td></tr>
+<tr><td>aff_action</td><td>377123</td><td>0.20</td><td>FALSE</td><td>4</td><td>Str: 38216, Som: 23243, Som: 21643, Str: 10530</td></tr>
 </table>
 
 
