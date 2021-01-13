@@ -23,4 +23,5 @@
 # Then some stragglers.
 
 data-raw/anes_timeseries_cdf.dta
-
+data-raw/cces_2010.rds
+data-raw/cces_2011.rds
