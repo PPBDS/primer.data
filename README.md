@@ -1,7 +1,12 @@
 
 <!-- README is generated from README.Rmd, edit ONLY this file if needed. But, after you edit it, you NEED TO KNIT IT BY HAND in order to create the new README.md, which is the thing which is actually used. -->
 
-# Data for *Preceptor’s Primer for <br/> Bayesian Big Data Science* <img src="man/figures/ulysses_hex_black.png" align = "right"  width="160">
+# Data for *Preceptor’s Primer for <br/> Bayesian Big Data Science* <img src="man/figures/ulysses_hex_data.png" align = "right"  width="160">
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg)](https://github.com/PPBDS/primer.data/actions)
+<!-- badges: end -->
 
 ## About this package
 
@@ -11,8 +16,6 @@ used in [Gov 1005: Big
 Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at
 Harvard University, and for the [associated
 tutorials](https://ppbds.github.io/primer.tutorials).
-
-<!-- unsure if badges are available for use yet here -->
 
 ## Installation
 
@@ -54,6 +57,7 @@ assign to an object manually. See the following example of a plot using
 `primary.data::qscores`.
 
 ``` r
+
 library(ggplot2)
 
 qscores %>% 
@@ -100,8 +104,3 @@ citation("primer.data")
 #>     url = {https://github.com/PPBDS/primer.data},
 #>   }
 ```
-
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg)](https://github.com/PPBDS/primer.data/actions)
-<!-- badges: end -->
