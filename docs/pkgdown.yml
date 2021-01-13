@@ -1,8 +1,8 @@
-pandoc: 2.7.3
+pandoc: 2.11.2
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-01-13T12:09Z
+last_built: 2021-01-13T15:19Z
 urls:
   reference: https://ppbds.github.io/primer.data//reference
   article: https://ppbds.github.io/primer.data//articles

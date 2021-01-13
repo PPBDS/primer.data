@@ -1,4 +1,3 @@
- R CMD check and a home page for primer.tutorials. Hex sticker too!
 
 * Pick a half dozen or more variables from CCES which are interesting/popular and add them.
 
@@ -24,6 +23,8 @@ DK: I realize that, mostly, we have data which is always in the CCES, but these 
 To discuss:
 
 * README.Rmd includes a bunch of unclear comments (from me).
+
+* Sure seems hacky to require a rebuild of the site by hand. Shouldn't this happen automatically after each push? For example, if I make a change in a help file, I would like that to automatically propogate.
 
 * Warning when building it by hand: Writing [WARNING] Deprecated: markdown_github. Use gfm instead.[WARNING] Deprecated: markdown_github. Use gfm instead.nstead.G] Deprecated: markdown_github. Use gfm i'LICENSE.html'
 
