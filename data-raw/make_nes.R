@@ -343,6 +343,7 @@ z <- x %>%
            equality == "3. Neither agree nor disagree" ~ "Neither agree nor disagree",
            equality == "4. Disagree somewhat" ~ "Disagree somewhat",
            equality == "5. Disagree strongly" ~ "Disagree strongly",
+           equality == "8. DK" ~ "Don't know",
            TRUE ~ NA_character_)) %>%
   select(-VCF9013) %>%
 
