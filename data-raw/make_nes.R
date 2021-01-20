@@ -40,12 +40,17 @@ x <- raw_data %>%
   # Picking relevant variables: gender, income, year,
   # race, party identification, education, state FIPS
   # code, voted in national elections?, age group,
-  # incumbent president's approval, region
+  # incumbent president's approval, region, thermometer
+  # (blacks), thermometer (whites), USA better off alone?,
+  # importance of religion, should society of ensure equal
+  # opportunity?, people like R have say in government actions,
 
   select(VCF0104, VCF0114, VCF0004,
          VCF0105a, VCF0301, VCF0140a,
          VCF0901a, VCF0702, VCF0102,
-         VCF0450, VCF0112) %>%
+         VCF0450, VCF0112, VCF0206,
+         VCF0207, VCF0823, VCF0846,
+         VCF9013, VCF0613) %>%
 
 
   # Renaming and cleaning gender variable.
@@ -89,7 +94,7 @@ x <- raw_data %>%
 
 
   # Filtering out all 1948 observations because they are
-  # lacking data on states and education.
+  # lacking data on several variables.
 
   filter(year > 1948) %>%
 
@@ -123,7 +128,7 @@ x <- raw_data %>%
     str_extract(VCF0105a, pattern = "Other") == "Other" ~ "Other",
 
     # This terminology has been used until and including the 1964 election,
-    # after which they described to the respective group as "Other". In order
+    # after which they described the respective group as "Other". In order
     # to avoid having two different terms for the same group of people in
     # different time periods, I decided to code this as "Other" as well.
 
@@ -148,6 +153,8 @@ x <- raw_data %>%
   mutate(ideology = str_sub(VCF0301,
                             start = 4,
                             end = -1)) %>%
+
+  select(-VCF0301) %>%
 
   # Whoah! Is there a weird bug in parse_factor? If you use parse_factor instead
   # of factor in the next line, the NA values get converted into another level,
@@ -243,7 +250,7 @@ z <- x %>%
   select(-fips, -state_abbr) %>%
 
 
-# Cleaning voted variable. This is about voting in the election that occured
+# Cleaning voted variable. This is about voting in the election that occurred
 # this year. I *think* that ANES is always (?) conducted after election day.
 
   mutate(voted = as_factor(VCF0702)) %>%
@@ -272,7 +279,7 @@ z <- x %>%
     str_detect(age, "7. ") == T ~ "75 +",
     TRUE ~ NA_character_))) %>%
 
-
+  select(-VCF0102) %>%
 
 
 # Cleaning presidential approval variable. Need to find regex method
@@ -285,18 +292,84 @@ z <- x %>%
     str_detect(pres_appr, "8. ") == T ~ "Unsure",
     TRUE ~ NA_character_))) %>%
 
-  select(-VCF0102, -VCF0450) %>%
+  select(-VCF0450) %>%
 
-  select(year, state, gender, income, age,
-         education, race, ideology, pres_appr, voted, region)
 
+# Cleaning thermometer (blacks) variable.
+
+  mutate(therm_black = as.character(as_factor(VCF0206)),
+         therm_black = recode(therm_black, "97. 97-100 Degrees" = "97"),
+         therm_black = as.integer(therm_black)) %>%
+  select(-VCF0206) %>%
+
+
+# Cleaning thermometer (whites) variable.
+
+  mutate(therm_white = as.character(as_factor(VCF0207)),
+         therm_white = recode(therm_white, "97. 97-100 Degrees" = "97"),
+         therm_white = as.integer(therm_white)) %>%
+  select(-VCF0207) %>%
+
+
+# Cleaning variable on whether US would be better off
+# if unconcerned with rest of world.
+
+  mutate(better_alone = as.character(as_factor(VCF0823)),
+         better_alone = case_when(
+           better_alone == "1. Agree (1956-1960: incl. 'agree strongly' and 'agree" ~ "Agree",
+           better_alone == "2. Disagree (1956-1960: incl. 'disagree strongly' and" ~ "Disagree",
+           TRUE ~ NA_character_)) %>%
+  select(-VCF0823) %>%
+
+
+# Cleaning religious importance variable.
+
+  mutate(religion = as.character(as_factor(VCF0846)),
+         religion = case_when(
+           religion == "1. Yes, important" ~ "Important",
+           religion == "2. No, not important" ~ "Unimportant",
+           religion == "8. DK" ~ "Don't know",
+           TRUE ~ NA_character_)) %>%
+  select(-VCF0846) %>%
+
+
+# Cleaning variable on whether society should ensure equal
+# opportunities to succeed.
+
+  mutate(equality = as.character(as_factor(VCF9013)),
+         equality = case_when(
+           equality == "1. Agree strongly" ~ "Agree strongly",
+           equality == "2. Agree somewhat" ~ "Agree somewhat",
+           equality == "3. Neither agree nor disagree" ~ "Neither agree nor disagree",
+           equality == "4. Disagree somewhat" ~ "Disagree somewhat",
+           equality == "5. Disagree strongly" ~ "Disagree strongly",
+           equality == "8. DK" ~ "Don't know",
+           TRUE ~ NA_character_)) %>%
+  select(-VCF9013) %>%
+
+# Cleaning variable on whether people like respondent have any
+# say in what the government does.
+
+  mutate(influence = as.character(as_factor(VCF0613)),
+         influence = case_when(
+           influence == "1. Agree" ~ "Agree",
+           influence == "2. Disagree" ~ "Disagree",
+           influence == "3. Neither agree nor disagree (1988 and later only)" ~ "Neither agree nor disagree",
+           TRUE ~ NA_character_)) %>%
+  select(-VCF0613) %>%
+
+
+select(year, state, gender, income, age,
+       education, race, ideology, voted,
+       region, pres_appr, influence, equality,
+       religion, better_alone, therm_black,
+       therm_white)
 
 # Check and save.
 
 stopifnot(nrow(z) > 32000)
 stopifnot(length(levels(z$education)) == 7)
 stopifnot(is.integer(z$year))
-stopifnot(ncol(z) == 11)
 stopifnot(dim(table(z$income)) == 5)
 
 
