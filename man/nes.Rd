@@ -31,10 +31,10 @@ asked before 1980}
 \item{better_alone}{character variable for respondent's opinion on the statement "This country
 would be better off if we just stayed home and did not concern ourselves with problems in other
 parts of the world". Question was not asked before 1956}
-\item{therm_black}{integer variable for respondent's self-declared attitude toward black people. Takes
+\item{therm_black}{integer variable for respondent's self-reported attitude toward black people. Takes
 "thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964}
-\item{therm_white}{integer variable for respondent's self-declared attitude toward white people. Takes
-"thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1974}
+\item{therm_white}{integer variable for respondent's self-reported attitude toward white people. Takes
+"thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964}
 }
 }
 \source{
