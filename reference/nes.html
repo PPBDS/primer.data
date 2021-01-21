@@ -44,7 +44,7 @@
 Election Studies (ANES), a survey that aims to provide insights into voter
 behavior. It has been conducted since 1948 before and after each presidential
 election, and combines questions about voters' political attitudes with extensive
-biographical information. Current as of 07/29/2020." />
+biographical information. Current as of 01/20/2021." />
 
 
 
@@ -121,7 +121,7 @@ biographical information. Current as of 07/29/2020." />
 Election Studies (ANES)</a>, a survey that aims to provide insights into voter
 behavior. It has been conducted since 1948 before and after each presidential
 election, and combines questions about voters' political attitudes with extensive
-biographical information. Current as of 07/29/2020.</p>
+biographical information. Current as of 01/20/2021.</p>
     </div>
 
     <pre class="usage"><span class='va'>nes</span></pre>
@@ -129,20 +129,35 @@ biographical information. Current as of 07/29/2020.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 38,558 observations and 10 variables:</p><dl>
+    <p>A tibble with 38,558 observations and 17 variables:</p><dl>
 <dt>year</dt><dd><p>integer variable for year of study</p></dd>
-<dt>state</dt><dd><p>character variable for the 2-letter abbreviation of the state of the interview of a respondent</p></dd>
+<dt>state</dt><dd><p>character variable for the 2-letter abbreviation of respondent's survey state</p></dd>
 <dt>gender</dt><dd><p>character variable with values "Male", "Female", and "Other"</p></dd>
-<dt>income</dt><dd><p>factor variable for respondents' income percentile group. Has 5 levels:
-0-16th percentile, 17-33rd, 34-67th, 68-95th, 96-100th</p></dd>
-<dt>age</dt><dd><p>factor variable of respondents' age ranges, 75+ is accurate except for year 1954</p></dd>
-<dt>education</dt><dd><p>factor variable with a 7 levels measuring educational achievement</p></dd>
-<dt>race</dt><dd><p>character variable for respondants' race / ethnicity identification</p></dd>
-<dt>ideology</dt><dd><p>factor variable for party identification with 7 levels</p></dd>
-<dt>pres_appr</dt><dd><p>character variable of respondents' self-reported approval of the sitting president. Question
-was not asked before 1972</p></dd>
+<dt>income</dt><dd><p>factor variable for respondent's income percentile group. Has levels
+"0 - 16", "17 - 33", "34 - 67", "68 - 95", and "96 - 100"</p></dd>
+<dt>age</dt><dd><p>factor variable for respondent's age group. Has levels
+"17 - 24", "25 - 34", "35 - 44", "45 - 54", "55 - 64", "65 - 74", and "75 +"</p></dd>
+<dt>education</dt><dd><p>factor variable with a 7 levels measuring highest educational achievement</p></dd>
+<dt>race</dt><dd><p>character variable for respondent's racial / ethnical identity</p></dd>
+<dt>ideology</dt><dd><p>factor variable for respondent's party identification with 7 levels</p></dd>
 <dt>voted</dt><dd><p>character variable indicating whether the respondent voted in the national elections</p></dd>
-<dt>region</dt><dd><p>factor variable indicating the region corresponding to the voter's survey state</p></dd>
+<dt>region</dt><dd><p>factor variable for the region corresponding to respondent's survey state</p></dd>
+<dt>pres_appr</dt><dd><p>character variable for respondent's self-reported approval of the sitting president.
+Question was not asked before 1972</p></dd>
+<dt>influence</dt><dd><p>character variable for respondent's opinion on the statement "People like
+me have any say in what the government does"</p></dd>
+<dt>equality</dt><dd><p>character variable for respondent's opinion on the statement "Our society
+should do whatever is necessary to make sure that everyone has an equal opportunity to succeed".
+Question was not asked before 1984</p></dd>
+<dt>religion</dt><dd><p>character variable for importance of religion in respondent's life. Question was not
+asked before 1980</p></dd>
+<dt>better_alone</dt><dd><p>character variable for respondent's opinion on the statement "This country
+would be better off if we just stayed home and did not concern ourselves with problems in other
+parts of the world". Question was not asked before 1956</p></dd>
+<dt>therm_black</dt><dd><p>integer variable for respondent's self-reported attitude toward black people. Takes
+"thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964</p></dd>
+<dt>therm_white</dt><dd><p>integer variable for respondent's self-reported attitude toward white people. Takes
+"thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964</p></dd>
 
 </dl>
 
@@ -159,12 +174,12 @@ codebook</a> provides further information on this issue.</p>
 <tr><td></td><td></td></tr>
 <tr><td>Name</td><td>nes</td></tr>
 <tr><td>Number of rows</td><td>38558</td></tr>
-<tr><td>Number of columns</td><td>11</td></tr>
+<tr><td>Number of columns</td><td>17</td></tr>
 <tr><td>_______________________</td><td></td></tr>
 <tr><td>Column type frequency:</td><td></td></tr>
-<tr><td>character</td><td>5</td></tr>
+<tr><td>character</td><td>9</td></tr>
 <tr><td>factor</td><td>5</td></tr>
-<tr><td>numeric</td><td>1</td></tr>
+<tr><td>numeric</td><td>3</td></tr>
 <tr><td>________________________</td><td></td></tr>
 <tr><td>Group variables</td><td>None</td></tr>
 </table>
@@ -176,8 +191,12 @@ codebook</a> provides further information on this issue.</p>
 <tr><td>state</td><td>110</td><td>1.00</td><td>2</td><td>2</td><td>0</td><td>50</td><td>0</td></tr>
 <tr><td>gender</td><td>141</td><td>1.00</td><td>4</td><td>6</td><td>0</td><td>3</td><td>0</td></tr>
 <tr><td>race</td><td>287</td><td>0.99</td><td>5</td><td>15</td><td>0</td><td>6</td><td>0</td></tr>
-<tr><td>pres_appr</td><td>9646</td><td>0.75</td><td>6</td><td>10</td><td>0</td><td>3</td><td>0</td></tr>
 <tr><td>voted</td><td>4078</td><td>0.89</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>pres_appr</td><td>9646</td><td>0.75</td><td>6</td><td>10</td><td>0</td><td>3</td><td>0</td></tr>
+<tr><td>influence</td><td>6925</td><td>0.82</td><td>5</td><td>26</td><td>0</td><td>3</td><td>0</td></tr>
+<tr><td>equality</td><td>16902</td><td>0.56</td><td>10</td><td>26</td><td>0</td><td>6</td><td>0</td></tr>
+<tr><td>religion</td><td>14052</td><td>0.64</td><td>9</td><td>11</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>better_alone</td><td>7794</td><td>0.80</td><td>5</td><td>8</td><td>0</td><td>2</td><td>0</td></tr>
 </table>
 
 
@@ -195,7 +214,9 @@ codebook</a> provides further information on this issue.</p>
 
 <p><strong>Variable type: numeric</strong></p><table class='table'>
 <tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>mean</td><td>sd</td><td>p0</td><td>p25</td><td>p50</td><td>p75</td><td>p100</td><td>hist</td></tr>
-<tr><td>year</td><td>0</td><td>1</td><td>1989.4</td><td>20.5</td><td>1952</td><td>1972</td><td>1992</td><td>2012</td><td>2016</td><td>▃▃▃▃▇</td></tr>
+<tr><td>year</td><td>0</td><td>1.00</td><td>1989.40</td><td>20.50</td><td>1952</td><td>1972</td><td>1992</td><td>2012</td><td>2016</td><td>▃▃▃▃▇</td></tr>
+<tr><td>therm_black</td><td>9418</td><td>0.76</td><td>65.74</td><td>20.64</td><td>0</td><td>50</td><td>65</td><td>85</td><td>97</td><td>▁▁▇▇▇</td></tr>
+<tr><td>therm_white</td><td>9354</td><td>0.76</td><td>73.66</td><td>18.60</td><td>0</td><td>60</td><td>75</td><td>85</td><td>97</td><td>▁▁▃▅▇</td></tr>
 </table>
 
 
