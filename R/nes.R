@@ -6,7 +6,7 @@
 #' Election Studies (ANES)}, a survey that aims to provide insights into voter
 #' behavior. It has been conducted since 1948 before and after each presidential
 #' election, and combines questions about voters' political attitudes with extensive
-#' biographical information. Current as of 07/29/2020.
+#' biographical information. Current as of 01/20/2021.
 #'
 #' @details
 #' Some of the questions aksed in the survey have changed slightly over time. The
@@ -19,21 +19,36 @@
 #' skimr::skim(nes)
 #' ```
 #'
-#' @format A tibble with 38,558 observations and 10 variables:
+#' @format A tibble with 38,558 observations and 17 variables:
 #' \describe{
 #'   \item{year}{integer variable for year of study}
-#'   \item{state}{character variable for the 2-letter abbreviation of the state of the interview of a respondent}
+#'   \item{state}{character variable for the 2-letter abbreviation of respondent's survey state}
 #'   \item{gender}{character variable with values "Male", "Female", and "Other"}
-#'   \item{income}{factor variable for respondents' income percentile group. Has 5 levels:
-#'                 0-16th percentile, 17-33rd, 34-67th, 68-95th, 96-100th}
-#'   \item{age}{factor variable of respondents' age ranges, 75+ is accurate except for year 1954}
-#'   \item{education}{factor variable with a 7 levels measuring educational achievement}
-#'   \item{race}{character variable for respondants' race / ethnicity identification}
-#'   \item{ideology}{factor variable for party identification with 7 levels}
-#'   \item{pres_appr}{character variable of respondents' self-reported approval of the sitting president. Question
-#'                    was not asked before 1972}
+#'   \item{income}{factor variable for respondent's income percentile group. Has levels
+#'                 "0 - 16", "17 - 33", "34 - 67", "68 - 95", and "96 - 100"}
+#'   \item{age}{factor variable for respondent's age group. Has levels
+#'      "17 - 24", "25 - 34", "35 - 44", "45 - 54", "55 - 64", "65 - 74", and "75 +"}
+#'   \item{education}{factor variable with a 7 levels measuring highest educational achievement}
+#'   \item{race}{character variable for respondent's racial / ethnical identity}
+#'   \item{ideology}{factor variable for respondent's party identification with 7 levels}
 #'   \item{voted}{character variable indicating whether the respondent voted in the national elections}
-#'   \item{region}{factor variable indicating the region corresponding to the voter's survey state}
+#'   \item{region}{factor variable for the region corresponding to respondent's survey state}
+#'   \item{pres_appr}{character variable for respondent's self-reported approval of the sitting president.
+#'   Question was not asked before 1972}
+#'   \item{influence}{character variable for respondent's opinion on the statement "People like
+#'   me have any say in what the government does"}
+#'   \item{equality}{character variable for respondent's opinion on the statement "Our society
+#'   should do whatever is necessary to make sure that everyone has an equal opportunity to succeed".
+#'   Question was not asked before 1984}
+#'   \item{religion}{character variable for importance of religion in respondent's life. Question was not
+#'   asked before 1980}
+#'   \item{better_alone}{character variable for respondent's opinion on the statement "This country
+#'   would be better off if we just stayed home and did not concern ourselves with problems in other
+#'   parts of the world". Question was not asked before 1956}
+#'   \item{therm_black}{integer variable for respondent's self-reported attitude toward black people. Takes
+#'   "thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964}
+#'   \item{therm_white}{integer variable for respondent's self-reported attitude toward white people. Takes
+#'   "thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964}
 #' }
 #'
 #' @author

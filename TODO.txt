@@ -1,23 +1,4 @@
 
-* Pick a half dozen or more variables from CCES which are interesting/popular and add them.
-
-- No need to transform variables.
-- Find some numeric variables if you can.
-- Use factors if the item has a natural ordering, and make sure the levels of the factor reflect that ordering.
-- Leave as character if no natural ordering.
-
-Especially interested in "All CCES surveys ask respondents whether they sup-port or oppose affirmative action policies, which are described as “programs [that] givepreference to racial minorities and to women in employment and college admissions inorder to correct for discrimination” (2008 CCES)."
-
-Also:
-
-"The first question, askedin the 2010 and 2011 CCES surveys, asks respondents on a five-point scale whether theyagree with the following statement: “The Irish, Italian, Jews and many other minoritiesovercame prejudice and worked their way up. Blacks should do the same.” The secondquestion, asked in 2010, asks respondents, also on a five-point scale, whether they agreethat “Generations of slavery and discrimination have created conditions that make itdifficult for Blacks to work their way out of the lower class.”
-
-DK: I realize that, mostly, we have data which is always in the CCES, but these questions are important enough that I don't mind including them for just a few years. (And some of these may have continued on after they were first included.)
-
-* Pick a half dozen or more variables from ANES for nes which are interesting/popular and add them. Start with:
-
-"White-black thermometer difference.In many years, the ANES contains “feelingthermometer” questions, which ask respondents to evaluate their feelings about politi-cians and groups (including racial or ethnic groups) on a scale from 0 to 100."
-
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
 To discuss:
