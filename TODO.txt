@@ -15,6 +15,8 @@ To discuss:
 
 * https://crimebythenumbers.com/
 
+* Add this data: https://www.pnas.org/content/118/4/e2021022118
+
 
 * Add the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". Or maybe we need two train data sets: the current one and trains_detailed?
 
