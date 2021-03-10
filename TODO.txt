@@ -1,9 +1,15 @@
+* CCES 2020 data is available.
+
+* NES 2020 data also?
+
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
 To discuss:
 
 * README.Rmd includes a bunch of unclear comments (from me).
+
+* Change "Control" to "No Postcard" in shaming$treatment. Makes clear that "control" is a conceptual category. There does not need to be a level called "Control".
 
 * Sure seems hacky to require a rebuild of the site by hand. Shouldn't this happen automatically after each push? For example, if I make a change in a help file, I would like that to automatically propogate.
 
