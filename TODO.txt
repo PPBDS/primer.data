@@ -1,28 +1,18 @@
-* CCES 2020 data is available.
 
-* NES 2020 data also?
-
+* Add comments on how to create webpage and other stuff to README.Rmd. No instructions should be in TODO.
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
-To discuss:
+* Find out whether it is actually required to build the page by hand using build_site(). If yes, make sure this error does not occor: Warning when building it by hand: Writing [WARNING] Deprecated: markdown_github. Use gfm instead.[WARNING] Deprecated: markdown_github. Use gfm instead.nstead.G] Deprecated: markdown_github. Use gfm i'LICENSE.html'
 
-* README.Rmd includes a bunch of unclear comments (from me).
+* Create better stickers with hexSticker package.
 
-* Change "Control" to "No Postcard" in shaming$treatment. Makes clear that "control" is a conceptual category. There does not need to be a level called "Control".
+* Add this data: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HUUEGI
 
-* Sure seems hacky to require a rebuild of the site by hand. Shouldn't this happen automatically after each push? For example, if I make a change in a help file, I would like that to automatically propogate.
+* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years.
 
-* Warning when building it by hand: Writing [WARNING] Deprecated: markdown_github. Use gfm instead.[WARNING] Deprecated: markdown_github. Use gfm instead.nstead.G] Deprecated: markdown_github. Use gfm i'LICENSE.html'
 
-* See https://msberends.github.io/AMR for some ideas to improve website.
-
-* World Values: http://www.worldvaluessurvey.org/wvs.jsp
-
-* https://crimebythenumbers.com/
-
-* Add this data: https://www.pnas.org/content/118/4/e2021022118
-
+### Improvements
 
 * Add the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". Or maybe we need two train data sets: the current one and trains_detailed?
 
@@ -30,20 +20,11 @@ To discuss:
 
 * Transform all the make_ scripts into functions --- I think this is more professional --- which, by default, just return the data. There is an argument for having these functions also install the new data in the package, but the valaue of that argument  is false by default.
 
-
-
-
-
 * Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages.
-
-* Called `nominate`. DW NOMINATE from VoteView project: https://www.voteview.com/data.
-
 
 * Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep.
 
 * Should we re-create all the data sets each time we run R CMD package check? This would not take too much time and would ensure that everything is ship-shape.
-
-
 
 * pkgdown
 
@@ -56,6 +37,9 @@ To discuss:
   - Instead, we could have an "Article" which provided a list of all the tibbles along with the one paragraph description. Then, the front page could just have a basic blurb and one nice graphic.
 
 
+* After semester: change "Control" to "No Postcard" in shaming$treatment. Makes clear that "control" is a conceptual category. There does not need to be a level called "Control".
+
+
 ### Data Sets
 
 * Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
@@ -65,6 +49,10 @@ To discuss:
 * Called `congress`. Something about the results of US congressional elections over several election cycles. 538? Really want this to include some measure of campaign spending so we can discuss a (potential) causal effect. Didn't they have a model which they used for the 2018 election? If they estimated a model, they must have some data.
 
 * Called `police`. [Open police data](https://openpolicing.stanford.edu/data/). Something with millions of rows and, ideally, geographic coordinates. We won't include this data in our repo. Instead, the make_police.R script will download and process it. Ideally, we can get the final police.rda to be less than 100 meg so that we don't need to turn on git-lfs again.
+
+* Called `nominate`. DW NOMINATE from VoteView project: https://www.voteview.com/data
+
+* World Values Survey: http://www.worldvaluessurvey.org/wvs.jsp
 
 
 ### Instructions
