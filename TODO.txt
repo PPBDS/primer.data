@@ -1,11 +1,5 @@
 
-* Add comments on how to create webpage and other stuff to README.Rmd. No instructions should be in TODO.
-
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
-
-* Find out whether it is actually required to build the page by hand using build_site(). If yes, make sure this error does not occor: Warning when building it by hand: Writing [WARNING] Deprecated: markdown_github. Use gfm instead.[WARNING] Deprecated: markdown_github. Use gfm instead.nstead.G] Deprecated: markdown_github. Use gfm i'LICENSE.html'
-
-* Create better stickers with hexSticker package.
 
 * Add this data: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HUUEGI
 
@@ -36,8 +30,9 @@
 
   - Instead, we could have an "Article" which provided a list of all the tibbles along with the one paragraph description. Then, the front page could just have a basic blurb and one nice graphic.
 
-
 * After semester: change "Control" to "No Postcard" in shaming$treatment. Makes clear that "control" is a conceptual category. There does not need to be a level called "Control".
+
+* Create better stickers with hexSticker package.
 
 
 ### Data Sets
@@ -53,58 +48,5 @@
 * Called `nominate`. DW NOMINATE from VoteView project: https://www.voteview.com/data
 
 * World Values Survey: http://www.worldvaluessurvey.org/wvs.jsp
-
-
-### Instructions
-
-* Write scripts which create our data sets and adds them to our primer.data package. Write associated help files. Skim [*R Packages*](https://r-pkgs.org/), but read closely the [data section](https://r-pkgs.org/data.html). Examine [covdata package](https://kjhealy.github.io/covdata/). Use **usethis** and **pkgdown** packages.
-
-* Follow the conventions with the trains data: make_trains.R (in data-raw/), trains.rda (in data/), trains.R (in R/). Note that the name of the tibble -- "trains" -- appears in the file name of each of the three key things you are creating. We also call the article which is associated with the data, and placed in inst/papers, "trains.pdf".
-
-* Main workflow is that raw data is placed in the data-raw/ directory. It is read and cleaned in the make_name-of-tibble.R script, the last step of which is to create the name-of-tibble.rda file, using `usethis::use_data(name-of-tibble, overwrite = TRUE)`. The make_name-of-tibble.R has lots and lots of documentation, including the details of where the original data came from, and instructions on how to download it, if necessary. (At some point, we might turn this into a function, as Healy does, but not right now.) name-of-tibble.R provides the information for R to create the help file. It includes at least two paragraphs of background on the data source itself, ideally to include a key academic paper.
-
-* Think hard about variable type. No ordered factors. If something has no natural ordering, make it character. If it does have an ordering, make it a factor and give the levels the ordering you want.  Document your reasoning in your make_name-of-tibble.R script. Examine the choices made in make_trains.R.
-
-
-### pkgdown
-
-* We are currently using pkgdown to make our website. But it is confusing and a bit fragile. Nor have I done a good job of documenting my lessons. Start [here](https://pkgdown.r-lib.org/articles/pkgdown.html). I had to run `usethis::use_pkgdown()` once, and then do some fussing to get the automated push stuff to work. Even though I only did this a few weeks ago, I have already forgotten the key steps. Weak! Document better!
-
-* You need to use `pkgdown::build_site()` to create the site after you have made some changes.
-
-* Need to make the home page nicer. Follow [these instructions](https://pkgdown.r-lib.org/reference/build_home.html).
-
-
-### Package Versions
-
-This section provides an overview of how to name package versions (see also https://r-pkgs.org/release.html#release-version). The development state of each package has a unique numbering such as "Version 1.2.3.9000". The version name usually consists of three or four digits, each of which stands for a specific type of change:
-
-* "Major releases” are indicated by the first digit, or “1” in our example above. This number is incremented if we make changes to the package that are not backward compatible and may affect many people. An example would be if we delete an entire dataset or remove variables from an existing dataset. In other words, things that cause major problems in someone's code who is already using our package - try to avoid such changes whenever possible!
-
-* "Minor releases” are indicated by the second digit, or “2” in our example. This number is incremented when we make bug fixes, add new features or make backward-compatible changes. This is the most common type of change, for instance when we add new datasets.
-
-* "Patches” are indicated by the third digit, or “3” in our example. This number is incremented if we fix bugs without adding relevant new features, e.g. when making changes to help files.
-
-* In-development packages, i.e. packages which are not yet released on CRAN (like ours), also have a fourth digit. The default value is usually set to 9000, as in the example above. This number is only incremented when we add important features that another in-development package should depend on. Since this is unlikely to be the case, we can leave the fourth digit at 9000 as long as PPBDS.data has not been published on CRAN (from then on only the first three digits will be used).
-
-* No other digit, but a legitimate question is also: When do we change from 0.a.b to 1.0.0? The first digit should be set from 0 to 1 when our package is "feature complete". This could be the case if our package contains all necessary datasets a student needs in GOV 50. It could also mean that the package is in a state to be realeased on CRAN (or both). In the end, it's up to us to answer this question. Furthermore, note that as long as the first digit is still 0, non-backward compatible changes will be recorded by incrementing the second digit (and not the first, as described above).
-
-Once we have made some changes and agreed on a proper name for the new version, we need to change the old name. First, we have to open the DESCRIPTION file and manually enter the correct version. Save the changes and run build_site() in the console. The new name of the version should now show on top of the homepage. Next, update the changelog which is generated by the NEWS.md file. Simply open the file and orientate yourself on the existing content to add a new entry. If everything looks right, save the changes and use build_site() again to see the result. While there is no rule on this, most packages mention the fourth digit only in the DESCRIPTION file and not in NEWS.md. (I follow this convention as well). Whenever new changes are made, simply repeat the described process.
-
-
-### Github Pages
-
-Github allows you to create web pages with a username.github.io/repo URL. As an example, the website for this package is accessible at ppbds.github.io/primer.data. (Our "user" here is an organisation called PPBDS).
-
-Creating a page with Github Pages is easy, and it can be done for any repo. First go to a repo on Github. Go to the Settings and scroll down to the "Github Pages" section. Click on the button that says "None" and select a branch. The selected branch will later be searched for files to build the website, and in most cases you will want to select the "main" branch. Optionally, you can then select a folder within that repository. The options are either /(root), which is simply the root directory, or /docs, where Github will look for a folder called "docs" within the selected repo. If you don't already have a "docs" folder, just stick with /(root). Once you have selected a branch and folder, press the "Save" button. You should then see a grey bar in the Github Pages section with the message "Your site is ready to be published at https://username.github.io/repo". This means that the site has not yet been published. Wait a few minutes, refresh the page, and check again. The bar should now be green with the message "Your site is published at https://username.github.io". The page can now be accessed by anyone. Once we change files in the repo that affect the web page's appearance, Github Pages automatically updates the page. Until the page has been updated, which can indeed take some time, the settings will again show a grey bar with "Your site is ready to be published at https://username.github.io/repo" again. Once the bar turns green, the website will show the new version.
-
-
-How do I build a site? Ran library(pkgdown) and issued what commands? Or at least I link to the page: https://pkgdown.r-lib.org/
-
-Run
-
-usethis::use_pkgdown()
-
-
 
 
