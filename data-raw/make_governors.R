@@ -20,7 +20,7 @@ library(tidyverse)
 
 # What is the `ex` variable? Looks interesting.
 
-# Key variabbles are days lived before (living_day_imp_pre, living_day_pre) and
+# Key variables are days lived before (living_day_imp_pre, living_day_pre) and
 # after (living_day_imp_post, living_day_post) the election. Note that there are
 # two versions of both, with one --- with "imp" in the name --- indicating that
 # it has been imputed. They look highly similar, with a few less missing among
