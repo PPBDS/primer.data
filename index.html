@@ -109,68 +109,48 @@
 <div id="using-the-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-the-data" class="anchor"></a>Using the data</h2>
-<p>Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using <code>primary.data::qscores</code>.</p>
-<!-- 
-
-Try to make this work:
-
-library(tidyverse)
-library(primer.data)
-
-cces %>% 
-  select(state, faminc, ideology) %>% 
-  mutate(ideology = as.numeric(fct_recode(ideology, 
-                                          '-2' = 'Very Liberal',
-                                          '-1' = 'Liberal',
-                                          '0' = 'Moderate',
-                                          '1' = 'Conservative',
-                                          '2' = 'Very Conservative',
-                                          '9' = 'Not Sure'))) %>% 
-  mutate(faminc = as.numeric(fct_recode(faminc, 
-                                          '1' = 'Less than 10k',
-                                          '2' = '10k - 20k',
-                                          '3' = '20k - 30k',
-                                          '4' = '30k - 40k',
-                                          '5' = '40k - 50k',
-                                          '6' = '50k - 60k',
-                                          '7' = '60k - 70k',
-                                          '8' = '70k - 80k',
-                                          '9' = '80k - 100k',
-                                          '10' = '100k - 120k',
-                                          '11' = '120k - 150k',
-                                          '12' = '150k+'))) %>% 
-  mutate(state = as.factor(state)) %>% 
-  filter(ideology != 9) %>% 
-  drop_na() %>% 
-  head(100000) %>% 
-  
-    ggplot(., aes(x = ideology, y = faminc)) +
-      geom_smooth(method = "gam") 
--->
+<p>Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using <code>primary.data::cces</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span>
 
-<span class="va">qscores</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">department</span> <span class="op">==</span> <span class="st">"GOV"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">hours</span>, <span class="va">rating</span>, color <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">enrollment</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">term</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
-      title <span class="op">=</span> <span class="st">"Student Course Evaluations at Harvard"</span>,
-      subtitle <span class="op">=</span> <span class="st">"Department of Government"</span>,
-      caption <span class="op">=</span> <span class="st">"Data provided by Aurash Vatan '23"</span>,
-      x <span class="op">=</span> <span class="st">"Weekly workload, hours"</span>,
-      y <span class="op">=</span> <span class="st">"Rating, 1 (worst) to 5 (best)"</span>,
-      size <span class="op">=</span> <span class="st">"Enrollment"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_linedraw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
-        text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Palatino"</span><span class="op">)</span>,
-        axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,
-        axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_hue.html" class="external-link">scale_color_discrete</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
+<span class="va">cces</span> <span class="op">%&gt;%</span> 
+  <span class="fu">select</span><span class="op">(</span><span class="va">state</span>, <span class="va">faminc</span>, <span class="va">ideology</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>ideology <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">as.double</a></span><span class="op">(</span><span class="fu">fct_recode</span><span class="op">(</span><span class="va">ideology</span>, 
+                                          <span class="st">'1'</span> <span class="op">=</span> <span class="st">'Very Liberal'</span>,
+                                          <span class="st">'2'</span> <span class="op">=</span> <span class="st">'Liberal'</span>,
+                                          <span class="st">'3'</span> <span class="op">=</span> <span class="st">'Moderate'</span>,
+                                          <span class="st">'4'</span> <span class="op">=</span> <span class="st">'Conservative'</span>,
+                                          <span class="st">'5'</span> <span class="op">=</span> <span class="st">'Very Conservative'</span>,
+                                          <span class="st">'6'</span> <span class="op">=</span> <span class="st">'Not Sure'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>faminc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu">fct_recode</span><span class="op">(</span><span class="va">faminc</span>, 
+                                        <span class="st">'1'</span> <span class="op">=</span> <span class="st">'Less than 10k'</span>,
+                                        <span class="st">'2'</span> <span class="op">=</span> <span class="st">'10k - 20k'</span>,
+                                        <span class="st">'3'</span> <span class="op">=</span> <span class="st">'20k - 30k'</span>,
+                                        <span class="st">'4'</span> <span class="op">=</span> <span class="st">'30k - 40k'</span>,
+                                        <span class="st">'5'</span> <span class="op">=</span> <span class="st">'40k - 50k'</span>,
+                                        <span class="st">'6'</span> <span class="op">=</span> <span class="st">'50k - 60k'</span>,
+                                        <span class="st">'7'</span> <span class="op">=</span> <span class="st">'60k - 70k'</span>,
+                                        <span class="st">'8'</span> <span class="op">=</span> <span class="st">'70k - 80k'</span>,
+                                        <span class="st">'9'</span> <span class="op">=</span> <span class="st">'80k - 100k'</span>,
+                                        <span class="st">'10'</span> <span class="op">=</span> <span class="st">'100k - 120k'</span>,
+                                        <span class="st">'11'</span> <span class="op">=</span> <span class="st">'120k - 150k'</span>,
+                                        <span class="st">'12'</span> <span class="op">=</span> <span class="st">'150k+'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>state <span class="op">=</span> <span class="fu">str_replace</span><span class="op">(</span><span class="va">state</span>, <span class="st">"District of Columbia"</span>, <span class="st">"D.C."</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">state</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ideology</span> <span class="op">!=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  
+    <span class="fu">ggplot</span><span class="op">(</span><span class="va">.</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">ideology</span>, y <span class="op">=</span> <span class="va">faminc</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu">geom_smooth</span><span class="op">(</span>formula <span class="op">=</span> <span class="st">"y ~ x"</span>, method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">state</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relation Between Family Income and Political Ideology"</span>,
+           subtitle <span class="op">=</span> <span class="st">"Low income tends to be associated with being conservative, especially in blue states"</span>,
+           x <span class="op">=</span> <span class="st">"Ideology, higher values = more conservative"</span>,
+           y <span class="op">=</span> <span class="st">"Annual family income, higher values = higher income"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu">theme_linedraw</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? Why can't we just have this code run and save/show the image? Hate the eval=FALSE above. -->
-<p><img src="reference/figures/README-plot-1.png" align="center" height="500"></p>
+<p><img src="reference/figures/readme_plot.png" align="center"></p>
 </div>
 <div id="citing-primerdata" class="section level2">
 <h2 class="hasAnchor">
