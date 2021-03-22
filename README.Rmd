@@ -44,76 +44,55 @@ qscores
 
 ## Using the data
 
-Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using `primary.data::qscores`. 
+Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using `primary.data::cces`. 
 
-
-<!-- 
-
-Try to make this work:
+```{r quick.plot, eval=FALSE}
 
 library(tidyverse)
 library(primer.data)
 
 cces %>% 
   select(state, faminc, ideology) %>% 
-  mutate(ideology = as.numeric(fct_recode(ideology, 
-                                          '-2' = 'Very Liberal',
-                                          '-1' = 'Liberal',
-                                          '0' = 'Moderate',
-                                          '1' = 'Conservative',
-                                          '2' = 'Very Conservative',
-                                          '9' = 'Not Sure'))) %>% 
+  mutate(ideology = as.double(fct_recode(ideology, 
+                                          '1' = 'Very Liberal',
+                                          '2' = 'Liberal',
+                                          '3' = 'Moderate',
+                                          '4' = 'Conservative',
+                                          '5' = 'Very Conservative',
+                                          '6' = 'Not Sure'))) %>% 
   mutate(faminc = as.numeric(fct_recode(faminc, 
-                                          '1' = 'Less than 10k',
-                                          '2' = '10k - 20k',
-                                          '3' = '20k - 30k',
-                                          '4' = '30k - 40k',
-                                          '5' = '40k - 50k',
-                                          '6' = '50k - 60k',
-                                          '7' = '60k - 70k',
-                                          '8' = '70k - 80k',
-                                          '9' = '80k - 100k',
-                                          '10' = '100k - 120k',
-                                          '11' = '120k - 150k',
-                                          '12' = '150k+'))) %>% 
+                                        '1' = 'Less than 10k',
+                                        '2' = '10k - 20k',
+                                        '3' = '20k - 30k',
+                                        '4' = '30k - 40k',
+                                        '5' = '40k - 50k',
+                                        '6' = '50k - 60k',
+                                        '7' = '60k - 70k',
+                                        '8' = '70k - 80k',
+                                        '9' = '80k - 100k',
+                                        '10' = '100k - 120k',
+                                        '11' = '120k - 150k',
+                                        '12' = '150k+'))) %>% 
+  mutate(state = str_replace(state, "District of Columbia", "D.C.")) %>% 
   mutate(state = as.factor(state)) %>% 
-  filter(ideology != 9) %>% 
+  filter(ideology != 6) %>% 
   drop_na() %>% 
-  head(100000) %>% 
   
     ggplot(., aes(x = ideology, y = faminc)) +
-      geom_smooth(method = "gam") 
--->
+      geom_smooth(formula = "y ~ x", method = "lm", se = FALSE) +
+      facet_wrap(~ state) +
+      labs(title = "Relation Between Family Income and Political Ideology",
+           subtitle = "Low income tends to be associated with being conservative, especially in blue states",
+           x = "Ideology, higher values = more conservative",
+           y = "Annual family income, higher values = higher income") +
+      theme_linedraw()
 
 
-```{r quick.plot, eval=FALSE}
-
-library(ggplot2)
-
-qscores %>% 
-  filter(department == "GOV") %>% 
-  ggplot(aes(hours, rating, color = term)) +
-    geom_point(aes(size = enrollment), alpha = 0.4) +
-    geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +
-    facet_wrap(~term) +
-    labs(
-      title = "Student Course Evaluations at Harvard",
-      subtitle = "Department of Government",
-      caption = "Data provided by Aurash Vatan '23",
-      x = "Weekly workload, hours",
-      y = "Rating, 1 (worst) to 5 (best)",
-      size = "Enrollment") +
-    theme_linedraw() +
-    theme(
-        text = element_text(family = "Palatino"),
-        axis.text.x = element_text(size = 10),
-        axis.text.y = element_text(size = 10)) +
-    scale_color_discrete(guide = "none")
 ```
 
 <!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? Why can't we just have this code run and save/show the image? Hate the eval=FALSE above. -->
 
-<img src= "man/figures/README-plot-1.png" align="center" height="500">
+<img src= "man/figures/readme_plot.png" align="center">
 
 
 ## Citing primer.data
