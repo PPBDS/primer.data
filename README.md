@@ -1,7 +1,7 @@
 
 <!-- README is generated from README.Rmd, edit ONLY this file if needed. But, after you edit it, you NEED TO KNIT IT BY HAND in order to create the new README.md, which is the thing which is actually used. -->
 
-# Data for *Preceptor’s Primer for <br/> Bayesian Big Data Science* <img src="man/figures/ulysses_hex_data.png" align = "right"  width="160">
+# Data for *Preceptor’s Primer for <br/> Bayesian Data Science* <img src="man/figures/ulysses_hex_data.png" align = "right"  width="160">
 
 <!-- badges: start -->
 
@@ -10,7 +10,7 @@
 
 ## About this package
 
-`primer.data` provides the data used in *[Preceptor’s Primer for Big
+`primer.data` provides the data used in *[Preceptor’s Primer for
 Bayesian Data Science](https://ppbds.github.io/primer)*, the textbook
 used in [Gov 1005: Big
 Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at
@@ -56,8 +56,45 @@ objects and used like any other data you would otherwise read in and
 assign to an object manually. See the following example of a plot using
 `primary.data::qscores`.
 
-``` r
+<!-- 
 
+Try to make this work:
+
+library(tidyverse)
+library(primer.data)
+
+cces %>% 
+  select(state, faminc, ideology) %>% 
+  mutate(ideology = as.numeric(fct_recode(ideology, 
+                                          '-2' = 'Very Liberal',
+                                          '-1' = 'Liberal',
+                                          '0' = 'Moderate',
+                                          '1' = 'Conservative',
+                                          '2' = 'Very Conservative',
+                                          '9' = 'Not Sure'))) %>% 
+  mutate(faminc = as.numeric(fct_recode(faminc, 
+                                          '1' = 'Less than 10k',
+                                          '2' = '10k - 20k',
+                                          '3' = '20k - 30k',
+                                          '4' = '30k - 40k',
+                                          '5' = '40k - 50k',
+                                          '6' = '50k - 60k',
+                                          '7' = '60k - 70k',
+                                          '8' = '70k - 80k',
+                                          '9' = '80k - 100k',
+                                          '10' = '100k - 120k',
+                                          '11' = '120k - 150k',
+                                          '12' = '150k+'))) %>% 
+  mutate(state = as.factor(state)) %>% 
+  filter(ideology != 9) %>% 
+  drop_na() %>% 
+  head(100000) %>% 
+  
+    ggplot(., aes(x = ideology, y = faminc)) +
+      geom_smooth(method = "gam") 
+-->
+
+``` r
 library(ggplot2)
 
 qscores %>% 

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-# Data for *Preceptor's Primer for <br/> Bayesian Big Data Science* <img src="man/figures/ulysses_hex_data.png" align = "right"  width="160">
+# Data for *Preceptor's Primer for <br/> Bayesian Data Science* <img src="man/figures/ulysses_hex_data.png" align = "right"  width="160">
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/PPBDS/primer.data/workflows/R-CMD-check/badge.svg)](https://github.com/PPBDS/primer.data/actions)
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 ## About this package
 
-`primer.data` provides the data used in *[Preceptor's Primer for Big Bayesian Data Science](https://ppbds.github.io/primer)*, the textbook used in [Gov 1005: Big Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at Harvard University, and for the [associated tutorials](https://ppbds.github.io/primer.tutorials).
+`primer.data` provides the data used in *[Preceptor's Primer for Bayesian Data Science](https://ppbds.github.io/primer)*, the textbook used in [Gov 1005: Big Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at Harvard University, and for the [associated tutorials](https://ppbds.github.io/primer.tutorials).
 
 ## Installation
 
