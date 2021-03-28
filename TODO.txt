@@ -1,9 +1,21 @@
+* Weird behavior with data().
+
+* Documentation for ?mail.
+
+* Decide when, if ever, we should use factors. Maybe never?
+
+* Decide when we use 0/1 and when we use yes/no or true/false or whatever.
+
+* Get rid of word Control, if possible.
+
+* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years.
+
+* CCES interim update https://twitter.com/b_schaffner/status/1375481885351100419
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
 * Add this data: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HUUEGI
 
-* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years.
 
 
 ### Improvements
