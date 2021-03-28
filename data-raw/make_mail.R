@@ -10,19 +10,21 @@ library(janitor)
 # Reading in the data. I included variables describing the treatment
 # group ("treatment"), whether person either cast in-person or mail
 # ballot ("voted"), whether person cast mail ballot ("voted_mail"),
-# whether mail ballot application was received ("app_mail_ballot"),
+# whether mail ballot application was received ("applied_mail"),
 # the number of days after March 10 that the mail ballot application
-# was received ("app_received_mar"), days after May 18 that the mail
-# ballot application was received ("app_received_may"), whether mail
-# ballot was requested but not returned ("app_not_received"), party
-# of registration ("party"), age group ("age"), sex ("sex"), likelihood
-# of person being white according to their name ("pred_whi"), and
-# likelihood of person being black ("pred_bla").
-# Not included: days after March 10 that mail ballot was received (since
-# the experiment was about the application or use of mail ballots in general
-# and not the date), whether a mail ballot was received by the June 2 deadline
-# (same as before), whether the person cast provisional ballots before, and
-# ward of registration (neither seems interesting).
+# was received ("applied_days_march"), whether mail ballot was requested
+# but not returned ("applied_not_returned"), party of registration ("party"),
+# age group ("age"), sex ("sex"), likelihood of person being white according
+# to their name ("pred_whi"), and likelihood of person being black ("pred_bla").
+
+# Not included: days after May 18 (i.e. when postcards were sent) that mail
+# ballot application was received (since days after March is enough), days
+# after March 10 that mail ballot was received (since the experiment was about
+# the application or use of mail ballots in general and not the date), whether
+# a mail ballot was received by the June 2 deadline (same as before), whether
+# the person cast provisional ballots before and ward of registration (neither
+# seems interesting), and whether someone applied for a mail ballot but did not
+# return it (as this can easily be inferred from "voted_mail" and "applied_mail").
 
 unzip("data-raw/mail.csv.zip")
 
@@ -31,10 +33,8 @@ x <- read_csv("mail.csv") %>%
   select("treatment" = treat_20,
          "voted" = voted_2020_primary,
          "voted_mail" = voted_mail_2020_primary,
-         "app_mail_ballot" = requested_mail_ballot,
-         "app_received_mar" = days_app_returned_fmt,
-         "app_received_may" = diff_app_returned_date_fmt,
-         "app_not_received" = requested_never_returned,
+         "applied_mail" = requested_mail_ballot,
+         "applied_days_march" = days_app_returned_fmt,
          party,
          "age" = age_bin,
          sex,
@@ -44,24 +44,27 @@ x <- read_csv("mail.csv") %>%
   mutate(treatment = recode(treatment, Control = "No Postcard")) %>%
 
 
-  # It may be suspicious if a dummy variable is of type double. The number
-  # of days should also be an integer.
+  # Dummy variables should be "Yes" and "No" unless they are used as
+  # outcome variables. In our case, the outcome variable will most likely
+  # be the day when the mail application was received (created further below).
 
-  mutate(voted = as.integer(voted),
-         voted_mail = as.integer(voted_mail),
-         app_mail_ballot = as.integer(app_mail_ballot),
-         app_received_mar = as.integer(app_received_mar),
-         app_received_may = as.integer(app_received_may),
-         app_not_received = as.integer(app_not_received)) %>%
+  mutate(voted = recode(as.character(voted), "0" = "No",
+                                             "1" = "Yes"),
+
+         voted_mail = recode(as.character(voted_mail), "0" = "No",
+                                                       "1" = "Yes"),
+
+         applied_mail = recode(as.character(applied_mail), "0" = "No",
+                                                           "1" = "Yes")) %>%
 
 
   # TW: I feel like there is an easier way to do this...
 
   mutate(age = factor(recode(age, "[18,30)" = "18-29",
-                             "[30,40)" = "30-39",
-                             "[40,50)" = "40-49",
-                             "[50,65)" = "50-64",
-                             "[65,121]" = "65-121"),
+                                  "[30,40)" = "30-39",
+                                  "[40,50)" = "40-49",
+                                  "[50,65)" = "50-64",
+                                  "[65,121]" = "65-121"),
                       levels = c("18-29",
                                  "30-39",
                                  "40-49",
@@ -85,14 +88,25 @@ x <- read_csv("mail.csv") %>%
                       "U" = NA_character_)) %>%
 
 
-  # Removing some strange observations. I wrote the first line by myself,
-  # the other two deal with problems that are (kind of) mentioned in the
-  # codebook. Apparently, this is a data collection issue.
+  # Removing some strange observations. Deals with problems that are
+  # (kind of) mentioned in the codebook. Apparently, this is a data
+  # collection issue.
 
-  filter(!(voted_mail == 1 & voted == 0),                            # Voted by mail + didn't vote (10 obs)
-         !(voted_mail == 1 & app_mail_ballot == 0),                  # Voted by mail + didn't apply for mail ballot (19 obs)
-         !(is.na(app_received_may) == FALSE) & app_mail_ballot == 0) # Date application was received + didn't apply for mail ballot (12 obs)
+  filter(!(voted_mail == "Yes" & applied_mail == "No"),                  # Voted by mail + didn't apply for mail ballot (19 obs)
+         !(is.na(applied_days_march) == FALSE & applied_mail == "No")) # Has date at which application was received + didn't apply for mail ballot (38 obs)
 
+
+  # Creating a variable showing date when mail application was received.
+  # This is easier to understand than the number of days since March 10.
+
+  x$applied_date <- as.Date("2020-03-10")
+
+x <-  x %>%
+    mutate(applied_date = applied_date + applied_days_march) %>%
+    select(-applied_days_march) %>%
+    select(treatment, voted, voted_mail,
+           applied_mail, applied_date,
+           everything())
 
 
 # Save

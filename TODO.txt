@@ -1,12 +1,12 @@
-* Weird behavior with data().
+* Weird behavior with data(). -- [Only occurs when working on a package that includes data sets. Other people installing/loading it don't see it.]
 
 * Documentation for ?mail.
 
-* Decide when, if ever, we should use factors. Maybe never?
+* Decide when, if ever, we should use factors. Maybe never? -- [See instructions. Only factors if a variable is categorical and has a natural order. If something is just categorical, keep it a character variable.]
 
-* Decide when we use 0/1 and when we use yes/no or true/false or whatever.
+* Decide when we use 0/1 and when we use yes/no or true/false or whatever. -- [Only 0/1 when it's likely to be used as outcome variable. Makes it easier to see what's relevant, and having less 0/1 variables looks more interesting.]
 
-* Get rid of word Control, if possible.
+* Get rid of word Control, if possible. -- [Done for mail]
 
 * Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years.
 

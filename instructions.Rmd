@@ -35,7 +35,12 @@ A few things to consider when following the above steps:
 
 * The name of the final data set must appear in the name of both key files you're creating. For nominate, we would have make_nominate.R (in /data-raw) and nominate.R (in /R). We also call any article which is associated with the data, and placed in inst/papers, "nominate.pdf".
 
-* Think hard about variable type. No ordered factors. If something has no natural ordering, make it character. If it does have an ordering, make it a factor and give the levels the ordering you want. Document your reasoning in your make_name-of-tibble.R script. Examine the choices made in make_trains.R.
+* Think hard about variable type. 
+
+  - No ordered factors. If something has no natural ordering, make it character. If it does have an ordering, make it a factor and give the levels the ordering you want. 
+  - Binary variables should generally be parsed as character variables, e.g. "Yes"/"No". Only make it 0/1 if we expect people to use it as an outcome variable. 
+  - Document your reasoning in your make_dataset.R script. Examine the choices made in make_mail.R.
+
 
 
 

@@ -2,7 +2,7 @@
 #' Michigan voting experiment with social shaming
 #'
 #' @description
-#' This is a dataset corresponding to the paper "Social Pressure and Voter
+#' This is a data set corresponding to the paper "Social Pressure and Voter
 #' Turnout: Evidence from a Large-Scale Field Experiment" by
 #' \href{https://doi.org/10.1017/S000305540808009X}{Gerber, Green, and Larimer
 #' (2008)}. See also the 'Details' section below. The aim of the study was to
