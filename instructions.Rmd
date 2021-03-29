@@ -10,15 +10,19 @@ If you have never worked on primer.data before, start by skimming [*R Packages*]
 
 The basic process of creating new data sets is always the same. We get a raw data set, clean it up, and finally create a help page with details for users. Follow these steps:
 
-* Get a raw data set and and put it into /data-raw. If it is too large to push it to Github, compress the file. 
+  * Get a raw data set and and put it into /data-raw. If it is too large to push
+  it to Github, compress the file.
 
-* Create a .R file in /data_raw and name it "make_" + the name of the final data set. This will be the script we use to prepare the raw data. Look at make_nominate.R to see how these files should look like. The general structure is
+  * Create a .R file in /data_raw and name it "make_" + the name of the final
+  data set. This will be the script we use to prepare the raw data. Look at
+  make_nominate.R to see how these files should look like. The general structure
+  is
 
-  - Loading any required packages
-  - Comments on the data, including a link to the source
-  - Your code, which cleans up the data and saves the result in an object
-  - Some logical tests to make sure everything is OK after future changes
-  - Saving the data set using this code:
+    - Loading any required packages
+    - Comments on the data, including a link to the source
+    - Your code, which cleans up the data and saves the result in an object
+    - Some logical tests to make sure everything is OK after future changes
+    - Saving the data set using this code:
   
 ```{r}
 name_of_final_dataset <- x
@@ -26,20 +30,37 @@ name_of_final_dataset <- x
 usethis::use_data(name_of_final_dataset, overwrite = TRUE)
 ```
 
-  The clean data set should have been saved in /data. Check if you see an .rda file with the name of your final data set.
+  The clean data set should have been saved in /data. Check if you see an .rda
+  file with the name of your final data set.
 
-* Create a .R file in /R, naming it after your final data set. This will be used to create the help page. We don't bother with learning the syntax, so just use the structure of nominate.R as a template and adjust it to your needs. Note that the last line must always be "name_of_final_dataset". If you're satisfied, click on any part of the file and go to "Build"->"More"->"Document". This command will use your .R file to create an .Rd file within the /man directory. This .Rd file is what actually generates the help page. If it's there, you're done.
+  * Create a .R file in /R, naming it after your final data set. This will be
+  used to create the help page. We don't bother with learning the syntax, so
+  just use the structure of nominate.R as a template and adjust it to your
+  needs. Note that the last line must always be "name_of_final_dataset". If
+  you're satisfied, go to "Build"->"More" and click "Document". This command
+  will use your .R file to create an .Rd file within the /man directory. This
+  .Rd file is what actually generates the help page. If it's there, you're done.
 
 
 A few things to consider when following the above steps:
 
-* The name of the final data set must appear in the name of both key files you're creating. For nominate, we would have make_nominate.R (in /data-raw) and nominate.R (in /R). We also call any article which is associated with the data, and placed in inst/papers, "nominate.pdf".
+  * The name of the final data set should appear in the name of both key files
+  you're creating. For nominate, we would have make_nominate.R (in /data-raw)
+  and nominate.R (in /R). We also call any article which is associated with the
+  data, and placed in inst/papers, "nominate.pdf".
 
-* Think hard about variable type. 
+  * Think hard about variable type. 
 
-  - No ordered factors. If something has no natural ordering, make it character. If it does have an ordering, make it a factor and give the levels the ordering you want. 
-  - Binary variables should generally be parsed as character variables, e.g. "Yes"/"No". Only make it 0/1 if we expect people to use it as an outcome variable. 
-  - Document your reasoning in your make_dataset.R script. Examine the choices made in make_mail.R.
+    - No ordered factors. If something has no natural ordering, make it character.
+    If it does have an ordering, make it a factor and give the levels the ordering
+    you want.
+  
+    - Binary variables should generally be parsed as character variables, e.g.
+    "Yes"/"No". Only make it 0/1 if we expect people to use it as an outcome
+    variable.
+  
+    - Document your reasoning in your make_dataset.R script. Examine the choices
+    made in make_mail.R.
 
 
 
@@ -68,16 +89,39 @@ Note that there is a function, `pkgdown::build_site()`, which uses the files in 
 
 This section provides an overview of how to name package versions (see also https://r-pkgs.org/release.html#release-version). The development state of each package has a unique numbering such as "Version 1.2.3.9000". The version name usually consists of three or four digits, each of which stands for a specific type of change:
 
-* "Major releases” are indicated by the first digit, or “1” in our example above. This number is incremented if we make changes to the package that are not backward compatible and may affect many people. An example would be if we delete an entire data set or remove variables from an existing data set. In other words, things that cause major problems in someone's code who is already using our package - try to avoid such changes whenever possible!
+  * "Major releases” are indicated by the first digit, or “1” in our example
+  above. This number is incremented if we make changes to the package that are
+  not backward compatible and may affect many people. An example would be if we
+  delete an entire data set or remove variables from an existing data set. In
+  other words, things that cause major problems in someone's code who is already
+  using our package - try to avoid such changes whenever possible!
 
-* "Minor releases” are indicated by the second digit, or “2” in our example. This number is incremented when we make bug fixes, add new features or make backward-compatible changes. This is the most common type of change, for instance when we add new data sets.
+  * "Minor releases” are indicated by the second digit, or “2” in our example.
+  This number is incremented when we make bug fixes, add new features or make
+  backward-compatible changes. This is the most common type of change, for
+  instance when we add new data sets.
 
-* "Patches” are indicated by the third digit, or “3” in our example. This number is incremented if we fix bugs without adding relevant new features, e.g. when making changes to help files.
+  * "Patches” are indicated by the third digit, or “3” in our example. This
+  number is incremented if we fix bugs without adding relevant new features,
+  e.g. when making changes to help files.
 
-* In-development packages, i.e. packages which are not yet released on CRAN (like ours), also have a fourth digit. The default value is usually set to 9000, as in the example above. This number is only incremented when we add important features that another in-development package should depend on. Since this is unlikely to be the case, we can leave the fourth digit at 9000 as long as PPBDS.data has not been published on CRAN (from then on only the first three digits will be used).
+  * In-development packages, i.e. packages which are not yet released on CRAN
+  (like ours), also have a fourth digit. The default value is usually set to
+  9000, as in the example above. This number is only incremented when we add
+  important features that another in-development package should depend on. Since
+  this is unlikely to be the case, we can leave the fourth digit at 9000 as long
+  as PPBDS.data has not been published on CRAN (from then on only the first
+  three digits will be used).
 
-* No other digit, but a legitimate question is also: When do we change from 0.a.b to 1.0.0? The first digit should be set from 0 to 1 when our package is "feature complete". This could be the case if our package contains all necessary data sets a student needs in GOV 50. It could also mean that the package is in a state to be released on CRAN (or both). In the end, it's up to us to answer this question. Furthermore, note that as long as the first digit is still 0, non-backward compatible changes will be recorded by incrementing the second digit (and not the first, as described above).
+  * No other digit, but a legitimate question is also: When do we change from
+  0.a.b to 1.0.0? The first digit should be set from 0 to 1 when our package is
+  "feature complete". This could be the case if our package contains all
+  necessary data sets a student needs in GOV 50. It could also mean that the
+  package is in a state to be released on CRAN (or both). In the end, it's up to
+  us to answer this question. Furthermore, note that as long as the first digit
+  is still 0, non-backward compatible changes will be recorded by incrementing
+  the second digit (and not the first, as described above).
 
-Once we have made some changes and agreed on a proper name for the new version, we need to change the old name. First, we have to open the DESCRIPTION file and manually enter the correct version. Save the changes and run build_site() in the console. The new name of the version should now show on top of the homepage. Next, update the changelog which is generated by the NEWS.md file. Simply open the file and orientate yourself on the existing content to add a new entry. If everything looks right, save the changes and use build_site() again to see the result. While there is no rule on this, most packages mention the fourth digit only in the DESCRIPTION file and not in NEWS.md. (I follow this convention as well.) Whenever new changes are made, simply repeat the described process.
+Once we have made some changes and agreed on a proper name for the new version, we need to change the old name. First, we have to open the DESCRIPTION file and manually enter the correct version. Save the changes and run build_site() in the console the see how it looks like. The new name of the version should now show on top of the homepage. Next, update the changelog which is generated by the NEWS.md file. Simply open the file and orientate yourself on the existing content to add a new entry. If everything looks right, save the changes and use build_site() again to see the result. While there is no rule on this, most packages mention the fourth digit only in the DESCRIPTION file and not in NEWS.md. (I follow this convention as well.) Whenever new changes are made, simply repeat the described process.
 
 
