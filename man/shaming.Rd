@@ -10,7 +10,7 @@ A tibble with 344,084 observations and 15 variables:
 \item{cluster}{character variable with cluster designation, which ranges from 1 to 10,000. See
 the documentation for extensive discussion about the clustering procedure}
 \item{primary_06}{0/1 integer variable indicating whether the respondent voted in the 2006 primary election}
-\item{treatment}{factor variable indicating which of the 5 treatments were employed in 2006, but
+\item{treatment}{factor variable indicating which of the 5 treatments was employed in 2006, but
 before the primary election that year: 'Control', 'Civic Duty', 'Hawthorne',
 'Self', or 'Neighbors'}
 \item{sex}{character variable with values "Male" and "Female"}
@@ -41,7 +41,7 @@ number of names which could be printed on the mailing}
 shaming
 }
 \description{
-This is a dataset corresponding to the paper "Social Pressure and Voter
+This is a data set corresponding to the paper "Social Pressure and Voter
 Turnout: Evidence from a Large-Scale Field Experiment" by
 \href{https://doi.org/10.1017/S000305540808009X}{Gerber, Green, and Larimer
 (2008)}. See also the 'Details' section below. The aim of the study was to

@@ -1,6 +1,6 @@
 Package: primer.data
 Title: Data for Preceptor's Primer for Bayesian Data Science
-Version: 1.0.0.9001
+Version: 0.2.0.9000
 Authors@R: 
   c(
     person(given = "David",
@@ -14,7 +14,7 @@ Authors@R:
            email = "tcweiss@protonmail.com",
            comment = c(ORCID = "0000-0003-4084-4868"))
            )
-Description: Data for Gov 1005: Data, a course at Harvard University.
+Description: Data for Gov 1005: Big Data, a course at Harvard University.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Config/testthat/edition: 3

@@ -91,7 +91,7 @@ cces %>%
       geom_smooth(formula = "y ~ x", method = "lm", se = FALSE) +
       facet_wrap(~ state) +
       labs(title = "Relation Between Family Income and Political Ideology",
-           subtitle = "Low income tends to be associated with being conservative, especially in blue states",
+           subtitle = "High income tends to be associated with being conservative, especially in red states",
            x = "Ideology, higher values = more conservative",
            y = "Annual family income, higher values = higher income") +
       theme_linedraw()
