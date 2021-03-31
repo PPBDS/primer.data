@@ -59,18 +59,12 @@ Table: Data summary\tabular{ll}{
    Number of columns \tab 10 \cr
    _______________________ \tab  \cr
    Column type frequency: \tab  \cr
-   Date \tab 1 \cr
    character \tab 6 \cr
+   Date \tab 1 \cr
    factor \tab 1 \cr
    numeric \tab 2 \cr
    ________________________ \tab  \cr
    Group variables \tab None \cr
-}
-
-
-\strong{Variable type: Date}\tabular{lrrlllr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab median \tab n_unique \cr
-   applied_date \tab 785619 \tab 0.16 \tab 2020-03-10 \tab 2020-06-19 \tab 2020-05-18 \tab 53 \cr
 }
 
 
@@ -82,6 +76,12 @@ Table: Data summary\tabular{ll}{
    applied_mail \tab 0 \tab 1.00 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
    party \tab 0 \tab 1.00 \tab 4 \tab 11 \tab 0 \tab 4 \tab 0 \cr
    sex \tab 239069 \tab 0.74 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
+}
+
+
+\strong{Variable type: Date}\tabular{lrrlllr}{
+   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab median \tab n_unique \cr
+   applied_date \tab 785619 \tab 0.16 \tab 2020-03-10 \tab 2020-06-19 \tab 2020-05-18 \tab 53 \cr
 }
 
 
