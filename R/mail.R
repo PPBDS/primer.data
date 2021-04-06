@@ -3,12 +3,14 @@
 #'
 #' @description
 #'
-#' This data set comes from an experiment conducted in Philadelphia before the
-#' 2020 primary election. See also the 'Details' section below. The aim of the
-#' study was to understand how facilitating mail ballot requests affects their
-#' use. A total of over 935,000 registered voters were randomly assigned to
-#' either a control group or one of two treatment groups. The results combine
-#' information on voting behavior with voter's demographic background.
+#' This data is from a paper entitled \href{Results from a 2020 field experiment
+#' encouraging voting by
+#' mail}{https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf}.
+#' See also the 'Details' section below. The aim of the study was to understand
+#' how facilitating mail ballot requests affects their use. A total of over
+#' 935,000 registered voters in Philadelphia were randomly assigned to either a
+#' control group or one of two treatment groups. The results combine information
+#' on voting behavior with voter's demographic background.
 #'
 #'
 #' @details
@@ -35,7 +37,7 @@
 #' skimr::skim(mail)
 #' ```
 #'
-#' @format A tibble with 935,707 observations and 10 variables:
+#' @format A tibble with 935,707 observations and 11 variables:
 #' \describe{
 #'   \item{treatment}{character variable indicating which of the 3 treatments was
 #'   employed before the 2020 primary election: 'No Postcard', 'Self', or 'Neighborhood'}
@@ -43,6 +45,7 @@
 #'   \item{voted_mail}{character variable for whether respondent voted by mail}
 #'   \item{applied_mail}{character variable for whether respondent applied for a mail ballot}
 #'   \item{applied_date}{date variable for the date that respondent's mail ballot application was received}
+#'   \item{voted_date}{date variable for the date that respondent's mail ballot was received}
 #'   \item{party}{character variable for respondent's party registration}
 #'   \item{age}{factor variable for respondent's age group}
 #'   \item{sex}{character variable for respondent's sex}

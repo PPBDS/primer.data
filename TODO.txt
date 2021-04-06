@@ -1,6 +1,6 @@
-* Links to papers in help page should be to https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf and so on. kenya and shaming et cetera.
+* Links to papers in help page should be to https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf and so on. kenya and shaming et cetera. -- [Done]
 
-* Change mail: voted be 0/1. add vote_date
+* Change mail: voted be 0/1. add vote_date -- [Done]
 
 * Checks are failing in Github.
 
