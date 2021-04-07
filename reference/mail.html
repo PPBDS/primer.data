@@ -40,12 +40,14 @@
 
 
 <meta property="og:title" content="Philadelphia experiment on mail-in voting — mail" />
-<meta property="og:description" content="This data is from a paper entitled https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf.
-See also the 'Details' section below. The aim of the study was to understand
-how facilitating mail ballot requests affects their use. A total of over
-935,000 registered voters in Philadelphia were randomly assigned to either a
-control group or one of two treatment groups. The results combine information
-on voting behavior with voter's demographic background." />
+<meta property="og:description" content="This data is from a paper entitled
+Results
+from a 2020 field experiment encouraging voting by mail. See also the
+'Details' section below. The aim of the study was to understand how
+facilitating mail ballot requests affects their use. A total of over 935,000
+registered voters in Philadelphia were randomly assigned to either a control
+group or one of two treatment groups. The results combine information on
+voting behavior with voter's demographic background." />
 
 
 
@@ -125,14 +127,14 @@ on voting behavior with voter's demographic background." />
     </div>
 
     <div class="ref-description">
-    <p>This data is from a paper entitled <a href='Results from a 2020 field experiment
-encouraging voting by
-mail'>https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf</a>.
-See also the 'Details' section below. The aim of the study was to understand
-how facilitating mail ballot requests affects their use. A total of over
-935,000 registered voters in Philadelphia were randomly assigned to either a
-control group or one of two treatment groups. The results combine information
-on voting behavior with voter's demographic background.</p>
+    <p>This data is from a paper entitled
+<a href='https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf'>Results
+from a 2020 field experiment encouraging voting by mail</a>. See also the
+'Details' section below. The aim of the study was to understand how
+facilitating mail ballot requests affects their use. A total of over 935,000
+registered voters in Philadelphia were randomly assigned to either a control
+group or one of two treatment groups. The results combine information on
+voting behavior with voter's demographic background.</p>
     </div>
 
     <pre class="usage"><span class='va'>mail</span></pre>
@@ -141,19 +143,20 @@ on voting behavior with voter's demographic background.</p>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A tibble with 935,707 observations and 11 variables:</p><dl>
-<dt>treatment</dt><dd><p>character variable indicating which of the 3 treatments was
-employed before the 2020 primary election: 'No Postcard', 'Self', or 'Neighborhood'</p></dd>
-<dt>voted</dt><dd><p>character variable for whether respondent voted</p></dd>
-<dt>voted_mail</dt><dd><p>character variable for whether respondent voted by mail</p></dd>
-<dt>applied_mail</dt><dd><p>character variable for whether respondent applied for a mail ballot</p></dd>
-<dt>applied_date</dt><dd><p>date variable for the date that respondent's mail ballot application was received</p></dd>
-<dt>voted_date</dt><dd><p>date variable for the date that respondent's mail ballot was received</p></dd>
+<dt>treatment</dt><dd><p>character variable indicating which of the 3 treatments
+was employed before the 2020 primary election: 'No Postcard', 'Self', or
+'Neighborhood'</p></dd> <dt>voted</dt><dd><p>character variable for whether respondent
+voted</p></dd> <dt>voted_mail</dt><dd><p>character variable for whether respondent voted by
+mail</p></dd> <dt>applied_mail</dt><dd><p>character variable for whether respondent applied
+for a mail ballot</p></dd> <dt>applied_date</dt><dd><p>date variable for the date that
+respondent's mail ballot application was received</p></dd> <dt>voted_date</dt><dd><p>date
+variable for the date that respondent's mail ballot was received</p></dd>
 <dt>party</dt><dd><p>character variable for respondent's party registration</p></dd>
-<dt>age</dt><dd><p>factor variable for respondent's age group</p></dd>
-<dt>sex</dt><dd><p>character variable for respondent's sex</p></dd>
-<dt>pred_white</dt><dd><p>double variable for likelihood of respondent being white based on their name</p></dd>
-<dt>pred_black</dt><dd><p>double variable for likelihood of respondent being black based on their name</p></dd>
-
+<dt>age</dt><dd><p>factor variable for respondent's age group</p></dd> <dt>sex</dt><dd><p>character
+variable for respondent's sex</p></dd> <dt>pred_white</dt><dd><p>double variable for
+likelihood of respondent being white based on their name</p></dd>
+<dt>pred_black</dt><dd><p>double variable for likelihood of respondent being black
+based on their name</p></dd> 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -175,57 +178,7 @@ neighborhood to vote by mail!”. In all, 23,475 registered voters were
 assigned to the “self” condition and 23,485 to the “neighborhood” condition,
 with the remaining 888,785 in the control condition receiving no postcard.</p>
 <p></p>
-<p>Table: Data summary</p><table class='table'>
-<tr><td></td><td></td></tr>
-<tr><td>Name</td><td>mail</td></tr>
-<tr><td>Number of rows</td><td>935707</td></tr>
-<tr><td>Number of columns</td><td>11</td></tr>
-<tr><td>_______________________</td><td></td></tr>
-<tr><td>Column type frequency:</td><td></td></tr>
-<tr><td>Date</td><td>2</td></tr>
-<tr><td>character</td><td>5</td></tr>
-<tr><td>factor</td><td>1</td></tr>
-<tr><td>numeric</td><td>3</td></tr>
-<tr><td>________________________</td><td></td></tr>
-<tr><td>Group variables</td><td>None</td></tr>
-</table>
-
-
-
-<p><strong>Variable type: Date</strong></p><table class='table'>
-<tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>min</td><td>max</td><td>median</td><td>n_unique</td></tr>
-<tr><td>applied_date</td><td>785619</td><td>0.16</td><td>2020-03-10</td><td>2020-06-19</td><td>2020-05-18</td><td>53</td></tr>
-<tr><td>voted_date</td><td>823039</td><td>0.12</td><td>2020-05-07</td><td>2020-06-25</td><td>2020-05-30</td><td>38</td></tr>
-</table>
-
-
-
-<p><strong>Variable type: character</strong></p><table class='table'>
-<tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>min</td><td>max</td><td>empty</td><td>n_unique</td><td>whitespace</td></tr>
-<tr><td>treatment</td><td>0</td><td>1.00</td><td>4</td><td>12</td><td>0</td><td>3</td><td>0</td></tr>
-<tr><td>voted_mail</td><td>0</td><td>1.00</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
-<tr><td>applied_mail</td><td>0</td><td>1.00</td><td>2</td><td>3</td><td>0</td><td>2</td><td>0</td></tr>
-<tr><td>party</td><td>0</td><td>1.00</td><td>4</td><td>11</td><td>0</td><td>4</td><td>0</td></tr>
-<tr><td>sex</td><td>239069</td><td>0.74</td><td>4</td><td>6</td><td>0</td><td>2</td><td>0</td></tr>
-</table>
-
-
-
-<p><strong>Variable type: factor</strong></p><table class='table'>
-<tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>ordered</td><td>n_unique</td><td>top_counts</td></tr>
-<tr><td>age</td><td>0</td><td>1</td><td>FALSE</td><td>5</td><td>50-: 217079, 18-: 208268, 30-: 206650, 65-: 161381</td></tr>
-</table>
-
-
-
-<p><strong>Variable type: numeric</strong></p><table class='table'>
-<tr><td>skim_variable</td><td>n_missing</td><td>complete_rate</td><td>mean</td><td>sd</td><td>p0</td><td>p25</td><td>p50</td><td>p75</td><td>p100</td><td>hist</td></tr>
-<tr><td>voted</td><td>0</td><td>1.00</td><td>0.29</td><td>0.45</td><td>0</td><td>0</td><td>0.00</td><td>1.00</td><td>1</td><td>▇▁▁▁▃</td></tr>
-<tr><td>pred_white</td><td>29318</td><td>0.97</td><td>0.32</td><td>0.39</td><td>0</td><td>0</td><td>0.06</td><td>0.73</td><td>1</td><td>▇▁▁▁▃</td></tr>
-<tr><td>pred_black</td><td>29318</td><td>0.97</td><td>0.45</td><td>0.44</td><td>0</td><td>0</td><td>0.32</td><td>0.95</td><td>1</td><td>▇▁▁▁▆</td></tr>
-</table>
-
-
+<p><code>{r, echo = FALSE} skimr::skim(mail) </code></p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Kane</p>
