@@ -1,8 +1,3 @@
-* Links to papers in help page should be to https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf and so on. kenya and shaming et cetera. -- [Done]
-
-* Change mail: voted be 0/1. add vote_date -- [Done]
-
-* Checks are failing in Github. - [Try to update all packages]
 
 * Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. -- [Got some data on "hate crime", but this seems to cover quite a lot]
 
@@ -11,6 +6,9 @@
 
 * Change sex to gender in governors.
 
+* Change citation to include your name and date is 2021.
+
+* Need to start thinking about branches and releases. See R Packages for discussion.
 
 ### Improvements
 
