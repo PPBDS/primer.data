@@ -9,6 +9,9 @@
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
 
+* Change sex to gender in governors.
+
+
 ### Improvements
 
 * Add the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". Or maybe we need two train data sets: the current one and trains_detailed?
