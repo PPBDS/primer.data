@@ -5,21 +5,21 @@
 \alias{mail}
 \title{Philadelphia experiment on mail-in voting}
 \format{
-A tibble with 935,707 observations and 11 variables:
-\describe{
-\item{treatment}{character variable indicating which of the 3 treatments was
-employed before the 2020 primary election: 'No Postcard', 'Self', or 'Neighborhood'}
-\item{voted}{character variable for whether respondent voted}
-\item{voted_mail}{character variable for whether respondent voted by mail}
-\item{applied_mail}{character variable for whether respondent applied for a mail ballot}
-\item{applied_date}{date variable for the date that respondent's mail ballot application was received}
-\item{voted_date}{date variable for the date that respondent's mail ballot was received}
+A tibble with 935,707 observations and 11 variables: \describe{
+\item{treatment}{character variable indicating which of the 3 treatments
+was employed before the 2020 primary election: 'No Postcard', 'Self', or
+'Neighborhood'} \item{voted}{character variable for whether respondent
+voted} \item{voted_mail}{character variable for whether respondent voted by
+mail} \item{applied_mail}{character variable for whether respondent applied
+for a mail ballot} \item{applied_date}{date variable for the date that
+respondent's mail ballot application was received} \item{voted_date}{date
+variable for the date that respondent's mail ballot was received}
 \item{party}{character variable for respondent's party registration}
-\item{age}{factor variable for respondent's age group}
-\item{sex}{character variable for respondent's sex}
-\item{pred_white}{double variable for likelihood of respondent being white based on their name}
-\item{pred_black}{double variable for likelihood of respondent being black based on their name}
-}
+\item{age}{factor variable for respondent's age group} \item{sex}{character
+variable for respondent's sex} \item{pred_white}{double variable for
+likelihood of respondent being white based on their name}
+\item{pred_black}{double variable for likelihood of respondent being black
+based on their name} }
 }
 \source{
 \url{https://doi.org/10.7910/DVN/HUUEGI}
@@ -28,14 +28,14 @@ employed before the 2020 primary election: 'No Postcard', 'Self', or 'Neighborho
 mail
 }
 \description{
-This data is from a paper entitled \href{Results from a 2020 field experiment
-encouraging voting by
-mail}{https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf}.
-See also the 'Details' section below. The aim of the study was to understand
-how facilitating mail ballot requests affects their use. A total of over
-935,000 registered voters in Philadelphia were randomly assigned to either a
-control group or one of two treatment groups. The results combine information
-on voting behavior with voter's demographic background.
+This data is from a paper entitled
+\href{https://github.com/PPBDS/primer.data/blob/master/inst/papers/mail.pdf}{Results
+from a 2020 field experiment encouraging voting by mail}. See also the
+'Details' section below. The aim of the study was to understand how
+facilitating mail ballot requests affects their use. A total of over 935,000
+registered voters in Philadelphia were randomly assigned to either a control
+group or one of two treatment groups. The results combine information on
+voting behavior with voter's demographic background.
 }
 \details{
 Pennsylvania's primary election took place on 2 June, 2020. Two weeks before
@@ -55,51 +55,7 @@ with the remaining 888,785 in the control condition receiving no postcard.
 
  
 
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab mail \cr
-   Number of rows \tab 935707 \cr
-   Number of columns \tab 11 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   Date \tab 2 \cr
-   character \tab 5 \cr
-   factor \tab 1 \cr
-   numeric \tab 3 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: Date}\tabular{lrrlllr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab median \tab n_unique \cr
-   applied_date \tab 785619 \tab 0.16 \tab 2020-03-10 \tab 2020-06-19 \tab 2020-05-18 \tab 53 \cr
-   voted_date \tab 823039 \tab 0.12 \tab 2020-05-07 \tab 2020-06-25 \tab 2020-05-30 \tab 38 \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   treatment \tab 0 \tab 1.00 \tab 4 \tab 12 \tab 0 \tab 3 \tab 0 \cr
-   voted_mail \tab 0 \tab 1.00 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   applied_mail \tab 0 \tab 1.00 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   party \tab 0 \tab 1.00 \tab 4 \tab 11 \tab 0 \tab 4 \tab 0 \cr
-   sex \tab 239069 \tab 0.74 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
-}
-
-
-\strong{Variable type: factor}\tabular{lrrlrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   age \tab 0 \tab 1 \tab FALSE \tab 5 \tab 50-: 217079, 18-: 208268, 30-: 206650, 65-: 161381 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   voted \tab 0 \tab 1.00 \tab 0.29 \tab 0.45 \tab 0 \tab 0 \tab 0.00 \tab 1.00 \tab 1 \tab ▇▁▁▁▃ \cr
-   pred_white \tab 29318 \tab 0.97 \tab 0.32 \tab 0.39 \tab 0 \tab 0 \tab 0.06 \tab 0.73 \tab 1 \tab ▇▁▁▁▃ \cr
-   pred_black \tab 29318 \tab 0.97 \tab 0.45 \tab 0.44 \tab 0 \tab 0 \tab 0.32 \tab 0.95 \tab 1 \tab ▇▁▁▁▆ \cr
-}
+\verb{\{r, echo = FALSE\} skimr::skim(mail) }
 }
 \author{
 David Kane
