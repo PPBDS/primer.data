@@ -2,13 +2,11 @@
 
 * Change mail: voted be 0/1. add vote_date -- [Done]
 
-* Checks are failing in Github.
+* Checks are failing in Github. - [Try to update all packages]
 
 * Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years.
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
-
-
 
 
 
@@ -42,8 +40,6 @@
 
 
 ### Data Sets
-
-Get rid of "Control" in shaming.
 
 * Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
 
