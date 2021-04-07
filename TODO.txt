@@ -8,7 +8,7 @@
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
-
+* Change sex to gender in governors.
 
 
 
