@@ -1,14 +1,15 @@
 
-* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. -- [Got some data on "hate crime", but this seems to cover quite a lot]
+* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography.
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income.
 
+* CCES cumulative has been updated!
 
 * Change sex to gender in governors.
 
 * Change citation to include your name and date is 2021.
 
-* Need to start thinking about branches and releases. See R Packages for discussion.
+* Need to start thinking about branches and releases. See R Packages for discussion. https://r-pkgs.org/description.html#version
 
 ### Improvements
 
