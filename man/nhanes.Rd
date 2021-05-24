@@ -20,8 +20,9 @@ conducted across two years, so the earlier year is used.}
 \item{pulse}{integer variable for pulse in beats per minute or bpm}
 \item{diabetes}{integer variable with values 0/1 indicating whether patient suffers from diabetes}
 \item{general_health}{integer variable for general health ranked from 1-5. 1 maps to "poor", 2 is "fair", 3 is "good", 4 is "very good", and 5 is "excellent".}
-\item{depressed}{factor variable answering question how often patient feels depressed.
-Includes values "Several", "None", "Most"}
+\item{depressed}{factor variable Self-reported number of days where participant felt down, depressed or hopeless. Reported for participants aged 18 years or older.
+with levels, "Several", "None", "Most"
+number of days over two week period.  Survey answers included: "Not at all", "Several days", "More than half the days", "Nearly every day" (source: NHANES DPQ_F (2009-2010))}
 \item{pregnancies}{integer variable for number of pregnanices.
 NA if the individual, regardless of gender, hasn't experienced a pregnancy}
 \item{sleep_night_hrs}{integer value for hours of sleep per night on average}
