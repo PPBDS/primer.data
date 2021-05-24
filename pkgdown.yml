@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.1.9001
 pkgdown_sha: 3b870d0efcfcf92a42aa881d58c3462cdbb110a8
 articles: {}
-last_built: 2021-05-24T18:55Z
+last_built: 2021-05-24T18:57Z
 urls:
   reference: https://ppbds.github.io/primer.data/reference
   article: https://ppbds.github.io/primer.data/articles
