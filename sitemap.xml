@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ppbds.github.io/primer.data/404.html</loc>
+  </url>
+  <url>
+    <loc>https://ppbds.github.io/primer.data/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://ppbds.github.io/primer.data/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://ppbds.github.io/primer.data/authors.html</loc>
+  </url>
+  <url>
     <loc>https://ppbds.github.io/primer.data/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ppbds.github.io/primer.data/news/index.html</loc>
   </url>
   <url>
     <loc>https://ppbds.github.io/primer.data/reference/cces.html</loc>
   </url>
   <url>
     <loc>https://ppbds.github.io/primer.data/reference/governors.html</loc>
+  </url>
+  <url>
+    <loc>https://ppbds.github.io/primer.data/reference/index.html</loc>
   </url>
   <url>
     <loc>https://ppbds.github.io/primer.data/reference/kenya.html</loc>
