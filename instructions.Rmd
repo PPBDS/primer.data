@@ -110,7 +110,7 @@ This section provides an overview of how to name package versions (see also http
   9000, as in the example above. This number is only incremented when we add
   important features that another in-development package should depend on. Since
   this is unlikely to be the case, we can leave the fourth digit at 9000 as long
-  as PPBDS.data has not been published on CRAN (from then on only the first
+  as primer.data has not been published on CRAN (from then on only the first
   three digits will be used).
 
   * No other digit, but a legitimate question is also: When do we change from
