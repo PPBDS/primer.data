@@ -28,7 +28,7 @@
 #'   \item{age}{character variable for age in years}
 #'   \item{race}{character variable with values "White", "Black", "Hispanic", "Mexican", and "Other"}
 #'   \item{education}{factor variable with levels "Middle school" < "High school" < "Some college" < "College"}
-#'   \item{hh_income}{factor variable for household income groups with levels "0-4999" < [...] < "over 99999"}
+#'   \item{hh_income}{factor variable for household income groups with levels "0-4999" < [...] < "more 99999"}
 #'   \item{weight}{double variable for weight in kilograms}
 #'   \item{height}{double variable for height in centimeters}
 #'   \item{bmi}{double variable for body mass index}
