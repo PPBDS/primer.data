@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 ## About this package
 
-`primer.data` provides the data used in *[Preceptor's Primer for Bayesian Data Science](https://ppbds.github.io/primer)*, the textbook used in [Gov 1005: Big Data](https://www.davidkane.info/files/gov_1005_spring_2021.html) at Harvard University, and for the [associated tutorials](https://ppbds.github.io/primer.tutorials).
+`primer.data` provides the data used in *[Preceptor's Primer for Bayesian Data Science](https://ppbds.github.io/primer)* and for the [associated tutorials](https://ppbds.github.io/primer.tutorials).
 
 ## Installation
 
