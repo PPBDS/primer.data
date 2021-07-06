@@ -1,3 +1,5 @@
+* Create a dev branch which is what we will work on for all PRs going forward.
+
 
 * Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography.
 
