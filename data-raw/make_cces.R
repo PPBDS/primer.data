@@ -11,7 +11,7 @@
 library(tidyverse)
 library(usethis)
 
-x <- read_rds("data-raw/cumulative_2006_2019.rds") %>%
+x <- read_rds("data-raw/cumulative_2006-2020.Rds") %>%
       select(case_id, year, state, gender,
 
     # I kept age instead of birth year because it records the age when they took
@@ -171,16 +171,17 @@ x <- read_rds("data-raw/cumulative_2006_2019.rds") %>%
   # Special question on race that was only asked in 2010 and 2011. I
   # had to separately download the two data sets to get this variable.
 
-a <- read_rds("data-raw/cces_2010.rds") %>%
+a <- read_dta("data-raw/cces_2010_common_validated.dta") %>%
       select(V100, CC422a) %>%
       rename(case_id = V100,
              resentment = CC422a) %>%
       mutate(resentment = as_factor(resentment))
 
-b <- read_rds("data-raw/cces_2011.rds") %>%
+b <- read_dta("data-raw/CCES11_Common_OUTPUT.dta")  %>%
       select(V100, CC359) %>%
       rename(case_id = V100,
-             resentment = CC359)
+             resentment = CC359) %>%
+      mutate(resentment = as_factor(resentment))
 
 c <- rbind(a,b)
 
@@ -191,16 +192,17 @@ x <- x %>%
   # Another special question on affirmative action that was only asked
   # in 2009, 2010 and 2011. Same procedure as before.
 
-a <- read_rds("data-raw/cces_2010.rds") %>%
+a <- read_dta("data-raw/cces_2010_common_validated.dta") %>%
       select(V100, CC327) %>%
       rename(case_id = V100,
              aff_action = CC327) %>%
       mutate(aff_action = as_factor(aff_action))
 
-b <- read_rds("data-raw/cces_2011.rds") %>%
+b <- read_dta("data-raw/CCES11_Common_OUTPUT.dta") %>%
       select(V100, CC354) %>%
       rename(case_id = V100,
-             aff_action = CC354)
+             aff_action = CC354) %>%
+      mutate(aff_action = as_factor(aff_action))
 
 c <- rbind(a,b)
 

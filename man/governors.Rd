@@ -12,7 +12,7 @@ A tibble with 1,092 observations and 11 variables:
 \item{first_name}{character variable indicating the first name of a candidate}
 \item{last_name}{character variable indicating the last name of a candidate}
 \item{party}{character variable indicating a candidate's party}
-\item{sex}{character variable indicating a candidate's sex}
+\item{gender}{character variable indicating a candidate's gender}
 \item{died}{date variable indicating the candidate's date of death}
 \item{status}{character variable indicating whether a candidate was the challenger or incumbent}
 \item{win_margin}{double variable indicating the percentage margin by which the election was won
