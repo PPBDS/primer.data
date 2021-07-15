@@ -6,10 +6,16 @@ citEntry(
   author   = person(given = "David",
                     family = "Kane",
                     role = c("aut", "cre"),
-                    email = "dkane@fas.harvard.edu"),
-  year = "2020",
+                    email = "dave.kane@gmail.com"),
+  entry    = "Manual",
+  title    = "primer.data",
+  author   = person(given = "Thomas",
+                    family = "Weiss",
+                    role = c("aut"),
+                    email = "tcweiss@protonmail.com"),
+  year = "2021",
   url      = "https://github.com/PPBDS/primer.data",
-  textVersion = paste("David Kane. 2020. 'primer.data'. R package version 0.1.0, <https://github.com/PPBDS/primer.data>."
+  textVersion = paste("Kane, D., & Weiss, T. (2021), 'primer.data'. R package version 0.1.0, <https://github.com/PPBDS/primer.data>."
 
   )
 )

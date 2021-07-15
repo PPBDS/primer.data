@@ -78,10 +78,10 @@ x <- read_csv("data-raw/longevity.csv",
   mutate(sex = case_when(female == 0 ~ "Male",
                          female == 1 ~ "Female")) %>%
 
+
   # VCreate the 'party' and 'region' variables. Is there are more elegant way to
   # handle this? The danger is that there are some observations with more than
   # one 1 and some with none. Using pivot_longer() would (?) be safer.
-
 
   mutate(party = case_when(democrat == 1 ~ "Democrat",
                            republican == 1 ~ "Republican",
@@ -116,7 +116,9 @@ x <- read_csv("data-raw/longevity.csv",
          last_name = "cand_last",
          died = "death_date_imp",
          win_margin = "margin_pct_1",
-         population = pop_annual) %>%
+         population = "pop_annual",
+         gender = "sex") %>%
+
 
   # years is a more natural measurement for later analysis. Right? Are these
   # good variable names?
@@ -134,7 +136,7 @@ x <- read_csv("data-raw/longevity.csv",
   # since for many elections before that year the date of death could
   # not be determined. The second condition then excludes all remaining
   # NAs in "died," most of which were caused by the recent elections
-  # with many candidates not yet deceased.
+  # with many candidates not yet deceased.s‚
 
   # Maybe I should keep everyone post 1945 . . .
 

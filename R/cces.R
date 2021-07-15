@@ -16,7 +16,7 @@
 #' skimr::skim(cces)
 #' ```
 #'
-#' @format A tibble with 470,755 observations and 18 variables:
+#' @format A tibble with 531,755 observations and 18 variables:
 #' \describe{
 #'   \item{year}{integer variable for year of survey}
 #'   \item{state}{character variable for state of residence for observation}
