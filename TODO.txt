@@ -1,35 +1,8 @@
-dev change test.
-
-* Create a dev branch which is what we will work on for all PRs going forward. -- [Almost done]
-
-  - Follow these steps
-    * Have a look at your branches: git branch -a
-    * create local dev branch:      git checkout -b dev
-    * change something
-    * stage the change:             git add .
-    * commit the change:            git commit -m "test"
-    * create remote branch:  git push -u origin develop
-
-
-
-* Start thinking about non-political science data.
-
- - Nobel prize winners (https://www.nobelprize.org/about/developer-zone-2/)
- - Shark attacks since the 16th century (https://www.floridamuseum.ufl.edu/shark-attacks/)
- - Deadly electorate conflicts worldwide (https://doi.org/10.1177%2F00220027211021620)
- - NYC taxi and limousine trip records (https://registry.opendata.aws/nyc-tlc-trip-records-pds/)
- - Trump's Twitter insults (https://www.kaggle.com/ayushggarg/all-trumps-twitter-insults-20152021)
- - College major & income (https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16)
-
-* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography.
-
-* Get at least one good time series data. Maybe weather? Maybe we gather it ourselves. Maybe Satelite data: https://www.drroyspencer.com/latest-global-temperatures/
-
-* Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income. Order states in an interesting way.
-
 
 
 ### Improvements
+
+* Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income. Order states in an interesting way.
 
 * Note that I set the --no-manual option by hand in Tools -> Project Options -> Build Tools. I did this to prevent the creation of the PDF manual. I do that because our use of skimr() in a lot of the .R files creates man Rd files with various weird unicode characters, like the weird histogram displays. This doesn't matter since we never use the manual anyway. However, it is a hack. We should fix this properly.
 
@@ -62,6 +35,19 @@ dev change test.
 
 ### Data Sets
 
+* Non-political science data:
+
+ - Nobel prize winners (https://www.nobelprize.org/about/developer-zone-2/)
+ - Shark attacks since the 16th century (https://www.floridamuseum.ufl.edu/shark-attacks/)
+ - Deadly electorate conflicts worldwide (https://doi.org/10.1177%2F00220027211021620)
+ - NYC taxi and limousine trip records (https://registry.opendata.aws/nyc-tlc-trip-records-pds/)
+ - Trump's Twitter insults (https://www.kaggle.com/ayushggarg/all-trumps-twitter-insults-20152021)
+ - College major & income (https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16)
+
+* Get at least one good time series data. Maybe weather? Maybe we gather it ourselves. Maybe Satelite data: https://www.drroyspencer.com/latest-global-temperatures/
+
+* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography.
+
 * Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
 
 * Need something from MB's work on slavery. Ultimate use may just be in making an example for the maps appendix, which should be longer.
@@ -73,13 +59,6 @@ dev change test.
 * Called `nominate`. DW NOMINATE from VoteView project: https://www.voteview.com/data
 
 * World Values Survey: http://www.worldvaluessurvey.org/wvs.jsp
-
-
-
-
-
-* Create a dev branch which is what we will work on for all PRs going forward.
-
 
 * Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography.
 
