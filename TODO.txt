@@ -1,16 +1,16 @@
-
-* Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages. -- [Done]
-
-* Note that I set the --no-manual option by hand in Tools -> Project Options -> Build Tools. I did this to prevent the creation of the PDF manual. I do that because our use of skimr() in a lot of the .R files creates man Rd files with various weird unicode characters, like the weird histogram displays. This doesn't matter since we never use the manual anyway. However, it is a hack. We should fix this properly. -- [Done]
-
-  - I don't have this problem anymore.
-
-
-* Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep. -- [Done]
-
-
-
 ### Improvements
+
+
+* Get at least one good time series data. Maybe weather? Maybe we gather it ourselves. Maybe Satelite data: https://www.drroyspencer.com/latest-global-temperatures/
+
+Download https://www.nsstc.uah.edu/data/msu/v6.0/tlt/uahncdc_lt_6.0.txt
+
+read_fwf() should work.
+
+* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography. Happy to use Github from crime_by_the_numbers.
+
+
+* Revisit the R CMD check issue and latex failure. Could also add --no-manual to Project options.
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income. Order states in an interesting way.
 
@@ -40,26 +40,20 @@
 
 * Non-political science data:
 
- - Nobel prize winners (https://www.nobelprize.org/about/developer-zone-2/)
+
  - Shark attacks since the 16th century (https://www.floridamuseum.ufl.edu/shark-attacks/)
  - Deadly electorate conflicts worldwide (https://doi.org/10.1177%2F00220027211021620)
  - NYC taxi and limousine trip records (https://registry.opendata.aws/nyc-tlc-trip-records-pds/)
  - Trump's Twitter insults (https://www.kaggle.com/ayushggarg/all-trumps-twitter-insults-20152021)
  - College major & income (https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16)
 
-* Get at least one good time series data. Maybe weather? Maybe we gather it ourselves. Maybe Satelite data: https://www.drroyspencer.com/latest-global-temperatures/
 
-* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography.
+
 
 * Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
 
-* Need something from MB's work on slavery. Ultimate use may just be in making an example for the maps appendix, which should be longer.
-
-* Called `congress`. Something about the results of US congressional elections over several election cycles. 538? Really want this to include some measure of campaign spending so we can discuss a (potential) causal effect. Didn't they have a model which they used for the 2018 election? If they estimated a model, they must have some data.
 
 * Called `police`. [Open police data](https://openpolicing.stanford.edu/data/). Something with millions of rows and, ideally, geographic coordinates. We won't include this data in our repo. Instead, the make_police.R script will download and process it. Ideally, we can get the final police.rda to be less than 100 meg so that we don't need to turn on git-lfs again.
-
-* Called `nominate`. DW NOMINATE from VoteView project: https://www.voteview.com/data
 
 * World Values Survey: http://www.worldvaluessurvey.org/wvs.jsp
 
