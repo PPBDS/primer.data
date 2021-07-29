@@ -5,7 +5,7 @@
 \alias{qscores}
 \title{Student course evaluations from Harvard}
 \format{
-A tibble with 748 observations and 8 variables:
+A tibble with 748 observations and 9 variables:
 \describe{
 \item{name}{character variable with name of course}
 \item{department}{character variable with course department}
@@ -16,6 +16,7 @@ A tibble with 748 observations and 8 variables:
 \item{rating}{numeric variable representing average of students' rating of course
 (1 to 5 scale), with higher numbers indicating a higher rating}
 \item{instructor}{character variable with name of instructor}
+\item{female}{integer 0/1 variable for sex of instructor}
 }
 }
 \source{
@@ -45,11 +46,11 @@ Table: Data summary\tabular{ll}{
     \tab  \cr
    Name \tab qscores \cr
    Number of rows \tab 748 \cr
-   Number of columns \tab 8 \cr
+   Number of columns \tab 9 \cr
    _______________________ \tab  \cr
    Column type frequency: \tab  \cr
    character \tab 5 \cr
-   numeric \tab 3 \cr
+   numeric \tab 4 \cr
    ________________________ \tab  \cr
    Group variables \tab None \cr
 }
@@ -67,9 +68,10 @@ Table: Data summary\tabular{ll}{
 
 \strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
    skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   enrollment \tab 0 \tab 1 \tab 50.82 \tab 70.38 \tab 16 \tab 21.00 \tab 29.0 \tab 49.0 \tab 744.0 \tab ▇▁▁▁▁ \cr
-   hours \tab 0 \tab 1 \tab 6.17 \tab 3.48 \tab 1 \tab 3.77 \tab 5.2 \tab 7.6 \tab 22.5 \tab ▇▅▂▁▁ \cr
-   rating \tab 0 \tab 1 \tab 4.18 \tab 0.52 \tab 1 \tab 3.90 \tab 4.2 \tab 4.5 \tab 5.0 \tab ▁▁▁▇▇ \cr
+   enrollment \tab 0 \tab 1.00 \tab 50.82 \tab 70.38 \tab 16 \tab 21.00 \tab 29.0 \tab 49.0 \tab 744.0 \tab ▇▁▁▁▁ \cr
+   hours \tab 0 \tab 1.00 \tab 6.17 \tab 3.48 \tab 1 \tab 3.77 \tab 5.2 \tab 7.6 \tab 22.5 \tab ▇▅▂▁▁ \cr
+   rating \tab 0 \tab 1.00 \tab 4.18 \tab 0.52 \tab 1 \tab 3.90 \tab 4.2 \tab 4.5 \tab 5.0 \tab ▁▁▁▇▇ \cr
+   female \tab 4 \tab 0.99 \tab 0.33 \tab 0.47 \tab 0 \tab 0.00 \tab 0.0 \tab 1.0 \tab 1.0 \tab ▇▁▁▁▃ \cr
 }
 }
 \author{
