@@ -165,9 +165,10 @@ for (i in 1:955) {
   }
 }
 
-# Removing leftover NA-rows.
+# Convert to tibble and remove leftover NA-rows.
 
 x %<>%
+  tibble() %>%
   filter(is.na(field) == FALSE)
 
 
@@ -180,7 +181,8 @@ x %<>%
          gender = str_to_title(gender),
          field = str_to_title(field),
          born_country = str_replace(born_country, "the Netherlands", "Netherlands"),
-         aff_country = str_replace(born_country, "the Netherlands", "Netherlands"))
+         aff_country = str_replace(born_country, "the Netherlands", "Netherlands"),
+         motivation = substr(motivation, 2, nchar(motivation)-1))
 
 
 # Arrange.
