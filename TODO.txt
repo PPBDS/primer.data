@@ -1,4 +1,9 @@
 
+* Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages. -- [Done]
+
+* Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep.
+
+
 
 ### Improvements
 
@@ -11,10 +16,6 @@
 * Learn about making test cases from [R Packages](https://r-pkgs.org/tests.html) and add at least one test case for each data set. (Be smart in making these. It is OK to have a test case which tests the number of rows in trains because trains will always (?) have 115 rows. It would be bad (or maybe not?) to have a test case like that for cces since the number of rows for will change once we add next year's data to it.) The definition of a "careful tour" is that you have looked at make_* for a data set, regenerated it, and added at least two test cases about it. You should certainly use any current stopifnot() as test cases and then remove them from the make_* files.
 
 * Transform all the make_ scripts into functions --- I think this is more professional --- which, by default, just return the data. There is an argument for having these functions also install the new data in the package, but the valaue of that argument  is false by default.
-
-* Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages. -- [Done]
-
-* Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep.
 
 * Should we re-create all the data sets each time we run R CMD package check? This would not take too much time and would ensure that everything is ship-shape.
 
