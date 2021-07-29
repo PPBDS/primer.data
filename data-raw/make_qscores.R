@@ -156,6 +156,18 @@ x <- raw %>%
          number = "course_number")
 
 
+# Create female 0/1 variable based on first name.
+
+first_names <- read_excel("data-raw/first_names.xlsx") %>%
+                  distinct(first_name, .keep_all = TRUE)
+
+x %<>%
+  separate(instructor, into = c("first_name", "last_name"), sep = " ", extra = "merge") %>%
+  left_join(first_names) %>%
+  unite("instructor", first_name, last_name, sep = " ")
+
+
+
 # Saving data.
 
 qscores <- x
