@@ -175,12 +175,14 @@ x %<>%
 # Changing variable types and cleaning up a bit.
 
 x %<>%
-  mutate(born = as.Date(born),
+  mutate(gender = str_to_title(gender),
+         field = str_to_title(field),
+         gender = as.factor(gender),
+         field = as.factor(field),
+         born = as.Date(born),
          died = as.Date(died),
          year = as.integer(year),
          share = as.integer(share),
-         gender = str_to_title(gender),
-         field = str_to_title(field),
          born_country = str_replace(born_country, "the Netherlands", "Netherlands"),
          aff_country = str_replace(born_country, "the Netherlands", "Netherlands"),
          motivation = substr(motivation, 2, nchar(motivation)-1))
