@@ -1,15 +1,18 @@
 
 * Provide instruction in the lower part of this document about the release cycle. Like, first you increment the number, then you update NEWS file, then . . . Or just a link to the instructions in R Packages. -- [Done]
 
-* Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep.
+* Note that I set the --no-manual option by hand in Tools -> Project Options -> Build Tools. I did this to prevent the creation of the PDF manual. I do that because our use of skimr() in a lot of the .R files creates man Rd files with various weird unicode characters, like the weird histogram displays. This doesn't matter since we never use the manual anyway. However, it is a hack. We should fix this properly. -- [Done]
+
+  - I don't have this problem anymore.
+
+
+* Add gender column to qscores, created by using names, which will probably involve creating a first name column, which we will not keep. -- [Done]
 
 
 
 ### Improvements
 
 * Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income. Order states in an interesting way.
-
-* Note that I set the --no-manual option by hand in Tools -> Project Options -> Build Tools. I did this to prevent the creation of the PDF manual. I do that because our use of skimr() in a lot of the .R files creates man Rd files with various weird unicode characters, like the weird histogram displays. This doesn't matter since we never use the manual anyway. However, it is a hack. We should fix this properly.
 
 * Add the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". Or maybe we need two train data sets: the current one and trains_detailed?
 
@@ -20,8 +23,6 @@
 * Should we re-create all the data sets each time we run R CMD package check? This would not take too much time and would ensure that everything is ship-shape.
 
 * pkgdown
-
-  - Start using a release and development branch?
 
   - Look for nice themes or yaml options
 
