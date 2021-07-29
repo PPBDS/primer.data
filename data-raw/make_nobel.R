@@ -178,6 +178,7 @@ x %<>%
   mutate(born = as.Date(born),
          died = as.Date(died),
          year = as.integer(year),
+         share = as.integer(share),
          gender = str_to_title(gender),
          field = str_to_title(field),
          born_country = str_replace(born_country, "the Netherlands", "Netherlands"),
