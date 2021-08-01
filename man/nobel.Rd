@@ -5,7 +5,7 @@
 \alias{nobel}
 \title{Data on Nobel Prize laureates}
 \format{
-A tibble with 961 observations and 16 variables:
+A tibble with 961 observations and 15 variables:
 \describe{
 \item{first_name}{character variable for laureate's first name}
 \item{last_name}{character variable for laureate's last name}
@@ -22,7 +22,6 @@ A tibble with 961 observations and 16 variables:
 \item{motivation}{character variable for reason of award}
 \item{aff_inst}{character variable for laureate's academic affiliation}
 \item{aff_city}{character variable for city of institution of laureate's academic affiliation}
-\item{aff_country}{character variable for country of institution of laureate's academic affiliation}
 }
 }
 \source{
@@ -44,11 +43,11 @@ Table: Data summary\tabular{ll}{
     \tab  \cr
    Name \tab nobel \cr
    Number of rows \tab 961 \cr
-   Number of columns \tab 16 \cr
+   Number of columns \tab 15 \cr
    _______________________ \tab  \cr
    Column type frequency: \tab  \cr
    Date \tab 2 \cr
-   character \tab 10 \cr
+   character \tab 9 \cr
    factor \tab 2 \cr
    numeric \tab 2 \cr
    ________________________ \tab  \cr
@@ -74,7 +73,6 @@ Table: Data summary\tabular{ll}{
    motivation \tab 0 \tab 1.00 \tab 22 \tab 341 \tab 0 \tab 671 \tab 0 \cr
    aff_inst \tab 0 \tab 1.00 \tab 4 \tab 137 \tab 0 \tab 343 \tab 0 \cr
    aff_city \tab 0 \tab 1.00 \tab 4 \tab 33 \tab 0 \tab 233 \tab 0 \cr
-   aff_country \tab 28 \tab 0.97 \tab 3 \tab 52 \tab 0 \tab 124 \tab 0 \cr
 }
 
 

@@ -194,10 +194,10 @@ x %<>%
   arrange(field, year)
 
 
-# Sort variables and remove useless list.
+# Sort variables and remove useless stuff.
 
 x %<>%
-  select(-prizes) %>%
+  select(-prizes, -aff_country) %>%
   select(1:2, year, field, share, gender, everything())
 
 

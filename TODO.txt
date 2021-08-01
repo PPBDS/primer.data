@@ -1,5 +1,3 @@
-### Improvements
-
 
 * Get at least one good time series data. Maybe weather? Maybe we gather it ourselves. Maybe Satelite data: https://www.drroyspencer.com/latest-global-temperatures/
 
@@ -9,6 +7,9 @@ read_fwf() should work.
 
 * Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography. Happy to use Github from crime_by_the_numbers.
 
+
+
+### Improvements
 
 * Revisit the R CMD check issue and latex failure. Could also add --no-manual to Project options.
 

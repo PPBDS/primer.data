@@ -15,7 +15,7 @@
 #' skimr::skim(nobel)
 #' ```
 #'
-#' @format A tibble with 961 observations and 16 variables:
+#' @format A tibble with 961 observations and 15 variables:
 #' \describe{
 #'   \item{first_name}{character variable for laureate's first name}
 #'   \item{last_name}{character variable for laureate's last name}
@@ -32,7 +32,6 @@
 #'   \item{motivation}{character variable for reason of award}
 #'   \item{aff_inst}{character variable for laureate's academic affiliation}
 #'   \item{aff_city}{character variable for city of institution of laureate's academic affiliation}
-#'   \item{aff_country}{character variable for country of institution of laureate's academic affiliation}
 #'   }
 #'
 #' @author David Kane
