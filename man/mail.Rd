@@ -52,10 +52,6 @@ ballot because “it’s safer for you to vote by mail!” or “it’s safer fo
 neighborhood to vote by mail!”. In all, 23,475 registered voters were
 assigned to the “self” condition and 23,485 to the “neighborhood” condition,
 with the remaining 888,785 in the control condition receiving no postcard.
-
- 
-
-\verb{\{r, echo = FALSE\} skimr::skim(mail) }
 }
 \author{
 David Kane

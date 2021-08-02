@@ -20,12 +20,6 @@
 #' \href{http://dx.doi.org/10.2307/2111172}{"A Spatial Model for Legislative Roll Call Analysis"}
 #' by Poole and Rosenthal (1983).
 #'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(nominate)
-#' ```
-#'
 #' @format A tibble with 49,361 observations and 9 variables:
 #' \describe{
 #'   \item{congress}{integer variable indicating the number of a member's congress,

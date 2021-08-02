@@ -37,38 +37,6 @@ al. (2009)} for background and details. Data includes variables from a 2005 base
 survey (August, 2005, to September, 2005) and follow-up survey 10 months
 later (July, 2006, to August, 2006).
 }
-\details{
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab sps \cr
-   Number of rows \tab 27569 \cr
-   Number of columns \tab 8 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 2 \cr
-   numeric \tab 6 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   sex \tab 0 \tab 1 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
-   education \tab 0 \tab 1 \tab 7 \tab 11 \tab 0 \tab 6 \tab 0 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   age \tab 0 \tab 1 \tab 42.30 \tab 16.63 \tab 18 \tab 29 \tab 39 \tab 53 \tab 98 \tab ▇▇▃▂▁ \cr
-   treatment \tab 0 \tab 1 \tab 0.50 \tab 0.50 \tab 0 \tab 0 \tab 1 \tab 1 \tab 1 \tab ▇▁▁▁▇ \cr
-   health_exp_3m \tab 0 \tab 1 \tab 657.92 \tab 1639.64 \tab 0 \tab 0 \tab 50 \tab 550 \tab 37000 \tab ▇▁▁▁▁ \cr
-   t2_health_exp_3m \tab 0 \tab 1 \tab 762.37 \tab 1758.31 \tab 0 \tab 0 \tab 150 \tab 700 \tab 37600 \tab ▇▁▁▁▁ \cr
-   health_exp_1m \tab 0 \tab 1 \tab 120.25 \tab 513.73 \tab 0 \tab 0 \tab 0 \tab 0 \tab 9998 \tab ▇▁▁▁▁ \cr
-   t2_health_exp_1m \tab 0 \tab 1 \tab 135.67 \tab 525.93 \tab 0 \tab 0 \tab 0 \tab 20 \tab 9998 \tab ▇▁▁▁▁ \cr
-}
-}
 \author{
 David Kane
 }

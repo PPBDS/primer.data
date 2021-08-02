@@ -33,45 +33,6 @@ Kenya's electoral commission in 1,674 communities by assigning individuals to ei
 quo group or one of several interventions to encourage voter registration: SMS reminders, a local
 administrator at a polling station, canvassing, a local admin and canvassing, or a local admin and SMS.
 }
-\details{
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab kenya \cr
-   Number of rows \tab 1672 \cr
-   Number of columns \tab 9 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 2 \cr
-   factor \tab 1 \cr
-   numeric \tab 6 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   block \tab 0 \tab 1 \tab 7 \tab 12 \tab 0 \tab 279 \tab 0 \cr
-   poll_station \tab 0 \tab 1 \tab 7 \tab 7 \tab 0 \tab 1672 \tab 0 \cr
-}
-
-
-\strong{Variable type: factor}\tabular{lrrlrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   treatment \tab 0 \tab 1 \tab FALSE \tab 6 \tab can: 279, loc: 279, loc: 279, loc: 279 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   poverty \tab 0 \tab 1 \tab 0.43 \tab 0.11 \tab 0.18 \tab 0.35 \tab 0.43 \tab 0.49 \tab 0.90 \tab ▃▇▅▁▁ \cr
-   distance \tab 0 \tab 1 \tab 20.93 \tab 16.24 \tab 0.04 \tab 10.20 \tab 17.26 \tab 27.34 \tab 179.02 \tab ▇▁▁▁▁ \cr
-   pop_density \tab 0 \tab 1 \tab 0.00 \tab 0.00 \tab 0.00 \tab 0.00 \tab 0.00 \tab 0.00 \tab 0.02 \tab ▇▁▁▁▁ \cr
-   mean_age \tab 8 \tab 1 \tab 41.63 \tab 2.78 \tab 24.02 \tab 39.82 \tab 41.59 \tab 43.42 \tab 50.07 \tab ▁▁▂▇▂ \cr
-   reg_byrv13 \tab 4 \tab 1 \tab 0.02 \tab 0.04 \tab 0.00 \tab 0.00 \tab 0.00 \tab 0.02 \tab 0.73 \tab ▇▁▁▁▁ \cr
-   rv13 \tab 0 \tab 1 \tab 539.23 \tab 429.35 \tab 0.00 \tab 273.00 \tab 442.00 \tab 675.00 \tab 6764.00 \tab ▇▁▁▁▁ \cr
-}
-}
 \author{
 David Kane
 }

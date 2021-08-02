@@ -14,12 +14,6 @@
 #' more heavily. However, this skewed the survey results to have an inaccurate demographic makeup.
 #' To address this, some observations of more common groups are resampled in the data.
 #'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(nhanes)
-#' ```
-#'
 #' @format A tibble with 10,000 observations and 15 variables:
 #' \describe{
 #'   \item{gender}{character variable with values "Male" and "Female"}

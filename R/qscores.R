@@ -16,12 +16,6 @@
 #' not have data available. The data set has also been filtered to only include
 #' courses with more than 15 registered students.
 #'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(qscores)
-#' ```
-#'
 #' @format A tibble with 748 observations and 9 variables:
 #' \describe{
 #'   \item{name}{character variable with name of course}
