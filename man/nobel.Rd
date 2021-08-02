@@ -36,8 +36,6 @@ This data comes from the freely accessible API of the
 The data includes  information on all Nobel Prize laureates since 1901, as
 well as on all laureates in the Nobel Memorial Prize in Economic Sciences
 since 1968.
-
-}
 }
 \author{
 David Kane
