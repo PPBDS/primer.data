@@ -52,54 +52,6 @@ combined with the demographic background of the voter. See
 (2020)} for background and details. The raw code that was used to produce
 the data is accessible at Kuriwaki's \href{https://github.com/kuriwaki/cces_cumulative}{Github.}
 }
-\details{
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab cces \cr
-   Number of rows \tab 470755 \cr
-   Number of columns \tab 18 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 8 \cr
-   factor \tab 7 \cr
-   numeric \tab 3 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   state \tab 0 \tab 1.00 \tab 4 \tab 20 \tab 0 \tab 51 \tab 0 \cr
-   gender \tab 0 \tab 1.00 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
-   race \tab 0 \tab 1.00 \tab 5 \tab 15 \tab 0 \tab 8 \tab 0 \cr
-   marstat \tab 1555 \tab 1.00 \tab 7 \tab 22 \tab 0 \tab 6 \tab 0 \cr
-   religion \tab 37416 \tab 0.92 \tab 5 \tab 25 \tab 0 \tab 12 \tab 0 \cr
-   news \tab 37007 \tab 0.92 \tab 10 \tab 17 \tab 0 \tab 5 \tab 0 \cr
-   military \tab 10094 \tab 0.98 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   voted \tab 110799 \tab 0.76 \tab 5 \tab 19 \tab 0 \tab 3 \tab 0 \cr
-}
-
-
-\strong{Variable type: factor}\tabular{lrrlrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   faminc \tab 52606 \tab 0.89 \tab FALSE \tab 12 \tab 30k: 48521, 20k: 47793, 40k: 43368, 50k: 42308 \cr
-   ideology \tab 1774 \tab 1.00 \tab FALSE \tab 6 \tab Mod: 146842, Con: 108598, Lib: 82662, Ver: 54765 \cr
-   education \tab 67 \tab 1.00 \tab FALSE \tab 6 \tab Hig: 130123, Som: 116433, 4-Y: 106727, Pos: 56623 \cr
-   econ \tab 888 \tab 1.00 \tab FALSE \tab 6 \tab Sta: 126496, Got: 117032, Got: 104958, Got: 78787 \cr
-   approval_ch \tab 798 \tab 1.00 \tab FALSE \tab 6 \tab Str: 203121, App: 107126, Str: 97838, Dis: 48372 \cr
-   resentment \tab 387757 \tab 0.18 \tab FALSE \tab 5 \tab Str: 37904, Som: 16691, Nei: 13109, Som: 8879 \cr
-   aff_action \tab 377123 \tab 0.20 \tab FALSE \tab 4 \tab Str: 38216, Som: 23243, Som: 21643, Str: 10530 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   year \tab 0 \tab 1 \tab 2012.92 \tab 3.84 \tab 2006 \tab 2010 \tab 2013 \tab 2016 \tab 2019 \tab ▅▅▅▇▆ \cr
-   age \tab 0 \tab 1 \tab 49.60 \tab 16.47 \tab 18 \tab 36 \tab 51 \tab 62 \tab 109 \tab ▆▇▇▂▁ \cr
-   approval \tab 798 \tab 1 \tab 2.68 \tab 1.67 \tab 1 \tab 1 \tab 2 \tab 4 \tab 5 \tab ▇▂▁▅▃ \cr
-}
-}
 \author{
 David Kane
 }

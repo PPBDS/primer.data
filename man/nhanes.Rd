@@ -47,52 +47,6 @@ Centers for Disease Control and Prevention.
 In order to get a demographically diverse range of responses, minority groups were surveyed
 more heavily. However, this skewed the survey results to have an inaccurate demographic makeup.
 To address this, some observations of more common groups are resampled in the data.
-
- 
-
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab nhanes \cr
-   Number of rows \tab 10000 \cr
-   Number of columns \tab 15 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 2 \cr
-   factor \tab 3 \cr
-   numeric \tab 10 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   gender \tab 0 \tab 1 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
-   race \tab 0 \tab 1 \tab 5 \tab 8 \tab 0 \tab 5 \tab 0 \cr
-}
-
-
-\strong{Variable type: factor}\tabular{lrrlrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   education \tab 2779 \tab 0.72 \tab FALSE \tab 4 \tab Som: 2267, Col: 2098, Hig: 1517, Mid: 1339 \cr
-   hh_income \tab 811 \tab 0.92 \tab FALSE \tab 12 \tab mor: 2220, 750: 1084, 250: 958, 350: 863 \cr
-   depressed \tab 3327 \tab 0.67 \tab FALSE \tab 3 \tab Non: 5246, Sev: 1009, Mos: 418 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   survey \tab 0 \tab 1.00 \tab 2010.00 \tab 1.00 \tab 2009.00 \tab 2009.00 \tab 2010.00 \tab 2011.00 \tab 2011.00 \tab ▇▁▁▁▇ \cr
-   age \tab 0 \tab 1.00 \tab 36.74 \tab 22.40 \tab 0.00 \tab 17.00 \tab 36.00 \tab 54.00 \tab 80.00 \tab ▇▇▇▆▅ \cr
-   weight \tab 78 \tab 0.99 \tab 70.98 \tab 29.13 \tab 2.80 \tab 56.10 \tab 72.70 \tab 88.90 \tab 230.70 \tab ▂▇▂▁▁ \cr
-   height \tab 353 \tab 0.96 \tab 161.88 \tab 20.19 \tab 83.60 \tab 156.80 \tab 166.00 \tab 174.50 \tab 200.40 \tab ▁▁▁▇▂ \cr
-   bmi \tab 366 \tab 0.96 \tab 26.66 \tab 7.38 \tab 12.88 \tab 21.58 \tab 25.98 \tab 30.89 \tab 81.25 \tab ▇▆▁▁▁ \cr
-   pulse \tab 1437 \tab 0.86 \tab 73.56 \tab 12.16 \tab 40.00 \tab 64.00 \tab 72.00 \tab 82.00 \tab 136.00 \tab ▂▇▃▁▁ \cr
-   diabetes \tab 142 \tab 0.99 \tab 0.08 \tab 0.27 \tab 0.00 \tab 0.00 \tab 0.00 \tab 0.00 \tab 1.00 \tab ▇▁▁▁▁ \cr
-   general_health \tab 2461 \tab 0.75 \tab 3.38 \tab 0.94 \tab 1.00 \tab 3.00 \tab 3.00 \tab 4.00 \tab 5.00 \tab ▁▃▇▇▂ \cr
-   pregnancies \tab 7396 \tab 0.26 \tab 3.03 \tab 1.80 \tab 1.00 \tab 2.00 \tab 3.00 \tab 4.00 \tab 32.00 \tab ▇▁▁▁▁ \cr
-   sleep \tab 2245 \tab 0.78 \tab 6.93 \tab 1.35 \tab 2.00 \tab 6.00 \tab 7.00 \tab 8.00 \tab 12.00 \tab ▁▅▇▁▁ \cr
-}
 }
 \author{
 David Kane

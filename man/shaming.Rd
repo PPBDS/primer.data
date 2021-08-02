@@ -64,52 +64,6 @@ notified of each others' voting behavior after the election (this information is
 public). The last group, "Neighbors", finally listed not only the household's voting
 records but also the voting records of those nearby. As in the "Self" group, everyone
 on the list would be notified of their voting behavior after the primary.
-
- 
-
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab shaming \cr
-   Number of rows \tab 344084 \cr
-   Number of columns \tab 15 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 8 \cr
-   factor \tab 1 \cr
-   numeric \tab 6 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   cluster \tab 0 \tab 1 \tab 1 \tab 5 \tab 0 \tab 10000 \tab 0 \cr
-   sex \tab 0 \tab 1 \tab 4 \tab 6 \tab 0 \tab 2 \tab 0 \cr
-   primary_00 \tab 0 \tab 1 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   general_00 \tab 0 \tab 1 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   primary_02 \tab 0 \tab 1 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   general_02 \tab 0 \tab 1 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   primary_04 \tab 0 \tab 1 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   general_04 \tab 0 \tab 1 \tab 3 \tab 3 \tab 0 \tab 1 \tab 0 \cr
-}
-
-
-\strong{Variable type: factor}\tabular{lrrlrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   treatment \tab 0 \tab 1 \tab FALSE \tab 5 \tab Con: 191243, Civ: 38218, Sel: 38218, Haw: 38204 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   primary_06 \tab 0 \tab 1 \tab 0.32 \tab 0.46 \tab 0.00 \tab 0.00 \tab 0.00 \tab 1.00 \tab 1 \tab ▇▁▁▁▃ \cr
-   age \tab 0 \tab 1 \tab 49.79 \tab 14.45 \tab 20.00 \tab 41.00 \tab 50.00 \tab 59.00 \tab 106 \tab ▃▇▅▁▁ \cr
-   hh_size \tab 0 \tab 1 \tab 2.18 \tab 0.79 \tab 1.00 \tab 2.00 \tab 2.00 \tab 2.00 \tab 8 \tab ▇▂▁▁▁ \cr
-   hh_primary_04 \tab 0 \tab 1 \tab 0.31 \tab 0.18 \tab 0.00 \tab 0.19 \tab 0.29 \tab 0.43 \tab 1 \tab ▇▇▅▁▁ \cr
-   hh_general_04 \tab 0 \tab 1 \tab 0.92 \tab 0.07 \tab 0.38 \tab 0.90 \tab 0.95 \tab 1.00 \tab 1 \tab ▁▁▁▂▇ \cr
-   neighbors \tab 0 \tab 1 \tab 20.93 \tab 0.51 \tab 1.00 \tab 21.00 \tab 21.00 \tab 21.00 \tab 21 \tab ▁▁▁▁▇ \cr
-}
 }
 \author{
 David Kane

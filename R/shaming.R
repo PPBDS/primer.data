@@ -26,12 +26,6 @@
 #' records but also the voting records of those nearby. As in the "Self" group, everyone
 #' on the list would be notified of their voting behavior after the primary.
 #'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(shaming)
-#' ```
-#'
 #' @format A tibble with 344,084 observations and 15 variables:
 #' \describe{
 #'   \item{cluster}{character variable with cluster designation, which ranges from 1 to 10,000. See

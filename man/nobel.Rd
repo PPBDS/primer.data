@@ -37,56 +37,6 @@ The data includes  information on all Nobel Prize laureates since 1901, as
 well as on all laureates in the Nobel Memorial Prize in Economic Sciences
 since 1968.
 
- 
-
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab nobel \cr
-   Number of rows \tab 961 \cr
-   Number of columns \tab 15 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   Date \tab 2 \cr
-   character \tab 9 \cr
-   factor \tab 2 \cr
-   numeric \tab 2 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: Date}\tabular{lrrlllr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab median \tab n_unique \cr
-   born \tab 33 \tab 0.97 \tab 1817-11-30 \tab 1997-07-12 \tab 1917-09-19 \tab 910 \cr
-   died \tab 319 \tab 0.67 \tab 1903-11-01 \tab 2021-07-23 \tab 1984-10-17 \tab 631 \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   first_name \tab 0 \tab 1.00 \tab 2 \tab 59 \tab 0 \tab 734 \tab 0 \cr
-   last_name \tab 30 \tab 0.97 \tab 2 \tab 26 \tab 0 \tab 876 \tab 0 \cr
-   born_country \tab 28 \tab 0.97 \tab 3 \tab 52 \tab 0 \tab 124 \tab 0 \cr
-   born_city \tab 30 \tab 0.97 \tab 3 \tab 36 \tab 0 \tab 630 \tab 0 \cr
-   died_country \tab 332 \tab 0.65 \tab 3 \tab 35 \tab 0 \tab 52 \tab 0 \cr
-   died_city \tab 338 \tab 0.65 \tab 4 \tab 30 \tab 0 \tab 312 \tab 0 \cr
-   motivation \tab 0 \tab 1.00 \tab 22 \tab 341 \tab 0 \tab 671 \tab 0 \cr
-   aff_inst \tab 0 \tab 1.00 \tab 4 \tab 137 \tab 0 \tab 343 \tab 0 \cr
-   aff_city \tab 0 \tab 1.00 \tab 4 \tab 33 \tab 0 \tab 233 \tab 0 \cr
-}
-
-
-\strong{Variable type: factor}\tabular{lrrlrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   field \tab 0 \tab 1 \tab FALSE \tab 6 \tab Med: 222, Phy: 215, Che: 186, Pea: 135 \cr
-   gender \tab 0 \tab 1 \tab FALSE \tab 3 \tab Mal: 875, Fem: 58, Org: 28 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   year \tab 0 \tab 1 \tab 1971.89 \tab 33.76 \tab 1901 \tab 1948 \tab 1977 \tab 2001 \tab 2020 \tab ▃▃▅▇▇ \cr
-   share \tab 0 \tab 1 \tab 2.01 \tab 0.94 \tab 1 \tab 1 \tab 2 \tab 3 \tab 4 \tab ▇▇▁▅▂ \cr
 }
 }
 \author{

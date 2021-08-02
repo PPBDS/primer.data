@@ -8,13 +8,6 @@
 #' well as on all laureates in the Nobel Memorial Prize in Economic Sciences
 #' since 1968.
 #'
-#'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(nobel)
-#' ```
-#'
 #' @format A tibble with 961 observations and 15 variables:
 #' \describe{
 #'   \item{first_name}{character variable for laureate's first name}
