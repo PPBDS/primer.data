@@ -5,7 +5,7 @@
 \alias{nobel}
 \title{Data on Nobel Prize laureates}
 \format{
-A tibble with 961 observations and 16 variables:
+A tibble with 961 observations and 15 variables:
 \describe{
 \item{first_name}{character variable for laureate's first name}
 \item{last_name}{character variable for laureate's last name}
@@ -22,7 +22,6 @@ A tibble with 961 observations and 16 variables:
 \item{motivation}{character variable for reason of award}
 \item{aff_inst}{character variable for laureate's academic affiliation}
 \item{aff_city}{character variable for city of institution of laureate's academic affiliation}
-\item{aff_country}{character variable for country of institution of laureate's academic affiliation}
 }
 }
 \source{
@@ -37,6 +36,8 @@ This data comes from the freely accessible API of the
 The data includes  information on all Nobel Prize laureates since 1901, as
 well as on all laureates in the Nobel Memorial Prize in Economic Sciences
 since 1968.
+
+}
 }
 \author{
 David Kane

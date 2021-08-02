@@ -172,7 +172,7 @@ x %<>%
   filter(is.na(field) == FALSE)
 
 
-# Changing variable types and cleaning up a bit.
+# Changing variable types and cleaning up.
 
 x %<>%
   mutate(gender = str_to_title(gender),
@@ -183,9 +183,69 @@ x %<>%
          died = as.Date(died),
          year = as.integer(year),
          share = as.integer(share),
-         born_country = str_replace(born_country, "the Netherlands", "Netherlands"),
-         aff_country = str_replace(born_country, "the Netherlands", "Netherlands"),
-         motivation = substr(motivation, 2, nchar(motivation)-1))
+         motivation = substr(motivation, 2, nchar(motivation)-1),
+         born_country = str_replace(born_country, "Austria-Hungary (now Austria)", "Austria"),
+         born_country = str_replace(born_country, "Austria-Hungary (now Bosnia and Herzegovina)", "Bosnia and Herzegovina"),
+         born_country = str_replace(born_country, "Austria-Hungary (now Croatia)", "Croatia"),
+         born_country = str_replace(born_country, "Austria-Hungary (now Czech Republic)", "Czechia"),
+         born_country = str_replace(born_country, "Austria-Hungary (now Hungary)", "Hungary"),
+         born_country = str_replace(born_country, "Austria-Hungary (now Poland)", "Poland"),
+         born_country = str_replace(born_country, "Austria-Hungary (now Slovenia)", "Slovenia"),
+         born_country = str_replace(born_country, "Austria-Hungary (now Ukraine)", "Ukraine"),
+         born_country = str_replace(born_country, "Austrian Empire (now Austria)", "Austria"),
+         born_country = str_replace(born_country, "Austrian Empire (now Czech Republic)", "Czechia"),
+         born_country = str_replace(born_country, "Austrian Empire (now Italy)", "Italy"),
+         born_country = str_replace(born_country, "Bavaria (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "Belgian Congo (now Democratic Republic of the Congo)", "D.R. Congo"),
+         born_country = str_replace(born_country, "British India (now Bangladesh)", "Bangladesh"),
+         born_country = str_replace(born_country, "British India (now India)", "India"),
+         born_country = str_replace(born_country, "British Mandate of Palestine (now Israel)", "Israel"),
+         born_country = str_replace(born_country, "British West Indies (now Saint Lucia)", "Saint Lucia"),
+         born_country = str_replace(born_country, "Burma (now Myanmar)", "Myanmar"),
+         born_country = str_replace(born_country, "Crete (now Greece)", "Greece"),
+         born_country = str_replace(born_country, "Czechoslovakia (now Czech Republic)", "Czechia"),
+         born_country = str_replace(born_country, "East Friesland (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "Faroe Islands (Denmark)", "Denmark"),
+         born_country = str_replace(born_country, "Free City of Danzig (now Poland)", "Poland"),
+         born_country = str_replace(born_country, "Faroe Islands (Denmark)", "Denmark"),
+         born_country = str_replace(born_country, "French Algeria (now Algeria)", "Algeria"),
+         born_country = str_replace(born_country, "German-occupied Poland (now Poland)", "Poland"),
+         born_country = str_replace(born_country, "Germany (now France)", "France"),
+         born_country = str_replace(born_country, "Germany (now Poland)", "Poland"),
+         born_country = str_replace(born_country, "Germany (now Russia)", "Russia"),
+         born_country = str_replace(born_country, "Gold Coast (now Ghana)", "Ghana"),
+         born_country = str_replace(born_country, "Hesse-Kassel (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "Hungary (now Slovakia)", "Slovakia"),
+         born_country = str_replace(born_country, "India (now Pakistan)", "Pakistan"),
+         born_country = str_replace(born_country, "Java, Dutch East Indies (now Indonesia)", "Indonesia"),
+         born_country = str_replace(born_country, "Korea (now South Korea)", "South Korea"),
+         born_country = str_replace(born_country, "Mecklenburg (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "Ottoman Empire (now North Macedonia)", "North Macedonia"),
+         born_country = str_replace(born_country, "Ottoman Empire (now Turkey)", "Turkey"),
+         born_country = str_replace(born_country, "Persia (now Iran)", "Iran"),
+         born_country = str_replace(born_country, "Poland (now Belarus)", "Belarus"),
+         born_country = str_replace(born_country, "Poland (now Lithuania)", "Lithuania"),
+         born_country = str_replace(born_country, "Poland (now Ukraine)", "Ukraine"),
+         born_country = str_replace(born_country, "Prussia (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "Prussia (now Poland)", "Poland"),
+         born_country = str_replace(born_country, "Prussia (now Russia)", "Russia"),
+         born_country = str_replace(born_country, "Russian Empire (now Azerbaijan)", "Azerbaijan"),
+         born_country = str_replace(born_country, "Russian Empire (now Belarus)", "Belarus"),
+         born_country = str_replace(born_country, "Russian Empire (now Finland)", "Finland"),
+         born_country = str_replace(born_country, "Russian Empire (now Lithuania)", "Lithuania"),
+         born_country = str_replace(born_country, "Russian Empire (now Russia)", "Russia"),
+         born_country = str_replace(born_country, "Russian Empire (now Latvia)", "Latvia"),
+         born_country = str_replace(born_country, "Russian Empire (now Poland)", "Poland"),
+         born_country = str_replace(born_country, "Russian Empire (now Ukraine)", "Ukraine"),
+         born_country = str_replace(born_country, "Schleswig (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "Southern Rhodesia (now Zimbabwe)", "Zimbabwe"),
+         born_country = str_replace(born_country, "Tibet (now China)", "China"),
+         born_country = str_replace(born_country, "Tuscany (now Italy)", "Italy"),
+         born_country = str_replace(born_country, "USSR (now Belarus)", "Belarus"),
+         born_country = str_replace(born_country, "USSR (now Russia)", "Russia"),
+         born_country = str_replace(born_country, "West Germany (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "Württemberg (now Germany)", "Germany"),
+         born_country = str_replace(born_country, "the Netherlands", "Netherlands"))
 
 
 # Arrange.
@@ -194,10 +254,10 @@ x %<>%
   arrange(field, year)
 
 
-# Sort variables and remove useless list.
+# Sort variables and remove useless stuff.
 
 x %<>%
-  select(-prizes) %>%
+  select(-prizes, -aff_country) %>%
   select(1:2, year, field, share, gender, everything())
 
 
