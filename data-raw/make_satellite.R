@@ -38,6 +38,9 @@ x <- read_table(read_lines("https://www.nsstc.uah.edu/data/msu/v6.0/tmt/uahncdc_
 # contain integers. This makes people think that something might be wrong with
 # this data.
 
+x %<>%
+  mutate(year = as.integer(year),
+         month = as.integer(month))
 
 # Save.
 
