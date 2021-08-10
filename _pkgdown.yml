@@ -7,6 +7,4 @@ authors:
   Thomas Weiss:
     href: https://github.com/tcweiss
 
-output:
-  pdf_document:
-    latex_engine: xelatex
+
