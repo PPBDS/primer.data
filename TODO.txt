@@ -1,7 +1,7 @@
 
 * Look at: https://upworthy.natematias.com/. Pick one data set which you think is cool. Add it to the package. Think about stuff which might be valuable in the chapters, obviously.
 
-* Add data from this page: https://crime-data-explorer.app.cloud.gov/downloads-and-docs. A few ready-to-use data set from this source can also be found here: https://crimebythenumbers.com/. Pick a few interesting variables, ideally murder-related stuff. For several years. With geography. Happy to use Github from crime_by_the_numbers.
+* Add documentation for shootings.
 
 
 
@@ -9,8 +9,6 @@
 ### Improvements
 
 * Revisit the R CMD check issue and latex failure. Could also add --no-manual to Project options.
-
-* Create a cool plot for primer.data homepage using primer.data data set. Maybe republican vote by income. Or (better?) ideology by income. Order states in an interesting way.
 
 * Add the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". Or maybe we need two train data sets: the current one and trains_detailed?
 
