@@ -3,7 +3,7 @@
 \docType{data}
 \name{shootings}
 \alias{shootings}
-\title{People shot by US police (2017-)}
+\title{People shot by US police (2015-2019)}
 \format{
 A tibble with 4371 observations and 13 variables:
 \describe{

@@ -1,4 +1,4 @@
-#' @title People shot by US police (2017-)
+#' @title People shot by US police (2015-2019)
 #'
 #' @description
 #'
