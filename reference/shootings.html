@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • primer.data</title>
+<title>People shot by US police (2017-) — shootings • primer.data</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,11 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="People shot by US police (2017-) — shootings" />
+<meta property="og:description" content="This data comes from the book Crime by
+the Numbers: A Criminologist’s Guide to R, which compiles multiple data sets from
+the FBI Uniform Crime Report. Variables included here contain information
+on shooting victims of US police between 2015 and 2019." />
 
 
 
@@ -66,7 +70,7 @@
   <body data-spy="scroll" data-target="#toc">
     
 
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,120 +114,50 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>People shot by US police (2017-)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ppbds/primer.data/blob/master/R/shootings.R'><code>R/shootings.R</code></a></small>
+    <div class="hidden name"><code>shootings.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This data comes from the book <a href='https://crimebythenumbers.com'>Crime by
+the Numbers: A Criminologist’s Guide to R</a>, which compiles multiple data sets from
+the FBI Uniform Crime Report. Variables included here contain information
+on shooting victims of US police between 2015 and 2019.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='va'>shootings</span></code></pre></div>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="cces.html">cces</a></code> </p>
-        </td>
-        <td><p>Data from the Cooperative Congressional Election Study</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="governors.html">governors</a></code> </p>
-        </td>
-        <td><p>Election results and candidate longevity</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kenya.html">kenya</a></code> </p>
-        </td>
-        <td><p>Kenya voter registration experiment</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mail.html">mail</a></code> </p>
-        </td>
-        <td><p>Philadelphia experiment on mail-in voting</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nes.html">nes</a></code> </p>
-        </td>
-        <td><p>American National Election Studies</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nhanes.html">nhanes</a></code> </p>
-        </td>
-        <td><p>National Health and Nutrition Examination Survey</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nobel.html">nobel</a></code> </p>
-        </td>
-        <td><p>Data on Nobel Prize laureates</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nominate.html">nominate</a></code> </p>
-        </td>
-        <td><p>DW-Nominate data for US Congressional ideological ratings</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="qscores.html">qscores</a></code> </p>
-        </td>
-        <td><p>Student course evaluations from Harvard</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="shaming.html">shaming</a></code> </p>
-        </td>
-        <td><p>Michigan voting experiment with social shaming</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="shootings.html">shootings</a></code> </p>
-        </td>
-        <td><p>People shot by US police (2017-)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sps.html">sps</a></code> </p>
-        </td>
-        <td><p>Public health experiment in Mexico</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="temperature.html">temperature</a></code> </p>
-        </td>
-        <td><p>Global monthly temperature deviations (1978-2021)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="trains.html">trains</a></code> </p>
-        </td>
-        <td><p>Experimental effects on attitudes toward immigration</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A tibble with 4371 observations and 13 variables:</p><dl>
+<dt>name</dt><dd><p>character variable for name of shooting victim</p></dd>
+<dt>date</dt><dd><p>date variable for date of shooting</p></dd>
+<dt>state</dt><dd><p>character variable for state in which shooting took place</p></dd>
+<dt>city</dt><dd><p>character variable for city in which shooting took place</p></dd>
+<dt>manner_of_death</dt><dd><p>character variable for manner of death</p></dd>
+<dt>weapon</dt><dd><p>character variable for weapon used by shooting victim</p></dd>
+<dt>age</dt><dd><p>integer variable for age of shooting victim</p></dd>
+<dt>gender</dt><dd><p>character variable for gender of shooting victim</p></dd>
+<dt>race</dt><dd><p>character variable for race of shootings victim</p></dd>
+<dt>mental_illness_signs</dt><dd><p>character variable indicating whether shooting victim showed signs of mental illness</p></dd>
+<dt>threat_level</dt><dd><p>character level for tyoe of threat posed by shooting victim</p></dd>
+<dt>flee</dt><dd><p>character variable indicating whether shooting victim tried to flee</p></dd>
+<dt>body_camera</dt><dd><p>character variable indicating whether police officer involved carried a body camera</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://github.com/jacobkap/crimebythenumbers/blob/master/data/shootings.csv'>https://github.com/jacobkap/crimebythenumbers/blob/master/data/shootings.csv</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Kane</p>
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
