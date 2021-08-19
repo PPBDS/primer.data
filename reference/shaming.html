@@ -148,7 +148,7 @@ treatment groups.</p>
 the documentation for extensive discussion about the clustering procedure</p></dd>
 <dt>primary_06</dt><dd><p>0/1 integer variable indicating whether the respondent voted in the 2006 primary election</p></dd>
 <dt>treatment</dt><dd><p>factor variable indicating which of the 5 treatments was employed in 2006, but
-before the primary election that year: 'Control', 'Civic Duty', 'Hawthorne',
+before the primary election that year: 'No Postcard', 'Civic Duty', 'Hawthorne',
 'Self', or 'Neighbors'</p></dd>
 <dt>sex</dt><dd><p>character variable with values "Male" and "Female"</p></dd>
 <dt>age</dt><dd><p>integer variable indicating the respondent's age in 2006</p></dd>
@@ -178,7 +178,8 @@ number of names which could be printed on the mailing</p></dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The control group consisted of approximately 100,000 households and was observed
-without further intervention.The treatment groups consisted of about 20,000 households
+without further intervention. The value for <code>treatment</code> for such households is
+"No Postcard". The treatment groups consisted of about 20,000 households
 each, and were sent one mailing 11 days prior to the primary election. The first
 treatment group, named “Civic Duty”, received a letter that only reminded them to
 "do their civic duty and vote". The second treatment group, named "Hawthorne",
