@@ -11,7 +11,7 @@ A tibble with 344,084 observations and 15 variables:
 the documentation for extensive discussion about the clustering procedure}
 \item{primary_06}{0/1 integer variable indicating whether the respondent voted in the 2006 primary election}
 \item{treatment}{factor variable indicating which of the 5 treatments was employed in 2006, but
-before the primary election that year: 'Control', 'Civic Duty', 'Hawthorne',
+before the primary election that year: 'No Postcard', 'Civic Duty', 'Hawthorne',
 'Self', or 'Neighbors'}
 \item{sex}{character variable with values "Male" and "Female"}
 \item{age}{integer variable indicating the respondent's age in 2006}
@@ -53,7 +53,8 @@ treatment groups.
 }
 \details{
 The control group consisted of approximately 100,000 households and was observed
-without further intervention.The treatment groups consisted of about 20,000 households
+without further intervention. The value for \code{treatment} for such households is
+"No Postcard". The treatment groups consisted of about 20,000 households
 each, and were sent one mailing 11 days prior to the primary election. The first
 treatment group, named “Civic Duty”, received a letter that only reminded them to
 "do their civic duty and vote". The second treatment group, named "Hawthorne",
