@@ -1,8 +1,6 @@
 
 * Look at: https://upworthy.natematias.com/. Pick one data set which you think is cool. Add it to the package. Think about stuff which might be valuable in the chapters, obviously.
 
-* Fix documentation for shootings.
-
 
 
 ### Improvements
@@ -24,8 +22,6 @@
   - Nicer graphics on home page.
 
   - Instead, we could have an "Article" which provided a list of all the tibbles along with the one paragraph description. Then, the front page could just have a basic blurb and one nice graphic.
-
-* After semester: change "Control" to "No Postcard" in shaming$treatment. Makes clear that "control" is a conceptual category. There does not need to be a level called "Control".
 
 * Create better stickers with hexSticker package.
 
