@@ -26,4 +26,12 @@ x %<>%
 
 x %<>%
   mutate(description = str_to_title(description),
-         description = ifelse(substr(description, -1, -1) == ".", substr(description, 1, -2), description))
+         description = gsub('\\.$', '', description))
+
+
+# Save
+
+retail <- x
+
+usethis::use_data(retail, overwrite = T)
+
