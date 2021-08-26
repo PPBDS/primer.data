@@ -1,6 +1,11 @@
 
 * Look at: https://upworthy.natematias.com/. Pick one data set which you think is cool. Add it to the package. Think about stuff which might be valuable in the chapters, obviously.
 
+Fix this note:
+
+* checking data for non-ASCII characters ... NOTE
+  Note: found 4837 marked UTF-8 strings
+
 
 
 ### Improvements
