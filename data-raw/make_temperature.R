@@ -1,6 +1,5 @@
-
-
 library(tidyverse)
+library(lubridate)
 library(janitor)
 
 # This data contains monthly temperature deviations in °C from the respective
@@ -37,16 +36,22 @@ x <- read_table(read_lines("https://www.nsstc.uah.edu/data/msu/v6.0/tmt/uahncdc_
              "south_pole" = so_pol,
              "south_pole_land" = land_7,
              "south_pole_ocean" = ocean_7,
-             "australia" = aust)
+             "australia" = aust) %>%
 
+    # I don't think variables should be doubles if they only contain values that
+    # contain integers. This makes people think that something might be wrong with
+    # this data.
 
-# I don't think variables should be doubles if they only contain values that
-# contain integers. This makes people think that something might be wrong with
-# this data.
+    # Note that the created date is for the first of the month rather than the last
+    # day. It should probably be the last day since the data is an average for the
+    # month as a whole.
 
-x %<>%
-  mutate(year = as.integer(year),
-         month = as.integer(month))
+      mutate(year = as.integer(year),
+             month = as.integer(month)) %>%
+      mutate(date = ymd(paste(year, month, "1", sep = "-"))) %>%
+      select(-year, -month) %>%
+      relocate(date) %>%
+      pivot_longer(cols = globe:australia, names_to = "area", values_to = "temperature")
 
 # Save.
 
