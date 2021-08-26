@@ -9,14 +9,6 @@
 #' Individuals with a treatment value of "Treated" were exposed to two
 #' Spanish-speakers on their regular commute. "Control" individuals were not.
 #'
-#' @details
-#'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(trains)
-#' ```
-#'
 #' @format A tibble with 115 observations and 14 variables:
 #' \describe{
 #'   \item{treatment}{factor variable with two levels: "Treated" and "Control"}

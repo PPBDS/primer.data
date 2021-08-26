@@ -20,17 +20,12 @@
 #' \href{http://dx.doi.org/10.2307/2111172}{"A Spatial Model for Legislative Roll Call Analysis"}
 #' by Poole and Rosenthal (1983).
 #'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(nominate)
-#' ```
-#'
 #' @format A tibble with 49,361 observations and 9 variables:
 #' \describe{
 #'   \item{congress}{integer variable indicating the number of a member's congress,
 #'                       e.g. 116 for the 116th congress (2019-2021)}
-#'   \item{chamber}{character variable indicating the chamber in which a member served}
+#'   \item{chamber}{character variable indicating the chamber in which a member served, either "House"
+#'                  or "Senate". The value of "President" indicates that it is data for the incumbent President.}
 #'   \item{state}{character variable indicating the state a member represented}
 #'   \item{party}{character variable indicating a member's party}
 #'   \item{name}{character variable in the format "last, first" indicating a member's name}

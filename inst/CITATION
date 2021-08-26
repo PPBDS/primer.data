@@ -7,8 +7,6 @@ citEntry(
                     family = "Kane",
                     role = c("aut", "cre"),
                     email = "dave.kane@gmail.com"),
-  entry    = "Manual",
-  title    = "primer.data",
   author   = person(given = "Thomas",
                     family = "Weiss",
                     role = c("aut"),

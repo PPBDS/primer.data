@@ -13,12 +13,6 @@
 #' \href{https://electionstudies.org/wp-content/uploads/2018/12/anes_timeseries_cdf_codebook_var.pdf}{ANES
 #' codebook} provides further information on this issue.
 #'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(nes)
-#' ```
-#'
 #' @format A tibble with 38,558 observations and 17 variables:
 #' \describe{
 #'   \item{year}{integer variable for year of study}

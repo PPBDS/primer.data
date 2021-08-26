@@ -5,7 +5,7 @@
 \alias{qscores}
 \title{Student course evaluations from Harvard}
 \format{
-A tibble with 748 observations and 8 variables:
+A tibble with 748 observations and 9 variables:
 \describe{
 \item{name}{character variable with name of course}
 \item{department}{character variable with course department}
@@ -16,6 +16,7 @@ A tibble with 748 observations and 8 variables:
 \item{rating}{numeric variable representing average of students' rating of course
 (1 to 5 scale), with higher numbers indicating a higher rating}
 \item{instructor}{character variable with name of instructor}
+\item{female}{integer 0/1 variable for sex of instructor}
 }
 }
 \source{
@@ -38,39 +39,6 @@ for courses that are primarily taught in individual sections. As such, large
 courses like freshman Expository Writing (taught in 15-person sections) do
 not have data available. The data set has also been filtered to only include
 courses with more than 15 registered students.
-
- 
-
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab qscores \cr
-   Number of rows \tab 748 \cr
-   Number of columns \tab 8 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 5 \cr
-   numeric \tab 3 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   name \tab 0 \tab 1 \tab 4 \tab 97 \tab 0 \tab 687 \tab 0 \cr
-   department \tab 0 \tab 1 \tab 2 \tab 8 \tab 0 \tab 86 \tab 0 \cr
-   number \tab 0 \tab 1 \tab 1 \tab 6 \tab 0 \tab 504 \tab 0 \cr
-   term \tab 0 \tab 1 \tab 9 \tab 11 \tab 0 \tab 2 \tab 0 \cr
-   instructor \tab 0 \tab 1 \tab 5 \tab 32 \tab 0 \tab 509 \tab 0 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   enrollment \tab 0 \tab 1 \tab 50.82 \tab 70.38 \tab 16 \tab 21.00 \tab 29.0 \tab 49.0 \tab 744.0 \tab ▇▁▁▁▁ \cr
-   hours \tab 0 \tab 1 \tab 6.17 \tab 3.48 \tab 1 \tab 3.77 \tab 5.2 \tab 7.6 \tab 22.5 \tab ▇▅▂▁▁ \cr
-   rating \tab 0 \tab 1 \tab 4.18 \tab 0.52 \tab 1 \tab 3.90 \tab 4.2 \tab 4.5 \tab 5.0 \tab ▁▁▁▇▇ \cr
-}
 }
 \author{
 David Kane

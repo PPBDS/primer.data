@@ -29,11 +29,6 @@
 #' assigned to the “self” condition and 23,485 to the “neighborhood” condition,
 #' with the remaining 888,785 in the control condition receiving no postcard.
 #'
-#'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE} skimr::skim(mail) ```
-#'
 #' @format A tibble with 935,707 observations and 11 variables: \describe{
 #'   \item{treatment}{character variable indicating which of the 3 treatments
 #'   was employed before the 2020 primary election: 'No Postcard', 'Self', or

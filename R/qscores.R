@@ -16,13 +16,7 @@
 #' not have data available. The data set has also been filtered to only include
 #' courses with more than 15 registered students.
 #'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(qscores)
-#' ```
-#'
-#' @format A tibble with 748 observations and 8 variables:
+#' @format A tibble with 748 observations and 9 variables:
 #' \describe{
 #'   \item{name}{character variable with name of course}
 #'   \item{department}{character variable with course department}
@@ -33,6 +27,7 @@
 #'   \item{rating}{numeric variable representing average of students' rating of course
 #'            (1 to 5 scale), with higher numbers indicating a higher rating}
 #'   \item{instructor}{character variable with name of instructor}
+#'   \item{female}{integer 0/1 variable for sex of instructor}
 #' }
 #'
 #' @author

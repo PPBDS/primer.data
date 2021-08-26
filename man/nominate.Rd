@@ -9,7 +9,8 @@ A tibble with 49,361 observations and 9 variables:
 \describe{
 \item{congress}{integer variable indicating the number of a member's congress,
 e.g. 116 for the 116th congress (2019-2021)}
-\item{chamber}{character variable indicating the chamber in which a member served}
+\item{chamber}{character variable indicating the chamber in which a member served, either "House"
+or "Senate". The value of "President" indicates that it is data for the incumbent President.}
 \item{state}{character variable indicating the state a member represented}
 \item{party}{character variable indicating a member's party}
 \item{name}{character variable in the format "last, first" indicating a member's name}
@@ -47,40 +48,6 @@ the y-axis indicates positions on societal issues, thereby 'mapping' legislature
 detailed explanation of the technical background, see the original paper
 \href{http://dx.doi.org/10.2307/2111172}{"A Spatial Model for Legislative Roll Call Analysis"}
 by Poole and Rosenthal (1983).
-
- 
-
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab nominate \cr
-   Number of rows \tab 49361 \cr
-   Number of columns \tab 9 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 4 \cr
-   numeric \tab 5 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   chamber \tab 0 \tab 1 \tab 5 \tab 9 \tab 0 \tab 3 \tab 0 \cr
-   state \tab 0 \tab 1 \tab 2 \tab 3 \tab 0 \tab 51 \tab 0 \cr
-   party \tab 0 \tab 1 \tab 4 \tab 27 \tab 0 \tab 51 \tab 0 \cr
-   name \tab 0 \tab 1 \tab 7 \tab 42 \tab 0 \tab 12184 \tab 0 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   congress \tab 0 \tab 1.00 \tab 68.67 \tab 30.17 \tab 1 \tab 47.00 \tab 72.00 \tab 94.00 \tab 116 \tab ▃▅▇▇▇ \cr
-   born \tab 184 \tab 1.00 \tab 1873.43 \tab 57.36 \tab 1721 \tab 1831.00 \tab 1876.00 \tab 1923.00 \tab 1989 \tab ▂▅▇▇▅ \cr
-   died \tab 10337 \tab 0.79 \tab 1927.17 \tab 53.39 \tab 1790 \tab 1890.00 \tab 1931.00 \tab 1970.00 \tab 2018 \tab ▂▅▆▇▆ \cr
-   nominate_dim1 \tab 208 \tab 1.00 \tab 0.01 \tab 0.37 \tab -1 \tab -0.33 \tab -0.04 \tab 0.35 \tab 1 \tab ▁▇▅▇▁ \cr
-   nominate_dim2 \tab 208 \tab 1.00 \tab 0.02 \tab 0.47 \tab -1 \tab -0.30 \tab -0.01 \tab 0.31 \tab 1 \tab ▂▆▇▅▃ \cr
-}
 }
 \author{
 David Kane

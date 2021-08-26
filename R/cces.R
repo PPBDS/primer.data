@@ -8,14 +8,6 @@
 #' (2020)} for background and details. The raw code that was used to produce
 #' the data is accessible at Kuriwaki's \href{https://github.com/kuriwaki/cces_cumulative}{Github.}
 #'
-#' @details
-#'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(cces)
-#' ```
-#'
 #' @format A tibble with 531,755 observations and 18 variables:
 #' \describe{
 #'   \item{year}{integer variable for year of survey}

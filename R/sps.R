@@ -11,14 +11,6 @@
 #' survey (August, 2005, to September, 2005) and follow-up survey 10 months
 #' later (July, 2006, to August, 2006).
 #'
-#' @details
-#'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(sps)
-#' ```
-#'
 #'
 #' @format A tibble with 27,569 observations and 8 variables:
 #' \describe{

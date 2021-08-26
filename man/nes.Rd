@@ -54,54 +54,6 @@ biographical information. Current as of 01/20/2021.
 Some of the questions aksed in the survey have changed slightly over time. The
 \href{https://electionstudies.org/wp-content/uploads/2018/12/anes_timeseries_cdf_codebook_var.pdf}{ANES
 codebook} provides further information on this issue.
-
- 
-
-Table: Data summary\tabular{ll}{
-    \tab  \cr
-   Name \tab nes \cr
-   Number of rows \tab 38558 \cr
-   Number of columns \tab 17 \cr
-   _______________________ \tab  \cr
-   Column type frequency: \tab  \cr
-   character \tab 9 \cr
-   factor \tab 5 \cr
-   numeric \tab 3 \cr
-   ________________________ \tab  \cr
-   Group variables \tab None \cr
-}
-
-
-\strong{Variable type: character}\tabular{lrrrrrrr}{
-   skim_variable \tab n_missing \tab complete_rate \tab min \tab max \tab empty \tab n_unique \tab whitespace \cr
-   state \tab 110 \tab 1.00 \tab 2 \tab 2 \tab 0 \tab 50 \tab 0 \cr
-   gender \tab 141 \tab 1.00 \tab 4 \tab 6 \tab 0 \tab 3 \tab 0 \cr
-   race \tab 287 \tab 0.99 \tab 5 \tab 15 \tab 0 \tab 6 \tab 0 \cr
-   voted \tab 4078 \tab 0.89 \tab 2 \tab 3 \tab 0 \tab 2 \tab 0 \cr
-   pres_appr \tab 9646 \tab 0.75 \tab 6 \tab 10 \tab 0 \tab 3 \tab 0 \cr
-   influence \tab 6925 \tab 0.82 \tab 5 \tab 26 \tab 0 \tab 3 \tab 0 \cr
-   equality \tab 16902 \tab 0.56 \tab 10 \tab 26 \tab 0 \tab 6 \tab 0 \cr
-   religion \tab 14052 \tab 0.64 \tab 9 \tab 11 \tab 0 \tab 2 \tab 0 \cr
-   better_alone \tab 7794 \tab 0.80 \tab 5 \tab 8 \tab 0 \tab 2 \tab 0 \cr
-}
-
-
-\strong{Variable type: factor}\tabular{lrrlrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab ordered \tab n_unique \tab top_counts \cr
-   income \tab 2517 \tab 0.93 \tab FALSE \tab 5 \tab 34 : 11740, 68 : 9974, 0 -: 6300, 17 : 6213 \cr
-   age \tab 450 \tab 0.99 \tab FALSE \tab 7 \tab 25 : 7669, 35 : 7342, 45 : 6545, 55 : 6021 \cr
-   education \tab 397 \tab 0.99 \tab FALSE \tab 7 \tab Hig: 9269, Som: 8540, Col: 5540, Som: 4688 \cr
-   ideology \tab 619 \tab 0.98 \tab FALSE \tab 7 \tab Str: 7784, Wea: 7330, Wea: 4894, Str: 4807 \cr
-   region \tab 0 \tab 1.00 \tab FALSE \tab 4 \tab Sou: 13680, Mid: 10072, Wes: 7428, Nor: 7378 \cr
-}
-
-
-\strong{Variable type: numeric}\tabular{lrrrrrrrrrl}{
-   skim_variable \tab n_missing \tab complete_rate \tab mean \tab sd \tab p0 \tab p25 \tab p50 \tab p75 \tab p100 \tab hist \cr
-   year \tab 0 \tab 1.00 \tab 1989.40 \tab 20.50 \tab 1952 \tab 1972 \tab 1992 \tab 2012 \tab 2016 \tab ▃▃▃▃▇ \cr
-   therm_black \tab 9418 \tab 0.76 \tab 65.74 \tab 20.64 \tab 0 \tab 50 \tab 65 \tab 85 \tab 97 \tab ▁▁▇▇▇ \cr
-   therm_white \tab 9354 \tab 0.76 \tab 73.66 \tab 18.60 \tab 0 \tab 60 \tab 75 \tab 85 \tab 97 \tab ▁▁▃▅▇ \cr
-}
 }
 \author{
 David Kane

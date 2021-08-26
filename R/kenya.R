@@ -8,14 +8,6 @@
 #' quo group or one of several interventions to encourage voter registration: SMS reminders, a local
 #' administrator at a polling station, canvassing, a local admin and canvassing, or a local admin and SMS.
 #'
-#' @details
-#'
-#' &nbsp;
-#'
-#' ```{r, echo = FALSE}
-#' skimr::skim(kenya)
-#' ```
-#'
 #' @format A tibble with 1,989,680 observations and 11 variables:
 #' \describe{
 #'   \item{treatment}{factor variable that indicates either the control group or some combination of

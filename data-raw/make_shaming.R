@@ -28,6 +28,7 @@ library(tidyverse)
 # likely to be “deadwood”—those who had moved, died, or registered under more
 # than one name."
 
+
 x <- read_csv("data-raw/social_original.csv",
               col_types = cols(sex = col_character(),
                                yob = col_integer(),
@@ -35,7 +36,7 @@ x <- read_csv("data-raw/social_original.csv",
                                p2004 = col_character(),
                                g2002 = col_character(),
                                g2004 = col_character(),
-                               treatment = col_factor(),
+                               treatment = col_character(),
                                voted = col_character(),
                                hh_size = col_integer(),
                                numberofnames = col_integer())) %>%
@@ -66,8 +67,10 @@ x <- read_csv("data-raw/social_original.csv",
 
   # Make factor level order more convenient
 
+  mutate(treatment = if_else(treatment == "Control", "No Postcard", treatment)) %>%
+
   mutate(treatment = fct_relevel(treatment,
-                                 c("Control",
+                                 c("No Postcard",
                                    "Civic Duty", "Hawthorne",
                                    "Self", "Neighbors"))) %>%
 
@@ -108,7 +111,14 @@ x <- read_csv("data-raw/social_original.csv",
          neighbors)
 
 
-# Save.
+# Test some items
+
+stopifnot(nrow(x) == 344084)
+stopifnot(all(unique(x$treatment) %in% c("No Postcard",
+                                        "Civic Duty", "Hawthorne",
+                                        "Self", "Neighbors")))
+
+# Saving details
 
 shaming <- x
 
