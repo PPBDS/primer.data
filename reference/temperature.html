@@ -138,35 +138,11 @@ relative to the respective 1991-2021 average temperature.</p>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A tibble with 511 observations and 29 variables:</p><dl>
-<dt>year</dt><dd><p>integer variable for year of measurement</p></dd>
-<dt>month</dt><dd><p>integer variable for year of measurement</p></dd>
-<dt>globe</dt><dd><p>double variable for global average deviation from reference value</p></dd>
-<dt>globe_land</dt><dd><p>double variable for global average deviation from reference value on land</p></dd>
-<dt>globe_ocean</dt><dd><p>double variable for global average deviation from reference value on oceans</p></dd>
-<dt>nh</dt><dd><p>double variable for average deviation from reference value in northern hemisphere</p></dd>
-<dt>nh_land</dt><dd><p>double variable for average deviation from reference value in northern hemisphere on land</p></dd>
-<dt>nh_ocean</dt><dd><p>double variable for average deviation from reference value in northern hemisphere on oceans</p></dd>
-<dt>sh</dt><dd><p>double variable for average deviation from reference value in southern hemisphere</p></dd>
-<dt>sh_land</dt><dd><p>double variable for average deviation from reference value in southern hemisphere on land</p></dd>
-<dt>sh_ocean</dt><dd><p>double variable for average deviation from reference value in southern hemisphere on oceans</p></dd>
-<dt>tropics</dt><dd><p>double variable for average deviation from reference value in tropics</p></dd>
-<dt>tropics_land</dt><dd><p>double variable for average deviation from reference value in tropics on land</p></dd>
-<dt>tropics_ocean</dt><dd><p>double variable for average deviation from reference value in tropics on oceans</p></dd>
-<dt>north_ext</dt><dd><p>double variable for average deviation from reference value in northern extratropics</p></dd>
-<dt>north_ext_land</dt><dd><p>double variable for average deviation from reference value in northern extratropics on land</p></dd>
-<dt>north_ext_ocean</dt><dd><p>double variable for average deviation from reference value in northern extratropics on oceans</p></dd>
-<dt>south_ext</dt><dd><p>double variable for average deviation from reference value in southern extratropics</p></dd>
-<dt>south_ext_land</dt><dd><p>double variable for average deviation from reference value in southern extratropics on land</p></dd>
-<dt>south_ext_ocean</dt><dd><p>double variable for average deviation from reference value in southern extratropics on oceans</p></dd>
-<dt>north_pole</dt><dd><p>double variable for average deviation from reference value on the north pole</p></dd>
-<dt>north_pole_land</dt><dd><p>double variable for average deviation from reference value on the north pole on land</p></dd>
-<dt>north_pole_ocean</dt><dd><p>double variable for average deviation from reference value on the north pole on oceans</p></dd>
-<dt>south_pole</dt><dd><p>double variable for average deviation from reference value on the south pole</p></dd>
-<dt>south_pole_land</dt><dd><p>double variable for average deviation from reference value on the south pole on land</p></dd>
-<dt>south_pole_ocean</dt><dd><p>double variable for average deviation from reference value on the south pole on oceans</p></dd>
-<dt>usa48</dt><dd><p>double variable for average deviation from reference value in contiguous United States</p></dd>
-<dt>usa49</dt><dd><p>double variable for average deviation from reference value in contiguous United States and Alaska</p></dd>
-<dt>australia</dt><dd><p>double variable for average deviation from reference value in Australia</p></dd>
+<dt>date</dt><dd><p>first day of relevant month</p></dd>
+<dt>area</dt><dd><p>region of the world include the "globe" as a whole, the Northern Hemisphere (nh),
+the tropics, the poles and so on. "ext" refers to the region between the tropics
+and the poles. usa49 is the continental US, including Alaska but not Hawaii.</p></dd>
+<dt>temperature</dt><dd><p>average deviation from reference temperature</p></dd>
 
 </dl>
 
