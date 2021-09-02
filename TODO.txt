@@ -36,21 +36,10 @@ Fix this note:
 
 * Non-political science data:
 
-
- - Shark attacks since the 16th century (https://www.floridamuseum.ufl.edu/shark-attacks/)
- - Deadly electorate conflicts worldwide (https://doi.org/10.1177%2F00220027211021620)
  - NYC taxi and limousine trip records (https://registry.opendata.aws/nyc-tlc-trip-records-pds/)
- - Trump's Twitter insults (https://www.kaggle.com/ayushggarg/all-trumps-twitter-insults-20152021)
  - College major & income (https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16)
-
-
-
-
-* Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
-
-
-* Called `police`. [Open police data](https://openpolicing.stanford.edu/data/). Something with millions of rows and, ideally, geographic coordinates. We won't include this data in our repo. Instead, the make_police.R script will download and process it. Ideally, we can get the final police.rda to be less than 100 meg so that we don't need to turn on git-lfs again.
-
-* World Values Survey: http://www.worldvaluessurvey.org/wvs.jsp
+ - Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
+ - Called `police`. [Open police data](https://openpolicing.stanford.edu/data/). Something with millions of rows and, ideally, geographic coordinates. We won't include this data in our repo. Instead, the make_police.R script will download and process it. Ideally, we can get the final police.rda to be less than 100 meg so that we don't need to turn on git-lfs again.
+ - World Values Survey: http://www.worldvaluessurvey.org/wvs.jsp
 
 
