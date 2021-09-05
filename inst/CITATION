@@ -1,19 +1,8 @@
 citHeader("To cite 'primer.data' in publications use:")
 
 citEntry(
-  entry    = "Manual",
-  title    = "primer.data",
-  author   = person(given = "David",
-                    family = "Kane",
-                    role = c("aut", "cre"),
-                    email = "dave.kane@gmail.com"),
-  author   = person(given = "Thomas",
-                    family = "Weiss",
-                    role = c("aut"),
-                    email = "tcweiss@protonmail.com"),
+  entry = "Manual",
+  title = "primer.data",
   year = "2021",
-  url      = "https://github.com/PPBDS/primer.data",
-  textVersion = paste("Kane, D., & Weiss, T. (2021), 'primer.data'. R package version 0.1.0, <https://github.com/PPBDS/primer.data>."
-
-  )
-)
+  url  = "https://github.com/PPBDS/primer.data",
+  textVersion = paste("Kane, D., & Weiss, T. (2021), 'primer.data'. R package version 0.7.0, <https://github.com/PPBDS/primer.data>."))
