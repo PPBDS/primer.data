@@ -1,6 +1,13 @@
 
 # CODE TO CREATE CURRENT DATA:
 
+library(tidyverse)
+library(magrittr)
+library(janitor)
+library(parallel)
+library(doParallel)
+library(foreach)
+
 # There is a database with all Trump tweets (https://www.thetrumparchive.com/),
 # The New York Times has used this to extract what they consider insults
 # (https://www.nytimes.com/interactive/2021/01/19/upshot/trump-complete-insult-list.html),
