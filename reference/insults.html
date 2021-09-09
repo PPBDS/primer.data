@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Election results and candidate longevity — governors • primer.data</title>
+<title>Trump's Twitter insults (2014-2021) — insults • primer.data</title>
 
 
 <!-- jquery -->
@@ -39,14 +39,14 @@
 
 
 
-<meta property="og:title" content="Election results and candidate longevity — governors" />
-<meta property="og:description" content="This data is from the paper &quot;Longevity Returns to Political
-Office&quot; by Barfort, Klemmensen &amp;amp;
-Larsen (2019). The purpose of the study (pdf)
-was to explore how winning an
-election influences the lifespan of a candidate. The data set includes all
-the candidates
-in U.S. gubernatorial elections from 1945 to 2012 who were deceased as of 2012." />
+<meta property="og:title" content="Trump's Twitter insults (2014-2021) — insults" />
+<meta property="og:description" content="This dataset was published by Ayush Garg
+on
+Kaggle. His analysis is based on a comparison between all tweets from the
+Trump Twitter Archive and a list of insulting Trump tweets published by The
+New York Times. Since there is no way to define what constitutes an insult,
+this may not necessarily represent a complete list of what someone might
+consider insulting tweets." />
 
 
 
@@ -119,55 +119,37 @@ in U.S. gubernatorial elections from 1945 to 2012 who were deceased as of 2012."
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Election results and candidate longevity</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ppbds/primer.data/blob/master/R/governors.R'><code>R/governors.R</code></a></small>
-    <div class="hidden name"><code>governors.Rd</code></div>
+    <h1>Trump's Twitter insults (2014-2021)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ppbds/primer.data/blob/master/R/insults.R'><code>R/insults.R</code></a></small>
+    <div class="hidden name"><code>insults.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This data is from the paper "Longevity Returns to Political
-Office" by <a href='https://doi.org/10.1017/psrm.2019.63'>Barfort, Klemmensen &amp;
-Larsen (2019)</a>. The purpose of the study (<a href='https://github.com/PPBDS/primer.data/blob/master/inst/papers/governors.pdf'>pdf</a>)
-was to explore how winning an
-election influences the lifespan of a candidate. The data set includes all
-the candidates
-in U.S. gubernatorial elections from 1945 to 2012 who were deceased as of 2012.</p>
+    <p>This dataset was published by Ayush Garg
+<a href='https://www.kaggle.com/ayushggarg/all-trumps-twitter-insults-20152021'>on
+Kaggle</a>. His analysis is based on a comparison between all tweets from the
+Trump Twitter Archive and a list of insulting Trump tweets published by The
+New York Times. Since there is no way to define what constitutes an insult,
+this may not necessarily represent a complete list of what someone might
+consider insulting tweets.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='va'>governors</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='va'>insults</span></code></pre></div>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 1,092 observations and 11 variables:</p><dl>
-<dt>state</dt><dd><p>character variable indicating the state in which an election took place</p></dd>
-<dt>year</dt><dd><p>integer variable indicating the year in which an election took place</p></dd>
-<dt>first_name</dt><dd><p>character variable indicating the first name of a candidate</p></dd>
-<dt>last_name</dt><dd><p>character variable indicating the last name of a candidate</p></dd>
-<dt>party</dt><dd><p>character variable indicating a candidate's party</p></dd>
-<dt>gender</dt><dd><p>character variable indicating a candidate's gender</p></dd>
-<dt>died</dt><dd><p>date variable indicating the candidate's date of death</p></dd>
-<dt>status</dt><dd><p>character variable indicating whether a candidate was the challenger or incumbent</p></dd>
-<dt>win_margin</dt><dd><p>double variable indicating the percentage margin by which the election was won
-(positive values) or lost (negative values)</p></dd>
-<dt>population</dt><dd><p>number of people living in the state at the time of the election</p></dd>
-<dt>death_age</dt><dd><p>years a candidate lived</p></dd>
-<dt>election_age</dt><dd><p>years a candidate lived before the election took place</p></dd>
-<dt>lived_after</dt><dd><p>years a candidate lived after the election took place</p></dd>
+    <p>A tibble with 10,359 observations and 4 variables:</p><dl>
+<dt>date</dt><dd><p>date varibale for the date on which President Trump posted an insulting tweet</p></dd>
+<dt>target</dt><dd><p>character variable for the target of the insult</p></dd>
+<dt>insult</dt><dd><p>character variable for the insult</p></dd>
+<dt>tweet</dt><dd><p>character variable for the text of the complete tweet</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://doi.org/10.7910/DVN/IBKYRX'>https://doi.org/10.7910/DVN/IBKYRX</a></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>First, for a given election, only the two candidates who received the
-highest number of votes were included. Second, candidates with unknown
-dates of death were excluded, resulting in fewer observations for elections in
-recent years, since most recent candidates are still alive. Third, in a few
-instances, only the year of birth or death could be determined; in these cases,
-the date was taken to be July 1 of that year.</p>
+    <p><a href='https://www.kaggle.com/ayushggarg/all-trumps-twitter-insults-20152021'>https://www.kaggle.com/ayushggarg/all-trumps-twitter-insults-20152021</a></p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Kane</p>
