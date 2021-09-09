@@ -6,6 +6,13 @@ Fix this note:
 * checking data for non-ASCII characters ... NOTE
   Note: found 4837 marked UTF-8 strings
 
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘insults’
+Undocumented data sets:
+  ‘insults’
+
+
 
 
 ### Improvements
