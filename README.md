@@ -57,18 +57,40 @@ assign to an object manually. See the following example of a plot using
 library(tidyverse)
 library(primer.data)
 
+nobel %>%
+  group_by(born_country, year) %>%
+  summarize(prizes = n()) %>%
+  mutate(cum_prize = cumsum(prizes)) %>%
+  ungroup() %>%
+  filter(born_country %in% c("USA", "United Kingdom", 
+                             "Germany", "France", 
+                             "Poland", "Sweden", 
+                             "Japan")) %>%
+  mutate(born_country = factor(born_country, levels = c("USA", "United Kingdom",
+                                                        "Germany", "France", 
+                                                        "Sweden", "Poland", 
+                                                        "Japan"))) %>% 
 
-ggplot(sub, aes(x = year, y = cum_prize, color = factor(born_country))) +
+ggplot(., aes(x = year, y = cum_prize, color = factor(born_country))) +
   geom_line() +
+  geom_vline(aes(xintercept = 1945), color = "darkgrey") +
+  geom_text(aes(x = 1941, 
+                y = 100, 
+                label = "End of WW2"), 
+                color = "darkgrey", 
+                angle = 90, 
+                vjust = 1.2,
+                size = 3) +
   scale_x_continuous(limits = c(1900, 2020),  expand = expand_scale(0, 1)) +
   labs(title = "Nobel Prizes Over Time by Origin of Laureate",
+       subtitle = "Number of U.S. laureates has grown at higher pace since 1945",
        y = "Prizes (Cumulative)",
        x = "Year",
        color = "Country") +
-  theme_bw()
+  theme_light()
 ```
 
-<!-- DK: We need some comments explaining what this is doing and how we can replace it. Specifically, why place the figure in man/ rather than inst/? Why can't we just have this code run and save/show the image? Hate the eval=FALSE above. -->
+<!-- TW: It is also possible to have this plot created by the code chunk itself. However, it is way to large and adjusting the dimensions causes errors. I don't know why. So for the time being, including a .png file is the better solution. -->
 
 <img src= "man/figures/readme_plot.png" align="center">
 
@@ -79,15 +101,13 @@ citation("primer.data")
 #> 
 #> To cite 'primer.data' in publications use:
 #> 
-#>   Kane, D., & Weiss, T. (2021), 'primer.data'. R package version 0.1.0,
+#>   Kane, D., & Weiss, T. (2021), 'primer.data'. R package version 0.7.0,
 #>   <https://github.com/PPBDS/primer.data>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
 #>     title = {primer.data},
-#>     author = {David Kane},
-#>     author = {David Kane},
 #>     year = {2021},
 #>     url = {https://github.com/PPBDS/primer.data},
 #>   }
