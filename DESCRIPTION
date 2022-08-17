@@ -1,6 +1,7 @@
 Package: primer.data
 Title: Data for Preceptor's Primer for Bayesian Data Science
-Version: 0.7.1.9001
+Version: 0.7.2.9001
+Date: 2022-08-16
 Authors@R: 
   c(person(given = "David",
            family = "Kane",
@@ -19,7 +20,7 @@ Config/testthat/edition: 3
 LazyData: true
 LazyDataCompression: gzip
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Depends: R (>= 4.1.0)
 Suggests: 
     tidyverse,
