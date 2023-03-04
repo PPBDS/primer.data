@@ -1,6 +1,6 @@
 Package: primer.data
 Title: Data for Preceptor's Primer for Bayesian Data Science
-Version: 0.7.2.9001
+Version: 0.7.2.9002
 Date: 2022-08-16
 Authors@R: 
   c(person(given = "David",

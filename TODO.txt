@@ -1,3 +1,8 @@
+* Revisit the connectedness data.
+  * We have copies of the NYT article in the bootcamp repo. Where should we keep that so that students have easy access?
+  * Would be nice to add income data so that we can reproduce some of the scatter plots from that article.
+  * Might be nice to add some other variables. Even other versions of connectedness would allow us to test the robustness of our main finding.
+
 
 * Look at: https://upworthy.natematias.com/. Pick one data set which you think is cool. Add it to the package. Think about stuff which might be valuable in the chapters, obviously.
 
@@ -40,6 +45,8 @@ Undocumented data sets:
 
 
 ### Data Sets
+
+* Need some business data sets, especially ones with real randomized testing. Maybe A/B testing of some sort.
 
 * Non-political science data:
 
