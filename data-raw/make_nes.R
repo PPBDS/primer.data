@@ -2,6 +2,9 @@ library(tidyverse)
 library(haven)
 library(usethis)
 
+# TOD0: modern versions of case_when() don't require NA_character_ nonsense, so
+# this code can be simplified.
+
 # This dataset is from the American National Election Survey (ANES), a project
 # that aims to provide insights into voter behavior. ANES has been running since
 # 1948 before and after each presidential election, and is run by academics at
@@ -13,57 +16,64 @@ library(usethis)
 # https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/.
 
 # The raw zip is in the repo. Derived files are too big to commit. So, we just
-# unzip, read and then delete. Should take a closer look at the code book. Would
-# reading in the stata version be better?
+# unzip, read and then delete. Should take a closer look at the code book.
 
 # You would think that someone had already done this, but I can't find anything
 # but this:
 
 # https://github.com/jamesmartherus/anesr
 
-unzip("data-raw/anes_timeseries_cdf_dta.zip")
+unzip("data-raw/anes_timeseries_cdf_stata_20220916.zip")
 
-raw_data <- read_dta("anes_timeseries_cdf.dta")
+raw_data <- read_dta("anes_timeseries_cdf_stata_20220916.dta")
 
-stopifnot(all(file.remove(c("anes_timeseries_cdf_stata13.dta",
-                            "anes_timeseries_cdf.dta",
-                            "anes_timeseries_cdf_codebook.zip"))))
+stopifnot(all(file.remove(c("anes_timeseries_cdf_stata_20220916.dta",
+                            "anes_timeseries_cdf_codebook_app_20220916.pdf",
+                            "anes_timeseries_cdf_codebook_var_20220916.pdf"))))
 
 
-x <- raw_data %>%
+x <- raw_data |>
 
   # Only retains presidential election years.
 
-  filter(VCF0004 %in% seq(1948, max(raw_data$VCF0004), by = 4)) %>%
+  filter(VCF0004 %in% seq(1948, max(raw_data$VCF0004), by = 4)) |>
 
 
-  # Picking relevant variables: gender, income, year,
-  # race, party identification, education, state FIPS
-  # code, voted in national elections?, age group,
-  # incumbent president's approval, region, thermometer
-  # (blacks), thermometer (whites), USA better off alone?,
-  # importance of religion, should society of ensure equal
-  # opportunity?, people like R have say in government actions,
+  # Picking relevant variables: gender, income, year, race, party
+  # identification, education, state FIPS code, voted in national elections?,
+  # age group, incumbent president's approval, region, thermometer (blacks),
+  # thermometer (whites), USA better off alone?, importance of religion, should
+  # society of ensure equal opportunity?, people like R have say in government
+  # actions,
+
+  # Considering these variables as well.
+
+  # VCF0701 REGISTERED TO VOTE PRE-ELECTION
+  # VCF0702 DID RESPONDENT VOTE IN THE NATIONAL ELECTIONS
+  # VCF0704 VOTE FOR PRESIDENT- MAJOR CANDIDATES
+  # VCF0704a VOTE FOR PRESIDENT- MAJOR PARTIES
+  # VCF0705 VOTE FOR PRESIDENT- MAJOR PARTIES AND OTHER
+  # VCF0706 VOTE AND NONVOTE- PRESIDENT
 
   select(VCF0104, VCF0114, VCF0004,
          VCF0105a, VCF0301, VCF0140a,
          VCF0901a, VCF0702, VCF0102,
          VCF0450, VCF0112, VCF0206,
          VCF0207, VCF0823, VCF0846,
-         VCF9013, VCF0613) %>%
+         VCF9013, VCF0613, VCF0704) |>
 
 
   # Renaming and cleaning gender variable.
 
-  mutate(VCF0104 = as.character(as_factor(VCF0104))) %>%
+  mutate(VCF0104 = as.character(as_factor(VCF0104))) |>
 
   separate(VCF0104, into = c(NA, "gender"),
-           sep = "[.]") %>%
+           sep = "[.]") |>
 
   mutate(gender = case_when(
     gender == " Female" ~ "Female",
     gender == " Male" ~ "Male",
-    gender == " Other (2016)" ~ "Other")) %>%
+    gender == " Other (2016)" ~ "Other")) |>
 
 
   # Renaming and cleaning income variable. Note that recoding
@@ -73,35 +83,35 @@ x <- raw_data %>%
   # between each percentile group are the same, which is not
   # the case. A factor variable makes more sense here.
 
-  mutate(VCF0114 = as.character(as_factor(VCF0114)))  %>%
+  mutate(VCF0114 = as.character(as_factor(VCF0114)))  |>
 
   separate(VCF0114, into = c(NA, "income"),
-           sep = "[.]") %>%
+           sep = "[.]") |>
 
   mutate(income = as.factor(case_when(
     income == " 96 to 100 percentile" ~ "96 - 100",
     income == " 68 to 95 percentile" ~ "68 - 95",
     income == " 34 to 67 percentile" ~ "34 - 67",
     income == " 17 to 33 percentile" ~ "17 - 33",
-    income == " 0 to 16 percentile" ~ "0 - 16"))) %>%
+    income == " 0 to 16 percentile" ~ "0 - 16"))) |>
 
 
   # Cleaning year variable.
 
-  mutate(year = as.integer(VCF0004)) %>%
+  mutate(year = as.integer(VCF0004)) |>
 
-  select(-VCF0004) %>%
+  select(-VCF0004) |>
 
 
   # Filtering out all 1948 observations because they are
   # lacking data on several variables.
 
-  filter(year > 1948) %>%
+  filter(year > 1948) |>
 
 
   # Cleaning race variable.
 
-  mutate(VCF0105a = as.character(as_factor(VCF0105a))) %>%
+  mutate(VCF0105a = as.character(as_factor(VCF0105a))) |>
 
 
   # I elected to use str_extract as the conditional test here because I
@@ -134,12 +144,12 @@ x <- raw_data %>%
 
     str_extract(VCF0105a,
                 pattern = "Non-white") == "Non-white" ~ "Other",
-                                                 TRUE ~ NA_character_))) %>%
+                                                 TRUE ~ NA_character_))) |>
 
 
   # Dropping the leftover numeric race variable.
 
-  select(-VCF0105a) %>%
+  select(-VCF0105a) |>
 
 
   # Cleaning ideology variable. This code is a mess! Must be an easier way. We
@@ -147,14 +157,14 @@ x <- raw_data %>%
   # whomever uses the data, so we will just keep this as a factor, but with
   # levels in the correct order.
 
-  mutate(VCF0301 = as_factor(VCF0301)) %>%
-  mutate(VCF0301 = as.character(VCF0301)) %>%
+  mutate(VCF0301 = as_factor(VCF0301)) |>
+  mutate(VCF0301 = as.character(VCF0301)) |>
 
   mutate(ideology = str_sub(VCF0301,
                             start = 4,
-                            end = -1)) %>%
+                            end = -1)) |>
 
-  select(-VCF0301) %>%
+  select(-VCF0301) |>
 
   # Whoah! Is there a weird bug in parse_factor? If you use parse_factor instead
   # of factor in the next line, the NA values get converted into another level,
@@ -167,11 +177,11 @@ x <- raw_data %>%
                                       "Independent - Independent",
                                       "Independent - Republican",
                                       "Weak Republican",
-                                      "Strong Republican"))) %>%
+                                      "Strong Republican"))) |>
 
   # Cleaning education variable.
 
-  mutate(VCF0140a = as.character(as_factor(VCF0140a))) %>%
+  mutate(VCF0140a = as.character(as_factor(VCF0140a))) |>
 
   mutate(education = as.character(case_when(
     str_extract(VCF0140a, pattern = "1. ") == "1. " ~ "Elementary",
@@ -185,7 +195,7 @@ x <- raw_data %>%
     str_extract(VCF0140a, pattern = "5. ") == "5. " ~ "Some College",
     str_extract(VCF0140a, pattern = "6. ") == "6. " ~ "College",
     str_extract(VCF0140a, pattern = "7. ") == "7. " ~ "Adv. Degree",
-    TRUE ~ NA_character_))) %>%
+    TRUE ~ NA_character_))) |>
 
 
   # Converting education variable to a factor.
@@ -194,12 +204,12 @@ x <- raw_data %>%
                        levels = c("Elementary", "Some Highschool",
                                   "Highschool", "Highschool +",
                                   "Some College", "College",
-                                  "Adv. Degree"))) %>%
+                                  "Adv. Degree"))) |>
 
 
   # Dropping the leftover numeric education variable.
 
-  select(-VCF0140a) %>%
+  select(-VCF0140a) |>
 
 
   # Cleaning state variable. Going from a haven_labelled object to an
@@ -209,19 +219,19 @@ x <- raw_data %>%
   # it worked, I tested for coherence throughout and this was the first
   # method I arrived at that results in accurate data.
 
-  mutate(fips = as.integer(as.character(as_factor(VCF0901a)))) %>%
+  mutate(fips = as.integer(as.character(VCF0901a))) |>
 
 
   # Dropping leftover state variable.
 
-  select(-VCF0901a) %>%
+  select(-VCF0901a) |>
 
   # Cleaning/renaming region variable
 
   mutate(region = as.factor(case_when(VCF0112 == 1 ~ "Northeast",
                                       VCF0112 == 2 ~ "Midwest",
                                       VCF0112 == 3 ~ "South",
-                                      VCF0112 == 4 ~ "West"))) %>%
+                                      VCF0112 == 4 ~ "West"))) |>
 
   # Dropping leftover region variable
 
@@ -232,7 +242,7 @@ x <- raw_data %>%
 # from https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696.
 # Relevant .csv file included in `data-raw`.
 
-fips_key <- read.csv("data-raw/fips_key.csv") %>%
+fips_key <- read.csv("data-raw/fips_key.csv") |>
 
   select(fips, state_abbr)
 
@@ -242,33 +252,33 @@ fips_key <- read.csv("data-raw/fips_key.csv") %>%
 # Creating a new dataframe by joining NES and key dataframes by
 # fips codes.
 
-z <- x %>%
-      left_join(fips_key, by = "fips") %>%
+z <- x |>
+      left_join(fips_key, by = "fips") |>
 
-  mutate(state = state_abbr) %>%
+  mutate(state = state_abbr) |>
 
-  select(-fips, -state_abbr) %>%
+  select(-fips, -state_abbr) |>
 
 
-# Cleaning voted variable. This is about voting in the election that occurred
-# this year. I *think* that ANES is always (?) conducted after election day.
+  # Cleaning voted variable. This is about voting in the election that occurred
+  # this year. I *think* that ANES is always (?) conducted after election day.
 
-  mutate(voted = as_factor(VCF0702)) %>%
+  mutate(voted = as_factor(VCF0702)) |>
 
   separate(col = voted, into = c("voted", "v2"),
-           sep = "[.]") %>%
+           sep = "[.]") |>
 
   mutate(voted = as.character(case_when(
              str_extract(v2, pattern = "voted") == "voted" ~ "Yes",
              str_extract(v2, pattern = "not") == "not" ~ "No",
-             TRUE ~ NA_character_))) %>%
+             TRUE ~ NA_character_))) |>
 
-  select(-VCF0702, -v2) %>%
+  select(-VCF0702, -v2) |>
 
 
-# Cleaning age group variable.
+  # Cleaning age group variable.
 
-  mutate(age = as_factor(VCF0102)) %>%
+  mutate(age = as_factor(VCF0102)) |>
   mutate(age = as.factor(case_when(
     str_detect(age, "1. ") == T ~ "17 - 24",
     str_detect(age, "2. ") == T ~ "25 - 34",
@@ -277,64 +287,54 @@ z <- x %>%
     str_detect(age, "5. ") == T ~ "55 - 64",
     str_detect(age, "6. ") == T ~ "65 - 74",
     str_detect(age, "7. ") == T ~ "75 +",
-    TRUE ~ NA_character_))) %>%
+    TRUE ~ NA_character_))) |>
 
-  select(-VCF0102) %>%
+  select(-VCF0102) |>
 
+  # Cleaning presidential approval variable. Need to find regex method
+  # to automatize the process of using case_when.
 
-# Cleaning presidential approval variable. Need to find regex method
-# to automatize the process of using case_when.
-
-  mutate(pres_appr = as_factor(VCF0450)) %>%
+  mutate(pres_appr = as_factor(VCF0450)) |>
   mutate(pres_appr = as.character(case_when(
     str_detect(pres_appr, "1. ") == T ~ "Approve",
     str_detect(pres_appr, "2. ") == T ~ "Disapprove",
     str_detect(pres_appr, "8. ") == T ~ "Unsure",
-    TRUE ~ NA_character_))) %>%
+    TRUE ~ NA_character_))) |>
 
-  select(-VCF0450) %>%
-
-
-# Cleaning thermometer (blacks) variable.
-
-  mutate(therm_black = as.character(as_factor(VCF0206)),
-         therm_black = recode(therm_black, "97. 97-100 Degrees" = "97"),
-         therm_black = as.integer(therm_black)) %>%
-  select(-VCF0206) %>%
+  select(-VCF0450) |>
 
 
-# Cleaning thermometer (whites) variable.
+  # Cleaning thermometer variables.
 
-  mutate(therm_white = as.character(as_factor(VCF0207)),
-         therm_white = recode(therm_white, "97. 97-100 Degrees" = "97"),
-         therm_white = as.integer(therm_white)) %>%
-  select(-VCF0207) %>%
+  mutate(therm_black = as.integer(VCF0206)) |>
+  mutate(therm_white = as.integer(VCF0207)) |>
+  select(-VCF0206, -VCF0207) |>
 
 
-# Cleaning variable on whether US would be better off
-# if unconcerned with rest of world.
+  # Cleaning variable on whether US would be better off
+  # if unconcerned with rest of world.
 
   mutate(better_alone = as.character(as_factor(VCF0823)),
          better_alone = case_when(
            better_alone == "1. Agree (1956-1960: incl. 'agree strongly' and 'agree" ~ "Agree",
            better_alone == "2. Disagree (1956-1960: incl. 'disagree strongly' and" ~ "Disagree",
-           TRUE ~ NA_character_)) %>%
-  select(-VCF0823) %>%
+           TRUE ~ NA_character_)) |>
+  select(-VCF0823) |>
 
 
-# Cleaning religious importance variable.
+  # Cleaning religious importance variable.
 
   mutate(religion = as.character(as_factor(VCF0846)),
          religion = case_when(
            religion == "1. Yes, important" ~ "Important",
            religion == "2. No, not important" ~ "Unimportant",
            religion == "8. DK" ~ "Don't know",
-           TRUE ~ NA_character_)) %>%
-  select(-VCF0846) %>%
+           TRUE ~ NA_character_)) |>
+  select(-VCF0846) |>
 
 
-# Cleaning variable on whether society should ensure equal
-# opportunities to succeed.
+  # Cleaning variable on whether society should ensure equal
+  # opportunities to succeed.
 
   mutate(equality = as.character(as_factor(VCF9013)),
          equality = case_when(
@@ -344,26 +344,35 @@ z <- x %>%
            equality == "4. Disagree somewhat" ~ "Disagree somewhat",
            equality == "5. Disagree strongly" ~ "Disagree strongly",
            equality == "8. DK" ~ "Don't know",
-           TRUE ~ NA_character_)) %>%
-  select(-VCF9013) %>%
+           TRUE ~ NA_character_)) |>
+  select(-VCF9013) |>
 
-# Cleaning variable on whether people like respondent have any
-# say in what the government does.
+  # Cleaning variable on whether people like respondent have any
+  # say in what the government does.
 
   mutate(influence = as.character(as_factor(VCF0613)),
          influence = case_when(
            influence == "1. Agree" ~ "Agree",
            influence == "2. Disagree" ~ "Disagree",
            influence == "3. Neither agree nor disagree (1988 and later only)" ~ "Neither agree nor disagree",
-           TRUE ~ NA_character_)) %>%
-  select(-VCF0613) %>%
+           TRUE ~ NA_character_))  |>
+  select(-VCF0613) |>
+
+  # Clean voting variable
+
+  mutate(pres_vote = as.integer(VCF0704)) |>
+  mutate(pres_vote = case_when(
+    pres_vote == 1 ~ "Democrat",
+    pres_vote == 2 ~ "Republican",
+    pres_vote == 3 ~ "Third Party")) |>
+  select(-VCF0704) |>
 
 
 select(year, state, gender, income, age,
        education, race, ideology, voted,
        region, pres_appr, influence, equality,
        religion, better_alone, therm_black,
-       therm_white)
+       therm_white, pres_vote)
 
 # Check and save.
 

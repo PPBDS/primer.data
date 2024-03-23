@@ -1,3 +1,6 @@
+
+
+
 * Revisit the connectedness data.
   * We have copies of the NYT article in the bootcamp repo. Where should we keep that so that students have easy access?
   * Would be nice to add income data so that we can reproduce some of the scatter plots from that article.

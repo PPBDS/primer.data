@@ -5,7 +5,7 @@
 \alias{nes}
 \title{American National Election Studies}
 \format{
-A tibble with 38,558 observations and 17 variables:
+A tibble with 46,838 observations and 18 variables:
 \describe{
 \item{year}{integer variable for year of study}
 \item{state}{character variable for the 2-letter abbreviation of respondent's survey state}
@@ -35,6 +35,9 @@ parts of the world". Question was not asked before 1956}
 "thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964}
 \item{therm_white}{integer variable for respondent's self-reported attitude toward white people. Takes
 "thermometer" values from 0 (very negative) to 100 (very positive). Question was not asked before 1964}
+\item{pres_vote}{Character variable indicating respondent's vote for Presidential party. Allowed values
+are "Democrat", "Republican", or "Third Party". Value of "Third Party" restricted to Wallace in 1968,
+Anderson in 1980, Perot in 1992 or 1996, and Jorgensen in 2020}
 }
 }
 \source{
@@ -48,7 +51,7 @@ This dataset is from the \href{https://electionstudies.org/}{American National
 Election Studies (ANES)}, a survey that aims to provide insights into voter
 behavior. It has been conducted since 1948 before and after each presidential
 election, and combines questions about voters' political attitudes with extensive
-biographical information. Current as of 01/20/2021.
+biographical information. Current as of September 16, 2022.
 }
 \details{
 Some of the questions aksed in the survey have changed slightly over time. The
