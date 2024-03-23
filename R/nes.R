@@ -17,7 +17,7 @@
 #' \describe{
 #'   \item{year}{integer variable for year of study}
 #'   \item{state}{character variable for the 2-letter abbreviation of respondent's survey state}
-#'   \item{gender}{character variable with values "Male", "Female", and "Other"}
+#'   \item{sex}{character variable with values "Male", "Female", and "Other"}
 #'   \item{income}{factor variable for respondent's income percentile group. Has levels
 #'                 "0 - 16", "17 - 33", "34 - 67", "68 - 95", and "96 - 100"}
 #'   \item{age}{factor variable for respondent's age group. Has levels

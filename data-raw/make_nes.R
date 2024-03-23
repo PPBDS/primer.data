@@ -39,7 +39,7 @@ x <- raw_data |>
   filter(VCF0004 %in% seq(1948, max(raw_data$VCF0004), by = 4)) |>
 
 
-  # Picking relevant variables: gender, income, year, race, party
+  # Picking relevant variables: sex, income, year, race, party
   # identification, education, state FIPS code, voted in national elections?,
   # age group, incumbent president's approval, region, thermometer (blacks),
   # thermometer (whites), USA better off alone?, importance of religion, should
@@ -63,17 +63,17 @@ x <- raw_data |>
          VCF9013, VCF0613, VCF0704) |>
 
 
-  # Renaming and cleaning gender variable.
+  # Renaming and cleaning sex variable.
 
   mutate(VCF0104 = as.character(as_factor(VCF0104))) |>
 
-  separate(VCF0104, into = c(NA, "gender"),
+  separate(VCF0104, into = c(NA, "sex"),
            sep = "[.]") |>
 
-  mutate(gender = case_when(
-    gender == " Female" ~ "Female",
-    gender == " Male" ~ "Male",
-    gender == " Other (2016)" ~ "Other")) |>
+  mutate(sex = case_when(
+    sex == " Female" ~ "Female",
+    sex == " Male" ~ "Male",
+    sex == " Other (2016)" ~ "Other")) |>
 
 
   # Renaming and cleaning income variable. Note that recoding
@@ -368,7 +368,7 @@ z <- x |>
   select(-VCF0704) |>
 
 
-select(year, state, gender, income, age,
+select(year, state, sex, income, age,
        education, race, ideology, voted,
        region, pres_appr, influence, equality,
        religion, better_alone, therm_black,
