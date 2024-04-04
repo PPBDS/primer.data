@@ -116,8 +116,7 @@ x <- read_csv("data-raw/longevity.csv",
          last_name = "cand_last",
          died = "death_date_imp",
          win_margin = "margin_pct_1",
-         population = "pop_annual",
-         gender = "sex") %>%
+         population = "pop_annual") %>%
 
 
   # years is a more natural measurement for later analysis. Right? Are these

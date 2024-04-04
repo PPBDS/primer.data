@@ -107,7 +107,7 @@ x <- read_csv("data-raw/pnas_data.csv",
   # liberals and for Republicans separately to make a guess.
 
   mutate(age = as.integer(age)) %>%
-  mutate(gender = ifelse(male, "Male", "Female")) %>%
+  mutate(sex = ifelse(male, "Male", "Female")) %>%
   mutate(party = ifelse(republican, "Republican", "Democrat")) %>%
   mutate(liberal = ifelse(liberal, TRUE, FALSE)) %>%
 
@@ -121,7 +121,7 @@ x <- read_csv("data-raw/pnas_data.csv",
   # Might think about adding another variable or two sometime . . .
 
   select(treatment, att_start, att_end,
-         gender, race, liberal, party, age, income,
+         sex, race, liberal, party, age, income,
          line, station, hisp_perc,
          ideology_start, ideology_end)
 

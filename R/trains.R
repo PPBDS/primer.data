@@ -16,7 +16,7 @@
 #'                    with higher numbers meaning more conservative}
 #'   \item{att_end}{Ending attitude toward immigration issues. Uses a 3 to 15 scale,
 #'                  with higher numbers meaning more conservative}
-#'   \item{gender}{character variable with values "Male" and "Female"}
+#'   \item{sex}{character variable with values "Male" and "Female"}
 #'   \item{race}{character variable with values "Asian", "Black", "Hispanic", and "White"}
 #'   \item{liberal}{logical variable with TRUE meaning liberal}
 #'   \item{party}{character variable with values "Democrat" and "Republican"}
