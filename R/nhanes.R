@@ -16,7 +16,7 @@
 #'
 #' @format A tibble with 10,000 observations and 15 variables:
 #' \describe{
-#'   \item{gender}{character variable with values "Male" and "Female"}
+#'   \item{sex}{character variable with values "Male" and "Female"}
 #'   \item{survey}{integer variable with the year the survey was conducted in. Most tests were
 #'                      conducted across two years, so the earlier year is used.}
 #'   \item{age}{character variable for age in years}
@@ -33,7 +33,7 @@
 #'                    with levels, "Several", "None", "Most"
 #'                    number of days over two week period.  Survey answers included: "Not at all", "Several days", "More than half the days", "Nearly every day" (source: NHANES DPQ_F (2009-2010))}
 #'   \item{pregnancies}{integer variable for number of pregnanices.
-#'                      NA if the individual, regardless of gender, hasn't experienced a pregnancy}
+#'                      NA if the individual, regardless of sex, hasn't experienced a pregnancy}
 #'   \item{sleep_night_hrs}{integer value for hours of sleep per night on average}
 #'
 #' }

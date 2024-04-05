@@ -110,7 +110,7 @@ x <- NHANES %>%
 
   # Renaming variables.
 
-  rename(gender = "Gender",
+  rename(sex = "Gender",
          age = "Age",
          race = "Race1",
          education = "Education",
