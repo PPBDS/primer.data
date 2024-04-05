@@ -1,223 +1,88 @@
 # Script for cleaning cces data (Shiro 18). My intention here is to create two
-# basic paths available for analysis. First, there's the basic analysis of whether
-# different demographics have significantly different answers. Second, there's the
-# analysis of approval of different levels of government official (pres, senator,
-# governor).
+# basic paths available for analysis. First, there's the basic analysis of
+# whether different demographics have significantly different answers. Second,
+# there's the analysis of approval of different levels of government official
+# (pres, senator, governor). Shiro updates the data whenever CCES is updated.
+# Latest is for 2022.
 
-# So, initially, I've kept most of the demographic information. Currently working
-# on deciding which survey questions to keep. I discuss my choices below the
-# select function.
+# So, initially, I've kept most of the demographic information. Currently
+# working on deciding which survey questions to keep. I discuss my choices below
+# the select function.
 
 library(tidyverse)
+library(haven)
 library(usethis)
 
-x <- read_rds("data-raw/cumulative_2006-2020.Rds") %>%
-      select(case_id, year, state, gender,
+x <- read_rds("data-raw/cumulative_2006-2022.rds") |>
+      select(case_id, year, state,
 
-    # I kept age instead of birth year because it records the age when they took
-    # the survey, which is most relevant. Not sure if I should keep all these
-    # variables. Are we using this data for the heavy machine learning stuff in
-    # chapters 11 and 12? If not this data, then what data?
+             # Always a tricky issue.
 
-    age, race, marstat, religion, faminc,
+             sex = gender,
 
+             # I kept age instead of birth year because it records the age when
+             # they took the survey, which is most relevant. Not sure if I
+             # should keep all these variables.
 
-    # I've renamed ideo5 to ideology because I've removed every other
-    # ideology based question.
+             age, race, marstat, religion, faminc,
 
-    ideology = ideo5,
-    education = educ,
-    news = newsint,
-    econ = economy_retro,
-    approval_ch = approval_pres,
-    military = no_milstat,
-    voted = vv_turnout_gvm) %>%
+             # I've renamed ideo5 to ideology because I've removed every other
+             # ideology based question.
 
-  # I've kept three sort of groups of variables. The first is ideology and
-  # news interest - I'm curious to see if there's a relationship between
-  # self-reported news interest and self-reported political ideology.
+             ideology = ideo5,
 
-  # The second is a retrospective view of the economy (how has the economy
-  # been doing this past year?) with the approval of the current president. That's probably
-  # correlated?
+             # I've kept three sort of groups of variables. The first is
+             # ideology and news interest - I'm curious to see if there's a
+             # relationship between self-reported news interest and
+             # self-reported political ideology.
 
-  # Below, I convert some of the numerical representations of the data into
-  # consistent character variables.
+             # The second is a retrospective view of the economy (how has the
+             # economy been doing this past year?) with the approval of the
+             # current president. That's probably correlated?
 
-  # There is a trickiness is the value 3 for approval. You need to include both
-  # "Never Heard / Not Sure" and "Neither Approve Nor Disapprove" since the
-  # latter seemed to be used in only one year in the survey.
+             education = educ,
+             news = newsint,
+             econ = economy_retro,
+             approval_ch = approval_pres,
+             military = no_milstat,
+             voted = vv_turnout_gvm)
 
-  mutate(approval = case_when(
-    approval_ch == 1 ~ 5,
-    approval_ch == 2 ~ 4,
-    approval_ch == 3 ~ 2,
-    approval_ch == 4 ~ 1,
-    approval_ch == 5 ~ 3,
-    approval_ch == 6 ~ 3)) %>%
+x <- x |>
 
-  mutate(approval_ch = case_when(
-    approval_ch == 1 ~ "Strongly Approve",
-    approval_ch == 2 ~ "Approve / Somewhat Approve",
-    approval_ch == 3 ~ "Disapprove / Somewhat Disapprove",
-    approval_ch == 4 ~ "Strongly Disapprove",
-    approval_ch == 5 ~ "Never Heard / Not Sure",
-    approval_ch == 6 ~ "Neither Approve Nor Disapprove")) %>%
+  # Handy to keep presidential approval as both a number and a factor. Or is it?
 
-  mutate(econ = case_when(
-    econ == 1 ~ "Gotten Much Better",
-    econ == 2 ~ "Gotten Better / Somewhat Better",
-    econ == 3 ~ "Stayed About The Same",
-    econ == 4 ~ "Gotten Worse / Somewhat Worse",
-    econ == 5 ~ "Gotten Much Worse",
-    econ == 6 ~ "Not Sure")) %>%
+  mutate(approval = as.integer(approval_ch)) |>
 
-  mutate(news = case_when(
-    news == 1 ~ "Most Of The Time",
-    news == 2 ~ "Some Of The Time",
-    news == 3 ~ "Only Now And Then",
-    news == 4 ~ "Hardly At All",
-    news == 7 ~ "Don't Know")) %>%
+  # Tricky thing is that values 5 and 6 are, sort of NA. One might consider them
+  # as neutral as well. But, for now, we just NA them.
 
-  mutate(gender = case_when(
-    gender == 1 ~ "Male",
-    gender == 2 ~ "Female")) %>%
+  mutate(approval = if_else(approval %in% c(5, 6), NA, approval)) |>
 
-  mutate(education = case_when(
-    education == 1 ~ "No HS",
-    education == 2 ~ "High School Graduate",
-    education == 3 ~ "Some College",
-    education == 4 ~ "2-Year",
-    education == 5 ~ "4-Year",
-    education == 6 ~ "Post-Grad")) %>%
+  # Previous versions did a lot of transformations of variables by hand, mapping
+  # numeric codes to character variables. Now, however, we just do it
+  # automagically with special haven functions.
 
-  mutate(race = case_when(
-    race == 1 ~ "White",
-    race == 2 ~ "Black",
-    race == 3 ~ "Hispanic",
-    race == 4 ~ "Asian",
-    race == 5 ~ "Native American",
-    race == 6 ~ "Mixed",
-    race == 7 ~ "Other",
-    race == 8 ~ "Middle Eastern")) %>%
+  mutate(across(where(haven::is.labelled), haven::as_factor)) |>
 
-  mutate(marstat = case_when(
-    marstat == 1 ~ "Married",
-    marstat == 2 ~ "Separated",
-    marstat == 3 ~ "Divorced",
-    marstat == 4 ~ "Widowed",
-    marstat == 5 ~ "Single / Never Married",
-    marstat == 6 ~ "Domestic Partnership")) %>%
+  # There is a trickiness in approval_ch. First, not sure if this is the best
+  # name for this variable. Second we combine "Never Heard / Not Sure" and
+  # "Neither Approve Nor Disapprove" since the latter seemed to be used in only
+  # one year in the survey. But note that both were turned into NA for approval.
 
-  mutate(religion = case_when(
-    religion == 1 ~ "Protestant",
-    religion == 2 ~ "Catholic",
-    religion == 3 ~ "Mormon",
-    religion == 4 ~ "Eastern or Greek Orthodox",
-    religion == 5 ~ "Jewish",
-    religion == 6 ~ "Muslim",
-    religion == 7 ~ "Buddhist",
-    religion == 8 ~ "Hindu",
-    religion == 9 ~ "Atheist",
-    religion == 10 ~ "Agnostic",
-    religion == 11 ~ "Nothing in Particular",
-    religion == 12 ~ "Other")) %>%
-
-  mutate(military = case_when(
-    military == "Yes" ~ "No",
-    military == "No" ~ "Yes")) %>%
-
-
-  # Creating some factors.
-
-  mutate(education = factor(education,
-                            levels = c("No HS",
-                                       "High School Graduate",
-                                       "Some College",
-                                       "2-Year",
-                                       "4-Year",
-                                       "Post-Grad"))) %>%
-
-  mutate(faminc = factor(faminc,
-                            levels = c("Less than 10k",
-                                       "10k - 20k",
-                                       "20k - 30k",
-                                       "30k - 40k",
-                                       "40k - 50k",
-                                       "50k - 60k",
-                                       "60k - 70k",
-                                       "70k - 80k",
-                                       "80k - 100k",
-                                       "100k - 120k",
-                                       "120k - 150k",
-                                       "150k+",
-                                       "Prefer not to say",
-                                       "Skipped"))) %>%
-
-
-
-  # Getting rid of those pesky +lbl variables.
-
-    mutate(gender = as.character(as_factor(gender)),
-           race = as.character(as_factor(race)),
-           marstat = as.character(as_factor(marstat)),
-           religion = as.character(as_factor(religion)),
-           education = as_factor(education),
-           econ = as_factor(econ),
-           approval_ch = as_factor(approval_ch),
-           voted = as.character(voted))
-
-
-  # Special question on race that was only asked in 2010 and 2011. I
-  # had to separately download the two data sets to get this variable.
-
-a <- read_dta("data-raw/cces_2010_common_validated.dta") %>%
-      select(V100, CC422a) %>%
-      rename(case_id = V100,
-             resentment = CC422a) %>%
-      mutate(resentment = as_factor(resentment))
-
-b <- read_dta("data-raw/CCES11_Common_OUTPUT.dta")  %>%
-      select(V100, CC359) %>%
-      rename(case_id = V100,
-             resentment = CC359) %>%
-      mutate(resentment = as_factor(resentment))
-
-c <- rbind(a,b)
-
-x <- x %>%
-      left_join(c, by = "case_id")
-
-
-  # Another special question on affirmative action that was only asked
-  # in 2009, 2010 and 2011. Same procedure as before.
-
-a <- read_dta("data-raw/cces_2010_common_validated.dta") %>%
-      select(V100, CC327) %>%
-      rename(case_id = V100,
-             aff_action = CC327) %>%
-      mutate(aff_action = as_factor(aff_action))
-
-b <- read_dta("data-raw/CCES11_Common_OUTPUT.dta") %>%
-      select(V100, CC354) %>%
-      rename(case_id = V100,
-             aff_action = CC354) %>%
-      mutate(aff_action = as_factor(aff_action))
-
-c <- rbind(a,b)
-
-x <- x %>%
-      left_join(c, by = "case_id") %>%
-      select(-case_id) %>%
-      select(year:approval_ch, approval, military, voted, resentment, aff_action)
-
+  mutate(approval_ch = fct_collapse(approval_ch,
+                                    "Neither Approve nor Disapprove" =
+                                      c("Neither Approve nor Disapprove",
+                                        "Never Heard / Not Sure")))
 
 # This replaces all "Prefer not to say", "Note asked" and "Skipped" answers
 # with NA. I don't think it makes a difference for us why we got no answer.
 
 levels(x$faminc)[levels(x$faminc) == c("Prefer not to say", "Skipped")] <- NA
-levels(x$resentment)[levels(x$resentment) == c("Not Asked", "Skipped")] <- NA
-levels(x$aff_action)[levels(x$aff_action) == c("Not Asked", "Skipped")] <- NA
+
+
+# I used to grab special race related variables (CC442a and CC359) from some
+# other data sets in 2010 and 2011. I I also was interested in opinions about
+# affirmative action (CC327 and CC354). Let's ignore all that for now.
 
 # Save the data.
 
