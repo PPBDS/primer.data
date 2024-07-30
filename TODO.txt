@@ -1,6 +1,14 @@
 
 ### Improvements
 
+* Revisit governors so that it includes all the data. Chapter which uses it must then delete the pre-1945 data.
+
+* Update cces
+
+* Drop some data, like names.csv, which we no longer use for the class.
+
+* Add some data for class examples, like resume.csv
+
 * Revisit the connectedness data.
   - We have copies of the NYT article in the bootcamp repo. Where should we keep that so that students have easy access?
   - Would be nice to add income data so that we can reproduce some of the scatter plots from that article.

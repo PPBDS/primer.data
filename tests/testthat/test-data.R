@@ -10,15 +10,6 @@ library(primer.data)
 library(stringr)
 
 cces
-test_that("str_length is number of characters", {
- expect_equal(str_length("a"), 1)
- expect_equal(str_length("ab"), 2)
- expect_equal(str_length("abc"), 3)
-})
-test_that("no rows with same value for every variable", {
- expect_equal(str_length(factor("a")), 1)
- expect_equal(str_length(factor("ab")), 2)
- expect_equal(str_length(factor("abc")), 3)
-})
+
 
 

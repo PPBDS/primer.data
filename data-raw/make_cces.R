@@ -13,7 +13,7 @@ library(tidyverse)
 library(haven)
 library(usethis)
 
-x <- read_rds("data-raw/cumulative_2006-2022.rds") |>
+raw <- read_rds("data-raw/cumulative_2006-2022.rds") |>
       select(case_id, year, state,
 
              # Always a tricky issue.
@@ -47,7 +47,7 @@ x <- read_rds("data-raw/cumulative_2006-2022.rds") |>
              military = no_milstat,
              voted = vv_turnout_gvm)
 
-x <- x |>
+x <- raw |>
 
   # Handy to keep presidential approval as both a number and a factor. Or is it?
 
@@ -72,7 +72,14 @@ x <- x |>
   mutate(approval_ch = fct_collapse(approval_ch,
                                     "Neither Approve nor Disapprove" =
                                       c("Neither Approve nor Disapprove",
-                                        "Never Heard / Not Sure")))
+                                        "Never Heard / Not Sure"))) |>
+  mutate(approval_ch = fct_relevel(
+    approval_ch, "Strongly Approve",
+                 "Approve / Somewhat Approve",
+                 "Neither Approve nor Disapprove",
+                 "Disapprove / Somewhat Disapprove",
+                 "Strongly Disapprove")) |>
+  mutate(approval_ch = ordered(approval_ch))
 
 # This replaces all "Prefer not to say", "Note asked" and "Skipped" answers
 # with NA. I don't think it makes a difference for us why we got no answer.

@@ -27,9 +27,9 @@
 #'   "High School Graduate", "Some College", "2-Year", "4-Year", and "Post-Grad"}
 #'   \item{news}{factor variable for level news/current events interest}
 #'   \item{econ}{factor variable for retrospective report on the past year's economy}
-#'   \item{approval_ch}{factor variable of approval of president - takes values of
-#'   "Strongly Approve", "Approve / Somewhat Approve", "Disapprove / Somewhat Disapprove",
-#'   "Never Heard / Not Sure", "Neither Approve Nor Disapprove"}
+#'   \item{approval_ch}{ordered factor variable of approval of president - takes values of
+#'   "Strongly Approve", "Approve / Somewhat Approve",  "Neither Approve Nor Disapprove", "Disapprove / Somewhat Disapprove",
+#'   "Never Heard / Not Sure"}
 #'   \item{approval}{numeric variable of approval for the current president on a 1-4 scale
 #'    with lower numbers indicating greater approval}
 #'   \item{military}{factor variable indicating whether the respondent or someone in their
