@@ -91,41 +91,42 @@
 <span></span>
 <span><span class="va">qscores</span></span>
 <span><span class="co">#&gt; # A tibble: 748 × 9</span></span>
-<span><span class="co">#&gt;    name       department number term   enrollment hours rating instructor female</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 Introduct… AFRAMER    100Y   2019-…         49   2.6    4.2 Jesse McC…      0</span></span>
-<span><span class="co">#&gt;  2 American … AFRAMER    123Z   2019-…         49   3.6    4.4 Cornel We…      0</span></span>
-<span><span class="co">#&gt;  3 Urban Ine… AFRAMER    125X   2019-…         40   5.2    4.5 Elizabeth…      1</span></span>
-<span><span class="co">#&gt;  4 Richard W… AFRAMER    130X   2019-…         23   7.2    4.4 Glenda Ca…      1</span></span>
-<span><span class="co">#&gt;  5 19th cent… AFRAMER    131Y   2019-…         20   3.5    4.9 Linda Cha…      1</span></span>
-<span><span class="co">#&gt;  6 Social Re… AFRAMER    199X   2019-…         19   7.2    4.8 Alejandro…      0</span></span>
-<span><span class="co">#&gt;  7 Martin Lu… AFRAMER    199Y   2019-…         40   4.2    4.7 Brandon M…      0</span></span>
-<span><span class="co">#&gt;  8 Elementar… AFRIKAAN   AB     2019-…         22   2.9    4.9 John M Mu…      0</span></span>
-<span><span class="co">#&gt;  9 Elementar… JAMAICAN   AB     2019-…         18   1.5    4.9 John M Mu…      0</span></span>
-<span><span class="co">#&gt; 10 Elementar… WSTAFRCN   AB     2019-…         29   2.6    4   John M Mu…      0</span></span>
-<span><span class="co">#&gt; # … with 738 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt;    name        department number term  enrollment hours rating instructor female</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Introducti… AFRAMER    100Y   2019…         49   2.6    4.2 Jesse McC…      0</span></span>
+<span><span class="co">#&gt;  2 American D… AFRAMER    123Z   2019…         49   3.6    4.4 Cornel We…      0</span></span>
+<span><span class="co">#&gt;  3 Urban Ineq… AFRAMER    125X   2019…         40   5.2    4.5 Elizabeth…      1</span></span>
+<span><span class="co">#&gt;  4 Richard Wr… AFRAMER    130X   2019…         23   7.2    4.4 Glenda Ca…      1</span></span>
+<span><span class="co">#&gt;  5 19th centu… AFRAMER    131Y   2019…         20   3.5    4.9 Linda Cha…      1</span></span>
+<span><span class="co">#&gt;  6 Social Rev… AFRAMER    199X   2019…         19   7.2    4.8 Alejandro…      0</span></span>
+<span><span class="co">#&gt;  7 Martin Lut… AFRAMER    199Y   2019…         40   4.2    4.7 Brandon M…      0</span></span>
+<span><span class="co">#&gt;  8 Elementary… AFRIKAAN   AB     2019…         22   2.9    4.9 John M Mu…      0</span></span>
+<span><span class="co">#&gt;  9 Elementary… JAMAICAN   AB     2019…         18   1.5    4.9 John M Mu…      0</span></span>
+<span><span class="co">#&gt; 10 Elementary… WSTAFRCN   AB     2019…         29   2.6    4   John M Mu…      0</span></span>
+<span><span class="co">#&gt; # ℹ 738 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="using-the-data">Using the data<a class="anchor" aria-label="anchor" href="#using-the-data"></a>
 </h2>
 <p>Once the library is loaded and you have confirmed that it can be accessed in your local environment, the data sets can be called as objects and used like any other data you would otherwise read in and assign to an object manually. See the following example of a plot using <code>primary.data::nobel</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">nobel</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">born_country</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>prizes <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cum_prize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="va">prizes</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">nobel</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">born_country</span>, <span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>prizes <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cum_prize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="va">prizes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">born_country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USA"</span>, <span class="st">"United Kingdom"</span>, </span>
 <span>                             <span class="st">"Germany"</span>, <span class="st">"France"</span>, </span>
 <span>                             <span class="st">"Poland"</span>, <span class="st">"Sweden"</span>, </span>
-<span>                             <span class="st">"Japan"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>                             <span class="st">"Japan"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>born_country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">born_country</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USA"</span>, <span class="st">"United Kingdom"</span>,</span>
 <span>                                                        <span class="st">"Germany"</span>, <span class="st">"France"</span>, </span>
 <span>                                                        <span class="st">"Sweden"</span>, <span class="st">"Poland"</span>, </span>
-<span>                                                        <span class="st">"Japan"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>                                                        <span class="st">"Japan"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">.</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">cum_prize</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">born_country</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -152,7 +153,6 @@
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"primer.data"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; To cite 'primer.data' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   Kane, D., &amp; Weiss, T. (2021), 'primer.data'. R package version 0.7.0,</span></span>
