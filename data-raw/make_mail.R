@@ -28,8 +28,8 @@ library(janitor)
 
 unzip("data-raw/mail.csv.zip")
 
-x <- read_csv("mail.csv") %>%
-  clean_names() %>%
+x <- read_csv("mail.csv") |>
+  clean_names() |>
   select("treatment" = treat_20,
          "voted" = voted_2020_primary,
          "voted_mail" = voted_mail_2020_primary,
@@ -40,16 +40,16 @@ x <- read_csv("mail.csv") %>%
          "age" = age_bin,
          sex,
          "pred_white" = pred_whi,
-         "pred_black" = pred_bla) %>%
+         "pred_black" = pred_bla) |>
 
-  mutate(treatment = recode(treatment, Control = "No Postcard")) %>%
+  mutate(treatment = recode(treatment, Control = "No Postcard")) |>
 
 
   # It always makes me suspicious when a binary variable that supposedly
   # consists of only 0s and 1s is coded a double. An integer makes more sense
   # here.
 
-  mutate(voted = as.integer(voted)) %>%
+  mutate(voted = as.integer(voted)) |>
 
 
   # Dummy variables should be "Yes" and "No" unless they are used as outcome
@@ -61,7 +61,7 @@ x <- read_csv("mail.csv") %>%
                                                        "1" = "Yes"),
 
          applied_mail = recode(as.character(applied_mail), "0" = "No",
-                                                           "1" = "Yes")) %>%
+                                                           "1" = "Yes")) |>
 
 
   # TW: I feel like there is an easier way to do this...
@@ -75,12 +75,12 @@ x <- read_csv("mail.csv") %>%
                                  "30-39",
                                  "40-49",
                                  "50-64",
-                                 "65-121"))) %>%
+                                 "65-121"))) |>
 
 
   # More concise.
 
-  mutate(party = recode(party, "No Affiliation" = "None")) %>%
+  mutate(party = recode(party, "No Affiliation" = "None")) |>
 
 
   # TW: I am not sure what "U" in the "sex" variable refers to, and the codebook
@@ -90,7 +90,7 @@ x <- read_csv("mail.csv") %>%
 
   mutate(sex = recode(sex, "M" = "Male",
                       "F" = "Female",
-                      "U" = NA_character_)) %>%
+                      "U" = NA_character_)) |>
 
 
   # Removing some strange observations. These conditions deal with problems that
@@ -110,8 +110,8 @@ x <- read_csv("mail.csv") %>%
 
   x$applied_date <- as.Date("2020-03-10")
 
-x <-  x %>%
-    mutate(applied_date = applied_date + applied_days_march) %>%
+x <-  x |>
+    mutate(applied_date = applied_date + applied_days_march) |>
     select(-applied_days_march)
 
 
@@ -119,9 +119,9 @@ x <-  x %>%
 
   x$voted_date <- as.Date("2020-03-10")
 
-x <-  x %>%
-  mutate(voted_date = voted_date + voted_days_march) %>%
-  select(-voted_days_march) %>%
+x <-  x |>
+  mutate(voted_date = voted_date + voted_days_march) |>
+  select(-voted_days_march) |>
   select(treatment, voted, voted_mail,
          applied_mail, applied_date,
          voted_date, everything())

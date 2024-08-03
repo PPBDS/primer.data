@@ -3,8 +3,8 @@
 
 # ---------------------------------
 
-ex1 <- data %>%
-  select(var) %>%
+ex1 <- data |>
+  select(var) |>
 
   # this function is listed on Haven's package website
 

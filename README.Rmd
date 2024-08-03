@@ -51,19 +51,19 @@ Once the library is loaded and you have confirmed that it can be accessed in you
 library(tidyverse)
 library(primer.data)
 
-nobel %>%
-  group_by(born_country, year) %>%
-  summarize(prizes = n()) %>%
-  mutate(cum_prize = cumsum(prizes)) %>%
-  ungroup() %>%
+nobel |>
+  group_by(born_country, year) |>
+  summarize(prizes = n()) |>
+  mutate(cum_prize = cumsum(prizes)) |>
+  ungroup() |>
   filter(born_country %in% c("USA", "United Kingdom", 
                              "Germany", "France", 
                              "Poland", "Sweden", 
-                             "Japan")) %>%
+                             "Japan")) |>
   mutate(born_country = factor(born_country, levels = c("USA", "United Kingdom",
                                                         "Germany", "France", 
                                                         "Sweden", "Poland", 
-                                                        "Japan"))) %>% 
+                                                        "Japan"))) |> 
 
 ggplot(., aes(x = year, y = cum_prize, color = factor(born_country))) +
   geom_line() +

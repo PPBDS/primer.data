@@ -29,9 +29,9 @@ x <- get_acs(
 # Now that we have the data, we use (mostly) Walker's code to clean it.
 
 z <- x |>
-  group_by(GEOID) %>%
-  filter(estimate == max(estimate, na.rm = TRUE)) %>%
-  ungroup() %>%
+  group_by(GEOID) |>
+  filter(estimate == max(estimate, na.rm = TRUE)) |>
+  ungroup() |>
   filter(estimate != 0) |>
   rename(tract = NAME, race = variable, population = estimate, med_income = summary_est) |>
   select(tract, race, med_income) |>

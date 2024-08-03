@@ -17,13 +17,13 @@ library(tidyverse)
 
 # https://cran.r-project.org/web/packages/nhanesA/vignettes/Introducing_nhanesA.html
 
-x <- NHANES %>%
+x <- NHANES |>
 
         select(SurveyYr, Gender, Age,
                Race1, Education, HHIncome,
                Weight, Height, BMI, Pulse,
                Diabetes, HealthGen, Depressed,
-               nPregnancies, SleepHrsNight) %>%
+               nPregnancies, SleepHrsNight) |>
 
 
   # Recoding 'SurveyYr' by converting it to a new variable name 'survey'. This
@@ -34,12 +34,12 @@ x <- NHANES %>%
   # half a year).
 
   separate(SurveyYr, into = c("survey", NA),
-           sep = "_") %>%
+           sep = "_") |>
 
 
   # Converting the new 'survey' variable to an integer.
 
-  mutate(survey = as.integer(survey)) %>%
+  mutate(survey = as.integer(survey)) |>
 
 
   # Recoding some levels of 'Education' and converting it to a factor. Why are
@@ -50,11 +50,11 @@ x <- NHANES %>%
     Education == "9 - 11th Grade" ~ "Middle School",
     Education == "High School" ~ "High School",
     Education == "Some College" ~ "Some College",
-    Education == "College Grad" ~ "College"))) %>%
+    Education == "College Grad" ~ "College"))) |>
 
   mutate(Education = fct_relevel(Education,
                                  "Middle School",
-                                 after = 0)) %>%
+                                 after = 0)) |>
 
 
   # Note that we could use 'HHIncomeMid' variable in the dataset, which uses the
@@ -68,7 +68,7 @@ x <- NHANES %>%
   # the only change we make is to get rid of the annoying spaces in levels like
   # " 0-4999".
 
-  mutate(HHIncome = fct_relabel(HHIncome, ~ gsub("^ ", "", .x))) %>%
+  mutate(HHIncome = fct_relabel(HHIncome, ~ gsub("^ ", "", .x))) |>
 
   # Converting 'HealthGen' to a numbered variable. Although it may again be
   # problematic to assume a linear relationship between each of the five
@@ -82,30 +82,30 @@ x <- NHANES %>%
     HealthGen == "Fair" ~ 2,
     HealthGen == "Good" ~ 3,
     HealthGen == "Vgood" ~ 4,
-    HealthGen == "Excellent" ~ 5))) %>%
+    HealthGen == "Excellent" ~ 5))) |>
 
 
   # Converting 'Depressed' to a factor.
 
-  mutate(Depressed = as.factor(Depressed)) %>%
+  mutate(Depressed = as.factor(Depressed)) |>
 
 
   # Converting 'Diabetes' to an integer variable.
 
   mutate(Diabetes = as.integer(case_when(
     Diabetes == "Yes" ~ 1,
-    Diabetes == "No" ~ 0))) %>%
+    Diabetes == "No" ~ 0))) |>
 
 
   # No factors unless it's necessary.
 
   mutate(Gender = as.character(Gender),
-         Race1 = as.character(Race1)) %>%
+         Race1 = as.character(Race1)) |>
 
 
   # Capitalizing values of 'Gender'.
 
-  mutate(Gender = str_to_title(Gender)) %>%
+  mutate(Gender = str_to_title(Gender)) |>
 
 
   # Renaming variables.

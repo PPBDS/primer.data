@@ -39,7 +39,7 @@ x <- read_csv("data-raw/social_original.csv",
                                treatment = col_character(),
                                voted = col_character(),
                                hh_size = col_integer(),
-                               numberofnames = col_integer())) %>%
+                               numberofnames = col_integer())) |>
 
 
   # Renaming variables. Remark: Don't be confused by only "Yes" in the 2004 general
@@ -54,25 +54,25 @@ x <- read_csv("data-raw/social_original.csv",
          general_00 = g2000,
          general_02 = g2002,
          general_04 = g2004,
-         neighbors = numberofnames) %>%
+         neighbors = numberofnames) |>
 
   # We dropped hh_id since it seems (correctly?) to not have any information.
   # But might it not be related to geographic area, like cluster?
 
-  select(-hh_id) %>%
+  select(-hh_id) |>
 
   # age seems like a much more handy variable than birth year . . .
 
-  mutate(age = as.integer(2006 - yob)) %>%
+  mutate(age = as.integer(2006 - yob)) |>
 
   # Make factor level order more convenient
 
-  mutate(treatment = if_else(treatment == "Control", "No Postcard", treatment)) %>%
+  mutate(treatment = if_else(treatment == "Control", "No Postcard", treatment)) |>
 
   mutate(treatment = fct_relevel(treatment,
                                  c("No Postcard",
                                    "Civic Duty", "Hawthorne",
-                                   "Self", "Neighbors"))) %>%
+                                   "Self", "Neighbors"))) |>
 
   # Recoding character variables.
 
@@ -82,23 +82,23 @@ x <- read_csv("data-raw/social_original.csv",
          primary_04 = str_to_title(primary_04),
          general_00 = str_to_title(general_00),
          general_02 = str_to_title(general_02),
-         general_04 = str_to_title(general_04)) %>%
+         general_04 = str_to_title(general_04)) |>
 
 
   # Recoding voted as 0/1, makes later analysis much easier.
 
-  mutate(primary_06 = ifelse(voted == "Yes", 1L, 0L)) %>%
+  mutate(primary_06 = ifelse(voted == "Yes", 1L, 0L)) |>
 
   # Note sure if these variables are useful, but want to keep them around. They
   # seem very suspicious to me. How can there be 98,212 with a value of 0.952381
   # for hh_general_04? And then 935 for 0.95? Should investigate this further.
 
-  mutate(hh_primary_04 = p2004_mean) %>%
-  mutate(hh_general_04 = g2004_mean) %>%
+  mutate(hh_primary_04 = p2004_mean) |>
+  mutate(hh_general_04 = g2004_mean) |>
 
   # Should cluster be an integer or a character?
 
-  mutate(cluster = as.character(cluster)) %>%
+  mutate(cluster = as.character(cluster)) |>
 
   # Ordering variables.
 

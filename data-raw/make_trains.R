@@ -21,14 +21,14 @@ x <- read_csv("data-raw/pnas_data.csv",
                     train = col_character(),
                     time = col_time(format = ""),
                     time.treatment = col_character()
-                  )) %>%
+                  )) |>
 
   # Percent Hispanic in the district is not the most important variable, but we
   # need more continuous covariates to play with. I am suspicious about the raw
   # numbers because they seemed to include an absurd number of significant
   # digits. So, I rounded.
 
-  mutate(hisp_perc = round(zip.pct.hispanic, 4)) %>%
+  mutate(hisp_perc = round(zip.pct.hispanic, 4)) |>
 
   # Looks like the raw race data is race_1 (14), race_2 (4), race_3 (2), race_4
   # (102) and race_5 (10). I am not sure if what I have done here is correct!
@@ -37,10 +37,10 @@ x <- read_csv("data-raw/pnas_data.csv",
   # race_1 is Asian. race_2 is Black. (Note that the numbers involved make sense
   # for Boston commuters from the suburbs --- many more Asian than Black.)
 
-  mutate(race = "White") %>%
-  mutate(race = ifelse(hispanic.new == 1, "Hispanic", race)) %>%
-  mutate(race = ifelse(race_1 %in% c(1), "Asian", race)) %>%
-  mutate(race = ifelse(race_2 %in% c(1), "Black", race)) %>%
+  mutate(race = "White") |>
+  mutate(race = ifelse(hispanic.new == 1, "Hispanic", race)) |>
+  mutate(race = ifelse(race_1 %in% c(1), "Asian", race)) |>
+  mutate(race = ifelse(race_2 %in% c(1), "Black", race)) |>
 
   # Ideology looks like an interesting variable, not least because it has 5
   # values with a fair spread among them. Could recode this by the character
@@ -49,15 +49,15 @@ x <- read_csv("data-raw/pnas_data.csv",
   # good example to add ideology_end into the regresssion and explain why that
   # is bad.
 
-  mutate(ideology_start = as.integer(ideology.x)) %>%
-  mutate(ideology_end = as.integer(ideology.y)) %>%
+  mutate(ideology_start = as.integer(ideology.x)) |>
+  mutate(ideology_end = as.integer(ideology.y)) |>
 
   # Want to look at the two train lines separately, as well as the train
   # stations.
 
   separate(col = treated_unit,
            into = c("line", "station", "platform"),
-           sep = "_") %>%
+           sep = "_") |>
 
   # Create an overall measure of attitude change. Positive means becoming more
   # conservative. Should we normalize this number? Should we allow for an NA in
@@ -67,25 +67,25 @@ x <- read_csv("data-raw/pnas_data.csv",
   # questions on the second survey.
 
   mutate(att_start = numberim.x + Remain.x + Englishlan.x,
-         att_end = numberim.y + Remain.y + Englishlan.y) %>%
+         att_end = numberim.y + Remain.y + Englishlan.y) |>
 
   # Delete component parts that we no longer need.
 
-  select(- starts_with("numberim")) %>%
-  select(- starts_with("Remain")) %>%
-  select(- starts_with("Englishlan")) %>%
+  select(- starts_with("numberim")) |>
+  select(- starts_with("Remain")) |>
+  select(- starts_with("Englishlan")) |>
 
   # Handling NAs is always tricky. I should make it easy to see if saving the
   # three savable rows makes a substantive difference to any conclusion. But,
   # for this data set, I will only keep the 115 observations for which we have all
   # the data.
 
-  drop_na(att_start, att_end) %>%
+  drop_na(att_start, att_end) |>
 
   # income.new is the variable used in the paper. Not sure why it is better than
   # the (origina) income variable.
 
-  mutate(income = income.new) %>%
+  mutate(income = income.new) |>
 
   # It is important to understand that sometimes we are happy to work with
   # treatment as a numeric variable with vales of zero and one. But, other
@@ -95,8 +95,8 @@ x <- read_csv("data-raw/pnas_data.csv",
   # In this case, I will keep both versions of treatment around: treatment and
   # treatment.2.
 
-  mutate(treatment = ifelse(treatment == 1, "Treated", "Control")) %>%
-  mutate(treatment = factor(treatment, levels = c("Treated", "Control"))) %>%
+  mutate(treatment = ifelse(treatment == 1, "Treated", "Control")) |>
+  mutate(treatment = factor(treatment, levels = c("Treated", "Control"))) |>
 
   # Not obvious what the best way to represent these variables are. Enos, for
   # example, works with 0/1 variables for male, liberal and republican. I don't
@@ -106,10 +106,10 @@ x <- read_csv("data-raw/pnas_data.csv",
   # their missing values? Great question! We should use the data we have for
   # liberals and for Republicans separately to make a guess.
 
-  mutate(age = as.integer(age)) %>%
-  mutate(sex = ifelse(male, "Male", "Female")) %>%
-  mutate(party = ifelse(republican, "Republican", "Democrat")) %>%
-  mutate(liberal = ifelse(liberal, TRUE, FALSE)) %>%
+  mutate(age = as.integer(age)) |>
+  mutate(sex = ifelse(male, "Male", "Female")) |>
+  mutate(party = ifelse(republican, "Republican", "Democrat")) |>
+  mutate(liberal = ifelse(liberal, TRUE, FALSE)) |>
 
   # I like setting age to integer, if only so we have a discussion point. Since,
   # we only have integer values of income and the attitudes, we might also set

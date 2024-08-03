@@ -41,7 +41,7 @@ x <- read_csv("data-raw/HSall_members.csv",
                                died = col_double(),
 
                                nominate_dim1 = col_double(),
-                               nominate_dim2 = col_double())) %>%
+                               nominate_dim2 = col_double())) |>
 
 
  # Selecting variables to be used.
@@ -50,14 +50,14 @@ x <- read_csv("data-raw/HSall_members.csv",
            state_abbrev, party_code,
            bioname, born,
            died, nominate_dim1,
-           nominate_dim2) %>%
+           nominate_dim2) |>
 
 
  # Renaming some variables.
 
   rename(state = state_abbrev,
          party = party_code,
-         name = bioname) %>%
+         name = bioname) |>
 
 
   # Recoding names and internal party codes.
@@ -146,7 +146,7 @@ stopifnot(length(levels(factor(x$nominate_dim2))) != 1)
 
 df <- x
 df$unique <- !(duplicated(x) | duplicated(x, fromLast = TRUE))
-df <- df %>%
+df <- df |>
   filter(unique == FALSE)
 stopifnot(nrow(df) == 0)
 

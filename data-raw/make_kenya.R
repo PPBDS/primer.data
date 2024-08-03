@@ -13,7 +13,7 @@ library(usethis)
 # diff read function
 x <- readRDS('data-raw/kenyadata.Rds')
 
-x <- x %>%
+x <- x |>
 
   # Recoding values for treatment variable
 
@@ -22,7 +22,7 @@ x <- x %>%
                                          treat == "Canvass" ~ "canvass",
                                          treat == "Local" ~ "local",
                                          treat == "Local+Canvass" ~ "local + canvass",
-                                         treat == "Local+SMS" ~ "local + SMS"))) %>%
+                                         treat == "Local+SMS" ~ "local + SMS"))) |>
 
   # Renaming variables for poverty, population density, date, block id, polling station id
 
@@ -31,11 +31,11 @@ x <- x %>%
          poverty = pov,
          pop_density = pd,
          mean_age = mean.age,
-         reg_byrv13 = reg_int_byrv13) %>%
+         reg_byrv13 = reg_int_byrv13) |>
 
   # Selecting final variabless
 
-  select(block, poll_station, treatment, poverty, distance, pop_density, mean_age, reg_byrv13, rv13) %>%
+  select(block, poll_station, treatment, poverty, distance, pop_density, mean_age, reg_byrv13, rv13) |>
 
   as_tibble()
 

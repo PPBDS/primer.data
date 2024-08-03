@@ -55,7 +55,7 @@ x <- read_csv("data-raw/longevity.csv",
                                democrat = col_integer(),
                                republican = col_integer(),
                                third = col_integer(),
-                               female = col_integer())) %>%
+                               female = col_integer())) |>
 
 
   # Selecting variables to be used.
@@ -69,14 +69,14 @@ x <- read_csv("data-raw/longevity.csv",
          democrat, republican,
          third, female, reg_south,
          reg_west, reg_northeast, reg_midwest,
-         pop_annual) %>%
+         pop_annual) |>
 
 
   # Creating a new variable for sex. There are only 21 female governors left,
   # once we get done wih our restrictions.
 
   mutate(sex = case_when(female == 0 ~ "Male",
-                         female == 1 ~ "Female")) %>%
+                         female == 1 ~ "Female")) |>
 
 
   # VCreate the 'party' and 'region' variables. Is there are more elegant way to
@@ -85,11 +85,11 @@ x <- read_csv("data-raw/longevity.csv",
 
   mutate(party = case_when(democrat == 1 ~ "Democrat",
                            republican == 1 ~ "Republican",
-                           third == 1 ~ "Third party")) %>%
+                           third == 1 ~ "Third party")) |>
   mutate(region = case_when(reg_south == 1 ~ "South",
                             reg_west == 1 ~ "West",
                             reg_northeast == 1 ~ "Northeast",
-                            reg_midwest  == 1 ~ "Midwest")) %>%
+                            reg_midwest  == 1 ~ "Midwest")) |>
 
 
   # Recoding character variables.
@@ -97,7 +97,7 @@ x <- read_csv("data-raw/longevity.csv",
   mutate(area = str_to_title(area),
          cand_first = str_to_title(cand_first),
          cand_last = str_to_title(cand_last),
-         status = str_to_title(status)) %>%
+         status = str_to_title(status)) |>
 
 
   # Rearranging and getting rid of the leftover variables.
@@ -106,7 +106,7 @@ x <- read_csv("data-raw/longevity.csv",
          cand_last, party, sex,
          death_date_imp, status,
          margin_pct_1, living_day_imp_post,
-         living_day_imp_pre, region, pop_annual) %>%
+         living_day_imp_pre, region, pop_annual) |>
 
 
   # Renaming some variables.
@@ -116,17 +116,17 @@ x <- read_csv("data-raw/longevity.csv",
          last_name = "cand_last",
          died = "death_date_imp",
          win_margin = "margin_pct_1",
-         population = "pop_annual") %>%
+         population = "pop_annual") |>
 
 
   # years is a more natural measurement for later analysis. Right? Are these
   # good variable names?
 
-  mutate(election_age = living_day_imp_pre / 365.25) %>%
-  mutate(death_age = (living_day_imp_pre + living_day_imp_post) / 365.25) %>%
-  mutate(lived_after = living_day_imp_post / 365.25) %>%
+  mutate(election_age = living_day_imp_pre / 365.25) |>
+  mutate(death_age = (living_day_imp_pre + living_day_imp_post) / 365.25) |>
+  mutate(lived_after = living_day_imp_post / 365.25) |>
 
-  select(-living_day_imp_pre, -living_day_imp_post) %>%
+  select(-living_day_imp_pre, -living_day_imp_post) |>
 
 
   # Subsetting the data to only include observations for which the
@@ -139,7 +139,7 @@ x <- read_csv("data-raw/longevity.csv",
 
   # Maybe I should keep everyone post 1945 . . .
 
-  filter(year >= 1945, is.na(died) == FALSE) %>%
+  filter(year >= 1945, is.na(died) == FALSE) |>
 
 
   # Arranging by state and year.
@@ -152,7 +152,7 @@ x <- read_csv("data-raw/longevity.csv",
 
 df <- x
 df$unique <- !(duplicated(x) | duplicated(x, fromLast = TRUE))
-df <- df %>%
+df <- df |>
   filter(unique == FALSE)
 stopifnot(nrow(df) == 0)
 

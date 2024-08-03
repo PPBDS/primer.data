@@ -14,9 +14,9 @@ x <- fromJSON(url)
 # This data comes as a list, so we need to convert it to a usable structure
 # first.
 
-x <- as_tibble(data.frame(x$laureates)) %>%
-        clean_names() %>%
-        select(-c(id, born_country_code, died_country_code)) %>%
+x <- as_tibble(data.frame(x$laureates)) |>
+        clean_names() |>
+        select(-c(id, born_country_code, died_country_code)) |>
         rename(first_name = firstname,
                last_name = surname)
 
@@ -168,7 +168,7 @@ for (i in 1:955) {
 # Convert to tibble and remove leftover NA-rows.
 
 x %<>%
-  tibble() %>%
+  tibble() |>
   filter(is.na(field) == FALSE)
 
 
@@ -212,7 +212,7 @@ x %<>%
 # Sort variables and remove useless stuff.
 
 x %<>%
-  select(-prizes, -aff_country) %>%
+  select(-prizes, -aff_country) |>
   select(1:2, year, field, share, gender, everything())
 
 

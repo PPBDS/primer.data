@@ -56,7 +56,7 @@ dbDisconnect(con)
 
 # Rditing to create new tibble
 
-x <- raw %>%
+x <- raw |>
 
   # I removed all courses without a workload: the majority are dissertations or
   # workshops of some nature or another. None has an enrollment above 25. I also
@@ -67,7 +67,7 @@ x <- raw %>%
 
   filter(workload != "",
          workload != "N/A",
-         !is.na(term)) %>%
+         !is.na(term)) |>
 
   # Removing janky names from course_names (i.e. any name that appears after
   # Department ##: )
@@ -78,11 +78,11 @@ x <- raw %>%
         course_number, ~ unlist(strsplit(., ":"))
       ), ~ .[1]
     ))
-  ) %>%
+  ) |>
 
   # We only need columns not for internal sql use
 
-  select(-class_id, -id) %>%
+  select(-class_id, -id) |>
 
   # Setting the columns to right variable types
 
@@ -92,17 +92,17 @@ x <- raw %>%
     workload = as.numeric(workload),
     department = as.character(department),
     term = as.character(term)
-  ) %>%
+  ) |>
 
   # Remove garbage courses. These are courses that are not like a "normal"
   # course.
 
-  filter(!str_detect(course_name, "Direction of Doctoral")) %>%
-  filter(!str_detect(course_name, "ECON 3000: TIME")) %>%
+  filter(!str_detect(course_name, "Direction of Doctoral")) |>
+  filter(!str_detect(course_name, "ECON 3000: TIME")) |>
 
   # Only have one row for each course
 
-  distinct(course_name, term, .keep_all = T) %>%
+  distinct(course_name, term, .keep_all = T) |>
 
   # I kept department and number as separate variables, because I think it might
   # be interesting to see how Q scores vary across departments.
@@ -115,16 +115,16 @@ x <- raw %>%
         course_name, ~ unlist(strsplit(., ":"))
       ), ~ .[2]
     ))
-  ) %>%
+  ) |>
 
   # Setting minimum threshold "N" for courses to show up & for us to only have
   # "lecture" style courses. I set this threshold at 15 for now.
 
-  filter(enrollment > 15) %>%
+  filter(enrollment > 15) |>
 
   rename(rating = overall,
          hours = workload,
-         instructor = prof_name) %>%
+         instructor = prof_name) |>
 
   # I don't know how much more helpful data from the Registrar would be.
   # Only additional information is enrollment breakdown by school, as well as
@@ -135,19 +135,19 @@ x <- raw %>%
   # https://registrar.fas.harvard.edu/faculty-staff/courses/enrollment/archived-course-enrollment-reports
 
   select(course_name, department, course_number, term, department,
-         enrollment, hours, rating, instructor) %>%
-  as_tibble() %>%
+         enrollment, hours, rating, instructor) |>
+  as_tibble() |>
 
 
   # Removing whitespaces at the beginning of course names.
 
-  mutate(course_name = str_trim(course_name)) %>%
+  mutate(course_name = str_trim(course_name)) |>
 
 
   # Recoding term descriptions.
 
   mutate(term = str_replace(term, "S", "-Spring"),
-         term = str_replace(term, "F", "-Fall")) %>%
+         term = str_replace(term, "F", "-Fall")) |>
 
 
   # Renaming variables.
@@ -158,12 +158,12 @@ x <- raw %>%
 
 # Create female 0/1 variable based on first name.
 
-first_names <- read_excel("data-raw/first_names.xlsx") %>%
+first_names <- read_excel("data-raw/first_names.xlsx") |>
                   distinct(first_name, .keep_all = TRUE)
 
 x %<>%
-  separate(instructor, into = c("first_name", "last_name"), sep = " ", extra = "merge") %>%
-  left_join(first_names) %>%
+  separate(instructor, into = c("first_name", "last_name"), sep = " ", extra = "merge") |>
+  left_join(first_names) |>
   unite("instructor", first_name, last_name, sep = " ")
 
 

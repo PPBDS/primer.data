@@ -15,8 +15,8 @@ library(janitor)
 # care and any reimbursement of health insurance? (of the past month)
 
 
-x <- read_dta("data-raw/sps.dta") %>%
-  clean_names() %>%
+x <- read_dta("data-raw/sps.dta") |>
+  clean_names() |>
 
   # This data file covers 647 variables from a pre- and pos-treament survey.
   # Althought the dataverse readme says there is a Spanish and English codebook,
@@ -28,7 +28,7 @@ x <- read_dta("data-raw/sps.dta") %>%
          # 3-months health expenditures variable.
 
          t2_health_exp_3m = p03d15_t2 + p03d16_t2 + p03d17_t2 + p03d18_t2 + p03d19_t2 + p03d20_t2 +
-           p03d21_t2 + p03d22_t2) %>%
+           p03d21_t2 + p03d22_t2) |>
 
   # For questions 12.13 & 12.14, it appears that the answers were originally
   # coded: 1 = agree, 2 = disagree, 9 = don't know. The new variable has been
@@ -59,7 +59,7 @@ x <- read_dta("data-raw/sps.dta") %>%
          # today politically?
 
          health_exp_1m = p03d11,
-         t2_health_exp_1m = p03d11_t2) %>%
+         t2_health_exp_1m = p03d11_t2) |>
 
 
   # Note that for the "_better" questions the responses seem to have been recorded
@@ -103,7 +103,7 @@ x <- read_dta("data-raw/sps.dta") %>%
                                ec_better == 1 ~ "better"),
          pol_better = case_when(pol_better == -1 ~ "worse",
                                 pol_better == 0 ~ "same",
-                                pol_better == 1 ~ "better")) %>%
+                                pol_better == 1 ~ "better")) |>
 
 
   # These variables (ideology, t2_ideology, ec_better, t2_ec_better, pol_better,
@@ -114,7 +114,7 @@ x <- read_dta("data-raw/sps.dta") %>%
   # "_better" variables.
 
 
-  select(age, sex, education, treatment, health_exp_3m, t2_health_exp_3m, health_exp_1m, t2_health_exp_1m) %>%
+  select(age, sex, education, treatment, health_exp_3m, t2_health_exp_3m, health_exp_1m, t2_health_exp_1m) |>
 
 # From the readme on dataverse: A codebook for the survey questionnaire appears
 # in both Spanish and English. However, the English version cannot be found. I

@@ -11,10 +11,10 @@ library(janitor)
 # sure if we should include the names of the people who got shot, since it's
 # somewhat irreverent, but also pretty interesting.
 
-x <- read_csv("data-raw/shootings.csv") %>%
-        select(-id) %>%
+x <- read_csv("data-raw/shootings.csv") |>
+        select(-id) |>
         rename(mental_illness_signs = signs_of_mental_illness,
-               weapon = armed) %>%
+               weapon = armed) |>
         mutate(manner_of_death = case_when(manner_of_death == "shot" ~ "Shot",
                                            manner_of_death == "shot and Tasered" ~ "Shot and Tasered"),
                weapon = str_to_title(weapon),
@@ -40,21 +40,21 @@ x <- read_csv("data-raw/shootings.csv") %>%
 
 # Full state names instead of abbreviations.
 
-names <- read_csv("data-raw/fips_key.csv") %>%
-              select(-fips) %>%
+names <- read_csv("data-raw/fips_key.csv") |>
+              select(-fips) |>
               rename(full_state = state,
                      state = state_abbr)
 
 x %<>%
-  left_join(names) %>%
-  select(-state) %>%
+  left_join(names) |>
+  select(-state) |>
   rename(state = full_state)
 
 
 # Reorder variables and rows.
 
 x %<>%
-  select(name, date, state, city, manner_of_death:race, everything()) %>%
+  select(name, date, state, city, manner_of_death:race, everything()) |>
   arrange(date, state, city, name)
 
 
@@ -105,12 +105,12 @@ usethis::use_data(shootings, overwrite = T)
 #                                     'OR',	'PA',	'RI',	'SC',	'SD',	'TN',
 #                                     'TX',	'UT',	'VT',	'VA',	'WA',	'WV',
 #                                     'WI',	'WY'),
-#                    variable = 'race') %>%
-#                    tibble() %>%
-#                    clean_names() %>%
-#                    mutate(race = unlist(key)) %>%
+#                    variable = 'race') |>
+#                    tibble() |>
+#                    clean_names() |>
+#                    mutate(race = unlist(key)) |>
 #                    rename(state = level_detail,
-#                           offense = type) %>%
+#                           offense = type) |>
 #                    select(year, state, offense, race, count)
 #
 # # Save this one. May create new data set from this.
