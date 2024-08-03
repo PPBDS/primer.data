@@ -69,22 +69,30 @@ x <- read_csv("data-raw/mrc_table10.csv") |>
                                  selectivity == 9 ~ "Special",
                                  selectivity == 999 ~ "Non-selective")) |>
 
+  # Keep only the 4 year colleges
+
   mutate(degree_offering = case_when(degree_offering == 1 ~ "Four-year",
                                      degree_offering == 2 ~ "Two-year",
-                                     degree_offering == 2 ~ "Less than two-year")) |>
+                                     degree_offering == 3 ~ "Less than two-year")) |>
 
   mutate(region = case_when(region == 1 ~ "Northeast",
                             region == 2 ~ "Midwest",
                             region == 3 ~ "South",
                             region == 4 ~ "West")) |>
 
+  # Drop type
+
   mutate(type = case_when(type == 1 ~ "public",
                           type == 2 ~ "private non-profit",
                           type == 3 ~ "private for-profit")) |>
 
-# Turning `hbcu` into a binary variable
+# Turning `hbcu` into a binary variable. Keep it.
 
   mutate(hbcu = case_when(hbcu == 0 ~ FALSE,
-                          hbcu == 1 ~ TRUE))
+                          hbcu == 1 ~ TRUE)) |>
+
+  # Keep cost by change to /10000
+
+  drop_na()
 
 
