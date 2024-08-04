@@ -11,69 +11,43 @@ x <- read_csv("data-raw/mrc_table10.csv") |>
          state,
          county,
          zip,
-         tier,
-         tier_name,
          type,
-         iclevel,
          barrons,
          hbcu,
          ipeds_enrollment_2013,
          sticker_price_2013,
          grad_rate_150_p_2013,
-         avgfacsal_2013,
-         sat_avg_2013,
-         asian_or_pacific_share_fall_2000,
-         black_share_fall_2000,
-         hisp_share_fall_2000,
-         alien_share_fall_2000,
-         pct_arthuman_2000,
-         pct_business_2000,
-         pct_health_2000,
-         pct_multidisci_2000,
-         pct_publicsocial_2000,
-         pct_stem_2000,
-         pct_tradepersonal_2000,
-         pct_socialscience_2000) |>
+         sat_avg_2013) |>
 
-# Renaming some variables
+  filter(barrons != 9) |>
 
-  rename(degree_offering = "iclevel",
-         selectivity = "barrons",
+  # Renaming some variables
+
+  rename(public = "type",
+         tier = "barrons",
          enrollment = "ipeds_enrollment_2013",
-         cost = "sticker_price_2013",
+         tuition = "sticker_price_2013",
          grad_rate = "grad_rate_150_p_2013",
-         faculty_sal = "avgfacsal_2013",
-         sat = "sat_avg_2013",
-         pct_asian_pacific = "asian_or_pacific_share_fall_2000",
-         pct_black = "black_share_fall_2000",
-         pct_hispanic = "hisp_share_fall_2000",
-         pct_international = "alien_share_fall_2000",
-         pct_arthuman = "pct_arthuman_2000",
-         pct_business = "pct_business_2000",
-         pct_med = "pct_health_2000",
-         pct_multidisci = "pct_multidisci_2000",
-         pct_publicsocial = "pct_publicsocial_2000",
-         pct_stem = "pct_stem_2000",
-         pct_socialscience = "pct_socialscience_2000",
-         pct_tradepersonal = "pct_tradepersonal_2000") |>
+         sat = "sat_avg_2013") |>
 
-# Creating a new variable `acceptance_rate`.
 
-# Editing selectivity, degree_offering, region and type to display text instead of numbers
+  # Editing selectivity, region and type to display text instead of numbers
 
-  mutate(selectivity = case_when(selectivity == 1 ~ "Elite",
-                                 selectivity == 2 ~ "Highly Selective",
-                                 selectivity == 3 ~ "Selective",
-                                 selectivity == 4 ~ "Moderately Selective",
-                                 selectivity == 5 ~ "Moderately Selective",
-                                 selectivity == 9 ~ "Special",
-                                 selectivity == 999 ~ "Non-selective")) |>
 
-  # Keep only the 4 year colleges
 
-  mutate(degree_offering = case_when(degree_offering == 1 ~ "Four-year",
-                                     degree_offering == 2 ~ "Two-year",
-                                     degree_offering == 3 ~ "Less than two-year")) |>
+  mutate(selectivity = case_when(tier == 1 ~ "Elite",
+                                 tier == 2 ~ "Highly Selective",
+                                 tier == 3 ~ "Moderately Selective",
+                                 tier == 4 ~ "Lowly Selective",
+                                 tier == 5 ~ "Lowly Selective",
+                                 tier == 999 ~ "Non-selective"))|>
+
+  mutate(tier = case_when(tier == 1 ~ 1,
+                          tier == 2 ~ 2,
+                          tier == 3 ~ 3,
+                          tier == 4 ~ 4,
+                          tier == 5 ~ 5,
+                          tier == 999 ~ 6))|>
 
   mutate(region = case_when(region == 1 ~ "Northeast",
                             region == 2 ~ "Midwest",
@@ -81,18 +55,43 @@ x <- read_csv("data-raw/mrc_table10.csv") |>
                             region == 4 ~ "West")) |>
 
   # Drop type
+  # Changed it to be a binary (public or private)
 
-  mutate(type = case_when(type == 1 ~ "public",
-                          type == 2 ~ "private non-profit",
-                          type == 3 ~ "private for-profit")) |>
+  mutate(public = case_when(public == 1 ~ TRUE,
+                            public == 2 ~ FALSE,
+                            public == 3 ~ FALSE)) |>
 
-# Turning `hbcu` into a binary variable. Keep it.
+  # Turning `hbcu` into a binary variable. Keep it.
 
   mutate(hbcu = case_when(hbcu == 0 ~ FALSE,
                           hbcu == 1 ~ TRUE)) |>
 
   # Keep cost by change to /10000
 
+  mutate(tuition = tuition / 10000) |>
+
   drop_na()
 
+x$selectivity <- factor(x$selectivity,
+                        levels = c("Elite",
+                                   "Highly Selective",
+                                   "Moderately Selective",
+                                   "Lowly Selective",
+                                   "Non-selective"),
+                        ordered = TRUE)
+x$zip <- as.integer(x$zip)
+x$tier <- as.integer(x$tier)
+x$enrollment <- as.integer(x$enrollment)
+x$region <- factor(x$region,
+                   levels = c("Midwest",
+                              "South",
+                              "West",
+                              "Northeast"))
+x$sat <- as.integer(x$sat)
+
+# Save.
+
+ipeds <- x
+
+usethis::use_data(ipeds, overwrite = TRUE)
 
