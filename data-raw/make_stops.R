@@ -1,47 +1,50 @@
 library(tidyverse)
-library(brms)
 
-# read through all the other make_*.R files
-# select the variables to keep
-# select the rows to keep: arrest, sex, race, age, district, location, time
-# SD: I felt that instead of both district & location, it would be better to hav the Police Zone
-# rename variables
-# transform the variables
+# delete any zones with only 1 observation
+# add as geberal comment below: I felt that instead of both district & location, it would be better to hav the Police Zone
+# fix .R file, and then regenerate the help page
 
-x <- read_csv("data-raw/yg821jf8611_la_new_orleans_2020_04_01.csv.zip",
-              guess_max = 100000, # needed b/c the default guesses the wrong coltypes, so it needs a bigger guess size.
-              col_types = cols(date = col_date(format = ""), # still giving coltypes for the variable that we're using.
+# Using a big guess_max because there are some weird values deep in the data.
+
+raw <- read_csv("data-raw/yg821jf8611_la_new_orleans_2020_04_01.csv.zip",
+              guess_max = 100000,
+              col_types = cols(date = col_date(format = ""),
                                time = col_time(),
                                zone = col_character(),
                                subject_age = col_integer(),
                                subject_race = col_character(),
                                subject_sex = col_character(),
-                               arrest_made = col_logical())) |>
+                               arrest_made = col_logical()))
 
-# Selecting the variables specified at the top.
+# I wanted to keep date and time separate b/c something can be done with just
+# the time.
 
-select(date, time, zone, # I wanted to keep date and time separate b/c something can be done with just the time.
-       subject_age, subject_race,
-       subject_sex, arrest_made) |>
+x <- raw |>
+  select(date, time, zone,
+         subject_age, subject_race,
+         subject_sex, arrest_made) |>
 
-# Renaming some variables so they're easier to use.
+  # Zone is a bit ofw eird.
 
-rename(age = "subject_age",
-       sex = "subject_sex",
-       race = "subject_race",
-       arrested = "arrest_made") |>
+  rename(age = "subject_age",
+         sex = "subject_sex",
+         race = "subject_race",
+         arrested = "arrest_made") |>
 
-# Drop all zones without more than 1 observation.
+  # There were 4 rows with NA dates. We get rid of them but we really ought to
+  # check if any dates are missing.
 
-distinct()
+  drop_na(date) |>
 
-# Checking whether any row includes the same value for every variable.
+  # Seems like there are almost no arrests for the first 18 months of the data.
+  # By July 1, 2011, however, the value of arrested seems reasonable.
 
-df <- x
-df$unique <- !(duplicated(x) | duplicated(x, fromLast = TRUE))
-df <- df |>
-  filter(unique == FALSE)
-stopifnot(nrow(df) == 0)
+  filter(date >= "2011-07-01")
+
+  # Drop the NAs since we don't want to bother students with this complexity.
+  # Note that this costs about 10,000 observations (the vast majority because of
+  # missing age) out of 400,000. It is a deep question whether or not we should
+  # drop these rows.
 
 # Save.
 
@@ -50,18 +53,8 @@ stops <- x
 usethis::use_data(stops, overwrite = TRUE)
 
 
-# ------------------
 
-# Using this code makes for an interesting time series:
 
-# x |> count(date) |> arrange(n) |> ggplot(aes(x = date, y = n)) + geom_point()
 
-# Not sure what to do with this?
 
-# This makes clear why we need to delete the first 18 months of data.
 
-#  x |> select(arrest_made, date) |> mutate(all = sum(arrest_made), .by = date) |> ggplot(aes(x = date, y = all)) + geom_point()
-
-# SD: This would be better done in a tutorial rather than here
-
-# ------------------
