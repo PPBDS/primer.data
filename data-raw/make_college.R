@@ -1,5 +1,10 @@
 library(tidyverse)
 
+# add comments
+# college/colleges
+# the .Rd
+
+
 
 
 x <- read_csv("data-raw/mrc_table10.csv") |>
@@ -40,14 +45,14 @@ x <- read_csv("data-raw/mrc_table10.csv") |>
                                  tier == 3 ~ "Moderately Selective",
                                  tier == 4 ~ "Lowly Selective",
                                  tier == 5 ~ "Lowly Selective",
-                                 tier == 999 ~ "Non-selective"))|>
+                                 tier == 999 ~ "Non-selective")) |>
 
   mutate(tier = case_when(tier == 1 ~ 1,
                           tier == 2 ~ 2,
                           tier == 3 ~ 3,
                           tier == 4 ~ 4,
                           tier == 5 ~ 5,
-                          tier == 999 ~ 6))|>
+                          tier == 999 ~ 6)) |>
 
   mutate(region = case_when(region == 1 ~ "Northeast",
                             region == 2 ~ "Midwest",
@@ -91,7 +96,7 @@ x$sat <- as.integer(x$sat)
 
 # Save.
 
-ipeds <- x
+college <- x
 
-usethis::use_data(ipeds, overwrite = TRUE)
+usethis::use_data(college, overwrite = TRUE)
 
