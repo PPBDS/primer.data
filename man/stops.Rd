@@ -7,21 +7,13 @@
 \format{
 A tibble with 1,000,000+ observations and 15 variables:
 \describe{
-\item{stop_id}{character variable indicating a unique identifier for each stop}
 \item{date}{date variable indicating the date of the stop}
 \item{time}{time variable indicating the time of the stop}
-\item{location}{character variable indicating the location of the stop}
-\item{subject_race}{character variable indicating the race of the driver}
-\item{subject_sex}{character variable indicating the sex of the driver}
-\item{subject_age}{integer variable indicating the age of the driver}
-\item{officer_id}{character variable indicating a unique identifier for the officer conducting the stop}
-\item{violation}{character variable indicating the reason for the stop}
-\item{search_conducted}{logical variable indicating whether a search was conducted}
-\item{search_type}{character variable indicating the type of search conducted, if any}
-\item{contraband_found}{logical variable indicating whether contraband was found during the search}
-\item{stop_outcome}{character variable indicating the outcome of the stop (e.g., citation, warning, arrest)}
-\item{arrest_reason}{character variable indicating the reason for arrest, if applicable}
-\item{officer_race}{character variable indicating the race of the officer}
+\item{zone}{character variable indicating the zone of the officer conducting the stop}
+\item{race}{character variable indicating the race of the driver}
+\item{sex}{character variable indicating the sex of the driver}
+\item{age}{integer variable indicating the age of the driver}
+\item{arrested}{character variable indicating whether an arrest was made}
 }
 }
 \source{
