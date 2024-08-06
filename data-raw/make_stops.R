@@ -39,12 +39,14 @@ x <- raw |>
   # Seems like there are almost no arrests for the first 18 months of the data.
   # By July 1, 2011, however, the value of arrested seems reasonable.
 
-  filter(date >= "2011-07-01")
+  filter(date >= "2011-07-01") |>
 
   # Drop the NAs since we don't want to bother students with this complexity.
   # Note that this costs about 10,000 observations (the vast majority because of
   # missing age) out of 400,000. It is a deep question whether or not we should
   # drop these rows.
+
+  drop_na()
 
 # Save.
 

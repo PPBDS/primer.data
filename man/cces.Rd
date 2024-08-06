@@ -26,7 +26,7 @@ A tibble with 617,455 observations and 17 variables:
 \item{econ}{factor variable for retrospective report on the past year's economy}
 \item{approval_ch}{ordered factor variable of approval of president - takes values of
 "Strongly Approve", "Approve / Somewhat Approve",  "Neither Approve Nor Disapprove", "Disapprove / Somewhat Disapprove",
-"Never Heard / Not Sure"}
+"Strongly Disapprove"}
 \item{approval}{numeric variable of approval for the current president on a 1-4 scale
 with lower numbers indicating greater approval}
 \item{military}{factor variable indicating whether the respondent or someone in their
