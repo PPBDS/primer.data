@@ -51,6 +51,7 @@ x <- read_csv("data-raw/social_original.csv",
   rename(primary_00 = p2000,
          primary_02 = p2002,
          primary_04 = p2004,
+         primary_06 = voted,
          general_00 = g2000,
          general_02 = g2002,
          general_04 = g2004,
@@ -74,20 +75,20 @@ x <- read_csv("data-raw/social_original.csv",
                                    "Civic Duty", "Hawthorne",
                                    "Self", "Neighbors"))) |>
 
-  # Recoding character variables.
+  # sex as Male/Female makes for nicer graphic labels
 
-  mutate(sex = str_to_title(sex),
-         primary_00 = str_to_title(primary_00),
-         primary_02 = str_to_title(primary_02),
-         primary_04 = str_to_title(primary_04),
-         general_00 = str_to_title(general_00),
-         general_02 = str_to_title(general_02),
-         general_04 = str_to_title(general_04)) |>
+  mutate(sex = str_to_title(sex)) |>
 
+  # 0/1 values are easier to work with. Be wary! Yes/No capitalization varies
+  # across the variables.
 
-  # Recoding voted as 0/1, makes later analysis much easier.
-
-  mutate(primary_06 = ifelse(voted == "Yes", 1L, 0L)) |>
+  mutate(primary_00 = if_else(str_to_lower(primary_00) == "yes", 1L, 0L),
+         primary_02 = if_else(str_to_lower(primary_02) == "yes", 1L, 0L),
+         primary_04 = if_else(str_to_lower(primary_04) == "yes", 1L, 0L),
+         primary_06 = if_else(str_to_lower(primary_06) == "yes", 1L, 0L),
+         general_00 = if_else(str_to_lower(general_00) == "yes", 1L, 0L),
+         general_02 = if_else(str_to_lower(general_02) == "yes", 1L, 0L),
+         general_04 = if_else(str_to_lower(general_04) == "yes", 1L, 0L)) |>
 
   # Note sure if these variables are useful, but want to keep them around. They
   # seem very suspicious to me. How can there be 98,212 with a value of 0.952381
@@ -107,8 +108,7 @@ x <- read_csv("data-raw/social_original.csv",
          primary_00, general_00,
          primary_02, general_02,
          primary_04, general_04,
-         hh_size, hh_primary_04, hh_general_04,
-         neighbors)
+         hh_size, neighbors)
 
 
 # Test some items
