@@ -1,20 +1,18 @@
-#' @title
-#' New Orleans Traffic Stops Data
+#' @title New Orleans Traffic Stops Data
 #'
-#' @description
-#' This data is from the \href{https://openpolicing.stanford.edu/findings/}
-#' {Stanford Open Policing Project}, which aims to improve police accountability
-#' and transparency by providing data on traffic stops across the United
-#' States. The \href{https://openpolicing.stanford.edu/data/#new-orleans}
-#' {New Orleans dataset} includes detailed information about traffic stops
-#' conducted by the New Orleans Police Department.
+#' @description This data is from the
+#' \href{https://openpolicing.stanford.edu/findings/}{Stanford Open Policing
+#' Project}, which aims to improve police accountability and transparency by
+#' providing data on traffic stops across the United States. The
+#' \href{https://openpolicing.stanford.edu/data/#new-orleans}{New Orleans
+#' dataset} includes detailed information about traffic stops conducted by the
+#' New Orleans Police Department.
 #'
-#' @details
-#' The dataset includes information about the date, time, and location of each
-#' stop, as well as demographic details about the driver and the outcomes of
-#' the stop. The data covers traffic stops from July 1, 2011 to July 18, 2018.
-#' The purpose of this dataset is to facilitate research on racial disparities
-#' in policing practices.
+#' @details The dataset includes information about the date, time, and location
+#' of each stop, as well as demographic details about the driver and the
+#' outcomes of the stop. The data covers traffic stops from July 1, 2011 to July
+#' 18, 2018. The purpose of this dataset is to facilitate research on racial
+#' disparities in policing practices.
 #'
 #' @format A tibble with 1,000,000+ observations and 15 variables:
 #' \describe{
@@ -28,10 +26,8 @@
 #' \item{arrested}{character variable indicating whether an arrest was made}
 #' }
 #'
-#' @author
-#' Sanaka Dash
+#' @author Sanaka Dash
 #'
-#' @source
-#' \url{https://openpolicing.stanford.edu/data/}
+#' @source \url{https://openpolicing.stanford.edu/data/}
 #'
 "stops"
