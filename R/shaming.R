@@ -26,7 +26,7 @@
 #' everyone on the list would be notified of their voting behavior after the
 #' primary.
 #'
-#' @format A tibble with 344,084 observations and 15 variables:
+#' @format A tibble with 344,084 observations and 13 variables:
 #' \describe{
 #'   \item{cluster}{character variable with cluster designation, which ranges from 1 to 10,000. See
 #'                   the documentation for extensive discussion about the clustering procedure}

@@ -5,7 +5,7 @@
 \alias{shaming}
 \title{Michigan voting experiment with social shaming}
 \format{
-A tibble with 344,084 observations and 15 variables:
+A tibble with 344,084 observations and 13 variables:
 \describe{
 \item{cluster}{character variable with cluster designation, which ranges from 1 to 10,000. See
 the documentation for extensive discussion about the clustering procedure}
