@@ -21,20 +21,28 @@ jobs:
           - {os: macos-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
           - {os: ubuntu-latest,  r: 'release'}
-          
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
     steps:
       - uses: actions/checkout@v4
 
+      # Inserted to deal with a units error.
+
+      - name: Install system dependencies on Ubuntu with R release
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libudunits2-dev
+
       # Using setup-renv below makes pandoc necessary.
 
       - uses: r-lib/actions/setup-pandoc@v2
-      
-      # Need because of ggalt package, perhaps because it is dependence on 
+
+      # Need because of ggalt package, perhaps because it is dependence on
       # the proj4 package. libgdal is needed for terra.
-      
+
       - name: Install system dependencies (Linux)
         if: runner.os == 'Linux'
         run: |
@@ -52,7 +60,7 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
-          
+
       # Sure seems like check-r-package should take care of this installation, but
       # it does not seem to do so. Note that you can't just include rcmdcheck in the
       # DESCRIPTION file without causing failure to local calls to R CMD check.

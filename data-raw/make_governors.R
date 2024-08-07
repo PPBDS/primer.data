@@ -24,7 +24,7 @@ library(tidyverse)
 # after (living_day_imp_post, living_day_post) the election. Note that there are
 # two versions of both, with one --- with "imp" in the name --- indicating that
 # it has been imputed. They look highly similar, with a few less missing among
-# the imputed. So, I will just use those, and out them into years rather than
+# the imputed. So, I will just use those, and turn them into years rather than
 # days for measurement.
 
 
