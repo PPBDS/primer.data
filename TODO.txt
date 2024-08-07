@@ -1,10 +1,6 @@
 
 ### Improvements
 
-* Make shaming easier to use by setting voting records to 0/1 instead of Yes/No.
-
-* Revisit governors so that it includes all the data. Chapter which uses it must then delete the pre-1945 data.
-
 * Drop some data, like names.csv, which we no longer use for the class.
 
 * Add some data for class examples, like resume.csv

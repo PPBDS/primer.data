@@ -12,11 +12,7 @@ library(tidyverse)
 # indicating annual increases in per capita income ("pc_inc_ann"), total
 # expenditures ("tot_expenditure"), and life expectancy of a candidate in
 # remaining years ("ex"). These variables may be interesting, but have way too
-# many NAs to be useful. Finally, I excluded four variables indicating the the
-# census region in which an election took place ("reg_south", "reg_west",
-# "reg_midwest", "reg_northeast"). This adds little information, given that we
-# already have a variable indicating the federal state in which an election took
-# place.
+# many NAs to be useful.
 
 # What is the `ex` variable? Looks interesting.
 
@@ -40,6 +36,13 @@ library(tidyverse)
 # Also, other data seems wrong. For example, David Williams, candidate for
 # Governor in Kentucky in 2011 is listed with a death date of 2016-01-01, but
 # Wikipedia lists him as alive. Other recent deaths check out. So, no worries?
+
+# I am also suspicious of older data. Look at the top few rows for the final
+# data set, with just one candidate for each election in Alabama in the 1850s.
+# Perhaps the 1851 election is OK because it was a landslide and there is some
+# rule that you need to get at least X% of the vote to get included. But that
+# hardly explains the 1855 election. In fact, more than half the 1855 elections
+# seem to only include one candidate.
 
 x <- read_csv("data-raw/longevity.csv",
               col_types = cols(area = col_character(),
@@ -72,14 +75,14 @@ x <- read_csv("data-raw/longevity.csv",
          pop_annual) |>
 
 
-  # Creating a new variable for sex. There are only 21 female governors left,
+  # Creating a new variable for sex. There are only 25 female governors left,
   # once we get done wih our restrictions.
 
   mutate(sex = case_when(female == 0 ~ "Male",
                          female == 1 ~ "Female")) |>
 
 
-  # VCreate the 'party' and 'region' variables. Is there are more elegant way to
+  # Create the 'party' and 'region' variables. Is there are more elegant way to
   # handle this? The danger is that there are some observations with more than
   # one 1 and some with none. Using pivot_longer() would (?) be safer.
 
@@ -126,7 +129,7 @@ x <- read_csv("data-raw/longevity.csv",
   mutate(death_age = (living_day_imp_pre + living_day_imp_post) / 365.25) |>
   mutate(lived_after = living_day_imp_post / 365.25) |>
 
-  select(-living_day_imp_pre, -living_day_imp_post) |>
+  select(-living_day_imp_pre, -living_day_imp_post, -population) |>
 
 
   # Subsetting the data to only include observations for which the
@@ -137,10 +140,10 @@ x <- read_csv("data-raw/longevity.csv",
   # NAs in "died," most of which were caused by the recent elections
   # with many candidates not yet deceased.s‚
 
-  # Maybe I should keep everyone post 1945 . . .
+  # Maybe I should keep everyone and force students to deal with living
+  # candidates?
 
-  filter(year >= 1945, is.na(died) == FALSE) |>
-
+  filter(is.na(died) == FALSE) |>
 
   # Arranging by state and year.
 

@@ -5,7 +5,7 @@
 \alias{governors}
 \title{Election results and candidate longevity}
 \format{
-A tibble with 1,092 observations and 11 variables:
+A tibble with 3,587 observations and 13 variables:
 \describe{
 \item{state}{character variable indicating the state in which an election took place}
 \item{year}{integer variable indicating the year in which an election took place}
@@ -17,9 +17,10 @@ A tibble with 1,092 observations and 11 variables:
 \item{status}{character variable indicating whether a candidate was the challenger or incumbent}
 \item{win_margin}{double variable indicating the percentage margin by which the election was won
 (positive values) or lost (negative values)}
-\item{population}{number of people living in the state at the time of the election}
-\item{death_age}{years a candidate lived}
+\item{region}{character variable indicating region of the country:
+'Midwest', 'Northeast', 'South', or 'West'}
 \item{election_age}{years a candidate lived before the election took place}
+\item{death_age}{years a candidate lived}
 \item{lived_after}{years a candidate lived after the election took place}
 }
 }
@@ -34,9 +35,10 @@ This data is from the paper "Longevity Returns to Political
 Office" by \href{https://doi.org/10.1017/psrm.2019.63}{Barfort, Klemmensen &
 Larsen (2019)}. The purpose of the study (\href{https://github.com/PPBDS/primer.data/blob/master/inst/papers/governors.pdf}{pdf})
 was to explore how winning an
-election influences the lifespan of a candidate. The data set includes all
+election influences the lifespan of a candidate. The data set purports to includes all
 the candidates
-in U.S. gubernatorial elections from 1945 to 2012 who were deceased as of 2012.
+in U.S. gubernatorial elections after 1850 who were deceased as of 2012, but
+there are clearly serious data quality issues, especially in the 1800s.
 }
 \details{
 First, for a given election, only the two candidates who received the
