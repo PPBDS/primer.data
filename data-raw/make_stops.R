@@ -53,9 +53,22 @@ x <- raw |>
   # Delete any zones with only 1 observation - this was the easiest way I
   # found, but is there any better way?
 
-  group_by(zone) %>%
-  filter(n() > 1) %>%
-  ungroup()
+  group_by(zone) |>
+  filter(n() > 1) |>
+  ungroup() |>
+
+  # There are about 10,000 missing ages. They are reasonable spread out across
+  # the time period.
+
+  # x |> count(date, is.na(age)) |> filter(`is.na(age)`) |> ggplot(aes(y = n, x = date)) + geom_point()
+
+  # Only 740 of the missing ages are associated with an arrest. This is about 8%
+  # of all arrests. This is 4 times bigger than the 2% of all observations which
+  # have a missing age. Why would it be that stops which result in an arrest are
+  # 4 times more likely to be missing an age than stops which do not result in
+  # an arrest? Good question. You can tell stories in which this is an important
+  # discrepancy. But I can't imagine having students deal with this issue in a
+  # tutorial. So, for now, we just delete all missing observations.
 
   drop_na()
 
