@@ -38,6 +38,10 @@ x <- raw |>
          race = "subject_race",
          arrested = "arrest_made") |>
 
+  # Convenient if arrested is 0/1.
+
+  mutate(arrested = if_else(arrested, 1L, 0L)) |>
+
   # There were 4 rows with NA dates. We get rid of them but we really ought to
   # check if any dates are missing.
   # Note that there were 0 NAs in the `arrested` column, so it made sense to

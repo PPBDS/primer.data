@@ -14,7 +14,7 @@ the stop}
 \item{race}{character variable indicating the race of the driver}
 \item{sex}{character variable indicating the sex of the driver}
 \item{age}{integer variable indicating the age of the driver}
-\item{arrested}{character variable indicating whether an arrest was made}
+\item{arrested}{0/1 variable indicating whether an arrest was made}
 }
 }
 \source{
