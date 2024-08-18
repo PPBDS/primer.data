@@ -92,11 +92,9 @@ x <- read_csv("data-raw/pnas_data.csv",
   # times, we want it to be a factor. And, once we decide we need a factor, we
   # might as well create a "proper" factor with named levels, and make an
   # affirmative choice for how we want the levels of that factor to be ordered.
-  # In this case, I will keep both versions of treatment around: treatment and
-  # treatment.2.
 
   mutate(treatment = ifelse(treatment == 1, "Treated", "Control")) |>
-  mutate(treatment = factor(treatment, levels = c("Treated", "Control"))) |>
+  mutate(treatment = factor(treatment, levels = c("Control", "Treated"))) |>
 
   # Not obvious what the best way to represent these variables are. Enos, for
   # example, works with 0/1 variables for male, liberal and republican. I don't

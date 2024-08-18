@@ -7,7 +7,7 @@
 \format{
 A tibble with 115 observations and 14 variables:
 \describe{
-\item{treatment}{factor variable with two levels: "Treated" and "Control"}
+\item{treatment}{factor variable with two levels: "Control" and "Treated"}
 \item{att_start}{Starting attitude toward immigration issues. Uses a 3 to 15 scale,
 with higher numbers meaning more conservative}
 \item{att_end}{Ending attitude toward immigration issues. Uses a 3 to 15 scale,
