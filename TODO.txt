@@ -1,12 +1,22 @@
-### Khang
+### Stepher
+
+* Read about data and R packages: https://r-pkgs.org/data.html
+
+* Look at stops and trains. Understand how they are produced. Recreate them by hand. Do not submit a PR. Look at data-raw/*R file. Load up data set interactively and look at it. Look at R/*R file. Mess around. Change the trains.R file. Create new Rd with devtools::document(). Confirm the change by running devtools::install and the loading the package and doing ?trains. You can mess around because, at the end, you are just going to discord the changes anyway.
+
+* Let's do something with Census blocks!
+
+* There is a package called PPBDS/tidycensus.tutorials. It connects to this book: https://walker-data.com/census-r/. Do (quickly, if you like) the tutorials for chapters 2 through 5.
+
 
 * We want a data set which is built at the lowest level, presumably Census blocks. It should have several different variables in it. I am flexible about which variables we will include. We will have have variables at "higher" levels. For example, we will have a `state` column in the data.
 
-* Create a script, get_census.R, which grabs this data. Store it in data-raw. Example:
+* Create a script, get_census.R, which grabs this data. Get at least 4 or 5 variables. Store it in data-raw. Example:
 
 library(tidycensus)
+library(tidyverse)
 
-x <- get_decennial(
+x <- tidycensus::get_decennial(
   geography = "block",
   variables = "H1_001N",
   state = "OK",
@@ -15,19 +25,17 @@ x <- get_decennial(
   sumfile = "pl"
 )
 
-write_csv(...)
+write_csv(x, file = "census.csv")
 
 It is useful to get this working for just a one county or one state before you try to download all the data for the entire US.
 
 * Script results in a census.csv.
 
-* In the above, pay attention to the process by which you found these variables. We want to give students better guidance.
-
 * Create make_census.R script which takes csv file, does a bunch of cleaning, and then outputs an R object, just like the others in the package.
 
-* Key question: Which variables??? Census is overwhelming. Census is hard to use.
+* Key question: Which variables??? Census is overwhelming. Census is hard to use. Find a cool plot and get the variables for that!
 
-
+### Other Stuff
 
 
 
