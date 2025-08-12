@@ -1,3 +1,21 @@
+
+### Stepher
+
+* For now, just download raw counts in different racial groups. Once working for one state, do it for the whole country.
+
+* Need census.R file with roxygen at top. devtools::install() will then make the .Rd file. 
+
+* Read: https://ppbds.github.io/primer/03-rubin-causal-model.html
+
+* Read: https://ppbds.github.io/primer/04-cardinal-virtues.html
+
+* Go to a different directory. Complete the `131-stops` tutorial in primer.tutorials. Need to first:
+
+remotes::install_github("PPBDS/primer.tutorials")
+learnr::run_tutorial("131-stops", package = "primer.tutorials")
+
+* Email me your html answers.
+
 ### Fixing data sets
 
 * We need to add a dataset which corresponds to the polls dataset which is used in the primer. We will need to add some "fake" variables to this data set, but we will clearly label them as such in the help page.
@@ -9,22 +27,17 @@
   + at least one numeric values with a non-absurd distribution
   + at least one character variable with two values which might plausibly be discussed as a treatment variable, i.e., something which, at least in theory, we might manipulate. This might need to be fake, but will clearly be noted as such on the help page.
 
-* These are the data sets which should be fixed: polls, trains,  stops
+* These are the data sets which should be fixed: polls, trains,  stops.
 
 
 
 
 
-
-### Stepher
-
-
+### Preceptor
 
 * Why doesn't help(package = "primer.data") pull up links which work? Shouldn't that page also include the new census data?
 
 * ?stops works but ?census does not.
-
-
 
 * Key question: Which variables??? Census is overwhelming. Census is hard to use. Find a cool plot and get the variables for that!
 
