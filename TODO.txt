@@ -43,13 +43,13 @@ x <- tidycensus::get_decennial(
   sumfile = "pl"
 )
 
-write_csv(x, file = "census.csv")
+write_csv(x, file = "census.csv") SS: Done
 
 It is useful to get this working for just a one county or one state before you try to download all the data for the entire US.
 
 * Script results in a census.csv.
 
-* Create make_census.R script which takes csv file, does a bunch of cleaning, and then outputs an R object, just like the others in the package.
+* Create make_census.R script which takes csv file, does a bunch of cleaning, and then outputs an R object, just like the others in the package. SS: Done
 
 * Key question: Which variables??? Census is overwhelming. Census is hard to use. Find a cool plot and get the variables for that!
 
