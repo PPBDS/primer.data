@@ -64,10 +64,7 @@ in the United States, including Washington D.C. and territories.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A data frame with 8 variables and counties as rows:</p><dl><dt>GEOID</dt>
-<dd><p>5-digit FIPS code uniquely identifying each county (character)</p></dd>
-
-<dt>NAME</dt>
+    <p>A data frame with 8 variables and counties as rows:</p><dl><dt>name</dt>
 <dd><p>County name and state (e.g., "Los Angeles County, California") (character)</p></dd>
 
 <dt>total_pop</dt>
@@ -114,55 +111,6 @@ territories (Puerto Rico, U.S. Virgin Islands, American Samoa, Guam, and
 Northern Mariana Islands).</p>
     </div>
 
-    <div id="ref-examples">
-    <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load the data</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">census</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># View structure</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">census</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [3,221 × 8] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ name            : chr [1:3221] "Autauga County, Alabama" "Baldwin County, Alabama" "Barbour County, Alabama" "Bibb County, Alabama" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ total_pop       : int [1:3221] 58805 231767 25223 22293 59134 10357 19051 116441 13080 24275 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ white           : int [1:3221] 42160 189399 11317 16555 50663 2320 9752 80586 12633 22671 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ black           : int [1:3221] 11445 18217 11933 4413 845 7396 8430 25559 36 470 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ native_american : int [1:3221] 217 1582 116 60 337 72 29 487 18 40 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ asian           : int [1:3221] 881 2067 117 32 178 9 143 1190 9 60 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ pacific_islander: int [1:3221] 35 143 1 9 24 10 5 119 4 2 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ hispanic_latino : int [1:3221] 2117 12686 1510 740 5771 503 260 5010 83 475 ...</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Summary statistics</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">census</span><span class="op">$</span><span class="va">total_pop</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       64    10976    25828   103923    67260 10014009 </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Counties with highest population</span></span></span>
-<span class="r-in"><span><span class="va">census</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">census</span><span class="op">$</span><span class="va">total_pop</span><span class="op">)</span>, <span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"total_pop"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in census[order(-census$total_pop), ][1:10, c("NAME", "total_pop")]:</span> Can't subset columns that don't exist.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Column `NAME` doesn't exist.</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Calculate percentage demographics</span></span></span>
-<span class="r-in"><span><span class="va">census</span><span class="op">$</span><span class="va">pct_white</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">census</span><span class="op">$</span><span class="va">white</span> <span class="op">/</span> <span class="va">census</span><span class="op">$</span><span class="va">total_pop</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">census</span><span class="op">$</span><span class="va">pct_black</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">census</span><span class="op">$</span><span class="va">black</span> <span class="op">/</span> <span class="va">census</span><span class="op">$</span><span class="va">total_pop</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">census</span><span class="op">$</span><span class="va">pct_hispanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">census</span><span class="op">$</span><span class="va">hispanic_latino</span> <span class="op">/</span> <span class="va">census</span><span class="op">$</span><span class="va">total_pop</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Find counties with majority Hispanic population</span></span></span>
-<span class="r-in"><span><span class="va">hispanic_majority</span> <span class="op">&lt;-</span> <span class="va">census</span><span class="op">[</span><span class="va">census</span><span class="op">$</span><span class="va">pct_hispanic</span> <span class="op">&gt;</span> <span class="fl">50</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NAME"</span>, <span class="st">"pct_hispanic"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in census[census$pct_hispanic &gt; 50, c("NAME", "pct_hispanic")]:</span> Can't subset columns that don't exist.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Column `NAME` doesn't exist.</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Filter to specific state (using GEOID - first 2 digits are state FIPS)</span></span></span>
-<span class="r-in"><span><span class="va">california_counties</span> <span class="op">&lt;-</span> <span class="va">census</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">census</span><span class="op">$</span><span class="va">GEOID</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">==</span> <span class="st">"06"</span>, <span class="op">]</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unknown or uninitialised column: `GEOID`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in census[substr(census$GEOID, 1, 2) == "06", ]:</span> Can't subset rows with `substr(census$GEOID, 1, 2) == "06"`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Logical subscript `substr(census$GEOID, 1, 2) == "06"` must be size 1 or 3221, not 0.</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Total US population</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">census</span><span class="op">$</span><span class="va">total_pop</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 334735155</span>
-<span class="r-in"><span></span></span>
-</code></pre></div>
-    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
