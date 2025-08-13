@@ -5,16 +5,16 @@ variables <- c(
   "P1_001N",  # Total population
   "P1_003N",  # White alone
   "P1_004N",  # Black or African American alone
+  "P1_005N",  # American Indian and Alaska Native alone
   "P1_006N",  # Asian alone
-  "P2_002N",  # Hispanic or Latino
-  "H1_001N"   # Total housing units
+  "P1_007N",  # Native Hawaiian and Other Pacific Islander alone
+  "P2_002N"   # Hispanic or Latino (of any race)
 )
 
 census_data <- get_decennial(
-  geography = "block",
+  geography = "county",
   variables = variables,
-  state = "OK",
-  county = "Cimarron",
+  state = NULL,
   year = 2020,
   sumfile = "pl",
   output = "wide"
@@ -22,11 +22,12 @@ census_data <- get_decennial(
 
   rename(
     total_pop = P1_001N,
-    white_alone = P1_003N,
-    black_alone = P1_004N,
-    asian_alone = P1_006N,
-    hispanic_latino = P2_002N,
-    total_housing = H1_001N
+    white = P1_003N,
+    black = P1_004N,
+    native_american = P1_005N,  # American Indian and Alaska Native
+    asian = P1_006N,
+    pacific_islander = P1_007N,  # Native Hawaiian and Other Pacific Islander
+    hispanic_latino = P2_002N
   )
 
 write_csv(census_data, file = "data-raw/census.csv")
