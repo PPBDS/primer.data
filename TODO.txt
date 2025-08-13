@@ -1,13 +1,7 @@
 
 ### Stepher
 
-* For now, just download raw counts in different racial groups. Once working for one state, do it for the whole country. SS: Done
 
-* Need census.R file with roxygen at top. devtools::install() will then make the .Rd file. SS: Done
-
-* Read: https://ppbds.github.io/primer/03-rubin-causal-model.html SS: Done
-
-* Read: https://ppbds.github.io/primer/04-cardinal-virtues.html SS: Done
 
 * Go to a different directory. Complete the `131-stops` tutorial in primer.tutorials. Need to first:
 
@@ -107,6 +101,8 @@ Update for latest information.
 
 
 ### Preceptor
+
+* For census we want tracts not counties.
 
 * Why doesn't help(package = "primer.data") pull up links which work? Shouldn't that page also include the new census data?
 

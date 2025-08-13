@@ -7,8 +7,7 @@
 \format{
 A data frame with 8 variables and counties as rows:
 \describe{
-\item{GEOID}{5-digit FIPS code uniquely identifying each county (character)}
-\item{NAME}{County name and state (e.g., "Los Angeles County, California") (character)}
+\item{name}{County name and state (e.g., "Los Angeles County, California") (character)}
 \item{total_pop}{Total population count (integer)}
 \item{white}{Population identifying as White alone (integer)}
 \item{black}{Population identifying as Black or African American alone (integer)}
@@ -49,33 +48,5 @@ of any race, so these counts may overlap with the race-specific categories.
 The dataset includes all counties in the 50 states, Washington D.C., and U.S.
 territories (Puerto Rico, U.S. Virgin Islands, American Samoa, Guam, and
 Northern Mariana Islands).
-}
-\examples{
-# Load the data
-data(census)
-
-# View structure
-str(census)
-
-# Summary statistics
-summary(census$total_pop)
-
-# Counties with highest population
-census[order(-census$total_pop), ][1:10, c("NAME", "total_pop")]
-
-# Calculate percentage demographics
-census$pct_white <- round(census$white / census$total_pop * 100, 1)
-census$pct_black <- round(census$black / census$total_pop * 100, 1)
-census$pct_hispanic <- round(census$hispanic_latino / census$total_pop * 100, 1)
-
-# Find counties with majority Hispanic population
-hispanic_majority <- census[census$pct_hispanic > 50, c("NAME", "pct_hispanic")]
-
-# Filter to specific state (using GEOID - first 2 digits are state FIPS)
-california_counties <- census[substr(census$GEOID, 1, 2) == "06", ]
-
-# Total US population
-sum(census$total_pop)
-
 }
 \keyword{datasets}
