@@ -1,14 +1,14 @@
 
 ### Stepher
 
-* Key concepts: potential outcomes, causal effects, unconfoundedness, no causation without manipulation
+* Key concepts: potential outcomes, causal effects, unconfoundedness, no causation without manipulation. SS: Done
 
 * Go to a different directory. Complete the `131-stops` tutorial in primer.tutorials. Need to first:
 
-remotes::install_github("PPBDS/primer.tutorials")
-learnr::run_tutorial("131-stops", package = "primer.tutorials")
+remotes::install_github("PPBDS/primer.tutorials") SS: Done
+learnr::run_tutorial("131-stops", package = "primer.tutorials") SS: Done
 
-* Email me your html answers.
+* Email me your html answers. SS: Done
 
 * We need to expand the datasets which are used in the primer so that each has:
   
@@ -24,44 +24,44 @@ For each data set here, list the variable which meets each of the requirements l
 
 ### nhanes
 
-* 2 character: 
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: sex
+* 3 to 6 character: race or education
+* numeric: bmi
+* treatment: diabetes
 
 ### nes
 
 Also, update this data with the latest information from 2024 election.
 
-* 2 character:
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: sex
+* 3 to 6 character: education or region or ideology
+* numeric: income 
+* treatment: voted
 
 ### governors
 
-* 2 character:
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: sex
+* 3 to 6 character: region
+* numeric: death_age
+* treatment: status
 
 ### trains
 
 Add the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". 
 
-* 2 character:
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: sex
+* 3 to 6 character: race
+* numeric: att_end
+* treatment: liberal
 
 ### shaming
 
-* 2 character:
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: sex
+* 3 to 6 character: treatment
+* numeric: hh_size
+* treatment: primary_06
 
-### polls
+### polls SS: object not found
 
 We need to add a dataset which corresponds to the polls dataset which is used in the primer. We will need to add some "fake" variables to this data set, but we will clearly label them as such in the help page.
 
@@ -74,24 +74,24 @@ We need to add a dataset which corresponds to the polls dataset which is used in
 
 Update for latest information. 
 
-* 2 character:
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: sex
+* 3 to 6 character: education or ideology
+* numeric: faminc
+* treatment: voted
 
-### college
+### college SS: object not found
 
-* 2 character:
+* 2 character: 
 * 3 to 6 character:
 * numeric:
 * treatment: 
 
 ### stops
 
-* 2 character:
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: sex
+* 3 to 6 character: race
+* numeric: age
+* treatment: arrested
 
 
 ### Preceptor
