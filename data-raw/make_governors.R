@@ -122,6 +122,17 @@ x <- read_csv("data-raw/longevity.csv",
          population = "pop_annual") |>
 
 
+  # Creating outcome variable based on win_margin
+  # Positive win_margin indicates a win, negative indicates a loss
+  
+  mutate(outcome = case_when(
+    win_margin > 0 ~ "Win",
+    win_margin < 0 ~ "Lose",
+    win_margin == 0 ~ "Tie",
+    TRUE ~ NA_character_
+  )) |>
+
+
   # years is a more natural measurement for later analysis. Right? Are these
   # good variable names?
 
@@ -138,7 +149,7 @@ x <- read_csv("data-raw/longevity.csv",
   # since for many elections before that year the date of death could
   # not be determined. The second condition then excludes all remaining
   # NAs in "died," most of which were caused by the recent elections
-  # with many candidates not yet deceased.s‚
+  # with many candidates not yet deceased.sâ€š
 
   # Maybe I should keep everyone and force students to deal with living
   # candidates?
@@ -165,4 +176,3 @@ stopifnot(nrow(df) == 0)
 governors <- x
 
 usethis::use_data(governors, overwrite = TRUE)
-

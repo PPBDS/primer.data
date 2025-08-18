@@ -9,14 +9,14 @@ Also, update this data with the latest information from 2024 election. Find a nu
 
 * 2 character: sex
 * 3 to 6 character: region
-* numeric: ? 
+* numeric: age
 * treatment: voted
 
-With governors, let's make a new variable `outcome` which is either "Win" or "Lose". Use `win_margin` to determine this.
+With governors, let's make a new variable `outcome` which is either "Win" or "Lose". Use `win_margin` to determine this. SS: Done
 
 ### shaming
 
-Can you find variables for our two question marks in the data?
+Can you find variables for our two question marks in the data? SS: Variables are limited. Unfortunately, I can't.
 
 * 2 character: sex
 * 3 to 6 character: ?
@@ -24,7 +24,7 @@ Can you find variables for our two question marks in the data?
 * treatment: ? (Nice to have a variable with two possible values which might be considered a treatment.)
 
 
-### polls SS: object not found
+### polls 
 
 Skim: In primer.tutorials, note this code:
 

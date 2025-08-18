@@ -57,7 +57,7 @@ x <- raw_data |>
 
   select(VCF0104, VCF0114, VCF0004,
          VCF0105a, VCF0301, VCF0140a,
-         VCF0901a, VCF0702, VCF0102,
+         VCF0901a, VCF0702, VCF0101, VCF0102,
          VCF0450, VCF0112, VCF0206,
          VCF0207, VCF0823, VCF0846,
          VCF9013, VCF0613, VCF0704) |>
@@ -178,6 +178,12 @@ x <- raw_data |>
                                       "Independent - Republican",
                                       "Weak Republican",
                                       "Strong Republican"))) |>
+  
+  # NEW NUMERIC VARIABLE: Convert ideology to a numeric scale
+  # This creates a 7-point ideology scale commonly used in political science
+  # 1 = Strong Democrat, 4 = Independent, 7 = Strong Republican
+  
+  mutate(ideology_numeric = as.numeric(ideology)) |>
 
   # Cleaning education variable.
 
@@ -276,20 +282,10 @@ z <- x |>
   select(-VCF0702, -v2) |>
 
 
-  # Cleaning age group variable.
+  # Cleaning age variable as numeric.
 
-  mutate(age = as_factor(VCF0102)) |>
-  mutate(age = as.factor(case_when(
-    str_detect(age, "1. ") == T ~ "17 - 24",
-    str_detect(age, "2. ") == T ~ "25 - 34",
-    str_detect(age, "3. ") == T ~ "35 - 44",
-    str_detect(age, "4. ") == T ~ "45 - 54",
-    str_detect(age, "5. ") == T ~ "55 - 64",
-    str_detect(age, "6. ") == T ~ "65 - 74",
-    str_detect(age, "7. ") == T ~ "75 +",
-    TRUE ~ NA_character_))) |>
-
-  select(-VCF0102) |>
+  mutate(age = as.integer(VCF0101)) |>
+  select(-VCF0101, -VCF0102) |>
 
   # Cleaning presidential approval variable. Need to find regex method
   # to automatize the process of using case_when.
@@ -369,22 +365,21 @@ z <- x |>
 
 
 select(year, state, sex, income, age,
-       education, race, ideology, voted,
+       education, race, ideology, ideology_numeric, voted,
        region, pres_appr, influence, equality,
        religion, better_alone, therm_black,
        therm_white, pres_vote)
 
-# Check and save.
+# Check and save - updated to include new numeric variable check.
 
 stopifnot(nrow(z) > 32000)
 stopifnot(length(levels(z$education)) == 7)
 stopifnot(is.integer(z$year))
 stopifnot(dim(table(z$income)) == 5)
+stopifnot(is.numeric(z$ideology_numeric))  # Check that ideology numeric variable is numeric
+stopifnot(is.integer(z$age))               # Check that age is integer
 
 
 nes <- z
 
 usethis::use_data(nes, overwrite = T)
-
-
-
