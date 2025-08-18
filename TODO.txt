@@ -1,48 +1,49 @@
 
 # Stepher
 
+# governors
+
+No ties.
+
+Bad character added.
+
+
 ### nes
 
-Look at make_nes.R and other scripts.
+Also, update this data with the latest information from 2024 election. Leave out any variables which you think are problematic. Consider adding some variables (or maybe not). Check that variable possible values, like education, have not changed.
 
-Also, update this data with the latest information from 2024 election. Find a numeric variable to add.
-
-* 2 character: sex
-* 3 to 6 character: region
-* numeric: age
-* treatment: voted
-
-With governors, let's make a new variable `outcome` which is either "Win" or "Lose". Use `win_margin` to determine this. SS: Done
-
-### shaming
-
-Can you find variables for our two question marks in the data? SS: Variables are limited. Unfortunately, I can't.
-
-* 2 character: sex
-* 3 to 6 character: ?
-* numeric: age
-* treatment: ? (Nice to have a variable with two possible values which might be considered a treatment.)
 
 
 ### polls 
 
-Skim: In primer.tutorials, note this code:
+Provide URL in documentation.
 
-poll_data <- tibble(biden = as.factor(c(rep("Yes", 655), 
-                                        rep("No", 904)))) |> 
-                slice_sample(prop = 1)
+Add another paragraph, perhaps to details, which describes the election, how it looked, final result, et cetera.
 
+Variable descriptions end with a period and should include the possible values, at least in a case of charater/factor variables with fewer than 6 or so allowed values.
+
+approve values should be Approve, Disapprove, Do Not Know.
+
+Your job to understand what each variable and then document.
+
+"a Florida Senate election survey. " Taken on what date? But what organization?
+
+Are variable names in the Description or Details quoted? Backticked? Nothing? Not sure.
 
 We need to add a dataset which corresponds to the polls dataset which is used in the primer. Maybe October 2024? Must have other variables we like. SS: Done
 
+Change `gender` to `sex`.
+
+Can you find a better treatment? A variable with two values that, even though it was not randomly assigned, you could at least imagine, manipulating. Example: "married" with TRUE/FALSE values.
+
+### polls
+
+* outcome: response
 * 2 character: gender
 * 3 to 6 character: education
 * numeric: turnout_score
-* treatment: response
+* treatment: ?
 
-https://www.nytimes.com/interactive/2024/10/27/us/elections/times-siena-poll-crosstabs.html
-
-Go ahead make a script and a rda object. polls SS: Done
 
 ### ces
 
@@ -73,6 +74,22 @@ For each data set here, list the variable which meets each of the requirements l
 * 3 to 6 character: race or education
 * numeric: bmi
 * treatment: diabetes
+
+### nes
+
+* 2 character: sex
+* 3 to 6 character: region
+* numeric: age
+* treatment: voted
+
+### shaming (not that many variables available)
+
+* 2 character: sex
+* 3 to 6 character: ?
+* numeric: age
+* treatment: ? (Nice to have a variable with two possible values which might be considered a treatment.)
+
+
 
 ### governors
 
