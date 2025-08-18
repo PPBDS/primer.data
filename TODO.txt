@@ -33,16 +33,16 @@ poll_data <- tibble(biden = as.factor(c(rep("Yes", 655),
                 slice_sample(prop = 1)
 
 
-We need to add a dataset which corresponds to the polls dataset which is used in the primer. Maybe October 2024? Must have other variables we like.
+We need to add a dataset which corresponds to the polls dataset which is used in the primer. Maybe October 2024? Must have other variables we like. SS: Done
 
-* 2 character:
-* 3 to 6 character:
-* numeric:
-* treatment: 
+* 2 character: gender
+* 3 to 6 character: education
+* numeric: turnout_score
+* treatment: response
 
 https://www.nytimes.com/interactive/2024/10/27/us/elections/times-siena-poll-crosstabs.html
 
-Go ahead make a script and a rda object. polls
+Go ahead make a script and a rda object. polls SS: Done
 
 ### ces
 
