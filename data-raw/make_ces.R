@@ -7,7 +7,7 @@ library(haven)
 library(usethis)
 
 raw <- read_rds("data-raw/cumulative_2006-2023.rds") |>
-      select(case_id, year, state,
+      select(case_id, year, state, voted_turnout_self,
 
              # Always a tricky issue.
 
