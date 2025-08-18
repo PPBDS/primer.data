@@ -50,9 +50,9 @@ Can you find a better treatment? A variable with two values that, even though it
 Update for latest information. 
 
 * 2 character: sex
-* 3 to 6 character: education or ideology
-* numeric: faminc
-* treatment: voted
+* 3 to 6 character: education 
+* numeric: age
+* treatment: voted_turnout_self
 
 # Background Information
 
