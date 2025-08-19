@@ -16,25 +16,25 @@ Also, update this data with the latest information from 2024 election. Leave out
 
 ### polls 
 
-Provide URL in documentation.
+Provide URL in documentation. SS: Done
 
-Add another paragraph, perhaps to details, which describes the election, how it looked, final result, et cetera.
+Add another paragraph, perhaps to details, which describes the election, how it looked, final result, et cetera. SS: Done
 
-Variable descriptions end with a period and should include the possible values, at least in a case of charater/factor variables with fewer than 6 or so allowed values.
+Variable descriptions end with a period and should include the possible values, at least in a case of charater/factor variables with fewer than 6 or so allowed values. SS: Done
 
-approve values should be Approve, Disapprove, Do Not Know.
+approve values should be Approve, Disapprove, Do Not Know. SS: Done
 
-Your job to understand what each variable and then document.
+Your job to understand what each variable and then document. 
 
-"a Florida Senate election survey. " Taken on what date? But what organization?
+"a Florida Senate election survey. " Taken on what date? But what organization? SS: Done
 
-Are variable names in the Description or Details quoted? Backticked? Nothing? Not sure.
+Are variable names in the Description or Details quoted? Backticked? Nothing? Not sure. SS: Backticks
 
 We need to add a dataset which corresponds to the polls dataset which is used in the primer. Maybe October 2024? Must have other variables we like. SS: Done
 
-Change `gender` to `sex`.
+Change `gender` to `sex`. SS: Done
 
-Can you find a better treatment? A variable with two values that, even though it was not randomly assigned, you could at least imagine, manipulating. Example: "married" with TRUE/FALSE values.
+Can you find a better treatment? A variable with two values that, even though it was not randomly assigned, you could at least imagine, manipulating. Example: "married" with TRUE/FALSE values. SS: Done
 
 ### polls
 
@@ -42,7 +42,7 @@ Can you find a better treatment? A variable with two values that, even though it
 * 2 character: gender
 * 3 to 6 character: education
 * numeric: turnout_score
-* treatment: ?
+* treatment: phone_type
 
 
 ### ces
