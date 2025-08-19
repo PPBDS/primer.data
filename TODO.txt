@@ -3,9 +3,9 @@
 
 # governors
 
-No ties.
+No ties. SS: Done
 
-Bad character added.
+Bad character added. SS: Done
 
 
 ### nes

@@ -128,7 +128,6 @@ x <- read_csv("data-raw/longevity.csv",
   mutate(outcome = case_when(
     win_margin > 0 ~ "Win",
     win_margin < 0 ~ "Lose",
-    win_margin == 0 ~ "Tie",
     TRUE ~ NA_character_
   )) |>
 
@@ -149,7 +148,7 @@ x <- read_csv("data-raw/longevity.csv",
   # since for many elections before that year the date of death could
   # not be determined. The second condition then excludes all remaining
   # NAs in "died," most of which were caused by the recent elections
-  # with many candidates not yet deceased.sâ€š
+  # with many candidates not yet deceased.
 
   # Maybe I should keep everyone and force students to deal with living
   # candidates?
