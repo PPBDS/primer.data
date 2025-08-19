@@ -1,16 +1,19 @@
 
 # Stepher
 
-# governors
+* Regenerate governors.rda
 
-No ties. SS: Done
+* Study by hand y2024 data, especially those variables we care about.
 
-Bad character added. SS: Done
+* More comments in make_nes.R. 
+
+* Clean up code for make_nes.R. First, unzip the files and discuss what is going on big picture. Second, import just the variables we want into two tibbles: cumulative and y2024. Third, item by item, change the variable names in y2024 to what they would have been in cumulative. Maybe split it into two groups. The first group are renames that seem 100% consistent. The second group are more problematic. Document why! But we are still doing it. 
+
+Change old codes to new codes. So, you are manipulating cumulative not y2024. 
+
+Once variables have the same ID
 
 
-### nes
-
-Also, update this data with the latest information from 2024 election. Leave out any variables which you think are problematic. Consider adding some variables (or maybe not). Check that variable possible values, like education, have not changed.
 
 
 
