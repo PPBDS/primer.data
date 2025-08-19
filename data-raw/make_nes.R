@@ -370,6 +370,92 @@ select(year, state, sex, income, age,
        religion, better_alone, therm_black,
        therm_white, pres_vote)
 
+# ==============================================================================
+# PROCESSING 2024 DATA
+# ==============================================================================
+
+# Read 2024 data - adjust the file path as needed
+# Assuming the 2024 data is in a similar format (Stata .dta file)
+
+unzip("data-raw/anes_timeseries_2024_csv_20250808.zip")
+
+raw_data_2024 <- read.csv("anes_timeseries_2024_csv_20250808.csv")
+
+stopifnot(all(file.remove(c("anes_timeseries_2024_csv_20250808.csv",
+                            "anes_timeseries_2024_userguidecodebook_20250808.pdf"))))
+
+data_2024 <- raw_data_2024 |>
+  
+  mutate(year = 2024L) |>
+
+  select(year,
+         V241550,    # Sex
+         V241465x,   # Education
+         V241501x,   # Race
+         V241036,    # Voted
+         V243007,    # Region
+         V241075x) |>
+  
+  # Process Sex variable (V241550)
+  mutate(sex = case_when(
+    V241550 == 1 ~ "Male",
+    V241550 == 2 ~ "Female",
+    TRUE ~ NA_character_)) |>
+  select(-V241550)|>
+  
+  # Process Education variable (V241465x) - map to historical categories
+  mutate(education = as.character(case_when(
+    V241465x == 1 ~ "Some Highschool",    # Less than high school
+    V241465x == 2 ~ "Highschool",         # High school credential
+    V241465x == 3 ~ "Some College",       # Some post-high school, no bachelor's
+    V241465x == 4 ~ "College",            # Bachelor's degree
+    V241465x == 5 ~ "Adv. Degree",        # Graduate degree
+    TRUE ~ NA_character_))) |>
+  mutate(education = factor(education,
+                       levels = c("Elementary", "Some Highschool",
+                                  "Highschool", "Highschool +",
+                                  "Some College", "College",
+                                  "Adv. Degree"))) |>
+  select(-V241465x) |>
+  
+  # Process Race variable (V241501x)
+  mutate(race = as.character(case_when(
+    V241501x == 1 ~ "White",              # White, non-Hispanic
+    V241501x == 2 ~ "Black",              # Black, non-Hispanic
+    V241501x == 3 ~ "Hispanic",           # Hispanic
+    V241501x == 4 ~ "Asian",              # Asian or Native Hawaiian/Pacific Islander
+    V241501x == 5 ~ "Native American",    # Native American/Alaska Native or other
+    V241501x == 6 ~ "Other",              # Multiple races, non-Hispanic
+    TRUE ~ NA_character_))) |>
+  select(-V241501x) |>
+  
+  # Process Voted variable (V241036)
+  mutate(voted = case_when(
+    V241036 == 1 ~ "Yes",     # Yes, voted
+    V241036 == 2 ~ "No",      # No, have not voted
+    TRUE ~ NA_character_)) |>
+  select(-V241036) |>
+  
+  # Process Region variable (V243007)
+  mutate(region = as.factor(case_when(
+    V243007 == 1 ~ "Northeast",
+    V243007 == 2 ~ "Midwest", 
+    V243007 == 3 ~ "South",
+    V243007 == 4 ~ "West",
+    TRUE ~ NA_character_))) |>
+  select(-V243007) |>
+  
+  # Process Presidential vote variable (V241075x)
+  # Combining actual votes, intent to vote, and preferences into main categories
+  mutate(pres_vote = case_when(
+    V241075x %in% c(10, 20, 30) ~ "Democrat",    # Democratic (vote/intent/preference)
+    V241075x %in% c(11, 21, 31) ~ "Republican",  # Republican (vote/intent/preference)
+    V241075x %in% c(12, 22, 32) ~ "Third Party", # Other (vote/intent/preference)
+    TRUE ~ NA_character_)) |>
+  select(-V241075x) 
+
+
+
 # Check and save - updated to include new numeric variable check.
 
 stopifnot(nrow(z) > 32000)
@@ -380,6 +466,6 @@ stopifnot(is.numeric(z$ideology_numeric))  # Check that ideology numeric variabl
 stopifnot(is.integer(z$age))               # Check that age is integer
 
 
-nes <- z
+nes <- bind_rows(z, data_2024)
 
 usethis::use_data(nes, overwrite = T)
