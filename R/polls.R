@@ -1,31 +1,41 @@
 #' Florida Senate Election Poll Data
 #'
-#' A dataset containing poll responses from a Florida Senate election survey.
+#' This dataset is polling data from a Florida Senate election survey in 2018 by New York Times Upshot.
+#' The poll started October 2, 2018 and ended October 6, 2018.
 #' This data includes respondent demographics, political preferences, and 
 #' survey weights for analysis of voter attitudes and turnout likelihood.
-#'
+#' 
+#' The 2018 Florida Senate election was one of the most closely contested and 
+#' significant races in the country, as it was considered key to determining 
+#' control of the U.S. Senate. The race featured incumbent Democratic Senator 
+#' Bill Nelson, who was seeking his fourth term, against Republican Governor 
+#' Rick Scott, who was term-limited as governor. The election was extremely 
+#' close, with initial results showing a margin of less than 0.25 percentage 
+#' points, which triggered both machine and hand recounts under Florida law. 
+#' After nearly two weeks of recounting and legal challenges, Rick Scott 
+#' ultimately won with a final margin of 10,033 votes out of more than 8 
+#' million votes cast. Nelson conceded the race on November 18, 2018, ending 
+#' his 18-year Senate career and giving Republicans a crucial pickup in their 
+#' efforts to maintain Senate control.
+#' 
 #' @format A data frame with 8 variables:
 #' \describe{
-#'   \item{response}{Character. Poll response or candidate preference}
-#'   \item{education}{Character. Educational attainment level of respondent}
-#'   \item{race}{Character. Race/ethnicity of respondent}
-#'   \item{gender}{Character. Gender of respondent}
-#'   \item{approve}{Character. Approval rating or political approval response}
-#'   \item{region}{Character. Geographic region within Florida}
-#'   \item{turnout_score}{Numeric. Score indicating likelihood to vote or turnout propensity}
-#'   \item{final_weight}{Numeric. Survey weight for representative analysis}
+#'   \item{response}{Respondent's candidate choice in the Senate race, capturing voter preferences in this pivotal contest. Values are either "Democratic" or "Rebulican."}
+#'   \item{education}{Educational background of the respondent, reflecting how different levels of educational attainment influenced voting patterns.}
+#'   \item{race}{Racial and ethnic identity of respondents, providing insight into demographic voting coalitions.}
+#'   \item{sex}{Sex of survey participants. Values include "Male", "Female".}
+#'   \item{approve}{Political approval ratings that help contextualize broader voter sentiment beyond candidate preference. Values are "Approve", "Disapprove", or "Do Not Know."}
+#'   \item{region}{Geographic location within Florida, allowing analysis of regional voting patterns across the diverse state. Values are "Central", "I-4", "North/Rural", "Southeast", or "Southwest."}
+#'   \item{turnout_score}{Likelihood-to-vote score measuring how probable each respondent was to actually cast a ballot on election day.}
+#'   \item{final_weight}{Statistical weight applied to each response to ensure the poll accurately represents Florida's voting population.}
+#'   \item{phone_type}{Type of phone used to contact the respondent. Values include "cell" or "landline".}
 #' }
 #'
 #' @details
-#' This dataset represents polling data from a Florida Senate election survey.
-#' The data includes demographic information about respondents as well as their
-#' political preferences and attitudes. The turnout_score variable provides a
-#' numeric measure of voting likelihood, while final_weight contains survey
-#' weights that should be used for representative population estimates.
-#'
+#' 
 #' The original data file was "elections-poll-flsen-3.csv" and has been
 #' processed to rename variables for consistency and select relevant columns
 #' for analysis.
 #'
-#' @source Raw data file: "data-raw/elections-poll-flsen-3.csv"
+#' @source Raw data file: https://github.com/TheUpshot/2018-live-poll-results/blob/master/data/elections-poll-flsen-3.csv
 "polls"
