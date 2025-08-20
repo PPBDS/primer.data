@@ -1,43 +1,29 @@
 
 # Stepher
 
-* Regenerate governors.rda SS: dovernors.rda is already up to date. 
+* This is wrong: "le with 46,838 observations and 18 variables:"
 
-* Study by hand y2024 data, especially those variables we care about. SS: Done
+* Still seem to be missing variables in 2024 data.
 
-* More comments in make_nes.R. SS: Done
+* `ideology` looks wrong; way too many NAs. 
 
-* Clean up code for make_nes.R. First, unzip the files and discuss what is going on big picture. Second, import just the variables we want into two tibbles: cumulative and y2024. Third, item by item, change the variable names in y2024 to what they would have been in cumulative. Maybe split it into two groups. The first group are renames that seem 100% consistent. The second group are more problematic. Document why! But we are still doing it. SS: Done
+* check the distribution for 2024 for all variables to ensure nothing is amiss. Is `income` really missing?
 
-Change old codes to new codes. So, you are manipulating cumulative not y2024. SS: Done
+* ASK AI. 
 
-Once variables have the same ID
+* No fluff, e.g, "capturing voter preferences in this pivotal contest" (Do this in polls and nes?)
 
+* No commentary: "reflecting how different levels of educational attainment influenced voting patterns." Instead, list the possible values and what they mean.
 
+* List all values for character/factor variables with 6 or fewer possible values.
 
+* Update ces with 2024 data. 
 
 
 ### polls 
 
-Provide URL in documentation. SS: Done
+* Should education be character or factor or ordered factor?
 
-Add another paragraph, perhaps to details, which describes the election, how it looked, final result, et cetera. SS: Done
-
-Variable descriptions end with a period and should include the possible values, at least in a case of charater/factor variables with fewer than 6 or so allowed values. SS: Done
-
-approve values should be Approve, Disapprove, Do Not Know. SS: Done
-
-Your job to understand what each variable and then document. 
-
-"a Florida Senate election survey. " Taken on what date? But what organization? SS: Done
-
-Are variable names in the Description or Details quoted? Backticked? Nothing? Not sure. SS: Backticks
-
-We need to add a dataset which corresponds to the polls dataset which is used in the primer. Maybe October 2024? Must have other variables we like. SS: Done
-
-Change `gender` to `sex`. SS: Done
-
-Can you find a better treatment? A variable with two values that, even though it was not randomly assigned, you could at least imagine, manipulating. Example: "married" with TRUE/FALSE values. SS: Done
 
 ### polls
 
