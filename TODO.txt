@@ -1,7 +1,7 @@
 
 # Stepher
 
-* Regenerate governors.rda
+* Regenerate governors.rda SS: dovernors.rda is already up to date. 
 
 * Study by hand y2024 data, especially those variables we care about.
 
