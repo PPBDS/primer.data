@@ -2,470 +2,448 @@ library(tidyverse)
 library(haven)
 library(usethis)
 
-# TOD0: modern versions of case_when() don't require NA_character_ nonsense, so
-# this code can be simplified.
+# ==============================================================================
+# OVERVIEW AND DATA SOURCES
+# ==============================================================================
 
-# This dataset is from the American National Election Survey (ANES), a project
-# that aims to provide insights into voter behavior. ANES has been running since
-# 1948 before and after each presidential election, and is run by academics at
-# UMich and Stanford. The survey combines questions about voters' political
-# attitudes with extensive biographical information, and has been expanded by a
-# variety of issues over time. Details about ANES and the raw data can be found
-# at:
+# This script processes data from the American National Election Survey (ANES), 
+# a project that aims to provide insights into voter behavior. ANES has been 
+# running since 1948 before and after each presidential election, and is run by 
+# academics at UMich and Stanford. The survey combines questions about voters' 
+# political attitudes with extensive biographical information.
 
-# https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/.
+# We combine two datasets:
+# 1. ANES Time Series Cumulative Data File (1948-2020): Historical data
+# 2. ANES 2024 Time Series Study: Most recent election data
 
-# The raw zip is in the repo. Derived files are too big to commit. So, we just
-# unzip, read and then delete. Should take a closer look at the code book.
+# We combine the datasets since currently there is no cumulative data from 1948-2024.
+# We had to manually integrate 2024 into the existing 1948-2020 data.
 
-# You would think that someone had already done this, but I can't find anything
-# but this:
+# Details about ANES and raw data: https://electionstudies.org/data-center/
 
-# https://github.com/jamesmartherus/anesr
+# The raw zip files are in the repo. Derived files are too big to commit, so we 
+# unzip, read, and then delete the temporary files.
 
+# ==============================================================================
+# IMPORT DATA
+# ==============================================================================
+
+# Import cumulative data (1948-2020)
 unzip("data-raw/anes_timeseries_cdf_stata_20220916.zip")
-
-raw_data <- read_dta("anes_timeseries_cdf_stata_20220916.dta")
-
+cumulative <- read_dta("anes_timeseries_cdf_stata_20220916.dta")
 stopifnot(all(file.remove(c("anes_timeseries_cdf_stata_20220916.dta",
                             "anes_timeseries_cdf_codebook_app_20220916.pdf",
                             "anes_timeseries_cdf_codebook_var_20220916.pdf"))))
 
+# Import 2024 data
+unzip("data-raw/anes_timeseries_2024_csv_20250808.zip")
+y2024 <- read.csv("anes_timeseries_2024_csv_20250808.csv")
+stopifnot(all(file.remove(c("anes_timeseries_2024_csv_20250808.csv",
+                            "anes_timeseries_2024_userguidecodebook_20250808.pdf"))))
 
-x <- raw_data |>
+# Import FIPS codes for state mapping
+fips_key <- read.csv("data-raw/fips_key.csv") |>
+  select(fips, state_abbr)
 
-  # Only retains presidential election years.
+# Select only the variables we need from each dataset
+cumulative <- cumulative |>
+  # Only retain presidential election years
+  filter(VCF0004 %in% seq(1948, max(cumulative$VCF0004), by = 4)) |>
+  # Filter out 1948 observations (lacking data on several variables)
+  filter(VCF0004 > 1948) |>
+  # Select relevant variables
+  select(VCF0004,    # year
+         VCF0901a,   # state FIPS code  
+         VCF0104,    # sex
+         VCF0114,    # income
+         VCF0101,    # age
+         VCF0140a,   # education
+         VCF0105a,   # race
+         VCF0301,    # ideology/party identification
+         VCF0702,    # voted in national elections
+         VCF0112,    # region
+         VCF0450,    # president approval
+         VCF0613,    # influence (people like R have say in government)
+         VCF9013,    # equality (society should ensure equal opportunity)
+         VCF0846,    # religion importance
+         VCF0823,    # better alone (US better off alone)
+         VCF0206,    # thermometer blacks
+         VCF0207,    # thermometer whites
+         VCF0704)    # presidential vote
 
-  filter(VCF0004 %in% seq(1948, max(raw_data$VCF0004), by = 4)) |>
+y2024 <- y2024 |>
+  select(V242058x,   # state
+         V241550,    # sex  
+         V241458x,   # age
+         V241465x,   # education
+         V241501x,   # race
+         V242065,    # voted
+         V243007,    # region
+         V241075x,   # presidential vote
+         V241226)    # ideology
 
+# ==============================================================================
+# RENAME 2024 VARIABLES TO MATCH CUMULATIVE NAMES
+# ==============================================================================
 
-  # Picking relevant variables: sex, income, year, race, party
-  # identification, education, state FIPS code, voted in national elections?,
-  # age group, incumbent president's approval, region, thermometer (blacks),
-  # thermometer (whites), USA better off alone?, importance of religion, should
-  # society of ensure equal opportunity?, people like R have say in government
-  # actions,
+# GROUP 1: Straightforward renames (100% consistent mappings)
+# These variables have clear, direct mappings between the two datasets
 
-  # Considering these variables as well.
+y2024 <- y2024 |>
+  rename(
+    # Basic demographics - these are consistently measured across years
+    VCF0104 = V241550,    # sex (Male/Female categories consistent)
+    VCF0101 = V241458x,   # age (continuous variable, same measurement)
+    VCF0112 = V243007,    # region (Northeast/Midwest/South/West consistent)
+    VCF0702 = V242065,    # voted (Yes/No response consistent)
+    VCF0901a = V242058x,   # state FIPS (standardized codes)
+    VCF0301 =  V241226
+  ) |>
+  # Add year variable
+  mutate(VCF0004 = 2024L)
 
-  # VCF0701 REGISTERED TO VOTE PRE-ELECTION
-  # VCF0702 DID RESPONDENT VOTE IN THE NATIONAL ELECTIONS
-  # VCF0704 VOTE FOR PRESIDENT- MAJOR CANDIDATES
-  # VCF0704a VOTE FOR PRESIDENT- MAJOR PARTIES
-  # VCF0705 VOTE FOR PRESIDENT- MAJOR PARTIES AND OTHER
-  # VCF0706 VOTE AND NONVOTE- PRESIDENT
+# GROUP 2: Problematic renames (require careful consideration)
+# These variables have some inconsistencies or measurement changes over time
+# but we're mapping them to maintain historical comparability
 
-  select(VCF0104, VCF0114, VCF0004,
-         VCF0105a, VCF0301, VCF0140a,
-         VCF0901a, VCF0702, VCF0101, VCF0102,
-         VCF0450, VCF0112, VCF0206,
-         VCF0207, VCF0823, VCF0846,
-         VCF9013, VCF0613, VCF0704) |>
+y2024 <- y2024 |>
+  rename(
+    # Education: 2024 has 5 categories vs historical 7 categories
+    # We lose granularity (no "Elementary" or "Highschool +" in 2024)
+    # but maintain general educational progression
+    VCF0140a = V241465x,
+    
+    # Race: Categories have evolved over time
+    # 2024 uses more modern racial/ethnic classifications
+    # Historical data includes "Non-white"/"Other" that 2024 doesn't
+    # We're mapping for best approximate consistency
+    VCF0105a = V241501x,
+    
+    # Presidential vote: 2024 combines actual votes with voting intentions
+    # Historical data may have been more restrictive about actual votes
+    # We're creating a unified "vote choice" variable that includes intentions
+    VCF0704 = V241075x
+  )
 
+# Missing variables in 2024 data that exist in cumulative:
+# - VCF0114 (income): Available in 2024 but factor scale kind of tricky to align with cumulative
+# - VCF0450 (president approval)
+# - VCF0613 (influence)
+# - VCF9013 (equality)
+# - VCF0846 (religion)
+# - VCF0823 (better alone)
+# - VCF0206 (thermometer blacks)
+# - VCF0207 (thermometer whites)
 
-  # Renaming and cleaning sex variable.
+# ==============================================================================
+# CLEAN AND STANDARDIZE CUMULATIVE DATA
+# ==============================================================================
 
+cumulative <- cumulative |>
+  
+  # Clean year variable
+  mutate(year = as.integer(VCF0004)) |>
+  select(-VCF0004) |>
+  
+  # Clean sex variable
   mutate(VCF0104 = as.character(as_factor(VCF0104))) |>
-
-  separate(VCF0104, into = c(NA, "sex"),
-           sep = "[.]") |>
-
+  separate(VCF0104, into = c(NA, "sex"), sep = "[.]") |>
   mutate(sex = case_when(
     sex == " Female" ~ "Female",
     sex == " Male" ~ "Male",
     sex == " Other (2016)" ~ "Other")) |>
-
-
-  # Renaming and cleaning income variable. Note that recoding
-  # the income percentiles as integers would be misleading,
-  # like 1 for the lowest percentile group, 2 for the second
-  # lowest etc. This makes people think that the differences
-  # between each percentile group are the same, which is not
-  # the case. A factor variable makes more sense here.
-
-  mutate(VCF0114 = as.character(as_factor(VCF0114)))  |>
-
-  separate(VCF0114, into = c(NA, "income"),
-           sep = "[.]") |>
-
+    
+  # Clean income variable (factor to preserve ordinality)
+  mutate(VCF0114 = as.character(as_factor(VCF0114))) |>
+  separate(VCF0114, into = c(NA, "income"), sep = "[.]") |>
   mutate(income = as.factor(case_when(
     income == " 96 to 100 percentile" ~ "96 - 100",
-    income == " 68 to 95 percentile" ~ "68 - 95",
+    income == " 68 to 95 percentile" ~ "68 - 95", 
     income == " 34 to 67 percentile" ~ "34 - 67",
     income == " 17 to 33 percentile" ~ "17 - 33",
     income == " 0 to 16 percentile" ~ "0 - 16"))) |>
-
-
-  # Cleaning year variable.
-
-  mutate(year = as.integer(VCF0004)) |>
-
-  select(-VCF0004) |>
-
-
-  # Filtering out all 1948 observations because they are
-  # lacking data on several variables.
-
-  filter(year > 1948) |>
-
-
-  # Cleaning race variable.
-
+    
+  # Clean race variable  
   mutate(VCF0105a = as.character(as_factor(VCF0105a))) |>
-
-
-  # I elected to use str_extract as the conditional test here because I
-  # was getting an error where 'case_when()' would not allow a T/F test
-  # on the LHS of the equation. I'm still looking into a workaround for
-  # this, but this method does the job for now.
-
   mutate(race = as.character(case_when(
     str_extract(VCF0105a, pattern = "White") == "White" ~ "White",
-    str_extract(VCF0105a, pattern = "Black") == "Black" ~ "Black",
+    str_extract(VCF0105a, pattern = "Black") == "Black" ~ "Black", 
     str_extract(VCF0105a, pattern = "Asian") == "Asian" ~ "Asian",
     str_extract(VCF0105a, pattern = "Indian") == "Indian" ~ "Native American",
-
-    # I had to account for the 'non-hispanic' clause in the other labels, hence the
-    # extra code in this case.
-
-    # DK: That `== F` looks wrong . . .
-
     ((str_extract(VCF0105a, pattern = "Hispanic") == "Hispanic") &
-       str_detect(VCF0105a, pattern = "non-") == F) ~ "Hispanic",
-
-    # This terminology has been used after the 1964 election.
-
+       str_detect(VCF0105a, pattern = "non-") == FALSE) ~ "Hispanic",
     str_extract(VCF0105a, pattern = "Other") == "Other" ~ "Other",
-
-    # This terminology has been used until and including the 1964 election,
-    # after which they described the respective group as "Other". In order
-    # to avoid having two different terms for the same group of people in
-    # different time periods, I decided to code this as "Other" as well.
-
-    str_extract(VCF0105a,
-                pattern = "Non-white") == "Non-white" ~ "Other",
-                                                 TRUE ~ NA_character_))) |>
-
-
-  # Dropping the leftover numeric race variable.
-
+    str_extract(VCF0105a, pattern = "Non-white") == "Non-white" ~ "Other",
+    TRUE ~ NA_character_))) |>
   select(-VCF0105a) |>
-
-
-  # Cleaning ideology variable. This code is a mess! Must be an easier way. We
-  # used to turn this into a number, from -3 to 3. But that should be done by
-  # whomever uses the data, so we will just keep this as a factor, but with
-  # levels in the correct order.
-
+  
+  # Clean ideology variable and create numeric version
   mutate(VCF0301 = as_factor(VCF0301)) |>
   mutate(VCF0301 = as.character(VCF0301)) |>
-
-  mutate(ideology = str_sub(VCF0301,
-                            start = 4,
-                            end = -1)) |>
-
+  mutate(ideology = str_sub(VCF0301, start = 4, end = -1)) |>
   select(-VCF0301) |>
-
-  # Whoah! Is there a weird bug in parse_factor? If you use parse_factor instead
-  # of factor in the next line, the NA values get converted into another level,
-  # which I am pretty sure should not be the default behavior.
-
   mutate(ideology = factor(ideology,
                            levels = c("Strong Democrat",
-                                      "Weak Democrat",
+                                      "Weak Democrat", 
                                       "Independent - Democrat",
                                       "Independent - Independent",
                                       "Independent - Republican",
                                       "Weak Republican",
                                       "Strong Republican"))) |>
-  
-  # NEW NUMERIC VARIABLE: Convert ideology to a numeric scale
-  # This creates a 7-point ideology scale commonly used in political science
-  # 1 = Strong Democrat, 4 = Independent, 7 = Strong Republican
-  
+  # Create 7-point ideology scale (1 = Strong Democrat, 7 = Strong Republican)
   mutate(ideology_numeric = as.numeric(ideology)) |>
-
-  # Cleaning education variable.
-
+  
+  # Clean education variable
   mutate(VCF0140a = as.character(as_factor(VCF0140a))) |>
-
   mutate(education = as.character(case_when(
     str_extract(VCF0140a, pattern = "1. ") == "1. " ~ "Elementary",
-    str_extract(VCF0140a, pattern = "2. ") == "2. " ~ "Some Highschool",
+    str_extract(VCF0140a, pattern = "2. ") == "2. " ~ "Some Highschool", 
     str_extract(VCF0140a, pattern = "3. ") == "3. " ~ "Highschool",
     str_extract(VCF0140a, pattern = "4. ") == "4. " ~ "Highschool +",
-
-    # "Highschool +" indicates a HS diploma (or equivalent) plus additional,
-    # non-academic training.
-
     str_extract(VCF0140a, pattern = "5. ") == "5. " ~ "Some College",
-    str_extract(VCF0140a, pattern = "6. ") == "6. " ~ "College",
+    str_extract(VCF0140a, pattern = "6. ") == "6. " ~ "College", 
     str_extract(VCF0140a, pattern = "7. ") == "7. " ~ "Adv. Degree",
     TRUE ~ NA_character_))) |>
-
-
-  # Converting education variable to a factor.
-
   mutate(education = factor(education,
                        levels = c("Elementary", "Some Highschool",
-                                  "Highschool", "Highschool +",
+                                  "Highschool", "Highschool +", 
                                   "Some College", "College",
                                   "Adv. Degree"))) |>
-
-
-  # Dropping the leftover numeric education variable.
-
   select(-VCF0140a) |>
-
-
-  # Cleaning state variable. Going from a haven_labelled object to an
-  # integer is fun. If you fail to pass through <chr> state before going
-  # to integer, the integrity of the values is lost for a presently unknown
-  # reason. I recalled this as a workaround from a previous project and
-  # it worked, I tested for coherence throughout and this was the first
-  # method I arrived at that results in accurate data.
-
+  
+  # Clean state variable and join with FIPS key
   mutate(fips = as.integer(as.character(VCF0901a))) |>
-
-
-  # Dropping leftover state variable.
-
   select(-VCF0901a) |>
-
-  # Cleaning/renaming region variable
-
+  left_join(fips_key, by = "fips") |>
+  mutate(state = state_abbr) |>
+  select(-fips, -state_abbr) |>
+  
+  # Clean region variable
   mutate(region = as.factor(case_when(VCF0112 == 1 ~ "Northeast",
-                                      VCF0112 == 2 ~ "Midwest",
+                                      VCF0112 == 2 ~ "Midwest", 
                                       VCF0112 == 3 ~ "South",
                                       VCF0112 == 4 ~ "West"))) |>
-
-  # Dropping leftover region variable
-
-  select(-VCF0112)
-
-
-# Created a file with all fips codes and state abbreviations, based on info
-# from https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696.
-# Relevant .csv file included in `data-raw`.
-
-fips_key <- read.csv("data-raw/fips_key.csv") |>
-
-  select(fips, state_abbr)
-
-# Ought to make this one pipe to make it easier to recreate.
-
-
-# Creating a new dataframe by joining NES and key dataframes by
-# fips codes.
-
-z <- x |>
-      left_join(fips_key, by = "fips") |>
-
-  mutate(state = state_abbr) |>
-
-  select(-fips, -state_abbr) |>
-
-
-  # Cleaning voted variable. This is about voting in the election that occurred
-  # this year. I *think* that ANES is always (?) conducted after election day.
-
+  select(-VCF0112) |>
+  
+  # Clean voted variable
   mutate(voted = as_factor(VCF0702)) |>
-
-  separate(col = voted, into = c("voted", "v2"),
-           sep = "[.]") |>
-
+  separate(col = voted, into = c("voted", "v2"), sep = "[.]") |>
   mutate(voted = as.character(case_when(
              str_extract(v2, pattern = "voted") == "voted" ~ "Yes",
-             str_extract(v2, pattern = "not") == "not" ~ "No",
+             str_extract(v2, pattern = "not") == "not" ~ "No", 
              TRUE ~ NA_character_))) |>
-
   select(-VCF0702, -v2) |>
-
-
-  # Cleaning age variable as numeric.
-
+  
+  # Clean age variable
   mutate(age = as.integer(VCF0101)) |>
-  select(-VCF0101, -VCF0102) |>
-
-  # Cleaning presidential approval variable. Need to find regex method
-  # to automatize the process of using case_when.
-
+  select(-VCF0101) |>
+  
+  # Clean presidential approval variable
   mutate(pres_appr = as_factor(VCF0450)) |>
   mutate(pres_appr = as.character(case_when(
-    str_detect(pres_appr, "1. ") == T ~ "Approve",
-    str_detect(pres_appr, "2. ") == T ~ "Disapprove",
-    str_detect(pres_appr, "8. ") == T ~ "Unsure",
+    str_detect(pres_appr, "1. ") == TRUE ~ "Approve",
+    str_detect(pres_appr, "2. ") == TRUE ~ "Disapprove", 
+    str_detect(pres_appr, "8. ") == TRUE ~ "Unsure",
     TRUE ~ NA_character_))) |>
-
   select(-VCF0450) |>
-
-
-  # Cleaning thermometer variables.
-
+  
+  # Clean thermometer variables
   mutate(therm_black = as.integer(VCF0206)) |>
   mutate(therm_white = as.integer(VCF0207)) |>
   select(-VCF0206, -VCF0207) |>
-
-
-  # Cleaning variable on whether US would be better off
-  # if unconcerned with rest of world.
-
+  
+  # Clean "better alone" variable
   mutate(better_alone = as.character(as_factor(VCF0823)),
          better_alone = case_when(
            better_alone == "1. Agree (1956-1960: incl. 'agree strongly' and 'agree" ~ "Agree",
            better_alone == "2. Disagree (1956-1960: incl. 'disagree strongly' and" ~ "Disagree",
            TRUE ~ NA_character_)) |>
   select(-VCF0823) |>
-
-
-  # Cleaning religious importance variable.
-
+  
+  # Clean religious importance variable
   mutate(religion = as.character(as_factor(VCF0846)),
          religion = case_when(
            religion == "1. Yes, important" ~ "Important",
-           religion == "2. No, not important" ~ "Unimportant",
+           religion == "2. No, not important" ~ "Unimportant", 
            religion == "8. DK" ~ "Don't know",
            TRUE ~ NA_character_)) |>
   select(-VCF0846) |>
-
-
-  # Cleaning variable on whether society should ensure equal
-  # opportunities to succeed.
-
+  
+  # Clean equality variable
   mutate(equality = as.character(as_factor(VCF9013)),
          equality = case_when(
            equality == "1. Agree strongly" ~ "Agree strongly",
            equality == "2. Agree somewhat" ~ "Agree somewhat",
-           equality == "3. Neither agree nor disagree" ~ "Neither agree nor disagree",
+           equality == "3. Neither agree nor disagree" ~ "Neither agree nor disagree", 
            equality == "4. Disagree somewhat" ~ "Disagree somewhat",
            equality == "5. Disagree strongly" ~ "Disagree strongly",
            equality == "8. DK" ~ "Don't know",
            TRUE ~ NA_character_)) |>
   select(-VCF9013) |>
-
-  # Cleaning variable on whether people like respondent have any
-  # say in what the government does.
-
+  
+  # Clean influence variable
   mutate(influence = as.character(as_factor(VCF0613)),
          influence = case_when(
            influence == "1. Agree" ~ "Agree",
            influence == "2. Disagree" ~ "Disagree",
            influence == "3. Neither agree nor disagree (1988 and later only)" ~ "Neither agree nor disagree",
-           TRUE ~ NA_character_))  |>
+           TRUE ~ NA_character_)) |>
   select(-VCF0613) |>
-
-  # Clean voting variable
-
+  
+  # Clean presidential vote variable
   mutate(pres_vote = as.integer(VCF0704)) |>
   mutate(pres_vote = case_when(
     pres_vote == 1 ~ "Democrat",
-    pres_vote == 2 ~ "Republican",
+    pres_vote == 2 ~ "Republican", 
     pres_vote == 3 ~ "Third Party")) |>
   select(-VCF0704) |>
-
-
-select(year, state, sex, income, age,
-       education, race, ideology, ideology_numeric, voted,
-       region, pres_appr, influence, equality,
-       religion, better_alone, therm_black,
-       therm_white, pres_vote)
-
-# ==============================================================================
-# PROCESSING 2024 DATA
-# ==============================================================================
-
-# Read 2024 data - adjust the file path as needed
-# Assuming the 2024 data is in a similar format (Stata .dta file)
-
-unzip("data-raw/anes_timeseries_2024_csv_20250808.zip")
-
-raw_data_2024 <- read.csv("anes_timeseries_2024_csv_20250808.csv")
-
-stopifnot(all(file.remove(c("anes_timeseries_2024_csv_20250808.csv",
-                            "anes_timeseries_2024_userguidecodebook_20250808.pdf"))))
-
-data_2024 <- raw_data_2024 |>
   
+  # Select final variables in desired order
+  select(year, state, sex, income, age,
+         education, race, ideology, ideology_numeric, voted,
+         region, pres_appr, influence, equality,
+         religion, better_alone, therm_black,
+         therm_white, pres_vote)
+
+# ==============================================================================  
+# CLEAN AND STANDARDIZE 2024 DATA
+# ==============================================================================
+
+y2024 <- y2024 |>
+  
+  # Add year
   mutate(year = 2024L) |>
-
-  select(year,
-         V241550,    # Sex
-         V241465x,   # Education
-         V241501x,   # Race
-         V241036,    # Voted
-         V243007,    # Region
-         V241075x) |>
   
-  # Process Sex variable (V241550)
+  # Clean state variable using FIPS mapping
+  mutate(fips = case_when(
+    VCF0901a == 1 ~ 1L,   VCF0901a == 2 ~ 2L,   VCF0901a == 4 ~ 4L,   VCF0901a == 5 ~ 5L,
+    VCF0901a == 6 ~ 6L,   VCF0901a == 8 ~ 8L,   VCF0901a == 9 ~ 9L,   VCF0901a == 10 ~ 10L,
+    VCF0901a == 11 ~ 11L, VCF0901a == 12 ~ 12L, VCF0901a == 13 ~ 13L, VCF0901a == 15 ~ 15L,
+    VCF0901a == 16 ~ 16L, VCF0901a == 17 ~ 17L, VCF0901a == 18 ~ 18L, VCF0901a == 19 ~ 19L,
+    VCF0901a == 20 ~ 20L, VCF0901a == 21 ~ 21L, VCF0901a == 22 ~ 22L, VCF0901a == 23 ~ 23L,
+    VCF0901a == 24 ~ 24L, VCF0901a == 25 ~ 25L, VCF0901a == 26 ~ 26L, VCF0901a == 27 ~ 27L,
+    VCF0901a == 28 ~ 28L, VCF0901a == 29 ~ 29L, VCF0901a == 30 ~ 30L, VCF0901a == 31 ~ 31L,
+    VCF0901a == 32 ~ 32L, VCF0901a == 33 ~ 33L, VCF0901a == 34 ~ 34L, VCF0901a == 35 ~ 35L,
+    VCF0901a == 36 ~ 36L, VCF0901a == 37 ~ 37L, VCF0901a == 38 ~ 38L, VCF0901a == 39 ~ 39L,
+    VCF0901a == 40 ~ 40L, VCF0901a == 41 ~ 41L, VCF0901a == 42 ~ 42L, VCF0901a == 44 ~ 44L,
+    VCF0901a == 45 ~ 45L, VCF0901a == 46 ~ 46L, VCF0901a == 47 ~ 47L, VCF0901a == 48 ~ 48L,
+    VCF0901a == 49 ~ 49L, VCF0901a == 50 ~ 50L, VCF0901a == 51 ~ 51L, VCF0901a == 53 ~ 53L,
+    VCF0901a == 54 ~ 54L, VCF0901a == 55 ~ 55L, VCF0901a == 56 ~ 56L,
+    TRUE ~ NA_integer_)) |>
+  select(-VCF0901a) |>
+  left_join(fips_key, by = "fips") |>
+  mutate(state = state_abbr) |>
+  select(-fips, -state_abbr) |>
+  
+  # Clean sex variable  
   mutate(sex = case_when(
-    V241550 == 1 ~ "Male",
-    V241550 == 2 ~ "Female",
+    VCF0104 == 1 ~ "Male",
+    VCF0104 == 2 ~ "Female",
     TRUE ~ NA_character_)) |>
-  select(-V241550)|>
+  select(-VCF0104) |>
   
-  # Process Education variable (V241465x) - map to historical categories
+  # Clean age variable
+  mutate(age = case_when(
+    VCF0101 < 0 ~ NA_integer_,
+    TRUE ~ as.integer(VCF0101))) |>
+  select(-VCF0101) |>
+  
+  # Clean education variable
   mutate(education = as.character(case_when(
-    V241465x == 1 ~ "Some Highschool",    # Less than high school
-    V241465x == 2 ~ "Highschool",         # High school credential
-    V241465x == 3 ~ "Some College",       # Some post-high school, no bachelor's
-    V241465x == 4 ~ "College",            # Bachelor's degree
-    V241465x == 5 ~ "Adv. Degree",        # Graduate degree
+    VCF0140a == 1 ~ "Some Highschool",    # Less than high school
+    VCF0140a == 2 ~ "Highschool",         # High school credential  
+    VCF0140a == 3 ~ "Some College",       # Some post-high school, no bachelor's
+    VCF0140a == 4 ~ "College",            # Bachelor's degree
+    VCF0140a == 5 ~ "Adv. Degree",        # Graduate degree
     TRUE ~ NA_character_))) |>
   mutate(education = factor(education,
                        levels = c("Elementary", "Some Highschool",
                                   "Highschool", "Highschool +",
-                                  "Some College", "College",
+                                  "Some College", "College", 
                                   "Adv. Degree"))) |>
-  select(-V241465x) |>
+  select(-VCF0140a) |>
   
-  # Process Race variable (V241501x)
+  # Clean race variable
   mutate(race = as.character(case_when(
-    V241501x == 1 ~ "White",              # White, non-Hispanic
-    V241501x == 2 ~ "Black",              # Black, non-Hispanic
-    V241501x == 3 ~ "Hispanic",           # Hispanic
-    V241501x == 4 ~ "Asian",              # Asian or Native Hawaiian/Pacific Islander
-    V241501x == 5 ~ "Native American",    # Native American/Alaska Native or other
-    V241501x == 6 ~ "Other",              # Multiple races, non-Hispanic
+    VCF0105a == 1 ~ "White",              # White, non-Hispanic
+    VCF0105a == 2 ~ "Black",              # Black, non-Hispanic
+    VCF0105a == 3 ~ "Hispanic",           # Hispanic  
+    VCF0105a == 4 ~ "Asian",              # Asian or Native Hawaiian/Pacific Islander
+    VCF0105a == 5 ~ "Native American",    # Native American/Alaska Native or other
+    VCF0105a == 6 ~ "Other",              # Multiple races, non-Hispanic
     TRUE ~ NA_character_))) |>
-  select(-V241501x) |>
+  select(-VCF0105a) |>
   
-  # Process Voted variable (V241036)
+  # Clean voted variable
   mutate(voted = case_when(
-    V241036 == 1 ~ "Yes",     # Yes, voted
-    V241036 == 2 ~ "No",      # No, have not voted
+    VCF0702 == 4 ~ "Yes",     # Yes, voted
+    VCF0702 %in% c(1, 2, 3) ~ "No",      # No, have not voted (various reasons)
+    VCF0702 < 0 ~ NA_character_,
     TRUE ~ NA_character_)) |>
-  select(-V241036) |>
+  select(-VCF0702) |>
   
-  # Process Region variable (V243007)
+  # Clean region variable
   mutate(region = as.factor(case_when(
-    V243007 == 1 ~ "Northeast",
-    V243007 == 2 ~ "Midwest", 
-    V243007 == 3 ~ "South",
-    V243007 == 4 ~ "West",
+    VCF0112 == 1 ~ "Northeast",
+    VCF0112 == 2 ~ "Midwest",
+    VCF0112 == 3 ~ "South", 
+    VCF0112 == 4 ~ "West",
     TRUE ~ NA_character_))) |>
-  select(-V243007) |>
+  select(-VCF0112) |>
   
-  # Process Presidential vote variable (V241075x)
-  # Combining actual votes, intent to vote, and preferences into main categories
+  # Clean presidential vote variable
+  # Combining actual votes, intent to vote, and preferences
   mutate(pres_vote = case_when(
-    V241075x %in% c(10, 20, 30) ~ "Democrat",    # Democratic (vote/intent/preference)
-    V241075x %in% c(11, 21, 31) ~ "Republican",  # Republican (vote/intent/preference)
-    V241075x %in% c(12, 22, 32) ~ "Third Party", # Other (vote/intent/preference)
+    VCF0704 %in% c(10, 20, 30) ~ "Democrat",    # Democratic (vote/intent/preference)
+    VCF0704 %in% c(11, 21, 31) ~ "Republican",  # Republican (vote/intent/preference) 
+    VCF0704 %in% c(12, 22, 32) ~ "Third Party", # Other (vote/intent/preference)
     TRUE ~ NA_character_)) |>
-  select(-V241075x) 
+  select(-VCF0704) |>
+  
+  # Add missing variables as NA (these don't exist in 2024 data)
+  mutate(
+    income = NA_character_,
+    ideology = factor(NA_character_, levels = c("Strong Democrat", "Weak Democrat",
+                                                "Independent - Democrat", "Independent - Independent", 
+                                                "Independent - Republican", "Weak Republican",
+                                                "Strong Republican")),
+    ideology_numeric = NA_real_,
+    pres_appr = NA_character_,
+    influence = NA_character_,
+    equality = NA_character_, 
+    religion = NA_character_,
+    better_alone = NA_character_,
+    therm_black = NA_integer_,
+    therm_white = NA_integer_
+  ) |>
+  
+  # Convert income to factor to match cumulative
+  mutate(income = factor(income, levels = c("0 - 16", "17 - 33", "34 - 67", 
+                                            "68 - 95", "96 - 100"))) |>
+  
+  # Select final variables in same order as cumulative
+  select(year, state, sex, income, age,
+         education, race, ideology, ideology_numeric, voted,
+         region, pres_appr, influence, equality, 
+         religion, better_alone, therm_black,
+         therm_white, pres_vote)
 
+# ==============================================================================
+# COMBINE DATASETS AND FINAL CHECKS
+# ==============================================================================
 
+# Combine the datasets
+nes <- bind_rows(cumulative, y2024)
 
-# Check and save - updated to include new numeric variable check.
+# Data quality checks
+stopifnot(nrow(cumulative) > 32000)      # Check cumulative data size
+stopifnot(length(levels(cumulative$education)) == 7)  # Check education levels
+stopifnot(is.integer(cumulative$year))   # Check year format
+stopifnot(dim(table(cumulative$income, useNA = "no")) == 5)  # Check income categories (excluding NAs)
+stopifnot(is.numeric(cumulative$ideology_numeric))  # Check ideology numeric variable
+stopifnot(is.integer(cumulative$age))    # Check age format
+stopifnot(nrow(y2024) > 0)               # Check 2024 data exists
+stopifnot(max(nes$year, na.rm = TRUE) == 2024)  # Check 2024 data included
 
-stopifnot(nrow(z) > 32000)
-stopifnot(length(levels(z$education)) == 7)
-stopifnot(is.integer(z$year))
-stopifnot(dim(table(z$income)) == 5)
-stopifnot(is.numeric(z$ideology_numeric))  # Check that ideology numeric variable is numeric
-stopifnot(is.integer(z$age))               # Check that age is integer
-
-
-nes <- bind_rows(z, data_2024)
-
-usethis::use_data(nes, overwrite = T)
+# Save the final dataset
+usethis::use_data(nes, overwrite = TRUE)

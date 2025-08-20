@@ -3,13 +3,13 @@
 
 * Regenerate governors.rda
 
-* Study by hand y2024 data, especially those variables we care about.
+* Study by hand y2024 data, especially those variables we care about. SS: Done
 
-* More comments in make_nes.R. 
+* More comments in make_nes.R. SS: Done
 
-* Clean up code for make_nes.R. First, unzip the files and discuss what is going on big picture. Second, import just the variables we want into two tibbles: cumulative and y2024. Third, item by item, change the variable names in y2024 to what they would have been in cumulative. Maybe split it into two groups. The first group are renames that seem 100% consistent. The second group are more problematic. Document why! But we are still doing it. 
+* Clean up code for make_nes.R. First, unzip the files and discuss what is going on big picture. Second, import just the variables we want into two tibbles: cumulative and y2024. Third, item by item, change the variable names in y2024 to what they would have been in cumulative. Maybe split it into two groups. The first group are renames that seem 100% consistent. The second group are more problematic. Document why! But we are still doing it. SS: Done
 
-Change old codes to new codes. So, you are manipulating cumulative not y2024. 
+Change old codes to new codes. So, you are manipulating cumulative not y2024. SS: Done
 
 Once variables have the same ID
 
