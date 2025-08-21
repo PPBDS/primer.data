@@ -1,15 +1,15 @@
 
 # Stepher
 
-* This is wrong: "le with 46,838 observations and 18 variables:"
+* This is wrong: "le with 46,838 observations and 18 variables:" SS: Done
 
-* Still seem to be missing variables in 2024 data.
+* Still seem to be missing variables in 2024 data. SS: Done
 
-* `ideology` looks wrong; way too many NAs. 
+* `ideology` looks wrong; way too many NAs. SS: Done
 
-* check the distribution for 2024 for all variables to ensure nothing is amiss. Is `income` really missing?
+* check the distribution for 2024 for all variables to ensure nothing is amiss. Is `income` really missing? SS: Done
 
-* ASK AI. 
+* ASK AI. SS: Done
 
 * No fluff, e.g, "capturing voter preferences in this pivotal contest" (Do this in polls and nes?)
 

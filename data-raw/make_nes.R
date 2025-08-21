@@ -80,7 +80,15 @@ y2024 <- y2024 |>
          V242065,    # voted
          V243007,    # region
          V241075x,   # presidential vote
-         V241226)    # ideology
+         V241227x,    # ideology (party identification)
+         V242201,    # influence (people like R have say in government)
+         V242254,    # equality (society should ensure equal opportunity)
+         V241420,    # religion importance
+         V241312x,   # better alone (US better off alone)
+         V242516,    # thermometer blacks
+         V242518,    # thermometer whites
+         V241137x,   # president approval
+         V241566x)   # income
 
 # ==============================================================================
 # RENAME 2024 VARIABLES TO MATCH CUMULATIVE NAMES
@@ -96,8 +104,16 @@ y2024 <- y2024 |>
     VCF0101 = V241458x,   # age (continuous variable, same measurement)
     VCF0112 = V243007,    # region (Northeast/Midwest/South/West consistent)
     VCF0702 = V242065,    # voted (Yes/No response consistent)
-    VCF0901a = V242058x,   # state FIPS (standardized codes)
-    VCF0301 =  V241226
+    VCF0901a = V242058x,  # state FIPS (standardized codes)
+    VCF0301 = V241227x,    # party identification
+    VCF0613 = V242201,    # influence
+    VCF9013 = V242254,    # equality
+    VCF0846 = V241420,    # religion importance
+    VCF0823 = V241312x,   # better alone
+    VCF0206 = V242516,    # thermometer blacks
+    VCF0207 = V242518,    # thermometer whites
+    VCF0450 = V241137x,   # president approval
+    VCF0114 = V241566x    # income
   ) |>
   # Add year variable
   mutate(VCF0004 = 2024L)
@@ -126,14 +142,7 @@ y2024 <- y2024 |>
   )
 
 # Missing variables in 2024 data that exist in cumulative:
-# - VCF0114 (income): Available in 2024 but factor scale kind of tricky to align with cumulative
-# - VCF0450 (president approval)
-# - VCF0613 (influence)
-# - VCF9013 (equality)
-# - VCF0846 (religion)
-# - VCF0823 (better alone)
-# - VCF0206 (thermometer blacks)
-# - VCF0207 (thermometer whites)
+# All major variables now included and mapped
 
 # ==============================================================================
 # CLEAN AND STANDARDIZE CUMULATIVE DATA
@@ -400,26 +409,93 @@ y2024 <- y2024 |>
     TRUE ~ NA_character_)) |>
   select(-VCF0704) |>
   
-  # Add missing variables as NA (these don't exist in 2024 data)
-  mutate(
-    income = NA_character_,
-    ideology = factor(NA_character_, levels = c("Strong Democrat", "Weak Democrat",
+  # Clean party identification/ideology variable (V241227x -> V242201)
+  mutate(ideology = case_when(
+    VCF0301 == 1 ~ "Strong Democrat",
+    VCF0301 == 2 ~ "Weak Democrat",
+    VCF0301 == 3 ~ "Independent - Democrat",
+    VCF0301 == 4 ~ "Independent - Independent",
+    VCF0301 == 5 ~ "Independent - Republican", 
+    VCF0301 == 6 ~ "Weak Republican",
+    VCF0301 == 7 ~ "Strong Republican",
+    VCF0301 < 0 ~ NA_character_,
+    TRUE ~ NA_character_)) |>
+  mutate(ideology = factor(ideology, levels = c("Strong Democrat", "Weak Democrat",
                                                 "Independent - Democrat", "Independent - Independent", 
                                                 "Independent - Republican", "Weak Republican",
-                                                "Strong Republican")),
-    ideology_numeric = NA_real_,
-    pres_appr = NA_character_,
-    influence = NA_character_,
-    equality = NA_character_, 
-    religion = NA_character_,
-    better_alone = NA_character_,
-    therm_black = NA_integer_,
-    therm_white = NA_integer_
-  ) |>
+                                                "Strong Republican"))) |>
+  mutate(ideology_numeric = as.numeric(ideology)) |>
+  select(-VCF0301) |>
   
-  # Convert income to factor to match cumulative
+  # Clean presidential approval variable (V241137x)
+  mutate(pres_appr = case_when(
+    VCF0450 %in% c(1, 2) ~ "Approve",    # Approve strongly/somewhat
+    VCF0450 %in% c(3, 4) ~ "Disapprove", # Disapprove somewhat/strongly
+    VCF0450 < 0 ~ NA_character_,
+    TRUE ~ NA_character_)) |>
+  select(-VCF0450) |>
+  
+  # Clean influence variable (V242201)
+  mutate(influence = case_when(
+    VCF0613 %in% c(1, 2) ~ "Agree",      # Agree strongly/somewhat
+    VCF0613 == 3 ~ "Neither agree nor disagree",
+    VCF0613 %in% c(4, 5) ~ "Disagree",   # Disagree somewhat/strongly
+    VCF0613 < 0 ~ NA_character_,
+    TRUE ~ NA_character_)) |>
+  select(-VCF0613) |>
+  
+  # Clean equality variable (V242254)
+  mutate(equality = case_when(
+    VCF9013 == 1 ~ "Agree strongly",
+    VCF9013 == 2 ~ "Agree somewhat", 
+    VCF9013 == 3 ~ "Neither agree nor disagree",
+    VCF9013 == 4 ~ "Disagree somewhat",
+    VCF9013 == 5 ~ "Disagree strongly",
+    VCF9013 < 0 ~ NA_character_,
+    TRUE ~ NA_character_)) |>
+  select(-VCF9013) |>
+  
+  # Clean religion variable (V241420)
+  mutate(religion = case_when(
+    VCF0846 %in% c(1, 2, 3, 4) ~ "Important",    # Very/quite/somewhat/slightly important
+    VCF0846 == 5 ~ "Unimportant",                # Not important at all
+    VCF0846 < 0 ~ NA_character_,
+    TRUE ~ NA_character_)) |>
+  select(-VCF0846) |>
+  
+  # Clean better alone variable (V241312x)
+  mutate(better_alone = case_when(
+    VCF0823 %in% c(1, 2) ~ "Agree",      # Agree strongly/somewhat
+    VCF0823 %in% c(3, 4) ~ "Disagree",   # Disagree somewhat/strongly
+    VCF0823 < 0 ~ NA_character_,
+    TRUE ~ NA_character_)) |>
+  select(-VCF0823) |>
+  
+  # Clean thermometer variables (V242516, V242518)
+  mutate(therm_black = case_when(
+    VCF0206 >= 0 & VCF0206 <= 100 ~ as.integer(VCF0206),
+    TRUE ~ NA_integer_)) |>
+  select(-VCF0206) |>
+  
+  mutate(therm_white = case_when(
+    VCF0207 >= 0 & VCF0207 <= 100 ~ as.integer(VCF0207),
+    TRUE ~ NA_integer_)) |>
+  select(-VCF0207) |>
+  
+  # Clean income variable - map 2024 categories to percentile ranges
+  # Based on typical US income distribution, approximate mapping:
+  # Bottom 16%: Under $25K, 17-33%: $25-45K, 34-67%: $45-90K, 68-95%: $90-175K, 96-100%: $175K+
+  mutate(income = case_when(
+    VCF0114 %in% c(1:9) ~ "0 - 16",        # Under $5K to $27.5-29.9K (bottom ~16%)
+    VCF0114 %in% c(10:14) ~ "17 - 33",     # $30-34.9K to $45-49.9K (next ~17%)  
+    VCF0114 %in% c(15:21) ~ "34 - 67",     # $50-54.9K to $80-89.9K (middle ~34%)
+    VCF0114 %in% c(22:26) ~ "68 - 95",     # $90-99.9K to $150-174.9K (upper middle ~27%)
+    VCF0114 %in% c(27:28) ~ "96 - 100",    # $175K+ (top ~4%)
+    VCF0114 < 0 ~ NA_character_,            # Negative values = missing
+    TRUE ~ NA_character_)) |>
   mutate(income = factor(income, levels = c("0 - 16", "17 - 33", "34 - 67", 
                                             "68 - 95", "96 - 100"))) |>
+  select(-VCF0114) |>
   
   # Select final variables in same order as cumulative
   select(year, state, sex, income, age,
