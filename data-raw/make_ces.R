@@ -1,5 +1,5 @@
 # Script for cleaning ces data. Shiro updates the data whenever CES is updated.
-# Latest is for 2023. See the help page for links. Could include more approval
+# Latest is for 2024. See the help page for links. Could include more approval
 # variables.
 
 library(tidyverse)
