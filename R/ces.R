@@ -8,7 +8,7 @@
 #' (2024)} for background and details. The raw code that was used to produce
 #' the data is accessible at Kuriwaki's \href{https://github.com/kuriwaki/cces_cumulative}{Github.}
 #'
-#' @format A tibble with 617,455 observations and 17 variables:
+#' @format A tibble with 701,955 observations and 17 variables:
 #' \describe{
 #'   \item{case_id}{integer variable for case number}
 #'   \item{year}{integer variable for year of survey}

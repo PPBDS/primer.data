@@ -17,7 +17,7 @@
 
 * List all values for character/factor variables with 6 or fewer possible values. SS: Done
 
-* Update ces with 2024 data. 
+* Update ces with 2024 data. SS: Done
 
 
 ### polls 

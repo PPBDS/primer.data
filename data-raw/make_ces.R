@@ -1,12 +1,12 @@
 # Script for cleaning ces data. Shiro updates the data whenever CES is updated.
-# Latest is for 2023. See the help page for links. Could include more approval
+# Latest is for 2024. See the help page for links. Could include more approval
 # variables.
 
 library(tidyverse)
 library(haven)
 library(usethis)
 
-raw <- read_rds("data-raw/cumulative_2006-2023.rds") |>
+raw <- read_rds("data-raw/cumulative_2006-2024.rds") |>
       select(case_id, year, state, voted_turnout_self,
 
              # Always a tricky issue.
