@@ -13,7 +13,7 @@
 #' \href{https://electionstudies.org/wp-content/uploads/2018/12/anes_timeseries_cdf_codebook_var.pdf}{ANES
 #' codebook} provides further information on this issue.
 #'
-#' @format A tibble with 46,838 observations and 18 variables:
+#' @format A tibble with 52,359 observations and 19 variables:
 #' \describe{
 #'   \item{year}{integer variable for year of study}
 #'   \item{state}{character variable for the 2-letter abbreviation of respondent's survey state}

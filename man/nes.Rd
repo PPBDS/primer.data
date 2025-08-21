@@ -5,7 +5,7 @@
 \alias{nes}
 \title{American National Election Studies}
 \format{
-A tibble with 46,838 observations and 18 variables:
+A tibble with 52,359 observations and 19 variables:
 \describe{
 \item{year}{integer variable for year of study}
 \item{state}{character variable for the 2-letter abbreviation of respondent's survey state}
