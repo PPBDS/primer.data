@@ -1,24 +1,6 @@
 
 # Stepher
 
-* This is wrong: "le with 46,838 observations and 18 variables:" SS: Done
-
-* Still seem to be missing variables in 2024 data. SS: Done
-
-* `ideology` looks wrong; way too many NAs. SS: Done
-
-* check the distribution for 2024 for all variables to ensure nothing is amiss. Is `income` really missing? SS: Done
-
-* ASK AI. SS: Done
-
-* No fluff, e.g, "capturing voter preferences in this pivotal contest" (Do this in polls and nes?) SS: Done
-
-* No commentary: "reflecting how different levels of educational attainment influenced voting patterns." Instead, list the possible values and what they mean. SS: Done
-
-* List all values for character/factor variables with 6 or fewer possible values. SS: Done
-
-* Update ces with 2024 data. SS: Done
-
 
 ### polls 
 
