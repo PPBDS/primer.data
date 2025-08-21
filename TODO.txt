@@ -11,11 +11,11 @@
 
 * ASK AI. 
 
-* No fluff, e.g, "capturing voter preferences in this pivotal contest" (Do this in polls and nes?)
+* No fluff, e.g, "capturing voter preferences in this pivotal contest" (Do this in polls and nes?) SS: Done
 
-* No commentary: "reflecting how different levels of educational attainment influenced voting patterns." Instead, list the possible values and what they mean.
+* No commentary: "reflecting how different levels of educational attainment influenced voting patterns." Instead, list the possible values and what they mean. SS: Done
 
-* List all values for character/factor variables with 6 or fewer possible values.
+* List all values for character/factor variables with 6 or fewer possible values. SS: Done
 
 * Update ces with 2024 data. 
 

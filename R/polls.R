@@ -18,17 +18,17 @@
 #' his 18-year Senate career and giving Republicans a crucial pickup in their 
 #' efforts to maintain Senate control.
 #' 
-#' @format A data frame with 8 variables:
+#' @format A data frame with 9 variables:
 #' \describe{
-#'   \item{response}{Respondent's candidate choice in the Senate race, capturing voter preferences in this pivotal contest. Values are either "Democratic" or "Rebulican."}
-#'   \item{education}{Educational background of the respondent, reflecting how different levels of educational attainment influenced voting patterns.}
-#'   \item{race}{Racial and ethnic identity of respondents, providing insight into demographic voting coalitions.}
+#'   \item{response}{Respondent's candidate choice in the Senate race. Values are either "Democratic" (chose the Democratic candidate) or "Republican" (chose the Republican candidate).}
+#'   \item{education}{Educational background of the respondent. Values include "Grade school" (completed elementary/primary education only, typically through 8th grade), "High school" (completed high school education with diploma or equivalent), "Some college or trade school" (attended college or vocational training but did not complete a bachelor's degree), "Bachelor's degree" (completed a 4-year undergraduate college degree), "Graduate or Professional Degree" (completed advanced education beyond bachelor's level such as master's, PhD, JD, MD, etc.), and "Refused" (declined to answer the education question).}
+#'   \item{race}{Racial and ethnic identity of respondents. Values include "Asian", "Black", "Hispanic", "White", "Other", and "Refused"}
 #'   \item{sex}{Sex of survey participants. Values include "Male", "Female".}
-#'   \item{approve}{Political approval ratings that help contextualize broader voter sentiment beyond candidate preference. Values are "Approve", "Disapprove", or "Do Not Know."}
-#'   \item{region}{Geographic location within Florida, allowing analysis of regional voting patterns across the diverse state. Values are "Central", "I-4", "North/Rural", "Southeast", or "Southwest."}
+#'   \item{approve}{Political approval ratings. Values are "Approve" (approves of the political figure/policy being measured), "Disapprove" (disapproves of the political figure/policy being measured), or "Do Not Know" (unsure or has no opinion about their approval).}
+#'   \item{region}{Geographic location within Florida. Values are "Central" (Central Florida region), "I-4" (Interstate 4 corridor region), "North/Rural" (Northern Florida and rural areas), "Southeast" (Southeastern Florida, includes areas like Miami-Dade and Broward), or "Southwest" (Southwestern Florida, includes areas like Naples and Fort Myers).}
 #'   \item{turnout_score}{Likelihood-to-vote score measuring how probable each respondent was to actually cast a ballot on election day.}
 #'   \item{final_weight}{Statistical weight applied to each response to ensure the poll accurately represents Florida's voting population.}
-#'   \item{phone_type}{Type of phone used to contact the respondent. Values include "cell" or "landline".}
+#'   \item{phone_type}{Type of phone used to contact the respondent. Values include "cell" (contacted via mobile/cellular phone) or "landline" (contacted via traditional landline telephone).}
 #' }
 #'
 #' @details
