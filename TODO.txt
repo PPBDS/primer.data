@@ -1,114 +1,12 @@
+# Open Items
 
-# Stepher
+* Consider adding the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". 
 
+* For census we want tracts not counties. Also, consider adding a cool plot to the help page.
 
-### polls 
+* Add some data for class examples, like resume.csv and Tennessee STAR. 
 
-* Should education be character or factor or ordered factor?
-
-
-### polls
-
-* outcome: response
-* 2 character: gender
-* 3 to 6 character: education
-* numeric: turnout_score
-* treatment: phone_type
-
-
-### ces
-
-Update for latest information. 
-
-* 2 character: sex
-* 3 to 6 character: education 
-* numeric: age
-* treatment: voted_turnout_self
-
-# Background Information
-
-* We need to expand the datasets which are used in the primer so that each has:
-  
-  + at least one categorical character variable which takes on exactly two values.
-  + at least one categorical character variable which takes on at least 3, but no more than 6 values.
-  + at least one numeric values with a non-absurd distribution
-  + at least one character variable with two values which might plausibly be discussed as a treatment variable, i.e., something which, at least in theory, we might manipulate. This might need to be fake, but will clearly be noted as such on the help page. I hope that none of them have to be fake!
-
-
-## Data Details
-
-For each data set here, list the variable which meets each of the requirements listed above
-
-### nhanes
-
-* 2 character: sex
-* 3 to 6 character: race or education
-* numeric: bmi
-* treatment: diabetes
-
-### nes
-
-* 2 character: sex
-* 3 to 6 character: region
-* numeric: age
-* treatment: voted
-
-### shaming (not that many variables available)
-
-* 2 character: sex
-* 3 to 6 character: ?
-* numeric: age
-* treatment: ? (Nice to have a variable with two possible values which might be considered a treatment.)
-
-
-
-### governors
-
-* 2 character: sex
-* 3 to 6 character: region
-* numeric: election_age
-* treatment: status
-
-### trains
-
-DK: Not yet. Add the data for individual questions to the train data. That means adding a column for "question", with settings which include "overall". 
-
-* 2 character: sex
-* 3 to 6 character: race
-* numeric: att_start
-* treatment: liberal
-
-
-
-
-
-
-### college SS: object not found
-
-* 2 character: 
-* 3 to 6 character:
-* numeric:
-* treatment: 
-
-### stops
-
-* 2 character: sex
-* 3 to 6 character: race
-* numeric: age
-* treatment: arrested
-
-
-### Preceptor
-
-* For census we want tracts not counties.
-
-* Why doesn't help(package = "primer.data") pull up links which work? Shouldn't that page also include the new census data?
-
-* ?stops works but ?census does not.
-
-* Key question: Which variables??? Census is overwhelming. Census is hard to use. Find a cool plot and get the variables for that!
-
-* Add some data for class examples, like resume.csv and Tennessee STAR. Investigate why the STAR data seems wrong.
+* Investigate why the STAR data seems wrong.
 
 * Revisit the connectedness data.
   - We have copies of the NYT article in the bootcamp repo. Where should we keep that so that students have easy access?
@@ -117,20 +15,17 @@ DK: Not yet. Add the data for individual questions to the train data. That means
 
 * Consider deleting unused data
 
-### Improvements
-
 * Drop some data, like names.csv, which we no longer use for the class.
 
 * Look at: https://upworthy.natematias.com/. Pick one data set which you think is cool. Add it to the package. Think about stuff which might be valuable in the chapters, obviously.
 
 * Learn about making test cases from [R Packages](https://r-pkgs.org/tests.html) and add at least one test case for each data set. (Be smart in making these. It is OK to have a test case which tests the number of rows in trains because trains will always (?) have 115 rows. It would be bad (or maybe not?) to have a test case like that for cces since the number of rows for will change once we add next year's data to it.) The definition of a "careful tour" is that you have looked at make_* for a data set, regenerated it, and added at least two test cases about it. You should certainly use any current stopifnot() as test cases and then remove them from the make_* files.
 
-* Transform all the make_ scripts into functions --- I think this is more professional --- which, by default, just return the data. There is an argument for having these functions also install the new data in the package, but the value of that argument  is false by default.
+* Transform all the make_ scripts into functions --- I think this is more professional --- which, by default, just return the data. There is an argument for having these functions also install the new data in the package, but the value of that argument should be FALSE by default.
 
 * Should we re-create all the data sets each time we run R CMD package check? This would not take too much time and would ensure that everything is ship-shape.
 
 * Create better stickers with hexSticker package.
-
 
 ### Data Sets
 
@@ -143,5 +38,3 @@ DK: Not yet. Add the data for individual questions to the train data. That means
  - Science experiment: https://science.sciencemag.org/content/358/6364/776/tab-figures-data
  - Called `police`. [Open police data](https://openpolicing.stanford.edu/data/). Something with millions of rows and, ideally, geographic coordinates. We won't include this data in our repo. Instead, the make_police.R script will download and process it. Ideally, we can get the final police.rda to be less than 100 meg so that we don't need to turn on git-lfs again.
  - World Values Survey: http://www.worldvaluessurvey.org/wvs.jsp
-
-
